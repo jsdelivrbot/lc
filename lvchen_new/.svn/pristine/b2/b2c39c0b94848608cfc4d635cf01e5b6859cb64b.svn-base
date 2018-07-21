@@ -1,0 +1,119 @@
+webpackJsonp([38],{
+
+/***/ 321:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerReturnResultPageModule", function() { return CustomerReturnResultPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_return_result__ = __webpack_require__(412);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerReturnResultPageModule = /** @class */ (function () {
+    function CustomerReturnResultPageModule() {
+    }
+    CustomerReturnResultPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_return_result__["a" /* CustomerReturnResultPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_return_result__["a" /* CustomerReturnResultPage */]),
+            ],
+        })
+    ], CustomerReturnResultPageModule);
+    return CustomerReturnResultPageModule;
+}());
+
+//# sourceMappingURL=customer-return-result.module.js.map
+
+/***/ }),
+
+/***/ 412:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerReturnResultPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+/**
+ * Generated class for the CustomerReturnResultPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerReturnResultPage = /** @class */ (function () {
+    function CustomerReturnResultPage(navCtrl, navParams, appService, popover) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.popover = popover;
+        this.Remark = '';
+        var key = this.navParams.get('item');
+        this.ReturnReceipt = key.receiptNo;
+        this.customerPhone = key.phone;
+        this.goods = key.goods;
+        this.gift = key.gifts;
+    }
+    CustomerReturnResultPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        //返回提示
+        this.navbar.backButtonClick = function (e) {
+            _this.navCtrl.popToRoot({ animation: 'md-transition' });
+        };
+        console.log('ionViewDidLoad CustomerReturnResultPage');
+    };
+    CustomerReturnResultPage.prototype.codeScan = function (code) {
+        console.log(code);
+        var ary = [];
+        ary.push(code);
+        var popver = this.popover.create('CodeviewPage', ary);
+        popver.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], CustomerReturnResultPage.prototype, "navbar", void 0);
+    CustomerReturnResultPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-return-result',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-result/customer-return-result.html"*/'<!--\n  Generated template for the CustomerReturnResultPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>退货回执</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content >\n    <div class="menuDetail">\n        <!-- <div class="customerListRemark">\n          <div class="Remark">门店名称</div>\n          <div>{{storeName}}</div>\n        </div> -->\n        <div class="customerListRemark">\n          <div class="Remark">退货单号</div>\n          <div>{{ReturnReceipt}}</div>\n        </div>\n        <div class="customerListRemark">\n          <div class="Remark">顾客手机</div>\n          <div>{{customerPhone}}</div>\n        </div>\n        <!-- <components-colorbar></components-colorbar> -->\n      </div>\n    \n        <div class="customerList" *ngIf=\'goods.length\' >\n            <div class="commodityName">商品</div>\n            <div class="customerReturnSuccessContent">\n              <div class="name">商品名称</div>\n              <div class="num">数量</div>\n              <div class="sum"></div>\n            </div>\n            <div class="customerReturnSuccessContentList" *ngFor=\'let good of goods\' >\n              <div class="name">{{good.goodsName}}</div>\n              <div class="num">{{good.num}}</div>\n              <div class="sum {{good.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(good.code)\'>...</div>\n            </div>\n          </div>\n      <div class="customerList" *ngIf=\'gift.length\'>\n        <div class="commodityName">赠品</div>\n        <div class="customerReturnSuccessContent">\n          <div class="name">商品名称</div>\n          <div class="num">数量</div>\n          <div class="sum"></div>\n        </div>\n        <div class="customerReturnSuccessContentList" *ngFor=\'let present of gift\'>\n          <div class="name">{{present.goodsName}}</div>\n          <div class="num">{{present.num}}</div>\n          <div class="sum {{present.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(present.code)\'>...</div>\n        </div>\n      </div>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-result/customer-return-result.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */]])
+    ], CustomerReturnResultPage);
+    return CustomerReturnResultPage;
+}());
+
+//# sourceMappingURL=customer-return-result.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=38.js.map

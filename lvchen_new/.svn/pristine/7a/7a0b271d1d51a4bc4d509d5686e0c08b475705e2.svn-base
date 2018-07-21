@@ -1,0 +1,348 @@
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.content {
+    background: #f5f4f3;
+}
+
+.toolbar-background {
+    background: #227B39;
+}
+
+.toolbar-title {
+    color: #ffffff;
+}
+
+.bar-button {
+    color: #ffffff;
+    font-size: 1.6rem;
+}
+
+.swiper-pagination-bullet-active {
+    background: #227B39;
+}
+
+p {
+    -webkit-margin-before: 0.4em;
+    -webkit-margin-after: 0.4em;
+}
+
+.t-a {
+    text-align: center;
+}
+
+.t-r {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.header-div {
+    width: 100%;
+    background: #fff;
+    color: #666;
+    font-size: 1.5rem;
+}
+
+.act-div {
+    color: #227B39; // 
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.attribute {
+    width: 100%;
+    background: #fff;
+    margin-top: .5rem;
+    font-size: 1.6rem;
+    color: #227B39;
+    height: 3rem;
+    line-height: 3rem;
+    padding-left: 1.2rem;
+}
+
+.list-header {
+    background: #f1f6f4;
+    height: 3rem;
+}
+
+.col {
+    padding: 0;
+}
+
+.foot-div {
+    margin: 0;
+    float: left;
+    padding: 0;
+    button {
+        margin: 0;
+        border-radius: 0;
+        height: 4.8rem;
+    }
+}
+
+.textarea {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    font-size: 15px;
+    padding: 10px 15px;
+    color: #666;
+}
+
+.smsCodeBtn {
+    font-size: 12px;
+    height: 32px;
+    margin-top: -3px;
+    position: absolute;
+    right: 15px;
+}
+
+html,
+body,
+ion-app {
+    overflow: hidden;
+}
+
+html,
+body,
+ion-app,
+ion-content,
+ion-page,
+.nav-decor,
+content-md,
+content-ios,
+ion-app.ios,
+.fixed-content,
+.scroll-content {
+    background-color: transparent !important;
+}
+
+.qrscanner {
+    background: transparent none !important;
+    width: 100%;
+    height: 100%;
+    &-area {
+        width: 60%;
+        margin-left: 20%;
+        height: 80%;
+        background: url(../assets/imgs/scan.png) no-repeat center center;
+        background-size: contain;
+    }
+}
+
+.through-line {
+    left: 22%;
+    width: 56%;
+    height: 2px;
+    background: red;
+    position: absolute;
+    animation: myfirst 3s linear infinite alternate;
+}
+
+@keyframes myfirst {
+    0% {
+        background: #227B39;
+        top: 25%;
+    }
+    100% {
+        background: #227B39;
+        top: 53%;
+    }
+}
+
+.bottom-div {
+    height: 84px;
+    background: #333333;
+    width: 100%;
+    position: absolute; // left: 45%;
+    bottom: 0px;
+    .scan-good {
+        border-top-left-radius: 24px;
+        border-bottom-left-radius: 24px;
+        height: 48px;
+        margin-top: 18px;
+        color: #fff;
+    }
+    .scan-gift {
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
+        height: 48px;
+        margin-top: 18px;
+        color: #fff;
+    }
+    .select-on {
+        background: #227B39;
+    }
+    .select-off {
+        background: #242424;
+    }
+    .red-badge {
+        margin-left: 10px;
+        font-size: 1.2rem;
+        background: #f14d0c;
+        line-height: 2.2rem;
+        width: 2.2rem;
+        text-align: center;
+        height: 2.2rem;
+        border-radius: 1.1rem;
+    }
+    .submit-btn {
+        margin-top: 18px;
+        height: 48px;
+    }
+}
+
+// .scroll-content {
+//   overflow: hidden;
+// }
+.depositFoot {
+    display: flex;
+    box-sizing: box;
+    .foot1 {
+        width: 150px;
+    }
+    .foot2 {
+        flex: 1;
+        margin-left: -1px;
+    }
+    button {
+        height: 4.8rem;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+// 商品列表模版样式
+.customerList {
+    background: #fff;
+    margin-bottom: 10px;
+    .commodityName {
+        height: 44px;
+        line-height: 44px;
+        padding: 0 0 0 10px;
+        font-size: 18px;
+        color: green;
+    }
+    .customerReturnSuccessContent {
+        display: flex;
+        height: 44px;
+        line-height: 44px;
+        padding: 0 0 0 10px;
+        background: #f1f6f4;
+        color: #a7a7a7;
+        font-size: 16px;
+        .name {
+            width: 70%;
+        }
+        .num {
+            flex: 1;
+            text-align: center
+        }
+        .sum {
+            flex: 1;
+            text-align: center
+        }
+    }
+    .customerReturnSuccessContentList {
+        display: flex;
+        margin: 0 2.5%;
+        min-height: 34px;
+        background: #fff;
+        padding: 10px 0 10px 0;
+        color: #a7a7a7;
+        font-size: 16px;
+        border-bottom: 1px solid #eee;
+        .name {
+            width: 70%;
+            padding: 5px 0 5px 0;
+            min-height: 30px;
+        }
+        .num {
+            flex: 1;
+            padding: 5px 0 5px 0;
+            text-align: center
+        }
+        .sum {
+            flex: 1;
+            padding: 5px 0 5px 0;
+            text-align: center
+        }
+    }
+}
+
+// 活动名称
+.act-div {
+    color: #227B39;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 1.5rem;
+    ul>li {
+        list-style: none;
+    }
+}
+
+// public white
+.white {
+    background: #fff !important; // transition:  background 0.8s linear;
+}
+
+.picker-ios {
+    .picker-below-highlight {
+        margin-top: -5px;
+    }
+}
+
+.search-bar {
+    margin: 0px 8px 0px 0 !important;
+    padding: 10px 10px !important;
+}
+
+.search-btn {
+    position: fixed;
+    top: 64px;
+    right: 20px;
+    font-size: 1.6rem;
+}
+
+.goodNameArea {
+    width: 90%;
+    margin: 5%;
+    position: absolute;
+    background: #666;
+    color: #fff;
+    padding: 10px;
+}
+
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom-color: #ccc;
+    -webkit-box-shadow: inset 0 0 0 0 #ccc !important;
+    box-shadow: inset 0 0 0 0 #ccc !important;
+}
+
+.input-ios[clearInput] .text-input {
+    padding-right: none !important;
+}
+
+.input-md[clearInput] .text-input {
+    padding-right: none !important;
+}

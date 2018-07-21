@@ -1,0 +1,194 @@
+page-business-learn {
+    ion-header {
+        .toolbar-ios {
+            padding: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 44px;
+        }
+        .nav-select-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 1px 10px rgba($color: #cccccc, $alpha: 1.0);
+            .nav-tab-wrap {
+                width: 100%;
+                height: 4rem;
+                background-color: rgba($color: #ffffff, $alpha: 1.0);
+                color: rgba($color: #999999, $alpha: 1.0);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                .nav-title-wrap {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .nav-line {
+                    width: 50%;
+                    height: 2px;
+                    border-bottom: 2px solid transparent;
+                }
+            }
+            .selected {
+                .nav-title-wrap {
+                    color: rgba($color: #007f3e, $alpha: 1.0);
+                }
+                .nav-line {
+                    border-bottom: 2px solid rgba($color: #007f3e, $alpha: 1.0);
+                }
+            }
+        }
+    }
+    .content {
+        background-color: rgba(229, 229, 229, 1) !important;
+        .infinite-loading {
+            // 加载
+            display: flex;
+            justify-content: center;
+            .infinite-loading-spinner {
+                flex: 0;
+            }
+            .infinite-loading-text {
+                flex: none;
+                margin-left: 1rem;
+                color: rgba($color: #007f3e, $alpha: 0.3);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        ion-slides {
+            .slide-zoom {
+                height: 100%;
+                .courses-list-wrap {
+                    min-height: 50rem; // 学习课程
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        height: 7rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin: 0.8rem 0;
+                        padding: 0.8rem 1rem;
+                        border-bottom: 1px solid rgba($color: #cccccc, $alpha: 1.0);
+                        border-top: 1px solid rgba($color: #cccccc, $alpha: 1.0);
+                        background-color: rgba(255, 255, 255, 1) !important;
+                        font-size: 1rem !important;
+                        box-sizing: content-box;
+                        .courses-img-wrap {
+                            width: 13.125rem;
+                            height: 100%;
+                            overflow: hidden;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            img {
+                                max-width: none;
+                                height: auto;
+                                width: 100%;
+                            }
+                        }
+                        .courses-info-wrap {
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            flex: 1;
+                            .courses-info-title {
+                                padding: 0.3rem 0.5rem 0.3rem 0;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                width: 100%;
+                                font-weight: bold;
+                                display: flex;
+                                justify-content: flex-start;
+                                font-size: 1.5rem;
+                            }
+                            .courses-info-time {
+                                color: rgba($color: #999999, $alpha: 1);
+                                padding-bottom: 0.5rem;
+                                display: flex;
+                                justify-content: flex-start;
+                            }
+                            .courses-info-tag-wrap {
+                                display: flex;
+                                justify-content: space-between;
+                                flex: 1;
+                                .courses-info-tag {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    margin-right: 1rem;
+                                    padding: 0 0.5rem;
+                                    border: 1px solid;
+                                    border-radius: 3px;
+                                }
+                                .courses-info-learn-state {
+                                    color: rgba($color: #bbbbbb, $alpha: 1.0)
+                                }
+                                .learned {
+                                    color: rgba($color: #333333, $alpha: 1.0)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .funnel-wrap {
+            background-color: rgba($color: #000000, $alpha: 0.5);
+            position: fixed;
+            z-index: 10;
+            height: 100%;
+            width: 100%;
+            .funnel-box {
+                background-color: rgba($color: #f6f6f6, $alpha: 1.0);
+                padding: 1rem 1.5rem;
+                .coursetype-Title {
+                    display: flex;
+                    align-items: center;
+                    .color-box {
+                        width: 1rem;
+                        height: 1rem;
+                        border-radius: 50%;
+                        margin-right: 0.5rem;
+                    }
+                    .title-text {
+                        color: rgba($color: #666666, $alpha: 1);
+                        font-size: 1.5rem;
+                        margin-right: 0.5rem;
+                    }
+                    .line {
+                        flex: 1;
+                        border-bottom: 1px solid rgba($color: #ebebeb, $alpha: 1);
+                    }
+                }
+                .course-tag-box {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    button {
+                        background-color: rgba($color: #ffffff, $alpha: 1);
+                        padding: 0.5rem;
+                        width: 22%;
+                        margin-right: 4%;
+                        border-radius: 5px;
+                        color: rgba($color: #666666, $alpha: 1);
+                        margin-top: 0.5rem;
+                        border: 1px solid rgba($color: #cccccc, $alpha: 1.0);
+                    }
+                    .selected {
+                        background-color: rgba($color: #007f3e, $alpha: 0.3);
+                        color: rgba($color: #007f3e, $alpha: 1);
+                        border: 1px solid rgba($color: #007f3e, $alpha: 0.7);
+                    }
+                }
+            }
+        }
+    }
+}

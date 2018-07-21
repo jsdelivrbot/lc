@@ -1,0 +1,93 @@
+<!--
+  Generated template for the BusinessLearnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar id="ionNabbar">
+    <ion-title>{{pageTitle}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="showFunnel()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <div class="nav-select-wrap" *ngIf="pageTitle != '筛选'">
+    <div [ngClass]="{'nav-tab-wrap' : true, 'selected' : navIndex == 0}" (tap)="toggleTab(0)">
+      <div class="nav-title-wrap">学习课程</div>
+      <div class="nav-line"></div>
+    </div>
+    <div [ngClass]="{'nav-tab-wrap' : true, 'selected' : navIndex == 1}" (tap)="toggleTab(1)">
+      <div class="nav-title-wrap">考试课程</div>
+      <div class="nav-line"></div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-slides (ionSlideDidChange)="toggleSlide()">
+    <!-- 学习课程 -->
+    <ion-slide>
+      <ion-content>
+        <ul class="courses-list-wrap">
+          <li *ngFor="let item of coursesList" (tap)="goToCourseDetail(item.id)">
+            <div class="courses-info-wrap">
+              <div class="courses-info-title">{{item.title}}</div>
+              <div class="courses-info-time">发布时间 {{item.createTime}}</div>
+              <div class="courses-info-tag-wrap">
+                <span class="courses-info-learn-state" [ngClass]="{'learned':item.isSucc==0?false:true}">{{item.isSucc==0?'未学习':'已学习'}}</span>
+                <span class="courses-info-tag" [ngStyle]="{'color': returnColor(item.courseType)}">{{item.courseType}}</span>
+              </div>
+            </div>
+            <div class="courses-img-wrap">
+              <img [src]='appUrl.apiUrl+item.pic'>
+            </div>
+          </li>
+        </ul>
+        <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]='hasNextCourse'>
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-content>
+    </ion-slide>
+    <!-- 考试课程 -->
+    <ion-slide>
+      <ion-content>
+        <ul class="courses-list-wrap">
+          <li *ngFor="let item of examList" (tap)="goToCourseDetail(item.id)">
+            <div class="courses-info-wrap">
+              <div class="courses-info-title">{{item.title}}</div>
+              <div class="courses-info-time">发布时间 {{item.createTime}}</div>
+              <div class="courses-info-tag-wrap">
+                <span class="courses-info-learn-state" [ngClass]="{'learned':item.isSucc==0?false:true}">{{item.isSucc==0?'未学习':'已学习'}}</span>
+                <span class="courses-info-tag" [ngStyle]="{'color': returnColor(item.courseType)}">{{item.courseType}}</span>
+              </div>
+            </div>
+            <div class="courses-img-wrap">
+              <img [src]='appUrl.apiUrl+item.pic'>
+            </div>
+          </li>
+        </ul>
+        <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]='hasNextExam'>
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="funnel-wrap" id="funnel">
+    <div class="funnel-box" *ngFor="let item of coursesType">
+      <div class="coursetype-Title">
+        <div class="color-box" [ngStyle]="{'background-color' : returnColor(item.text)}"></div>
+        <div class="title-text">{{item.text}}</div>
+        <div class="line"></div>
+      </div>
+      <div class="course-tag-box">
+        <button *ngFor="let tag of item.children" (tap)="searchByID(tag.id)" [ngClass]="{selected : tag.id == courseTypeId?true:false}">{{tag.text}}</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

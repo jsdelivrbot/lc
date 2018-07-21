@@ -1,0 +1,114 @@
+<!--
+  Generated template for the ReceiveCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>领取确认</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onScanPresent()">
+        <ion-icon name="ios-archive"></ion-icon>
+        &nbsp;&nbsp;
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="attribute {{goodNum==0?'hidden':''}}">商品</div>
+  <ion-list class="{{goodNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-9>
+          商品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of goods;">
+        <ion-col col-9>
+          <div style="width: 100%;">
+            <span style="width: 80%;">{{good.name}} </span>
+          </div>
+        </ion-col>
+        <ion-col col-3 class="t-r">
+          <ion-icon>{{good.num}}</ion-icon>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <ion-icon name="ios-more" class="{{good.code[0] == '4444'?'invisible':''}}" (click)="onCodeView(good.code)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div class="attribute {{giftNum==0?'hidden':''}}">赠品</div>
+  <ion-list class="{{giftNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-9>
+          赠品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of gifts;index as i;">
+        <ion-col col-9>
+          {{good.name}}
+        </ion-col>
+        <ion-col col-3 class="t-r" >
+          <ion-icon>{{good.num}}</ion-icon>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <ion-icon name="ios-more" class="{{good.code[0] == '4444'?'invisible':''}}" (click)="onCodeView(good.code)"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div class="attribute {{presentNum==0?'hidden':''}}">礼品</div>
+  <ion-list class="{{presentNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-7>
+          礼品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+         <ion-col col-2 class="t-a">
+          来源
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let present of presents;index as i;">
+        <ion-col col-7>
+          {{present.name}}
+        </ion-col>
+        <ion-col col-3 class="div-center" style="padding-left: 8px">
+          <div class="cut-widget" (tap)="onCutNum(i,present.num)">－</div><div class="num-widget">{{present.num}}</div><div class="add-widget" (click)="onAddNum(i,present.num)">＋</div>
+        </ion-col>
+        <ion-col col-2 class="t-a" style="padding-left: 4px">
+          <p>{{present.source==0?'借门店':present.source==1?'欠顾客':'其他'}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+  <div class="depositFoot">
+      <div  class="foot1">
+          <button (tap)="onScanner()" ion-button color="gentle" col-12>
+              <ion-icon name="qr-scanner"></ion-icon>&nbsp;&nbsp;扫一扫
+            </button>
+        </div>
+        <div class="foot2">
+            <button (tap)="saleVerify()" ion-button color="primary" col-12 style="margin-left: 2px;">
+                下一步
+              </button>
+        </div>
+  </div>
+</ion-footer>

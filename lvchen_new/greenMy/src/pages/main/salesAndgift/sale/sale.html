@@ -1,0 +1,98 @@
+<!--
+  Generated template for the SalePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>销售确认</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onScanPresent()">
+        <ion-icon name="ios-archive"></ion-icon>
+        &nbsp;&nbsp;
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="act-div" *ngIf='actMapLength!=0'> {{actNum==0?"没有参与任何活动":"参与活动："}}
+    <ul class="{{actNum==0?'hidden':''}}">
+      <li *ngFor="let act of actMaps">{{act.actName}}</li>
+    </ul>
+  </div>
+  <!-- 模版 -->
+  <div class="customerList " *ngIf='GoodsLength!=0'>
+    <div class="commodityName">商品</div>
+    <div class="customerReturnSuccessContent">
+      <div class="name">商品名称</div>
+      <div class="num">数量</div>
+      <div class="sum"></div>
+    </div>
+    <div class="customerReturnSuccessContentList" *ngFor="let good of Goods">
+      <div class="name">{{good.goodsName}}</div>
+      <div class="num">{{good.num}}</div>
+      <div class="sum {{good.code[0] == '8888'?'invisible':''}}"  (click)="onCodeView(good.code)">...</div>
+    </div>
+  </div>
+  <!-- 模版 -->
+  <!-- 模版 -->
+  <div class="{{giftNum==0?'hidden':''}}">
+    <div class="customerList " *ngIf='GiftsLength!=0'>
+      <div class="commodityName">赠品</div>
+      <div class="customerReturnSuccessContent">
+        <div class="name">赠品名称</div>
+        <div class="num">数量</div>
+        <div class="sum"></div>
+      </div>
+      <div class="customerReturnSuccessContentList" *ngFor="let good of Gifts;index as i;">
+        <div class="name">{{good.goodsName}}</div>
+        <div class="num" style="padding-left: 8px">{{good.num}}</div>
+        <div class="sum" style="padding-left: 8px" (tap)="onCodeSourceView(good.code)">..</div>
+      </div>
+    </div>
+  </div>
+  <div class="attribute {{presentNum==0?'hidden':''}}">礼品</div>
+  <ion-list class="{{presentNum==0?'hidden':''}}" *ngIf='presentNum!=0'>
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-7>
+          礼品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+         <ion-col col-2 class="t-a">
+          来源
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let present of presents;index as i;">
+        <ion-col col-7>
+          {{present.name}}
+        </ion-col>
+        <ion-col col-3 class="div-center" style="padding-left: 8px">
+          <div class="cut-widget" (tap)="onCutNum(i,present.num)">－</div><div class="num-widget">{{present.num}}</div><div class="add-widget" (click)="onAddNum(i,present.num)">＋</div>
+        </ion-col>
+        <ion-col col-2 class="t-a" style="padding-left: 4px">
+          <p>{{present.source==0?'借门店':present.source==1?'欠顾客':'其他'}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+  <div class="depositFoot">
+    <div class="foot1">
+      <button (tap)="onScanner()" ion-button color="gentle" col-12>
+        <ion-icon name="qr-scanner"></ion-icon>&nbsp;&nbsp;扫一扫
+      </button>
+    </div>
+    <div class="foot2">
+      <button (tap)="saleVerify()" ion-button color="primary" col-12 style="margin-left: 2px;">
+        下一步
+      </button>
+    </div>
+  </div>
+</ion-footer>

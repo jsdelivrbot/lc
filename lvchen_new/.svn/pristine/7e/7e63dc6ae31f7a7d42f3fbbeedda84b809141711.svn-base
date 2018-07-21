@@ -1,0 +1,124 @@
+page-baby-info {
+    ion-header{
+        .toolbar-ios {
+            padding: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 44px;
+        }
+    }
+    ion-content{
+        background-color: #fff !important;
+
+        // 性别盒子
+        .baby-sex{
+            width: 100%;
+            height: 15rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            div{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 1rem;
+            }
+
+            button{
+                background-color: transparent;
+                border: none;
+                margin-bottom: 1rem;
+                width: 6.5rem;
+                height: 6.5rem;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                // box-sizing: content-box;
+            }
+
+            img{
+                width: 100%;
+                height: 100%;
+            }
+
+            // 选中框
+            .selected{
+
+                color:  rgba(255, 98, 123, 1);
+
+                button{
+                    border: 3px solid rgba(255, 98, 123, 1);
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        // 名字和年龄盒子
+        .baby-detail{
+            height: 15rem;
+            padding: 0 1.5rem;
+
+            input{
+                width: 100%;
+                background-color: rgba(238, 238, 238,1);
+                border-radius: 5px;
+                border: none;
+                height: 4rem;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                font-size: 1.8rem;
+            }
+
+            // 隐藏日期选择器遮罩
+            button{
+                display: none;
+            }
+
+            ion-datetime{
+                width: 100%;
+                background-color: rgba(238, 238, 238,1);
+                border-radius: 5px;
+                border: none;
+                height: 4rem;
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+                font-size: 1.8rem;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    ion-footer{
+        height: 52px;
+        // 确定按钮
+        .nextstep{
+            background-color: #00783a;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+
+            button{
+                background-color: transparent;
+                height: 100%;
+                width: 100%;
+                color: #fff;
+                font-size: 1.6rem;
+                margin: 0;
+                padding: 0;
+
+                &:active{
+                    background-color: #039248;
+                }
+            }
+
+            .del-button{
+                background-color: rgba($color: #999, $alpha: 1.0);
+            }
+        }
+    }
+}

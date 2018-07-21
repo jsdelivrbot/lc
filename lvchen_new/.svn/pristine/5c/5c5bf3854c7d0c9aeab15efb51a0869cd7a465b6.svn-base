@@ -1,0 +1,42 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content class="lvLogin" overflow-scroll="false" style="overflow: hidden;">
+  <form #myForm='ngForm' (ngSubmit)='login(myForm.value)'>
+    <div class="loginForm {{!driverToken ? '' : 'changeMargin'}}">
+      <ion-item class="logo-wrap">
+        <div class="logo">
+          <img src="./assets/imgs/logo@2x.png" alt="">
+        </div>
+      </ion-item>
+
+      <ion-item class="loginbg">
+        <ion-label class="loginMobile">
+        </ion-label>
+        <ion-input type="tel" ngModel name='phone' placeholder="输入手机号"></ion-input>
+      </ion-item>
+
+
+      <ion-item class="loginbg">
+        <ion-label class="loginpass">
+        </ion-label>
+        <ion-input type="password" ngModel name='password' placeholder="输入密码"></ion-input>
+      </ion-item>
+
+      <ion-item class="loginbg {{!driverToken ? '' : 'hidden'}}">
+        <ion-label class="loginkey">
+        </ion-label>
+        <ion-input type="tel" ngModel name='code' placeholder="验证码" class="keyInput"></ion-input>
+        <span item-end class="securityCode" (click)='sendCode(myForm.value.phone)'>{{securityCodeTime == 0 ? '获取验证码': securityCodeTime+'s'}}</span>
+      </ion-item>
+
+      <button ion-button color='light' type="submit" class="submit-btn">登录</button>
+      <div class='loginSelect' (tap)="forgetPassword()">
+        <u>忘记密码?</u>
+      </div>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,77 @@
+page-contact{
+    .scroll-content{
+        overflow: hidden;
+    }
+    .myCenter{
+        background:url('#{$dir}meCenter.png')no-repeat;
+        background-size: 100% 100%;
+        .meLocation{
+            height: 30px;
+            line-height: 30px;
+            margin-left: 12px;
+            margin-top : 12px;
+            color: #fff;
+            font-size: 17px;
+            width: 100%;
+            display: block;
+        }
+        .photo{
+            padding-top: 35px;
+            text-align: center;
+            img{
+                width: 7rem;
+                height: 7rem;
+            }
+        }
+        .userName{
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 90px;
+        }
+        .list-item-left {
+            float: left;
+            h2 {
+              color: #333;
+            }
+            h4 {
+              color: #999;
+            }
+          }
+          .list-item-right {
+            float: right;
+            height: 2rem;
+            line-height: 2rem;
+            color: #999;
+            .num-text {
+              color: #00783a;
+            }
+          }
+          .meList{
+              img{
+                  height: 1.5rem;
+                  float: left;
+                  margin-right: 10px;
+                  margin-top: 6px;
+              }
+              h2{
+                padding-top:5px;
+                float: left;
+                color: #777;
+                font-size: 16px;
+              }
+          }
+          button{
+            width: 50%;
+            @include h(45px);
+            @include mrg(50px,25%,0,25%);
+            font-size: 18px;
+            color:#fff;
+            background: linear-gradient(#72ba3b,#007f3e);
+           @include bpublic(radius,23px);
+        }
+    }
+}
+

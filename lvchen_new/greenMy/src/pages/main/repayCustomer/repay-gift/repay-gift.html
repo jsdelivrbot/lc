@@ -1,0 +1,26 @@
+<!--
+  Generated template for the RepayGiftPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>欠礼品清单</ion-title>
+  </ion-navbar>
+   <ion-searchbar color='primary' placeholder="手机号" padding [(ngModel)]="phone" (keyup)="onKeyboard($event)" type='tel' class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">
+  </ion-searchbar>
+</ion-header>
+<ion-content style="background:#fff">
+
+  <div style="width:100%;height:2px;background:#eee;"></div>
+  <ion-grid style="background:#fff;" *ngFor='let repayItem of repayGiftArray'>
+    <ion-row class='repayRow' (tap)='repayGiftdetail(repayItem.phone)'>
+      <ion-col col-6>{{repayItem.phone}}</ion-col>
+      <ion-col col-3>{{repayItem.num}}</ion-col>
+      <ion-col col-3>
+        <ion-icon name='ios-arrow-forward-outline'></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

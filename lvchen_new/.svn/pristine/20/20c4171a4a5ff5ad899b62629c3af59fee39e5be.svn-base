@@ -1,0 +1,425 @@
+webpackJsonp([50],{
+
+/***/ 327:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DepositScanPageModule", function() { return DepositScanPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deposit_scan__ = __webpack_require__(418);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var DepositScanPageModule = /** @class */ (function () {
+    function DepositScanPageModule() {
+    }
+    DepositScanPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__deposit_scan__["a" /* DepositScanPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__deposit_scan__["a" /* DepositScanPage */]),
+            ],
+        })
+    ], DepositScanPageModule);
+    return DepositScanPageModule;
+}());
+
+//# sourceMappingURL=deposit-scan.module.js.map
+
+/***/ }),
+
+/***/ 418:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DepositScanPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the DepositScanPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var DepositScanPage = /** @class */ (function () {
+    function DepositScanPage(navCtrl, navParams, qrScanner, viewCtrl, alertCtrl, apps, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.qrScanner = qrScanner;
+        this.viewCtrl = viewCtrl;
+        this.alertCtrl = alertCtrl;
+        this.apps = apps;
+        this.platform = platform;
+        this.light = false;
+        this.frontCamera = false;
+        this.scanType = 1;
+        this.curGoodName = "";
+        this.goods = new Array();
+        this.gifts = new Array();
+        this.goodsNum = 0;
+        this.giftsNum = 0;
+        this.isFirst = true;
+        this.backgroundnone = false;
+        this.destory = false;
+    }
+    DepositScanPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.navCtrl.swipeBackEnabled = false;
+        setTimeout(function () {
+            _this.backgroundnone = true;
+        }, 800);
+        //返回提示
+        this.navbar.backButtonClick = function (e) {
+            _this.onBack();
+        };
+        this.platform.registerBackButtonAction(function () {
+            _this.onBack();
+        });
+    };
+    DepositScanPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        //获取摄像权限
+        this.destory = false;
+        this.qrScanner.prepare()
+            .then(function (status) {
+            if (status.authorized) {
+                _this.scan();
+                _this.qrScanner.show();
+            }
+        })
+            .catch(function (e) { return console.log('Error is', e); });
+    };
+    DepositScanPage.prototype.ionViewWillUnload = function () {
+        var _this = this;
+        this.platform.registerBackButtonAction(function () {
+            _this.destory = true;
+            _this.qrScanner.destroy();
+            _this.navCtrl.pop();
+        });
+    };
+    DepositScanPage.prototype.onBack = function () {
+        var _this = this;
+        if (this.goodsNum == 0 && this.giftsNum == 0) {
+            this.viewCtrl.dismiss();
+            this.destory = true;
+            this.qrScanner.destroy();
+        }
+        else {
+            var confirm_1 = this.alertCtrl.create({
+                title: '提示',
+                message: '您的操作未完成，确定要退出？',
+                buttons: [
+                    {
+                        text: '确定',
+                        handler: function () {
+                            try {
+                                _this.destory = true;
+                                _this.qrScanner.destroy();
+                            }
+                            catch (e) {
+                            }
+                            finally {
+                                _this.navCtrl.popToRoot();
+                            }
+                        }
+                    },
+                    {
+                        text: '取消',
+                        handler: function () {
+                        }
+                    }
+                ]
+            });
+            confirm_1.present();
+        }
+    };
+    //开启扫一扫
+    DepositScanPage.prototype.scan = function () {
+        var _this = this;
+        this.qrScanner.scan().subscribe(function (text) {
+            if (_this.destory) {
+                _this.restartScan();
+                return;
+            }
+            _this.apps.httpPost('getScanCodeCasPosSale.api', {
+                code: text
+            }, function (data) {
+                _this.destory = false;
+                _this.restartScan();
+                if (data.code == -1) {
+                    _this.apps.toast(data.msg);
+                }
+                else {
+                    _this.curGoodName = data.data.goodMap.goodsDesc;
+                    _this.verifyGood(data.data.goodMap.goodsId);
+                }
+            }, true);
+        });
+    };
+    //验证商品条码是否存在
+    DepositScanPage.prototype.verifyGood = function (goodId) {
+        if (this.scanType == 1) {
+            for (var i = 0; i < this.goods.length; ++i) {
+                if (this.goods[i].id == goodId) {
+                    this.showChangeNum(this.goods[i]);
+                    return;
+                }
+            }
+        }
+        else {
+            for (var j = 0; j < this.gifts.length; ++j) {
+                if (this.gifts[j].id == goodId) {
+                    this.showChangeNum(this.gifts[j]);
+                    return;
+                }
+            }
+        }
+        this.showInputNum(goodId);
+    };
+    DepositScanPage.prototype.scanGood = function () {
+        this.scanType = 1;
+    };
+    DepositScanPage.prototype.scanGift = function () {
+        this.scanType = 2;
+    };
+    //提交
+    DepositScanPage.prototype.submit = function () {
+        var _this = this;
+        if (this.goods.length == 0) {
+            return;
+        }
+        var resultObect = { 'goods': this.goods, 'gifts': this.gifts };
+        this.apps.httpPost('checkInReceiptActGoods.api', {
+            'resultObject': JSON.stringify(resultObect)
+        }, function (data) {
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+                _this.destory = false;
+            }
+            else {
+                var params = {
+                    data: data.data,
+                    goods: _this.goods,
+                    goodsNum: _this.goodsNum,
+                    gifts: _this.gifts,
+                    giftsNum: _this.giftsNum,
+                };
+                _this.navCtrl.push('DepositCheckPage', params);
+                _this.qrScanner.hide();
+                _this.qrScanner.destroy();
+            }
+        }, true);
+    };
+    DepositScanPage.prototype.showPrompt = function () {
+        var _this = this;
+        this.destory = true;
+        var prompt = this.alertCtrl.create({
+            title: '输入码',
+            inputs: [
+                { type: "text" },
+            ],
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function (data) {
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.apps.httpPost('getScanCodeCasPosSale.api', {
+                            code: data[0]
+                        }, function (data) {
+                            _this.destory = false;
+                            _this.restartScan();
+                            if (data.code == -1) {
+                                _this.apps.toast(data.msg);
+                            }
+                            else {
+                                _this.curGoodName = data.data.goodMap.goodsDesc;
+                                _this.verifyGood(data.data.goodMap.goodsId);
+                            }
+                        }, true);
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    DepositScanPage.prototype.showInputNum = function (goodId) {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '输入数量',
+            inputs: [
+                {
+                    type: "number",
+                },
+            ],
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.destory = false;
+                        if (data[0] == "" || data[0] <= 0) {
+                            return false;
+                        }
+                        if (_this.scanType == 1) {
+                            _this.goods.push({ 'id': goodId, 'num': data[0] });
+                            _this.goodsNum = _this.goodsNum + parseInt(data[0]);
+                        }
+                        else {
+                            _this.gifts.push({ 'id': goodId, 'num': data[0] });
+                            _this.giftsNum = _this.giftsNum + parseInt(data[0]);
+                        }
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    DepositScanPage.prototype.showChangeNum = function (good) {
+        var _this = this;
+        this.destory = true;
+        var gid = good['id'];
+        var confirm = this.alertCtrl.create({
+            title: '修改数量',
+            inputs: [
+                {
+                    type: "text",
+                },
+            ],
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.destory = false;
+                        if (data[0] == 0 || !data[0]) {
+                            if (_this.scanType == 1) {
+                                var iNum;
+                                for (var i = 0; i < _this.goods.length; i++) {
+                                    if (_this.goods[i]['id'] && _this.goods[i]['id'] == gid) {
+                                        iNum = i;
+                                    }
+                                    else {
+                                        iNum = 0;
+                                    }
+                                }
+                                _this.goods.splice(iNum, 1);
+                                var GNUM = 0;
+                                if (_this.goods.length >= 1) {
+                                    for (var k = 0; k < _this.goods.length; k++) {
+                                        GNUM = GNUM + Number(_this.goods[k]['num']);
+                                    }
+                                }
+                                _this.goodsNum = GNUM;
+                            }
+                            else {
+                                var gNum;
+                                for (var j = 0; j < _this.gifts.length; j++) {
+                                    if (_this.gifts[j]['id'] == gid) {
+                                        gNum = j;
+                                    }
+                                }
+                                _this.gifts.splice(gNum, 1);
+                                var GiNUM = 0;
+                                for (var q = 0; q < _this.goods.length; q++) {
+                                    GiNUM = GiNUM + Number(_this.goods[q]['num']);
+                                }
+                                _this.giftsNum = GiNUM;
+                            }
+                            return;
+                        }
+                        good.num = data[0];
+                        if (_this.scanType == 1) {
+                            var total = 0;
+                            for (var i_1 = 0; i_1 < _this.goods.length; i_1++) {
+                                if (_this.goods[i_1]['id'] == gid) {
+                                    _this.goods[i_1]['num'] = data[0];
+                                }
+                                total = total + Number(_this.goods[i_1]['num']);
+                            }
+                            _this.goodsNum = total;
+                        }
+                        else {
+                            var gtotal = 0;
+                            for (var i_2 = 0; i_2 < _this.gifts.length; i_2++) {
+                                if (_this.gifts[i_2]['id'] == gid) {
+                                    _this.gifts[i_2]['num'] = data[0];
+                                }
+                                gtotal = gtotal + Number(_this.gifts[i_2]['num']);
+                            }
+                            _this.giftsNum = gtotal;
+                        }
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    DepositScanPage.prototype.restartScan = function () {
+        var _this = this;
+        var time = setTimeout(function () {
+            _this.scan();
+            clearTimeout(time);
+        }, 500);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], DepositScanPage.prototype, "navbar", void 0);
+    DepositScanPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-deposit-scan',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/deposit-scan/deposit-scan.html"*/'<!--\n  Generated template for the ScannerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>{{scanType==1?\'扫商品\':\'扫赠品\'}}</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showPrompt()">\n        <ion-icon name="create"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="{{backgroundnone==false?\'white\':\'qrscanner\'}}">\n    <div class="goodNameArea {{curGoodName?\'\':\'hidden\'}}">\n      <span>商品名称：{{curGoodName}}</span>\n    </div>\n    <div class="{{backgroundnone==false?\'white\':\'qrscanner-area\'}}">\n    </div>\n    <div class="{{backgroundnone==false?\'white\':\'through-line\'}}"></div>\n  </ion-content>\n<ion-footer>\n  <div class="bottom-div">\n    <ion-row>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="scanGood()" class="scan-good {{scanType==1?\'select-on\':\'select-off\'}}" col-3 ion-button>\n        扫商品\n        <span class="{{goodsNum==0?\'hidden\':\'\'}} red-badge">{{goodsNum}}</span>\n      </ion-col>\n      <ion-col (tap)="scanGift()" class="scan-gift {{scanType==1?\'select-off\':\'select-on\'}}" col-3 ion-button>\n        扫赠品\n        <span class="{{giftsNum==0?\'hidden\':\'\'}} red-badge">{{giftsNum}}</span>\n      </ion-col>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="submit()" class="submit-btn" ion-button col-3>\n        <ion-icon name="checkmark"></ion-icon>&nbsp;&nbsp;确认\n      </ion-col>\n    </ion-row>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/deposit-scan/deposit-scan.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], DepositScanPage);
+    return DepositScanPage;
+}());
+
+//# sourceMappingURL=deposit-scan.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=50.js.map

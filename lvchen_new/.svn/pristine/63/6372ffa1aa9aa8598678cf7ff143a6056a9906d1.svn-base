@@ -1,0 +1,176 @@
+webpackJsonp([62],{
+
+/***/ 303:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaleDetailPageModule", function() { return SaleDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sale_detail__ = __webpack_require__(394);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SaleDetailPageModule = /** @class */ (function () {
+    function SaleDetailPageModule() {
+    }
+    SaleDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sale_detail__["a" /* SaleDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sale_detail__["a" /* SaleDetailPage */]),
+            ],
+        })
+    ], SaleDetailPageModule);
+    return SaleDetailPageModule;
+}());
+
+//# sourceMappingURL=sale-detail.module.js.map
+
+/***/ }),
+
+/***/ 394:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SaleDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the SaleDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SaleDetailPage = /** @class */ (function () {
+    function SaleDetailPage(navCtrl, navParams, apps) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.apps = apps;
+        this.i = 1;
+        this.page = 1;
+        this.hasMore = true;
+    }
+    SaleDetailPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.apps.httpPost('findCasPosSaleDetail.api', { mark: 1, orgId: '' }, function (data) {
+            console.log(data);
+            if (data.code == 1) {
+                _this.saleDetailArray = data.data || [];
+                if (data.data.length < 10) {
+                    _this.hasMore = false;
+                    _this.apps.toast('数据加载完毕');
+                }
+                else {
+                    _this.page = 2;
+                    _this.hasMore = true;
+                }
+            }
+            else {
+                _this.apps.toast(data.msg);
+            }
+        });
+        console.log('ionViewDidLoad CreditDetailPage');
+    };
+    SaleDetailPage.prototype.dataSelect = function (num) {
+        var _this = this;
+        if (this.i == num) {
+            this.i = num;
+            return;
+        }
+        else {
+            this.content.scrollToTop(0);
+            this.i = num;
+            this.page = 1;
+            this.apps.httpPost('findCasPosSaleDetail.api', {
+                mark: num,
+                orgId: '',
+                page: this.page
+            }, function (data) {
+                if (data.code == 1) {
+                    _this.saleDetailArray = data.data || [];
+                    console.log(data.data.length);
+                    if (data.data.length < 10) {
+                        _this.hasMore = false;
+                        _this.apps.toast('数据加载完毕');
+                    }
+                    else {
+                        _this.page = 2;
+                        _this.hasMore = true;
+                    }
+                }
+                else {
+                    _this.apps.toast(data.msg);
+                }
+            });
+        }
+    };
+    SaleDetailPage.prototype.doInfinite = function ($event) {
+        var _this = this;
+        this.apps.httpPost('findCasPosSaleDetail.api', {
+            mark: this.i,
+            orgId: '',
+            page: this.page
+        }, function (data) {
+            if (data.code == 1) {
+                _this.saleDetailArray = _this.saleDetailArray.concat(data.data || []);
+                if (data.data.length < 10) {
+                    _this.hasMore = false;
+                    _this.apps.toast('数据加载完毕');
+                }
+                else {
+                    _this.page++;
+                    _this.hasMore = true;
+                }
+                $event.complete();
+            }
+            else {
+                _this.apps.toast(data.msg);
+            }
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], SaleDetailPage.prototype, "content", void 0);
+    SaleDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sale-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sale-detail/sale-detail.html"*/'<!--\n  Generated template for the CreditDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n    <ion-navbar>\n      <ion-title>消费明细</ion-title>\n    </ion-navbar>\n    <div class="creditDate">\n        <div (tap)=\'dataSelect(1)\' class="{{i==1?\'active\':\'\'}}">\n          当天\n        </div>\n        <div (tap)=\'dataSelect(2)\' class="{{i==2?\'active\':\'\'}}">\n          三天\n        </div>\n        <div (tap)=\'dataSelect(3)\' class="{{i==3?\'active\':\'\'}}">\n          一周\n        </div>\n        <div (tap)=\'dataSelect(4)\' class="{{i==4?\'active\':\'\'}}">\n          一个月\n        </div>\n        <div (tap)=\'dataSelect(5)\' class="{{i==5?\'active\':\'\'}}">\n          三个月\n        </div>\n      </div>\n \n  <div class="creditList">\n    <div class="creditName">销售记录</div>\n  </div>\n  </ion-header>\n  <ion-content class="CreditContent">\n      \n    <div class="creditList" *ngFor=\'let item of saleDetailArray\'>\n        \n        <div class="saleMsg">\n          <div class="saleTitle">\n              {{item.goodsName}}\n          </div>\n          <div class="saleMark">\n            积分码:{{item.integralCode}}\n          </div>\n          <div class="saleTime">\n            {{item.tradeTime.time|date:\'yyyy-MM-dd\'}}\n          </div>\n        </div>\n    </div>\n    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf=\'hasMore\'>\n        <ion-infinite-scroll-content\n        loadingSpinner="bubbles"\n      loadingText="下拉加载更多..."\n        ></ion-infinite-scroll-content>\n      </ion-infinite-scroll>\n  \n  </ion-content>\n  '/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sale-detail/sale-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], SaleDetailPage);
+    return SaleDetailPage;
+}());
+
+//# sourceMappingURL=sale-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=62.js.map

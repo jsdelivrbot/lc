@@ -1,0 +1,53 @@
+page-present-gift-detail {
+    .content {
+        background: #fff !important;
+    }
+
+    .line{
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .titleBar{
+        display: flex;
+        height: 4.2rem;
+        align-items: center;
+        background: #f6f6f6;
+        font-size: 1.4rem;
+        color: #666;
+        .businessGroup {
+            flex: 6;
+            padding-left: 1.6rem;
+        }
+    }
+    .giftNum {
+        flex: 3;
+        text-align: center;
+    }
+
+    .totalBar{
+        height: 4.2rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+        color: #666;
+
+        .totalTitle {
+            flex: 6;
+            padding-left: 1.6rem;
+        }
+    }
+
+    .group{
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+        color: #666;
+        height: 4.2rem;
+        .groupName{
+            flex: 6;
+            padding-left: 1.6rem;
+        }
+    }
+
+
+}

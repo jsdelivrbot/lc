@@ -1,0 +1,93 @@
+<!--
+  Generated template for the ReceiveSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton='true'>
+    <ion-title>领取成功</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header-div">
+    <div padding>销售单号&nbsp;&nbsp;&nbsp;&nbsp;{{data.receiptNo}} </div>
+    <div style="height: 1px;width: 100%;background: #ccc;"></div>
+    <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{data.phone}} </div>
+    <components-colorbar></components-colorbar>
+  </div>
+  <div class="attribute {{goodNum==0?'hidden':''}}">商品</div>
+  <ion-list class="{{goodNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-9>
+          商品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of data.goods;">
+        <ion-col col-9>
+          <div style="width: 100%;"> {{good.goodsName}} </div>
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          <ion-icon>{{good.num}}</ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div class="attribute {{giftNum==0?'hidden':''}}">赠品</div>
+  <ion-list class="{{giftNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-9>
+          赠品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of data.gifts;">
+        <ion-col col-9>
+          {{good.goodsName}}
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          <ion-icon>{{good.num}}</ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div class="attribute {{presentNum==0?'hidden':''}}">礼品</div>
+  <ion-list class="{{presentNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-9>
+          礼品名称
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          来源
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let present of data.presentMap;">
+        <ion-col col-9>
+          {{present.name}}
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          {{present.source}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow (click)='onBack()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">返回</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,347 @@
+import { Component,ViewChild} from '@angular/core';
+import { IonicPage,Navbar, NavController, NavParams, ViewController,AlertController,Platform} from 'ionic-angular';
+import { QRScanner,QRScannerStatus } from '@ionic-native/qr-scanner';
+import { AppService } from '../../../../providers/service-public-service/service-public-service';
+
+/**
+ * Generated class for the CustomerReturnScannerPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-customer-return-scanner',
+  templateUrl: 'customer-return-scanner.html',
+})
+export class CustomerReturnScannerPage {
+  @ViewChild(Navbar)navbar:Navbar;
+  protected light: boolean = false;
+  protected frontCamera: boolean = false;
+  public hasCodeList = [];
+  public noCodeList = [];
+  public noCodeNums = 0;
+  public goods = new Array();
+  public num:number=0;
+  protected destory = false;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private qrScanner: QRScanner,
+    public viewCtrl: ViewController,
+    public alertCtrl: AlertController,
+    public apps: AppService,
+    private platform : Platform,
+  ) {
+  }
+  ionViewWillEnter(){
+  //获取摄像权限
+  //获取摄像权限
+  this.destory=false;
+  this.qrScanner.prepare()
+    .then((status: QRScannerStatus) => {
+
+      if (status.authorized) {
+        this.scan();
+        this.qrScanner.show();
+      }
+    })
+    .catch((e: any) => console.log('Error is', e));
+  }
+  ngOnInit() {
+    this.navCtrl.swipeBackEnabled=false;
+    //返回提示
+    this.navbar.backButtonClick = (e:UIEvent)=>{
+      this.onBack();
+
+    }
+    this.platform.registerBackButtonAction(() => {
+      this.onBack();
+    });
+  }
+
+  onBack(){
+    if (this.num==0) {
+      this.navCtrl.pop({
+        animation: 'md-transition'
+      })
+      this.destory=true;
+      this.qrScanner.destroy();
+      
+    }else{
+      let confirm = this.alertCtrl.create({
+        title: '提示',
+        message: '您的操作未完成，确定要退出？',
+        buttons: [
+          {
+            text: '确定',
+            handler: () => {
+              try {
+
+                this.destory = false;
+                this.qrScanner.destroy();
+              } catch (e) {
+
+              } finally {
+                this.navCtrl.popToRoot({
+                  animation: 'md-transition'
+                });
+              }
+
+            }
+          },
+          {
+            text: '取消',
+            handler: () => {
+              this.destory=false;
+              this.scan();
+            }
+          }
+        ]
+      });
+      confirm.present();
+    }
+  }
+  //开启扫一扫
+  scan(){
+    this.qrScanner.scan().subscribe((text: string) => {
+      if (this.destory) {
+        this.restartScan();
+        return;
+      }
+      if (text.length == 13) {
+        this.postCodeIdApi(text);
+      }else{
+        this.getSalesGoods(text);
+      }
+      
+    });
+  }
+
+  postCodeIdApi(code){
+    this.apps.httpPost('getScanCodeCasPosSale.api',{code: code}, data => {
+      this.destory = false;
+      this.restartScan();
+      if (data.code == -1) {
+        this.apps.toast(data.msg);
+      } else {
+        let goodMap = data.data.goodMap;
+        if (goodMap.tag == 0) {
+          this.codeIdVerify(goodMap.goodsId);
+        }else{
+          this.apps.toast('错误的产品条码');
+        }
+      }
+
+    }, true);
+  }
+
+  codeIdVerify(id){
+    for (var i = 0; i < this.noCodeList.length; ++i) {
+      let map = this.noCodeList[i];
+      if (map.goodsId == id) {
+        this.noCodeList.splice(i,1);
+        this.noCodeNums -= map.num;
+        this.showInputNum(id,map.num);
+        return;
+      }
+    }
+    this.showInputNum(id,0);
+    
+  }
+
+  showInputNum(id,num) {
+    this.destory = true;
+    let confirm = this.alertCtrl.create({
+      title: '输入数量',
+      inputs: [
+        {
+          type: "number",
+          value: num==0?'':num
+        },
+      ],
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: '确定',
+          handler: data => {
+            this.destory=false;
+            let num = parseInt(data[0]);
+            if (data[0] <= 0) {
+              return false;
+            }
+            this.noCodeList.push({'goodsId':id,'num':num});
+            this.noCodeNums += num;
+            this.num = this.goods.length + this.noCodeNums;
+            console.log(this.num);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  getSalesGoods(code){
+    this.apps.httpPost('getSalesGoods.api',{code:code},data => {
+        this.destory = false;
+        this.restartScan();
+        if (data.code == -1) {
+          this.apps.toast(data.msg);
+        }else{
+         if(this.goods.length>=1){
+          if(this.goods.indexOf(data.data.code)!==-1){
+            let index= this.goods.indexOf(data.data.code);  
+            let idIndex=this.goods.indexOf(data.data.id)
+                 this.showRepeat(index,idIndex)
+          }else{
+            this.goods.push(data.data.code);
+            this.hasCodeList.push(data.data.id);
+            this.num=this.goods.length + this.noCodeNums;
+          }
+         }else{
+          this.goods.push(data.data.code);
+          this.hasCodeList.push(data.data.id);
+          this.num=this.goods.length + this.noCodeNums;
+         }
+         
+        }
+      },true);
+  }
+
+  restartScan(){
+    let time = setTimeout(() => {
+      this.scan();
+      clearTimeout(time)
+    }, 500)
+  }
+  //提交
+  submit() {
+   
+    if (this.num == 0) {
+      return;
+    }
+    var hasCodeStr  = '';
+    for (var i = 0; i < this.hasCodeList.length; ++i) {
+      if (i == 0) {
+        hasCodeStr = this.hasCodeList[i];
+      }else{
+        hasCodeStr = hasCodeStr + ',' + this.hasCodeList[i];
+      }
+    }
+    console.log(hasCodeStr);
+
+    var goodsIdStr  = '';
+    for (var j = 0; j < this.noCodeList.length; ++j) {
+      if (j == 0) {
+        goodsIdStr = this.noCodeList[j].goodsId;
+      }else{
+        goodsIdStr = goodsIdStr + ',' + this.noCodeList[j].goodsId;
+      }
+    }
+    console.log(goodsIdStr);
+    let param0 = {'receiptNo':this.navParams.get('receiptNo'),'hasCode':hasCodeStr,'goodsId':goodsIdStr};
+
+    this.apps.httpPost('isThereAnyGift.api',param0,data => {
+      if (data.code == -1) {
+        this.popupGiftHint();
+      }else{
+        this.submitSucc();
+      }
+    },true);
+
+   
+  }
+
+  submitSucc(){
+    let param = {'receiptNo':this.navParams.get('receiptNo'),'hasCode':JSON.stringify(this.hasCodeList),'noCode':this.noCodeList};
+    this.apps.httpPost('submitSalesGoods.api',{'resultObject':JSON.stringify(param)},data => {
+      if (data.code == -1) {
+        this.apps.toast(data.msg);
+      }else{
+        this.qrScanner.hide();
+        this.destory=true;
+        this.qrScanner.destroy();
+        this.navCtrl.push('CustomerReturnSuccessPage',{data:data.data,phone:this.navParams.get('phone')}) 
+      }
+    },true);
+  }
+  
+  showPrompt() {
+    this.destory=true;
+    let prompt = this.alertCtrl.create({
+      title: '输入码',
+      inputs: [
+        {},
+      ],
+      buttons: [
+        {
+          text: '取消',
+          handler: data => {
+           this.destory=false;
+          }
+        },
+        {
+          text: '确定',
+          handler: data => {
+            if (data[0].length == 13) {
+              this.postCodeIdApi(data[0]);
+            }else{
+              this.getSalesGoods(data[0]);
+            }
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+// 输入第二次删除
+  showRepeat(index,inIndex){
+    this.destory=true;
+    let confirm = this.alertCtrl.create({
+      title: '提示',
+      message: '该积分码已存在',
+      buttons: [
+        {
+          text: '删除',
+          handler: () => {
+            this.goods.splice(index,1);
+            this.hasCodeList.splice(inIndex,1);
+            this.num = this.goods.length + this.noCodeNums;
+            this.destory=false;
+          }
+        },
+        {
+          text: '取消',
+          handler: () => {
+            this.destory=false;
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  // 退货商品存在赠品
+  popupGiftHint(){
+    this.destory=true;
+    let confirm = this.alertCtrl.create({
+      title: '提示',
+      message: '退货的商品存在参与的活动，请退相关的赠品',
+      buttons: [
+        {
+          text: '取消',
+          handler: () => {
+            this.destory=false;
+          }
+        },
+        {
+          text: '继续退货',
+          handler: () => {
+            this.submitSucc();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+}

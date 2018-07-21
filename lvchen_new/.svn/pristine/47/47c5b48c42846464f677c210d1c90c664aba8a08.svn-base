@@ -1,0 +1,60 @@
+page-consign-sum-detail {
+    .content{
+        background: #fff !important;
+    }
+
+    .line{
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .consignSumTitle{
+        display: flex;
+        align-items: center;
+        height: 4.2rem;
+        background: #f6f6f6;
+        color: #666;
+        padding-left: 1.6rem;
+        font-size: 1.4rem;
+        align-items: center;
+    }
+
+    .productCol {
+        flex: 4;
+    }
+
+    .goodCol{
+        flex: 2;
+        text-align: center;
+    }
+
+    .giftCol{
+        flex: 2;
+        text-align: center;
+    }
+
+    .totalBar {
+        display: flex;
+        align-items: center;
+        height: 4.2rem;
+        padding-left: 1.6rem;
+        color: #666;
+        padding-left: 1.6rem;
+        font-size: 1.4rem;
+        align-items: center;
+    }
+
+    .totalCol {
+        flex: 4;
+    }
+
+    .productBar{
+        display: flex;
+        align-items: center;
+        padding-left: 1.6rem;
+        color: #666;
+        font-size: 1.4rem;
+        align-items: center;
+        height: 6rem;
+      
+    }
+}

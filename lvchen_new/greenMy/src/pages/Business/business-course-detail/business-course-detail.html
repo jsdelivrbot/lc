@@ -1,0 +1,57 @@
+<!--
+  Generated template for the BusinessCourseDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{courseDetail.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (tap)="collCourse(courseDetail.id)">
+        <ion-icon name="heart" style="color : red" *ngIf="collState == 1"></ion-icon>
+        <ion-icon name="heart-outline" *ngIf="collState == 0"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="pic-wrap" [ngStyle]="{'background-image': 'url(' + appUrl.apiUrl+courseDetail.pic +')'}" *ngIf="fileRoute!=1">
+    <audio [src]="appUrl.apiUrl + courseDetail.fileRoute" *ngIf="fileRoute==0" controls="controls">
+      您的浏览器不支持 audio 标签。
+    </audio>
+  </div>
+  <video [src]="appUrl.apiUrl + courseDetail.fileRoute" controls="controls" *ngIf="fileRoute==1" [poster]="appUrl.apiUrl+courseDetail.pic">
+  </video>
+
+  <div class="course-introduce">
+    <div class="introduce-title-wrap">
+      <span class="introduce-title">课程介绍</span>
+      <div class="introduce-type">{{courseDetail.typeName}}</div>
+    </div>
+    <div class="introduce-content" [innerHTML]="courseDetail.content">
+    </div>
+  </div>
+
+  <div class="pdf-content"></div>
+
+</ion-content>
+
+<ion-footer>
+  <div class="learn-time-wrap" *ngIf="studing">
+    <div class="leern-time">
+      <ion-icon name="timer"></ion-icon>
+      {{readHours
+      <10? "0": ""}}{{readHours}}:{{readTimeLong<10? "0": ""}}{{readTimeLong}}:{{readSeconds<10? "0": ""}}{{readSeconds}}</div>
+    </div>
+    <div class="button-wrap">
+      <button ion-button class="btn-learn" *ngIf="studyState == 0" (tap)="startTolearn()">我要学习</button>
+      <div class="line"></div>
+      <button ion-button class="btn-exam" *ngIf="examState == 1" (tap)="startExam()">我要考试</button>
+    </div>
+</ion-footer>

@@ -1,0 +1,91 @@
+page-customer-return-list-detail {
+    .menuDetail{
+        margin-bottom: 10px;
+    }
+    .content{
+        background:#f5f4f3 !important;
+    }
+    .customerListRemark{
+        background: #fff;
+        display: flex;
+        .Remark{
+            height: 44px;
+                line-height: 44px;
+                padding: 0 0 0 10px;
+                font-size: 16px;
+                width: 100px;
+                color: #a7a7a7;
+        }
+        div:last-child{
+            flex: 1;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            font-size: 16px;
+            color: #666666;
+            &::-webkit-input-placeholder{
+                color: #ccc;
+                font-size: 18px;
+            }
+        }
+    }
+   
+    .customerList{
+        background: #fff;
+        margin-bottom: 10px;
+        .commodityName{
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            font-size: 16px;
+            color: green;
+        }
+        .customerReturnSuccessContent{
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            background: #f1f6f4;
+            color: #a7a7a7;
+            font-size: 16px;
+            .name{
+                width: 70%;
+            }
+            .num{
+                flex: 1;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                text-align: center
+            }
+        }
+        .customerReturnSuccessContentList{
+            display: flex;
+           margin:0  2.5%;
+            min-height: 34px;
+            background: #fff;
+            padding: 10px 0 10px 0;
+            color: #666666;
+            font-size: 16px;
+            border-bottom:1px solid #eee;
+            .name{
+                width: 70%;
+                padding: 5px 0 5px 0 ;
+                min-height: 30px;
+                
+            }
+            .num{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+        }
+
+    }
+}

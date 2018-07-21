@@ -1,0 +1,463 @@
+webpackJsonp([41],{
+
+/***/ 348:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderScannerPageModule", function() { return OrderScannerPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_scanner__ = __webpack_require__(439);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var OrderScannerPageModule = /** @class */ (function () {
+    function OrderScannerPageModule() {
+    }
+    OrderScannerPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__order_scanner__["a" /* OrderScannerPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__order_scanner__["a" /* OrderScannerPage */]),
+            ],
+        })
+    ], OrderScannerPageModule);
+    return OrderScannerPageModule;
+}());
+
+//# sourceMappingURL=order-scanner.module.js.map
+
+/***/ }),
+
+/***/ 439:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderScannerPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the ScannerPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var OrderScannerPage = /** @class */ (function () {
+    function OrderScannerPage(navCtrl, navParams, qrScanner, viewCtrl, alertCtrl, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.qrScanner = qrScanner;
+        this.viewCtrl = viewCtrl;
+        this.alertCtrl = alertCtrl;
+        this.appService = appService;
+        this.light = false;
+        this.frontCamera = false;
+        this.scanType = 1;
+        this.goods = new Array();
+        this.gifts = new Array();
+        this.curCodeId = "";
+        this.curGoodName = "";
+        this.hasTraceablityCode = false;
+        this.goodsNum = 0;
+        this.giftsNum = 0;
+        this.isFirst = true;
+        this.destory = false;
+    }
+    OrderScannerPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.ids = this.navParams.get('ids');
+        this.navbar.backButtonClick = function (e) {
+            if (_this.goodsNum == 0 && _this.giftsNum == 0) {
+                _this.destory = true;
+                _this.qrScanner.destroy();
+                _this.viewCtrl.dismiss();
+            }
+            else {
+                _this.appService.alert('您的操作未完成，确定要退出？', function (callback) {
+                    try {
+                        _this.appService.removeItem('cb');
+                        _this.destory = true;
+                        _this.qrScanner.destroy();
+                    }
+                    catch (e) { }
+                    finally {
+                        _this.navCtrl.popToRoot();
+                    }
+                });
+            }
+        };
+    };
+    OrderScannerPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.destory = false;
+        //获取摄像权限
+        this.qrScanner.prepare()
+            .then(function (status) {
+            if (status.authorized) {
+                _this.scan();
+                _this.qrScanner.show();
+            }
+        });
+    };
+    //开启扫一扫
+    OrderScannerPage.prototype.scan = function () {
+        var _this = this;
+        this.qrScanner.scan().subscribe(function (text) {
+            if (_this.destory) {
+                _this.restartScan();
+                return;
+            }
+            if (!_this.hasTraceablityCode || text.length == 13) {
+                _this.postCodeIdApi(text);
+            }
+            else {
+                if (_this.curCodeId == "") {
+                    _this.appService.toast("错误的产品条码");
+                }
+                else {
+                    _this.postIntegeralCodeApi(text);
+                }
+            }
+        });
+    };
+    OrderScannerPage.prototype.postCodeIdApi = function (code) {
+        var _this = this;
+        this.appService.httpPost('getScanCodeCasPosSale.api', { code: code }, function (data) {
+            _this.destory = false;
+            _this.restartScan();
+            if (data.code == -1) {
+                _this.appService.toast(data.msg);
+            }
+            else {
+                var goodMap = data.data.goodMap;
+                _this.curCodeId = goodMap.goodsId;
+                _this.curGoodName = goodMap.goodsDesc;
+                if (goodMap.tag == 0) {
+                    _this.hasTraceablityCode = false;
+                    _this.codeIdVerify();
+                }
+                else {
+                    _this.hasTraceablityCode = true;
+                }
+            }
+        }, true);
+    };
+    OrderScannerPage.prototype.postIntegeralCodeApi = function (code) {
+        var _this = this;
+        this.destory = false;
+        this.restartScan();
+        this.appService.httpPost('checkIntegralCode.api', { 'integralCode': code }, function (data) {
+            if (data.code == -1) {
+                _this.appService.toast(data.msg);
+            }
+            else if (data.code == 1) {
+                _this.complain(data.data);
+            }
+            else {
+                _this.verifyGoodCode(code);
+            }
+        }, true);
+    };
+    OrderScannerPage.prototype.complain = function (data) {
+        var _this = this;
+        this.destory = true;
+        var dialog = this.alertCtrl.create({
+            title: '追溯码已出售',
+            message: "销售门店：" + data.storeDesc + "<br>" + "商品名称：" + data.goodsDesc,
+            buttons: [
+                {
+                    text: '投诉',
+                    handler: function () {
+                        _this.destory = false;
+                        _this.navCtrl.push('ComplainFormsPage', { data: data }, {
+                            animation: 'md-transition'
+                        });
+                    }
+                },
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.destory = false;
+                    }
+                }
+            ]
+        });
+        dialog.present();
+    };
+    OrderScannerPage.prototype.codeIdVerify = function () {
+        var num = 0;
+        var index = -1;
+        var tempArrs = [];
+        if (this.scanType == 1) {
+            tempArrs = this.goods;
+        }
+        else {
+            tempArrs = this.gifts;
+        }
+        for (var i = 0; i < tempArrs.length; ++i) {
+            var map = tempArrs[i];
+            if (map.id == this.curCodeId) {
+                num += 1;
+                if (index == -1) {
+                    index = i;
+                }
+            }
+        }
+        if (num == 0) {
+            this.showInputNum(0);
+        }
+        else {
+            if (this.scanType == 1) {
+                this.goods.splice(index, num);
+            }
+            else {
+                this.gifts.splice(index, num);
+            }
+            this.showInputNum(num);
+        }
+    };
+    OrderScannerPage.prototype.restartScan = function () {
+        var _this = this;
+        var time = setTimeout(function () {
+            _this.scan();
+            clearTimeout(time);
+        }, 500);
+    };
+    //验证商品条码是否存在
+    OrderScannerPage.prototype.verifyGoodCode = function (code) {
+        for (var i = 0; i < this.goods.length; ++i) {
+            if (this.goods[i].code == code) {
+                this.showRepeat(1, i);
+                return;
+            }
+        }
+        for (var j = 0; j < this.gifts.length; ++j) {
+            if (this.gifts[j].code == code) {
+                this.showRepeat(2, j);
+                return;
+            }
+        }
+        if (this.scanType == 1) {
+            this.goods.push({ 'id': this.curCodeId, 'code': code });
+            this.goodsNum = this.goods.length;
+        }
+        else {
+            this.showSourceRadio(code, 1);
+        }
+    };
+    OrderScannerPage.prototype.scanGood = function () {
+        this.scanType = 1;
+    };
+    OrderScannerPage.prototype.scanGift = function () {
+        this.scanType = 2;
+    };
+    //提交
+    OrderScannerPage.prototype.submit = function () {
+        var _this = this;
+        if (this.goods.length == 0) {
+            return;
+        }
+        var resultObect = { 'goods': this.goods, 'gifts': this.gifts };
+        this.appService.httpPost('chengeActCasPosSaleOrder.api', {
+            'ids': this.ids,
+            'resultObject': JSON.stringify(resultObect)
+        }, function (data) {
+            if (data.code == -1) {
+                _this.appService.toast(data.msg);
+            }
+            else {
+                _this.destory = true;
+                _this.qrScanner.hide();
+                _this.qrScanner.destroy();
+                _this.navCtrl.push('OrderModifyPageTwoPage', { 'phone': _this.navParams.get('phone') }, {
+                    animation: 'md-transition'
+                });
+                _this.appService.setItem('orderList', data.data);
+            }
+        }, true);
+    };
+    OrderScannerPage.prototype.showPrompt = function () {
+        var _this = this;
+        this.destory = true;
+        var prompt = this.alertCtrl.create({
+            title: '手动输入',
+            inputs: [
+                { type: "text" },
+            ],
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function (data) {
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.destory = false;
+                        if (!data[0]) {
+                            _this.appService.toast('不能为空');
+                        }
+                        else {
+                            if (!_this.hasTraceablityCode || data[0].length == 13) {
+                                _this.postCodeIdApi(data[0]);
+                            }
+                            else {
+                                if (_this.curCodeId == "") {
+                                    _this.appService.toast("错误的产品条码");
+                                    _this.restartScan();
+                                }
+                                else {
+                                    _this.postIntegeralCodeApi(data[0]);
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    OrderScannerPage.prototype.showRepeat = function (type, pos) {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '提示',
+            message: '该追溯码已存在',
+            buttons: [
+                {
+                    text: '删除',
+                    handler: function () {
+                        _this.destory = false;
+                        if (type == 1) {
+                            _this.goods.splice(pos, 1);
+                            _this.goodsNum = _this.goods.length;
+                        }
+                        else {
+                            _this.gifts.splice(pos, 1);
+                            _this.giftsNum = _this.gifts.length;
+                        }
+                    }
+                },
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.destory = false;
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    OrderScannerPage.prototype.showInputNum = function (num) {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '输入数量',
+            inputs: [
+                {
+                    type: "number",
+                    value: num == 0 ? '' : num
+                },
+            ],
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.destory = false;
+                        if (data[0] == "" || data[0] <= 0) {
+                            return false;
+                        }
+                        if (_this.scanType == 1) {
+                            for (var i = 0; i < parseInt(data[0]); ++i) {
+                                _this.goods.push({ 'id': _this.curCodeId, 'code': '4444' });
+                            }
+                            _this.goodsNum = _this.goods.length;
+                        }
+                        else {
+                            _this.showSourceRadio('4444', parseInt(data[0]));
+                        }
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    OrderScannerPage.prototype.showSourceRadio = function (code, num) {
+        var _this = this;
+        this.destory = true;
+        var alert = this.alertCtrl.create();
+        alert.setTitle('选择赠品来源');
+        alert.addInput({
+            type: 'radio',
+            label: "借门店",
+            value: '0',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "其它",
+            value: '2',
+            checked: true
+        });
+        alert.addButton({
+            text: '确定',
+            handler: function (data) {
+                _this.destory = false;
+                for (var i = 0; i < num; ++i) {
+                    _this.gifts.push({ 'id': _this.curCodeId, 'code': code, 'source': data });
+                }
+                _this.giftsNum = _this.gifts.length;
+            }
+        });
+        alert.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], OrderScannerPage.prototype, "navbar", void 0);
+    OrderScannerPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-order-scanner',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Order/order-scanner/order-scanner.html"*/'<!--\n  Generated template for the OrderScannerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>{{scanType==1?\'扫商品\':\'扫赠品\'}}</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showPrompt()">\n        <ion-icon name="create"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content class="qrscanner">\n  <div class="goodNameArea {{curGoodName?\'\':\'hidden\'}}">\n    <span>商品名称：{{curGoodName}}</span>\n  </div>\n  <div class="qrscanner-area">\n  </div>\n  <div class="through-line"></div>\n</ion-content>\n<ion-footer>\n  <div class="bottom-div">\n    <ion-row>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="scanGood()" class="scan-good {{scanType==1?\'select-on\':\'select-off\'}}" col-3 ion-button>\n        扫商品\n        <span class="{{goodsNum==0?\'hidden\':\'\'}} red-badge">{{goodsNum}}</span>\n      </ion-col>\n      <ion-col (tap)="scanGift()" class="scan-gift {{scanType==1?\'select-off\':\'select-on\'}}" col-3 ion-button>\n        扫赠品\n        <span class="{{giftsNum==0?\'hidden\':\'\'}} red-badge">{{giftsNum}}</span>\n      </ion-col>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="submit()" class="submit-btn" ion-button col-3>\n        <ion-icon name="checkmark"></ion-icon>&nbsp;&nbsp;确认\n      </ion-col>\n    </ion-row>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Order/order-scanner/order-scanner.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], OrderScannerPage);
+    return OrderScannerPage;
+}());
+
+//# sourceMappingURL=order-scanner.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=41.js.map

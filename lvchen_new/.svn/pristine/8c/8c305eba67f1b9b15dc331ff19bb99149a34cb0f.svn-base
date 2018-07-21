@@ -1,0 +1,256 @@
+webpackJsonp([65],{
+
+/***/ 304:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OweCountPageModule", function() { return OweCountPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__owe_count__ = __webpack_require__(395);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var OweCountPageModule = /** @class */ (function () {
+    function OweCountPageModule() {
+    }
+    OweCountPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__owe_count__["a" /* OweCountPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__owe_count__["a" /* OweCountPage */]),
+            ],
+        })
+    ], OweCountPageModule);
+    return OweCountPageModule;
+}());
+
+//# sourceMappingURL=owe-count.module.js.map
+
+/***/ }),
+
+/***/ 395:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OweCountPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the OweCountPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var OweCountPage = /** @class */ (function () {
+    function OweCountPage(navCtrl, navParams, appService, alertCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.alertCtrl = alertCtrl;
+        // 当前业务组名称和id
+        this.storeName = "业务组";
+        this.storeId = 1;
+        // 商品id
+        this.goodsId = -1;
+        // 下一级业务组
+        this.nextOrg = [];
+        // 当前数据
+        this.thisDataArr = [];
+        // 合计
+        this.oweMemberCount = 0;
+        this.oweStorerCount = 0;
+        // 是门店还是业务组
+        this.isStore = true;
+        this.identity = 0; //-1业务员，1员工，2、3导购
+        this.appService.getItem('userInfo', function (val) {
+            _this.identity = val['tag'];
+        });
+    }
+    OweCountPage_1 = OweCountPage;
+    OweCountPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        // 判断是否二级页面
+        if (this.navParams.data.goodsName) {
+            this.storeName = this.navParams.data.goodsName;
+            this.goodsId = this.navParams.data.goodsId;
+            this.storeId = this.navParams.data.storeId;
+            this.identity = 2;
+            this.isStore = this.navParams.data.isStore;
+            this.getDetail();
+        }
+        else {
+            // 获取业务组名称
+            this.appService.getItem("curStore", function (obj) {
+                _this.storeName = obj.storeName;
+                _this.storeId = obj.id;
+            });
+            // 获取业务组
+            this.getNextOrg();
+            // 获取当前数据
+            this.getThisData();
+        }
+    };
+    // 获取当前数据
+    OweCountPage.prototype.getThisData = function () {
+        var _this = this;
+        this.appService.httpPost("findOwningGoods.api", {}, function (res) {
+            if (res.code == 1) {
+                _this.thisDataArr = res.data;
+                // 计算合计
+                _this.oweStorerCount = _this.oweMemberCount = 0;
+                for (var i = 0; i < _this.thisDataArr.length; i++) {
+                    _this.oweStorerCount += _this.thisDataArr[i].oweStore;
+                    _this.oweMemberCount += _this.thisDataArr[i].oweMember;
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 获取下级业务组数据
+    OweCountPage.prototype.getOtherOrgData = function (storeId) {
+        var _this = this;
+        this.appService.httpPost("findOwningGoods.api", {
+            storeId: storeId
+        }, function (res) {
+            if (res.code == 1) {
+                _this.thisDataArr = res.data;
+                // 计算合计
+                _this.oweStorerCount = _this.oweMemberCount = 0;
+                for (var i = 0; i < _this.thisDataArr.length; i++) {
+                    _this.oweStorerCount += _this.thisDataArr[i].oweStore;
+                    _this.oweMemberCount += _this.thisDataArr[i].oweMember;
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 获取下一级业务组
+    OweCountPage.prototype.getNextOrg = function () {
+        var _this = this;
+        this.appService.httpPost("getNextOrg.api", {}, function (res) {
+            if (res.code == 1) {
+                _this.nextOrg = res.data;
+                // 处理业务组数据
+                for (var i = 0; i < _this.nextOrg.length; i++) {
+                    _this.nextOrg[i] = {
+                        type: 'radio',
+                        label: _this.nextOrg[i].orgName,
+                        value: [_this.nextOrg[i].orgId, _this.nextOrg[i].orgName]
+                    };
+                }
+                // 将当前业务组插入最前面
+                _this.nextOrg.unshift({
+                    type: 'radio',
+                    label: _this.storeName,
+                    value: [_this.storeId, _this.storeName]
+                });
+            }
+        }, true);
+    };
+    // 选择下一级
+    OweCountPage.prototype.showNextOrg = function () {
+        var _this = this;
+        if (this.nextOrg.length < 1) {
+            return;
+        }
+        var alert = this.alertCtrl.create({
+            title: '选择业务组',
+            inputs: this.nextOrg,
+            buttons: [
+                {
+                    text: '取消',
+                    role: 'cancel',
+                    handler: function (data) {
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        // 选了业务组以后拿业务组数据
+                        if (data) {
+                            _this.storeId = data[0];
+                            _this.getOtherOrgData(data[0]);
+                            _this.storeName = data[1];
+                        }
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    // 查看详情
+    OweCountPage.prototype.showDetail = function (goodsName, goodsId) {
+        if (this.identity == 2 || this.identity == 3) {
+            return;
+        }
+        this.navCtrl.push(OweCountPage_1, {
+            goodsName: goodsName,
+            goodsId: goodsId,
+            storeId: this.storeId,
+            isStore: this.nextOrg.length > 0
+        });
+    };
+    // 获取详情
+    OweCountPage.prototype.getDetail = function () {
+        var _this = this;
+        this.appService.httpPost("findOwningGoodsDtl.api", {
+            storeId: this.storeId,
+            goodsId: this.goodsId
+        }, function (res) {
+            if (res.code == 1) {
+                _this.thisDataArr = res.data;
+                _this.oweMemberCount = res.oweMember;
+                _this.oweStorerCount = res.oweStore;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    OweCountPage = OweCountPage_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-owe-count',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/owe-count/owe-count.html"*/'<!--\n  Generated template for the OweCountPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>欠货统计</ion-title>\n  </ion-navbar>\n\n  <div class="store-name" (tap)="showNextOrg()">\n    <span>{{storeName}}</span>\n    <span class="icon-down" *ngIf="nextOrg.length > 0">\n      <ion-icon name="arrow-down"></ion-icon>\n    </span>\n  </div>\n  <tbody class="list-title">\n    <tr>\n      <td width="40%">{{goodsId == -1?"品名":isStore?"业务组":"门店"}}</td>\n      <td width="30%">欠顾客</td>\n      <td width="25%">欠门店</td>\n      <td width="5%">\n        <ion-icon class="place-holder" name="arrow-forward"></ion-icon>\n      </td>\n    </tr>\n  </tbody>\n</ion-header>\n\n\n<ion-content>\n\n  <div class="rank-wrap">\n    <table>\n      <tr>\n        <td width="40%">合计</td>\n        <td width="30%">{{oweMemberCount|number}}</td>\n        <td width="25%">{{oweStorerCount|number}}</td>\n        <td width="5%">\n          <ion-icon class="place-holder" name="arrow-forward"></ion-icon>\n        </td>\n      </tr>\n      <tr *ngFor="let item of thisDataArr" (tap)="showDetail(item.goodsDesc,item.goodsId)">\n        <td width="40%">{{item.goodsDesc || item.orgStoreName}}</td>\n        <td width="30%">{{item.oweMember|number}}</td>\n        <td width="25%">{{item.oweStore|number}}</td>\n        <td width="5%">\n          <ion-icon *ngIf="identity!=2&&identity!=3" name="arrow-forward"></ion-icon>\n        </td>\n      </tr>\n    </table>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/owe-count/owe-count.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], OweCountPage);
+    return OweCountPage;
+    var OweCountPage_1;
+}());
+
+//# sourceMappingURL=owe-count.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=65.js.map

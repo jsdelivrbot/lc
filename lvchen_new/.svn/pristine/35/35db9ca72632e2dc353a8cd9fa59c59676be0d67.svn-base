@@ -1,0 +1,34 @@
+<!--
+  Generated template for the SalesStatisticsDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>销售统计</ion-title>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+  <div class="detail-title line">
+    <div class="business-group">业务组</div>
+    <div class="saleroom">销售额(万元)</div>
+    <div class="sales-volume">销售量(个)</div>
+  </div>
+  
+  <div class="total-bar line">
+      <div class="total">合计</div>
+      <div class="total-saleroom">{{saleAmount || 0}}</div>
+      <div class="total-sales-volume">{{saleQty || 0}}</div>
+  </div>
+
+  <div class="business-bar line" *ngFor="let item of salesData">
+      <div class="business-name">{{ item.orgStoreName }}</div>
+      <div class="saleroom">{{item.saleAmount}}</div>
+      <div class="sales-volume">{{item.saleQty}}</div>
+  </div>
+ 
+</ion-content>
+ 

@@ -1,0 +1,278 @@
+webpackJsonp([82],{
+
+/***/ 285:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusinessLearnPageModule", function() { return BusinessLearnPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__business_learn__ = __webpack_require__(376);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BusinessLearnPageModule = /** @class */ (function () {
+    function BusinessLearnPageModule() {
+    }
+    BusinessLearnPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__business_learn__["a" /* BusinessLearnPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__business_learn__["a" /* BusinessLearnPage */]),
+            ],
+        })
+    ], BusinessLearnPageModule);
+    return BusinessLearnPageModule;
+}());
+
+//# sourceMappingURL=business-learn.module.js.map
+
+/***/ }),
+
+/***/ 376:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessLearnPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BusinessLearnPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BusinessLearnPage = /** @class */ (function () {
+    function BusinessLearnPage(navCtrl, navParams, appService, appUrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.appUrl = appUrl;
+        this.pageTitle = "我要学习";
+        // 选中的导航
+        this.navIndex = 0;
+        // 是否有下一页
+        this.hasNextCourse = false;
+        this.hasNextExam = false;
+        // 获取行数
+        this.rows = 20;
+        // 页数
+        this.coursePage = 1;
+        this.examPage = 1;
+        // 搜索结果列表
+        this.coursesList = [];
+        this.examList = [];
+        // 课程类型数组
+        this.coursesType = [];
+        this.coursesTypeColors = [];
+        // 第一次获取需要考试的课程
+        this.firstGetExam = true;
+        // 筛选的课程id
+        this.courseTypeId = null;
+    }
+    BusinessLearnPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.navBar.backButtonClick = function () {
+            _this.navCtrl.pop({
+                animation: 'md-transition'
+            });
+        };
+        this.getCourses(1);
+        this.getCourseType();
+    };
+    // 切换导航
+    BusinessLearnPage.prototype.toggleTab = function (index) {
+        this.navIndex = index;
+        this.slides.slideTo(index);
+    };
+    // 切换内容
+    BusinessLearnPage.prototype.toggleSlide = function () {
+        this.navIndex = this.slides.getActiveIndex();
+        if (this.navIndex > 1) {
+            this.navIndex = 1;
+        }
+        if (this.navIndex < 0) {
+            this.navIndex = 0;
+        }
+        if (this.firstGetExam && this.navIndex == 1) {
+            this.getCourses(1);
+            this.firstGetExam = false;
+        }
+    };
+    // 获取课程
+    BusinessLearnPage.prototype.getCourses = function ($event) {
+        var _this = this;
+        this.appService.httpPost("business_getCourses", {
+            page: this.navIndex == 0 ? this.coursePage : this.examPage,
+            rows: this.rows,
+            isExam: this.navIndex,
+            courseTypeId: this.courseTypeId
+        }, function (res) {
+            if (res.code == 1) {
+                // 获取无考试的课程
+                if (_this.navIndex == 0) {
+                    // 获取数据
+                    _this.coursesList = _this.coursesList.concat(res.map.listMap);
+                    // 判断是否有下一页
+                    if (res.map.listMap.length < _this.rows) {
+                        _this.hasNextCourse = false;
+                    }
+                    else {
+                        _this.hasNextCourse = true;
+                    }
+                }
+                // 获取有考试的课程
+                if (_this.navIndex == 1) {
+                    // 获取数据
+                    _this.examList = _this.examList.concat(res.map.listMap);
+                    // 判断是否有下一页
+                    if (res.map.listMap.length < _this.rows) {
+                        _this.hasNextExam = false;
+                    }
+                    else {
+                        _this.hasNextExam = true;
+                    }
+                }
+                // 加载更多完成
+                if ($event != 1) {
+                    $event.complete();
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+                // 加载更多完成
+                if ($event != 1) {
+                    $event.complete();
+                }
+            }
+        }, this.navIndex == 0 ? this.coursesList.length <= 0 : this.examList.length <= 0);
+    };
+    // 获取课程类型
+    BusinessLearnPage.prototype.getCourseType = function () {
+        var _this = this;
+        this.appService.httpPost("business_courseType", {}, function (res) {
+            if (res.code == 1) {
+                _this.coursesType = res.map.rs;
+                // 添加颜色
+                _this.colorTag(_this.coursesType);
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        });
+    };
+    // 加载更多
+    BusinessLearnPage.prototype.getMoreData = function ($event) {
+        this.navIndex == 0 ? this.coursePage++ : this.examPage++;
+        this.getCourses($event);
+    };
+    // 给标签添加颜色
+    BusinessLearnPage.prototype.colorTag = function (list) {
+        for (var i = 0; i < list.length; i++) {
+            this.getColor(this.coursesTypeColors);
+        }
+    };
+    // 随机颜色
+    BusinessLearnPage.prototype.getColor = function (arr) {
+        var newColor = "rgba(" + (Math.random() * 205 + 50) + "," + (Math.random() * 100 + 50) + "," + (Math.random() * 150 + 50) + ",1)";
+        if (arr.indexOf(newColor) != -1) {
+            this.getColor(arr);
+        }
+        else {
+            arr.push(newColor);
+        }
+    };
+    // 返回颜色字符串
+    BusinessLearnPage.prototype.returnColor = function (tag) {
+        for (var i = 0; i < this.coursesType.length; i++) {
+            if (this.coursesType[i].text == tag) {
+                return this.coursesTypeColors[i];
+            }
+            var children = this.coursesType[i].children;
+            for (var j = 0; j < children.length; j++) {
+                if (children[j].text == tag) {
+                    return this.coursesTypeColors[i];
+                }
+            }
+        }
+    };
+    // 显示所有类型
+    BusinessLearnPage.prototype.showFunnel = function () {
+        var funnel = document.getElementById("funnel");
+        var ionNabbar = document.getElementById("ionNabbar");
+        this.pageTitle = this.pageTitle == "筛选" ? "我要学习" : "筛选";
+        if (this.pageTitle == "筛选") {
+            funnel.style.top = ionNabbar.offsetHeight + "px";
+        }
+        else {
+            funnel.style.top = '';
+        }
+    };
+    // 通过类型筛选
+    BusinessLearnPage.prototype.searchByID = function (id) {
+        this.courseTypeId = this.courseTypeId == id ? null : id;
+        this.showFunnel();
+        this.hasNextCourse = false;
+        this.hasNextExam = false;
+        this.coursePage = 1;
+        this.examPage = 1;
+        this.coursesList = [];
+        this.examList = [];
+        this.firstGetExam = true;
+        this.toggleTab(0);
+        this.getCourses(1);
+    };
+    // 展开详情页
+    BusinessLearnPage.prototype.goToCourseDetail = function (id) {
+        this.navCtrl.push('BusinessCourseDetailPage', { id: id }, {
+            animation: 'md-transition'
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], BusinessLearnPage.prototype, "slides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], BusinessLearnPage.prototype, "navBar", void 0);
+    BusinessLearnPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-business-learn',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-learn/business-learn.html"*/'<!--\n  Generated template for the BusinessLearnPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar id="ionNabbar">\n    <ion-title>{{pageTitle}}</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (tap)="showFunnel()">\n        <ion-icon name="funnel"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n  <div class="nav-select-wrap" *ngIf="pageTitle != \'筛选\'">\n    <div [ngClass]="{\'nav-tab-wrap\' : true, \'selected\' : navIndex == 0}" (tap)="toggleTab(0)">\n      <div class="nav-title-wrap">学习课程</div>\n      <div class="nav-line"></div>\n    </div>\n    <div [ngClass]="{\'nav-tab-wrap\' : true, \'selected\' : navIndex == 1}" (tap)="toggleTab(1)">\n      <div class="nav-title-wrap">考试课程</div>\n      <div class="nav-line"></div>\n    </div>\n  </div>\n</ion-header>\n\n<ion-content>\n  <ion-slides (ionSlideDidChange)="toggleSlide()">\n    <!-- 学习课程 -->\n    <ion-slide>\n      <ion-content>\n        <ul class="courses-list-wrap">\n          <li *ngFor="let item of coursesList" (tap)="goToCourseDetail(item.id)">\n            <div class="courses-info-wrap">\n              <div class="courses-info-title">{{item.title}}</div>\n              <div class="courses-info-time">发布时间 {{item.createTime}}</div>\n              <div class="courses-info-tag-wrap">\n                <span class="courses-info-learn-state" [ngClass]="{\'learned\':item.isSucc==0?false:true}">{{item.isSucc==0?\'未学习\':\'已学习\'}}</span>\n                <span class="courses-info-tag" [ngStyle]="{\'color\': returnColor(item.courseType)}">{{item.courseType}}</span>\n              </div>\n            </div>\n            <div class="courses-img-wrap">\n              <img [src]=\'appUrl.apiUrl+item.pic\'>\n            </div>\n          </li>\n        </ul>\n        <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]=\'hasNextCourse\'>\n          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n          </ion-infinite-scroll-content>\n        </ion-infinite-scroll>\n      </ion-content>\n    </ion-slide>\n    <!-- 考试课程 -->\n    <ion-slide>\n      <ion-content>\n        <ul class="courses-list-wrap">\n          <li *ngFor="let item of examList" (tap)="goToCourseDetail(item.id)">\n            <div class="courses-info-wrap">\n              <div class="courses-info-title">{{item.title}}</div>\n              <div class="courses-info-time">发布时间 {{item.createTime}}</div>\n              <div class="courses-info-tag-wrap">\n                <span class="courses-info-learn-state" [ngClass]="{\'learned\':item.isSucc==0?false:true}">{{item.isSucc==0?\'未学习\':\'已学习\'}}</span>\n                <span class="courses-info-tag" [ngStyle]="{\'color\': returnColor(item.courseType)}">{{item.courseType}}</span>\n              </div>\n            </div>\n            <div class="courses-img-wrap">\n              <img [src]=\'appUrl.apiUrl+item.pic\'>\n            </div>\n          </li>\n        </ul>\n        <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]=\'hasNextExam\'>\n          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n          </ion-infinite-scroll-content>\n        </ion-infinite-scroll>\n      </ion-content>\n    </ion-slide>\n  </ion-slides>\n\n  <div class="funnel-wrap" id="funnel">\n    <div class="funnel-box" *ngFor="let item of coursesType">\n      <div class="coursetype-Title">\n        <div class="color-box" [ngStyle]="{\'background-color\' : returnColor(item.text)}"></div>\n        <div class="title-text">{{item.text}}</div>\n        <div class="line"></div>\n      </div>\n      <div class="course-tag-box">\n        <button *ngFor="let tag of item.children" (tap)="searchByID(tag.id)" [ngClass]="{selected : tag.id == courseTypeId?true:false}">{{tag.text}}</button>\n      </div>\n    </div>\n  </div>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-learn/business-learn.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], BusinessLearnPage);
+    return BusinessLearnPage;
+}());
+
+//# sourceMappingURL=business-learn.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=82.js.map

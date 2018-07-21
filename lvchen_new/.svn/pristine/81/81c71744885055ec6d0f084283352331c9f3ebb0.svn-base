@@ -1,0 +1,265 @@
+page-my-customer {
+    ion-header {
+        .toolbar-ios {
+            padding: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 44px;
+        } // 顶部按钮
+        .condition {
+            font-size: 1.4rem;
+            margin-right: 0.5rem;
+            display: flex;
+            justify-content: center;
+            span {
+                margin-right: 0.1rem;
+            }
+        }
+        .search-box {
+            width: 100%;
+            z-index: 1;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            .item-wrap {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 1.5rem;
+                border-bottom: 1px solid rgba($color: #e5e5e5, $alpha: 1.0);
+                .phone-wrap {
+                    width: 70%;
+                    padding: 1.2rem 0;
+                }
+                .name-wrap {
+                    width: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1.2rem 0;
+                }
+                .name-main {
+                    color: rgba($color: #00783a, $alpha: 1.0)
+                }
+                .arrow-wrap {
+                    width: 10%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: rgba($color: #999999, $alpha: 1.0)
+                }
+            }
+            .item-wrap-title {
+                background-color: rgba($color: #f1f6f4, $alpha: 1);
+                color: rgba($color: #999999, $alpha: 1.0)
+            }
+        } 
+        // 条件选择部分
+        .condition-cover {
+            width: 100%;
+            height: 100rem;
+            background-color: rgba($color: #000000, $alpha: 0.5);
+            z-index: 999;
+            .condition-wrap {
+                width: 100%;
+                background-color: rgba($color: #f1f1f1, $alpha: 1.0);
+                padding: 0.5rem 1.8rem 1.8rem 1.8rem;
+                .title {
+                    margin: 1rem 0;
+                }
+                .day-selected-wrap {
+                    padding: 0.5rem 0.5rem 0.5rem 0;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    button {
+                        display: flex;
+                        width: 25%;
+                        margin-right: 8%;
+                        height: 3rem;
+                        font-size: 1.2rem;
+                        border-radius: 3px;
+                        background-color: rgba($color: #ffffff, $alpha: 1.0);
+                        border: 1px solid rgba($color: #c9c7c7, $alpha: 1.0);
+                        color: rgba($color: #666666, $alpha: 1.0);
+                        display: flex;
+                        justify-content: center;
+                    }
+                    .selectedTab {
+                        background-color: rgba($color: #e2ebe6, $alpha: 1.0);
+                        border-color: rgba($color: #00783a, $alpha: 1.0);
+                        color: rgba($color: #00783a, $alpha: 1.0);
+                        border: 1px solid;
+                    }
+                }
+                .time-selected-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    ion-item {
+                        width: 100%;
+                        height: 3rem;
+                        padding: 0;
+                        min-height: 3rem !important;
+                        background-color: rgba($color: #ffffff, $alpha: 1.0);
+                        border: 1px solid rgba($color: #c9c7c7, $alpha: 1.0);
+                        border-radius: 3px;
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: space-between;
+                        position: relative;
+                        .item-inner {
+                            border: none;
+                        }
+                        ion-datetime {
+                            z-index: 2;
+                            width: 100%;
+                        } // ion-label {
+                        //     padding: 0;
+                        //     margin: 0;
+                        //     text-align: right;
+                        //     position: absolute;
+                        //     z-index: 1;
+                        // }
+                    }
+                    >span {
+                        width: 10%;
+                        margin: 0 2%;
+                        text-align: center;
+                    }
+                }
+                .input-wrap {
+                    width: 100%;
+                    height: 3rem;
+                    border: 1px solid rgba($color: #cccccc, $alpha: 1.0);
+                    background-color: rgba($color: #ffffff, $alpha: 1.0);
+                    border-radius: 3px;
+                    padding: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    input {
+                        width: 100%;
+                        border: none;
+                        margin-left: 0.5rem;
+                    }
+                    ion-icon {
+                        font-size: 2rem;
+                    }
+                    button {
+                        width: 9rem;
+                        height: 100%;
+                        padding: 0.5rem;
+                        background-color: transparent;
+                        border-left: 1px solid rgba($color: #cccccc, $alpha: 1.0)
+                    }
+                    .del-button {
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        margin: 0 1rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+            .brand-selected-wrap {
+                ion-item {
+                    width: 100%;
+                    height: 3rem;
+                    padding: 0;
+                    min-height: 3rem !important;
+                    background-color: rgba($color: #ffffff, $alpha: 1.0);
+                    border: 1px solid rgba($color: #c9c7c7, $alpha: 1.0);
+                    border-radius: 3px;
+                    ion-select {
+                        width: 100%;
+                        max-width: none;
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+            .confirm-button-wrap {
+                border-top: 0.55px solid rgba($color: #c9c7c7, $alpha: 1);
+                height: 4rem;
+                width: 100%;
+                padding: 0;
+                button {
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba($color: #ffffff, $alpha: 1);
+                }
+            }
+        }
+    }
+    ion-content {
+        background-color: rgba(245, 244, 243, 1) !important;
+        position: relative;
+        display: flex;
+        flex-direction: column; // 搜索结果部分
+        .content-wrap {
+            width: 100%;
+            flex-grow: 1;
+            ion-item {
+                padding: 0;
+                border: none !important;
+            }
+            .item-block {
+                min-height: 0 !important;
+            }
+            .item-inner {
+                padding: 0 !important;
+            }
+            ion-label {
+                margin: 0;
+            }
+            .item-wrap {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-left: 1.5rem;
+                border-bottom: 1px solid rgba($color: #e5e5e5, $alpha: 1.0);
+                .phone-wrap {
+                    width: 70%;
+                    padding: 1.2rem 0;
+                }
+                .name-wrap {
+                    width: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1.2rem 0;
+                }
+                .name-main {
+                    color: rgba($color: #00783a, $alpha: 1.0)
+                }
+                .arrow-wrap {
+                    width: 10%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: rgba($color: #999999, $alpha: 1.0)
+                }
+            }
+            .item-wrap-title {
+                background-color: rgba($color: #f1f6f4, $alpha: 1);
+                color: rgba($color: #999999, $alpha: 1.0)
+            }
+        } // 加载
+        .infinite-loading {
+            display: flex;
+            justify-content: center;
+            .infinite-loading-spinner {
+                flex: 0;
+            }
+            .infinite-loading-text {
+                flex: none;
+                margin-left: 1rem;
+            }
+        }
+        .item-cover {
+            display: none !important;
+        }
+    }
+}

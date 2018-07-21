@@ -1,0 +1,188 @@
+page-order-modify-page-one{
+    .content{
+        background:#f5f4f3 !important;
+    }
+    .SaleRepayHeader{
+        position: relative;
+    }
+    .repayStatus{
+        position: absolute;
+        top:28px;
+        right:20px;
+        z-index: 1;
+        img{
+            width: 7rem;
+            height: 6.35rem;
+        }
+    }
+    .act-div{
+        color : #227B39;
+       padding: 1rem;
+      font-size: 1.5rem;
+    }
+    .customerListRemark{
+        background: #fff;
+        margin-bottom: 10px;
+        display: flex;
+        .Remark{
+            height: 44px;
+                line-height: 44px;
+                padding: 0 0 0 10px;
+                font-size: 18px;
+                width: 50px;
+                color: #a7a7a7;
+        }
+        input{
+            flex: 1;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            font-size: 18px;
+            color: #ccc;
+            &::-webkit-input-placeholder{
+                color: #ccc;
+                font-size: 18px;
+            }
+        }
+    }
+    .customerList{
+        background: #fff;
+        margin-bottom: 10px;
+        .commodityName{
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            font-size: 18px;
+            color: green;
+        }
+        .customerReturnSuccessContent{
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            background: #f1f6f4;
+            color: #a7a7a7;
+            font-size: 16px;
+            .name{
+                width: 70%;
+            }
+            .num{
+                flex: 1;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                text-align: center
+            }
+        }
+        .customerReturnSuccessContentList{
+            display: flex;
+           margin:0  2.5%;
+            min-height: 34px;
+            background: #fff;
+            padding: 10px 0 10px 0;
+            color: #a7a7a7;
+            font-size: 16px;
+            border-bottom:1px solid #eee;
+            .name{
+                width: 70%;
+                padding: 5px 0 5px 0 ;
+                min-height: 30px;
+                
+            }
+            .num{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+        }
+
+    }
+   
+    .customerListpresent{
+        background: #fff;
+        margin-bottom: 10px;
+        .commodityName{
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            font-size: 18px;
+            color: green;
+        }
+        .customerReturnSuccessContent{
+            display: flex;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 0 0 10px;
+            background: #f1f6f4;
+            color: #a7a7a7;
+            font-size: 16px;
+            .name{
+                width: 40%;
+            }
+            .num{
+                flex: 1;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                text-align: center
+            }
+        }
+        .customerReturnSuccessContentList{
+            display: flex;
+           margin:0  2.5%;
+            min-height: 34px;
+            background: #fff;
+            padding: 10px 0 10px 0;
+            color: #a7a7a7;
+            font-size: 16px;
+            border-bottom:1px solid #eee;
+            .name{
+                width: 40%;
+                padding: 5px 0 5px 0 ;
+                min-height: 30px;
+                
+            }
+            .num{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+            .sum{
+                flex: 1;
+                padding: 5px 0 5px 0 ;
+                text-align: center
+            }
+        }
+
+    }
+    .sale{
+        display: flex;
+        background: #227B39;
+        height: 44px;
+        line-height: 44px;
+        color: #fff;
+        font-size: 18px;
+        .pass{
+            flex: 1;
+            text-align: center;
+            border-right: .55px solid #fff;
+        }
+        .nopass{
+            flex: 1;
+            text-align: center;
+        }
+        button{
+            background: #227B39;
+            font-size: 18px;
+            color: #fff; 
+        }
+    }
+}
+

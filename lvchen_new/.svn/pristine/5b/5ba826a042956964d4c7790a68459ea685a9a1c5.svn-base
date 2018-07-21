@@ -1,0 +1,55 @@
+<!--
+  Generated template for the OweCountPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>欠货统计</ion-title>
+  </ion-navbar>
+
+  <div class="store-name" (tap)="showNextOrg()">
+    <span>{{storeName}}</span>
+    <span class="icon-down" *ngIf="nextOrg.length > 0">
+      <ion-icon name="arrow-down"></ion-icon>
+    </span>
+  </div>
+  <tbody class="list-title">
+    <tr>
+      <td width="40%">{{goodsId == -1?"品名":isStore?"业务组":"门店"}}</td>
+      <td width="30%">欠顾客</td>
+      <td width="25%">欠门店</td>
+      <td width="5%">
+        <ion-icon class="place-holder" name="arrow-forward"></ion-icon>
+      </td>
+    </tr>
+  </tbody>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="rank-wrap">
+    <table>
+      <tr>
+        <td width="40%">合计</td>
+        <td width="30%">{{oweMemberCount|number}}</td>
+        <td width="25%">{{oweStorerCount|number}}</td>
+        <td width="5%">
+          <ion-icon class="place-holder" name="arrow-forward"></ion-icon>
+        </td>
+      </tr>
+      <tr *ngFor="let item of thisDataArr" (tap)="showDetail(item.goodsDesc,item.goodsId)">
+        <td width="40%">{{item.goodsDesc || item.orgStoreName}}</td>
+        <td width="30%">{{item.oweMember|number}}</td>
+        <td width="25%">{{item.oweStore|number}}</td>
+        <td width="5%">
+          <ion-icon *ngIf="identity!=2&&identity!=3" name="arrow-forward"></ion-icon>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</ion-content>

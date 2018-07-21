@@ -1,0 +1,42 @@
+<!--
+  Generated template for the ConsignStatisticsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+    <ion-navbar>
+      <ion-title>寄存统计</ion-title>
+    </ion-navbar> 
+  </ion-header>
+  <ion-content> 
+   
+      <button ion-button full clear *ngIf="storeMapLength">
+          <ion-select [(ngModel)]="storeId" okText="确定" cancelText="取消" (ionChange)="selectGroup()">
+            <ion-option *ngFor='let section of storeMap' value="{{section.orgId}}">{{section.orgName}}</ion-option>
+          </ion-select>
+      </button>  
+   
+    <div class="consign-statistics-title line">
+      <div class="month">月份</div>
+      <div class="order-num">单数</div>
+      <div class="summary">总量</div>
+      <div class="remainder">余量</div> 
+    </div>
+    
+    <div class="total-bar line">
+      <div class="total">合计</div>
+      <div class="order-col">{{depositNoNum || 0}}</div>
+      <div class="sum-col">{{goodsNum || 0}}</div>
+      <div class="remainder-col">{{surplus || 0}}</div>
+    </div>
+  
+    <div class="product-bar line" *ngFor="let item of data"> 
+      <div class="month">{{item.time}}</div>
+      <div class="order-col link" [ngClass]="{'link': identity===1||identity===-1}" [navPush]="pushOrderPage" [navParams]="{month: item.time}" (tap)="orderPage()">{{ item.depositNoNum }}</div>
+      <div class="sum-col link" [navPush]="consignSumDetail" [navParams]="{month: item.time}" >{{item.goodsNum || 0}}</div>
+      <div class="remainder-col link" [navPush]="consignRemainderDetail" [navParams]="{month: item.time}" >{{item.surplus || 0}}</div>
+    </div>
+  </ion-content>
+  

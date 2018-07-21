@@ -1,0 +1,1151 @@
+webpackJsonp([88],{
+
+/***/ 115:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 115;
+
+/***/ }),
+
+/***/ 155:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"../pages/Business/business-college/business-college.module": [
+		280,
+		87
+	],
+	"../pages/Business/business-course-detail/business-course-detail.module": [
+		281,
+		86
+	],
+	"../pages/Business/business-course-serach/business-course-serach.module": [
+		282,
+		85
+	],
+	"../pages/Business/business-exam-start/business-exam-start.module": [
+		283,
+		84
+	],
+	"../pages/Business/business-exam/business-exam.module": [
+		284,
+		83
+	],
+	"../pages/Business/business-learn/business-learn.module": [
+		285,
+		82
+	],
+	"../pages/Business/business-my-achievement/business-my-achievement.module": [
+		286,
+		81
+	],
+	"../pages/Business/business-my-course/business-my-course.module": [
+		287,
+		80
+	],
+	"../pages/forget-password/forget-password.module": [
+		288,
+		79
+	],
+	"../pages/grantMarket/about/about.module": [
+		289,
+		78
+	],
+	"../pages/grantMarket/borrow-detail/borrow-detail.module": [
+		290,
+		77
+	],
+	"../pages/grantMarket/consign-order-detail/consign-order-detail.module": [
+		291,
+		76
+	],
+	"../pages/grantMarket/consign-remainder-detail/consign-remainder-detail.module": [
+		292,
+		75
+	],
+	"../pages/grantMarket/consign-statistics/consign-statistics.module": [
+		293,
+		74
+	],
+	"../pages/grantMarket/consign-sum-detail/consign-sum-detail.module": [
+		294,
+		73
+	],
+	"../pages/grantMarket/credit-detail/credit-detail.module": [
+		295,
+		72
+	],
+	"../pages/grantMarket/game/game-rule/game-rule.module": [
+		296,
+		71
+	],
+	"../pages/grantMarket/game/pk-game-two/pk-game-two.module": [
+		297,
+		70
+	],
+	"../pages/grantMarket/game/pk-game/pk-game.module": [
+		298,
+		69
+	],
+	"../pages/grantMarket/game/target-game-three/target-game-three.module": [
+		299,
+		68
+	],
+	"../pages/grantMarket/game/target-game-two/target-game-two.module": [
+		301,
+		67
+	],
+	"../pages/grantMarket/game/target-game/target-game.module": [
+		300,
+		66
+	],
+	"../pages/grantMarket/owe-count/owe-count.module": [
+		304,
+		65
+	],
+	"../pages/grantMarket/present-gift-detail/present-gift-detail.module": [
+		302,
+		64
+	],
+	"../pages/grantMarket/present-statistics/present-statistics.module": [
+		305,
+		63
+	],
+	"../pages/grantMarket/sale-detail/sale-detail.module": [
+		303,
+		62
+	],
+	"../pages/grantMarket/sales-performance-consign/sales-performance-consign.module": [
+		306,
+		61
+	],
+	"../pages/grantMarket/sales-performance-detail/sales-performance-detail.module": [
+		307,
+		14
+	],
+	"../pages/grantMarket/sales-performance/sales-performance.module": [
+		310,
+		60
+	],
+	"../pages/grantMarket/sales-statistics-detail/sales-statistics-detail.module": [
+		308,
+		59
+	],
+	"../pages/grantMarket/sales-statistics/sales-statistics.module": [
+		309,
+		58
+	],
+	"../pages/grantMarket/shop-from/shop-from.module": [
+		311,
+		57
+	],
+	"../pages/grantMarket/shoppers-ranking/shoppers-ranking.module": [
+		312,
+		56
+	],
+	"../pages/grantMarket/store-ranking/store-ranking.module": [
+		315,
+		55
+	],
+	"../pages/grantMarket/zone-ranking/zone-ranking.module": [
+		313,
+		54
+	],
+	"../pages/home/home.module": [
+		317,
+		53
+	],
+	"../pages/login/login.module": [
+		314,
+		52
+	],
+	"../pages/main/Deposit/chargeback-check/chargeback-check.module": [
+		323,
+		13
+	],
+	"../pages/main/Deposit/chargeback-verify/chargeback-verify.module": [
+		326,
+		12
+	],
+	"../pages/main/Deposit/deposit-check/deposit-check.module": [
+		324,
+		51
+	],
+	"../pages/main/Deposit/deposit-detail/deposit-detail.module": [
+		325,
+		11
+	],
+	"../pages/main/Deposit/deposit-scan/deposit-scan.module": [
+		327,
+		50
+	],
+	"../pages/main/Deposit/deposit-success/deposit-success.module": [
+		329,
+		10
+	],
+	"../pages/main/Deposit/deposit-verify/deposit-verify.module": [
+		328,
+		9
+	],
+	"../pages/main/Deposit/deposits/deposits.module": [
+		330,
+		49
+	],
+	"../pages/main/Deposit/receive-check/receive-check.module": [
+		331,
+		48
+	],
+	"../pages/main/Deposit/receive-detail/receive-detail.module": [
+		332,
+		47
+	],
+	"../pages/main/Deposit/receive-scan/receive-scan.module": [
+		333,
+		46
+	],
+	"../pages/main/Deposit/receive-success/receive-success.module": [
+		334,
+		8
+	],
+	"../pages/main/Deposit/receive-verify/receive-verify.module": [
+		335,
+		7
+	],
+	"../pages/main/Order/order-detail/order-detail.module": [
+		343,
+		6
+	],
+	"../pages/main/Order/order-list/order-list.module": [
+		344,
+		45
+	],
+	"../pages/main/Order/order-modify-page-one/order-modify-page-one.module": [
+		345,
+		44
+	],
+	"../pages/main/Order/order-modify-page-three/order-modify-page-three.module": [
+		346,
+		43
+	],
+	"../pages/main/Order/order-modify-page-two/order-modify-page-two.module": [
+		347,
+		42
+	],
+	"../pages/main/Order/order-scanner/order-scanner.module": [
+		348,
+		41
+	],
+	"../pages/main/customerReturn/customer-info/customer-info.module": [
+		316,
+		40
+	],
+	"../pages/main/customerReturn/customer-return-list-detail/customer-return-list-detail.module": [
+		318,
+		39
+	],
+	"../pages/main/customerReturn/customer-return-result/customer-return-result.module": [
+		321,
+		38
+	],
+	"../pages/main/customerReturn/customer-return-scanner/customer-return-scanner.module": [
+		320,
+		37
+	],
+	"../pages/main/customerReturn/customer-return-success/customer-return-success.module": [
+		319,
+		36
+	],
+	"../pages/main/customerReturn/customer-return/customer-return.module": [
+		322,
+		35
+	],
+	"../pages/main/info/company-info-detail/company-info-detail.module": [
+		336,
+		34
+	],
+	"../pages/main/info/company-info/company-info.module": [
+		337,
+		33
+	],
+	"../pages/main/myCustomer/baby-info/baby-info.module": [
+		338,
+		32
+	],
+	"../pages/main/myCustomer/customer-logging-tabs/customer-logging-tabs.module": [
+		339,
+		31
+	],
+	"../pages/main/myCustomer/customer-logging/customer-logging.module": [
+		340,
+		30
+	],
+	"../pages/main/myCustomer/my-customer-info/my-customer-info.module": [
+		341,
+		29
+	],
+	"../pages/main/myCustomer/my-customer/my-customer.module": [
+		342,
+		28
+	],
+	"../pages/main/repayCustomer/repay-gift-detail/repay-gift-detail.module": [
+		349,
+		5
+	],
+	"../pages/main/repayCustomer/repay-gift-success/repay-gift-success.module": [
+		350,
+		4
+	],
+	"../pages/main/repayCustomer/repay-gift/repay-gift.module": [
+		351,
+		27
+	],
+	"../pages/main/salesAndgift/complain-detail/complain-detail.module": [
+		352,
+		26
+	],
+	"../pages/main/salesAndgift/complain-forms/complain-forms.module": [
+		353,
+		25
+	],
+	"../pages/main/salesAndgift/complain-list/complain-list.module": [
+		354,
+		24
+	],
+	"../pages/main/salesAndgift/sale-return-detail/sale-return-detail.module": [
+		355,
+		3
+	],
+	"../pages/main/salesAndgift/sale-success/sale-success.module": [
+		356,
+		2
+	],
+	"../pages/main/salesAndgift/sale-verify/sale-verify.module": [
+		357,
+		1
+	],
+	"../pages/main/salesAndgift/sale/sale.module": [
+		358,
+		23
+	],
+	"../pages/main/salesAndgift/sales-return/sales-return.module": [
+		359,
+		22
+	],
+	"../pages/main/salesAndgift/scangift/scangift.module": [
+		360,
+		21
+	],
+	"../pages/main/salesAndgift/scanner/scanner.module": [
+		361,
+		20
+	],
+	"../pages/main/salesAndgift/select-gift/select-gift.module": [
+		362,
+		0
+	],
+	"../pages/personCenter/contact/contact.module": [
+		363,
+		19
+	],
+	"../pages/personCenter/modify-password/modify-password.module": [
+		364,
+		18
+	],
+	"../pages/publicMudule/codesourceview/codesourceview.module": [
+		365,
+		17
+	],
+	"../pages/publicMudule/codeview/codeview.module": [
+		366,
+		16
+	],
+	"../pages/tabs/tabs.module": [
+		367,
+		15
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];
+	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = 155;
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ 156:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ParamsPublic; });
+/* unused harmony export remove */
+/* unused harmony export Exit */
+/* unused harmony export Utils */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_http__ = __webpack_require__(80);
+
+var ParamsPublic = /** @class */ (function () {
+    function ParamsPublic() {
+    }
+    ParamsPublic.prototype.paramsPublic = function (obj) {
+        var params = new __WEBPACK_IMPORTED_MODULE_0__angular_http__["d" /* URLSearchParams */];
+        for (var attr in obj) {
+            params.append(attr, obj[attr]);
+        }
+        return params;
+    };
+    ParamsPublic.prototype.set = function (obj) {
+        return this.paramsPublic(obj);
+    };
+    return ParamsPublic;
+}());
+
+var k = true;
+function remove(exit) {
+    if (k) {
+        window.localStorage.removeItem('driverToken');
+        k = false;
+    }
+    if (!k) {
+        exit();
+    }
+}
+var Exit = /** @class */ (function () {
+    function Exit(platform) {
+        this.platform = platform;
+    }
+    Exit.prototype.exit = function () {
+        this.platform.exitApp();
+    };
+    return Exit;
+}());
+
+var Utils = /** @class */ (function () {
+    function Utils() {
+    }
+    Utils.dateFormat = function (date, sFormat) {
+        if (sFormat === void 0) { sFormat = 'yyyy-MM-dd'; }
+        var time = {
+            Year: 0,
+            TYear: '0',
+            Month: 0,
+            TMonth: '0',
+            Day: 0,
+            TDay: '0',
+            Hour: 0,
+            THour: '0',
+            hour: 0,
+            Thour: '0',
+            Minute: 0,
+            TMinute: '0',
+            Second: 0,
+            TSecond: '0',
+            Millisecond: 0
+        };
+        time.Year = date.getFullYear();
+        time.TYear = String(time.Year).substr(2);
+        time.Month = date.getMonth() + 1;
+        time.TMonth = time.Month < 10 ? "0" + time.Month : String(time.Month);
+        time.Day = date.getDate();
+        time.TDay = time.Day < 10 ? "0" + time.Day : String(time.Day);
+        time.Hour = date.getHours();
+        time.THour = time.Hour < 10 ? "0" + time.Hour : String(time.Hour);
+        time.hour = time.Hour < 13 ? time.Hour : time.Hour - 12;
+        time.Thour = time.hour < 10 ? "0" + time.hour : String(time.hour);
+        time.Minute = date.getMinutes();
+        time.TMinute = time.Minute < 10 ? "0" + time.Minute : String(time.Minute);
+        time.Second = date.getSeconds();
+        time.TSecond = time.Second < 10 ? "0" + time.Second : String(time.Second);
+        time.Millisecond = date.getMilliseconds();
+        return sFormat.replace(/yyyy/ig, String(time.Year))
+            .replace(/yyy/ig, String(time.Year))
+            .replace(/yy/ig, time.TYear)
+            .replace(/y/ig, time.TYear)
+            .replace(/MM/g, time.TMonth)
+            .replace(/M/g, String(time.Month))
+            .replace(/dd/ig, time.TDay)
+            .replace(/d/ig, String(time.Day))
+            .replace(/HH/g, time.THour)
+            .replace(/H/g, String(time.Hour))
+            .replace(/hh/g, time.Thour)
+            .replace(/h/g, String(time.hour))
+            .replace(/mm/g, time.TMinute)
+            .replace(/m/g, String(time.Minute))
+            .replace(/ss/ig, time.TSecond)
+            .replace(/s/ig, String(time.Second))
+            .replace(/fff/ig, String(time.Millisecond));
+    };
+    return Utils;
+}());
+
+//# sourceMappingURL=public.js.map
+
+/***/ }),
+
+/***/ 201:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(224);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 224:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_qr_scanner__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_forms__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__publics_public__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ionic_native_app_minimize__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_keyboard__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__ = __webpack_require__(200);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { Md5 } from 'ts-md5/dist/md5';
+var AppModule = /** @class */ (function () {
+    function AppModule() {
+    }
+    AppModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {
+                    tabsHideOnSubPages: 'true',
+                    backButtonText: '',
+                    ReactiveFormsModule: __WEBPACK_IMPORTED_MODULE_10__angular_forms__["d" /* ReactiveFormsModule */],
+                    platform: {
+                        ios: {
+                            scrollPadding: false,
+                            scrollAssist: false,
+                            autoFocusAssist: false
+                        },
+                        android: {
+                            scrollPadding: true,
+                            scrollAssist: true,
+                            autoFocusAssist: true
+                        }
+                    }
+                }, {
+                    links: [
+                        { loadChildren: '../pages/Business/business-college/business-college.module#BusinessCollegePageModule', name: 'BusinessCollegePage', segment: 'business-college', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-course-detail/business-course-detail.module#BusinessCourseDetailPageModule', name: 'BusinessCourseDetailPage', segment: 'business-course-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-course-serach/business-course-serach.module#BusinessCourseSerachPageModule', name: 'BusinessCourseSerachPage', segment: 'business-course-serach', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-exam-start/business-exam-start.module#BusinessExamStartPageModule', name: 'BusinessExamStartPage', segment: 'business-exam-start', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-exam/business-exam.module#BusinessExamPageModule', name: 'BusinessExamPage', segment: 'business-exam', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-learn/business-learn.module#BusinessLearnPageModule', name: 'BusinessLearnPage', segment: 'business-learn', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-my-achievement/business-my-achievement.module#BusinessMyAchievementPageModule', name: 'BusinessMyAchievementPage', segment: 'business-my-achievement', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/Business/business-my-course/business-my-course.module#BusinessMyCoursePageModule', name: 'BusinessMyCoursePage', segment: 'business-my-course', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/forget-password/forget-password.module#ForgetPasswordPageModule', name: 'ForgetPasswordPage', segment: 'forget-password', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/about/about.module#AboutPageModule', name: 'AboutPage', segment: 'about', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/borrow-detail/borrow-detail.module#BorrowDetailPageModule', name: 'BorrowDetailPage', segment: 'borrow-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/consign-order-detail/consign-order-detail.module#ConsignOrderDetailPageModule', name: 'ConsignOrderDetailPage', segment: 'consign-order-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/consign-remainder-detail/consign-remainder-detail.module#ConsignRemainderDetailPageModule', name: 'ConsignRemainderDetailPage', segment: 'consign-remainder-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/consign-statistics/consign-statistics.module#ConsignStatisticsPageModule', name: 'ConsignStatisticsPage', segment: 'consign-statistics', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/consign-sum-detail/consign-sum-detail.module#ConsignSumDetailPageModule', name: 'ConsignSumDetailPage', segment: 'consign-sum-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/credit-detail/credit-detail.module#CreditDetailPageModule', name: 'CreditDetailPage', segment: 'credit-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/game-rule/game-rule.module#GameRulePageModule', name: 'GameRulePage', segment: 'game-rule', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/pk-game-two/pk-game-two.module#PkGameTwoPageModule', name: 'PkGameTwoPage', segment: 'pk-game-two', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/pk-game/pk-game.module#PkGamePageModule', name: 'PkGamePage', segment: 'pk-game', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/target-game-three/target-game-three.module#TargetGameThreePageModule', name: 'TargetGameThreePage', segment: 'target-game-three', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/target-game/target-game.module#TargetGamePageModule', name: 'TargetGamePage', segment: 'target-game', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/game/target-game-two/target-game-two.module#TargetGameTwoPageModule', name: 'TargetGameTwoPage', segment: 'target-game-two', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/present-gift-detail/present-gift-detail.module#PresentGiftDetailPageModule', name: 'PresentGiftDetailPage', segment: 'present-gift-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sale-detail/sale-detail.module#SaleDetailPageModule', name: 'SaleDetailPage', segment: 'sale-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/owe-count/owe-count.module#OweCountPageModule', name: 'OweCountPage', segment: 'owe-count', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/present-statistics/present-statistics.module#PresentStatisticsPageModule', name: 'PresentStatisticsPage', segment: 'present-statistics', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sales-performance-consign/sales-performance-consign.module#SalesPerformanceConsignPageModule', name: 'SalesPerformanceConsignPage', segment: 'sales-performance-consign', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sales-performance-detail/sales-performance-detail.module#SalesPerformanceDetailPageModule', name: 'SalesPerformanceDetailPage', segment: 'sales-performance-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sales-statistics-detail/sales-statistics-detail.module#SalesStatisticsDetailPageModule', name: 'SalesStatisticsDetailPage', segment: 'sales-statistics-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sales-statistics/sales-statistics.module#SalesStatisticsPageModule', name: 'SalesStatisticsPage', segment: 'sales-statistics', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/sales-performance/sales-performance.module#SalesPerformancePageModule', name: 'SalesPerformancePage', segment: 'sales-performance', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/shop-from/shop-from.module#ShopFromPageModule', name: 'ShopFromPage', segment: 'shop-from', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/shoppers-ranking/shoppers-ranking.module#ShoppersRankingPageModule', name: 'ShoppersRankingPage', segment: 'shoppers-ranking', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/zone-ranking/zone-ranking.module#ZoneRankingPageModule', name: 'ZoneRankingPage', segment: 'zone-ranking', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/grantMarket/store-ranking/store-ranking.module#StoreRankingPageModule', name: 'StoreRankingPage', segment: 'store-ranking', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-info/customer-info.module#CustomerInfoPageModule', name: 'CustomerInfoPage', segment: 'customer-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-return-list-detail/customer-return-list-detail.module#CustomerReturnListDetailPageModule', name: 'CustomerReturnListDetailPage', segment: 'customer-return-list-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-return-success/customer-return-success.module#CustomerReturnSuccessPageModule', name: 'CustomerReturnSuccessPage', segment: 'customer-return-success', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-return-scanner/customer-return-scanner.module#CustomerReturnScannerPageModule', name: 'CustomerReturnScannerPage', segment: 'customer-return-scanner', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-return-result/customer-return-result.module#CustomerReturnResultPageModule', name: 'CustomerReturnResultPage', segment: 'customer-return-result', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/customerReturn/customer-return/customer-return.module#CustomerReturnPageModule', name: 'CustomerReturnPage', segment: 'customer-return', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/chargeback-check/chargeback-check.module#ChargebackCheckPageModule', name: 'ChargebackCheckPage', segment: 'chargeback-check', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposit-check/deposit-check.module#DepositCheckPageModule', name: 'DepositCheckPage', segment: 'deposit-check', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposit-detail/deposit-detail.module#DepositDetailPageModule', name: 'DepositDetailPage', segment: 'deposit-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/chargeback-verify/chargeback-verify.module#ChargebackVerifyPageModule', name: 'ChargebackVerifyPage', segment: 'chargeback-verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposit-scan/deposit-scan.module#DepositScanPageModule', name: 'DepositScanPage', segment: 'deposit-scan', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposit-verify/deposit-verify.module#DepositVerifyPageModule', name: 'DepositVerifyPage', segment: 'deposit-verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposit-success/deposit-success.module#DepositSuccessPageModule', name: 'DepositSuccessPage', segment: 'deposit-success', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/deposits/deposits.module#DepositsPageModule', name: 'DepositsPage', segment: 'deposits', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/receive-check/receive-check.module#ReceiveCheckPageModule', name: 'ReceiveCheckPage', segment: 'receive-check', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/receive-detail/receive-detail.module#ReceiveDetailPageModule', name: 'ReceiveDetailPage', segment: 'receive-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/receive-scan/receive-scan.module#ReceiveScanPageModule', name: 'ReceiveScanPage', segment: 'receive-scan', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/receive-success/receive-success.module#ReceiveSuccessPageModule', name: 'ReceiveSuccessPage', segment: 'receive-success', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Deposit/receive-verify/receive-verify.module#ReceiveVerifyPageModule', name: 'ReceiveVerifyPage', segment: 'receive-verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/info/company-info-detail/company-info-detail.module#CompanyInfoDetailPageModule', name: 'CompanyInfoDetailPage', segment: 'company-info-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/info/company-info/company-info.module#CompanyInfoPageModule', name: 'CompanyInfoPage', segment: 'company-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/myCustomer/baby-info/baby-info.module#BabyInfoPageModule', name: 'BabyInfoPage', segment: 'baby-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/myCustomer/customer-logging-tabs/customer-logging-tabs.module#CustomerLoggingTabsPageModule', name: 'CustomerLoggingTabsPage', segment: 'customer-logging-tabs', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/myCustomer/customer-logging/customer-logging.module#CustomerLoggingPageModule', name: 'CustomerLoggingPage', segment: 'customer-logging', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/myCustomer/my-customer-info/my-customer-info.module#MyCustomerInfoPageModule', name: 'MyCustomerInfoPage', segment: 'my-customer-info', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/myCustomer/my-customer/my-customer.module#MyCustomerPageModule', name: 'MyCustomerPage', segment: 'my-customer', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-detail/order-detail.module#OrderDetailPageModule', name: 'OrderDetailPage', segment: 'order-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-list/order-list.module#OrderListPageModule', name: 'OrderListPage', segment: 'order-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-modify-page-one/order-modify-page-one.module#OrderModifyPageOnePageModule', name: 'OrderModifyPageOnePage', segment: 'order-modify-page-one', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-modify-page-three/order-modify-page-three.module#OrderModifyPageThreePageModule', name: 'OrderModifyPageThreePage', segment: 'order-modify-page-three', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-modify-page-two/order-modify-page-two.module#OrderModifyPageTwoPageModule', name: 'OrderModifyPageTwoPage', segment: 'order-modify-page-two', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/Order/order-scanner/order-scanner.module#OrderScannerPageModule', name: 'OrderScannerPage', segment: 'order-scanner', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/repayCustomer/repay-gift-detail/repay-gift-detail.module#RepayGiftDetailPageModule', name: 'RepayGiftDetailPage', segment: 'repay-gift-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/repayCustomer/repay-gift-success/repay-gift-success.module#RepayGiftSuccessPageModule', name: 'RepayGiftSuccessPage', segment: 'repay-gift-success', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/repayCustomer/repay-gift/repay-gift.module#RepayGiftPageModule', name: 'RepayGiftPage', segment: 'repay-gift', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/complain-detail/complain-detail.module#ComplainDetailPageModule', name: 'ComplainDetailPage', segment: 'complain-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/complain-forms/complain-forms.module#ComplainFormsPageModule', name: 'ComplainFormsPage', segment: 'complain-forms', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/complain-list/complain-list.module#ComplainListPageModule', name: 'ComplainListPage', segment: 'complain-list', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/sale-return-detail/sale-return-detail.module#SaleReturnDetailPageModule', name: 'SaleReturnDetailPage', segment: 'sale-return-detail', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/sale-success/sale-success.module#SaleSuccessPageModule', name: 'SaleSuccessPage', segment: 'sale-success', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/sale-verify/sale-verify.module#SaleVerifyPageModule', name: 'SaleVerifyPage', segment: 'sale-verify', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/sale/sale.module#SalePageModule', name: 'SalePage', segment: 'sale', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/sales-return/sales-return.module#SalesReturnPageModule', name: 'SalesReturnPage', segment: 'sales-return', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/scangift/scangift.module#ScangiftPageModule', name: 'ScangiftPage', segment: 'scangift', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/scanner/scanner.module#ScannerPageModule', name: 'ScannerPage', segment: 'scanner', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/main/salesAndgift/select-gift/select-gift.module#SelectComplimentaryPageModule', name: 'SelectGiftPage', segment: 'select-gift', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/personCenter/contact/contact.module#ContactPageModule', name: 'ContactPage', segment: 'contact', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/personCenter/modify-password/modify-password.module#ModifyPasswordPageModule', name: 'ModifyPasswordPage', segment: 'modify-password', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/publicMudule/codesourceview/codesourceview.module#CodesourceviewPageModule', name: 'CodesourceviewPage', segment: 'codesourceview', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/publicMudule/codeview/codeview.module#CodeviewPageModule', name: 'CodeviewPage', segment: 'codeview', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] }
+                    ]
+                }),
+                __WEBPACK_IMPORTED_MODULE_8__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+            ],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicApp */]],
+            entryComponents: [
+                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
+            ],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
+                __WEBPACK_IMPORTED_MODULE_6__ionic_native_qr_scanner__["a" /* QRScanner */],
+                { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_9__providers_service_public_service_service_public_service__["b" /* AppService */],
+                __WEBPACK_IMPORTED_MODULE_12__ionic_native_app_minimize__["a" /* AppMinimize */],
+                __WEBPACK_IMPORTED_MODULE_11__publics_public__["a" /* ParamsPublic */],
+                __WEBPACK_IMPORTED_MODULE_9__providers_service_public_service_service_public_service__["a" /* AppGlobal */],
+                __WEBPACK_IMPORTED_MODULE_13__ionic_native_keyboard__["a" /* Keyboard */],
+                __WEBPACK_IMPORTED_MODULE_14__ionic_native_camera__["a" /* Camera */],
+                __WEBPACK_IMPORTED_MODULE_9__providers_service_public_service_service_public_service__["c" /* netWorkFunction */]
+            ]
+        })
+    ], AppModule);
+    return AppModule;
+}());
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ 278:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_keyboard__ = __webpack_require__(104);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+var MyApp = /** @class */ (function () {
+    function MyApp(platform, statusBar, splashScreen, network, apps, keyboard, alertCtrl, appg) {
+        var _this = this;
+        this.network = network;
+        this.apps = apps;
+        this.keyboard = keyboard;
+        this.alertCtrl = alertCtrl;
+        this.appg = appg;
+        platform.ready().then(function () {
+            // Okay, so the platform is ready and our plugins are available.
+            // Here you can do any higher level native things you might need.
+            // let status bar overlay webview
+            statusBar.overlaysWebView(true);
+            statusBar.backgroundColorByHexString('#ffffff');
+            splashScreen.hide();
+            _this.keyboard.hideKeyboardAccessoryBar(false);
+            // this.keyboard.disableScroll(true);
+        });
+    }
+    MyApp.prototype.ngOnInit = function () {
+        var _this = this;
+        // 外网打包
+        if (true) {
+            this.appg.setUrl(4);
+            this.rootPage = 'LoginPage';
+            return;
+        }
+        var alert = this.alertCtrl.create({ enableBackdropDismiss: false });
+        alert.setTitle('选择');
+        alert.addInput({
+            type: 'radio',
+            label: "疯狗服务器",
+            value: '1',
+            checked: true
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "耗子服务器",
+            value: '2',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "黄品服务器",
+            value: '3',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "外网服务器",
+            value: '4',
+            checked: false
+        });
+        alert.addButton({
+            text: '确定',
+            handler: function (data) {
+                if (!data) {
+                    return false;
+                }
+                _this.appg.setUrl(parseInt(data));
+                _this.appg.setUrl(1);
+                _this.rootPage = 'LoginPage';
+            }
+        });
+        alert.present();
+    };
+    MyApp = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/app/app.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__["c" /* netWorkFunction */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_5__ionic_native_keyboard__["a" /* Keyboard */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], MyApp);
+    return MyApp;
+}());
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppGlobal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return netWorkFunction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AppService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__publics_public__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_toPromise__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AppGlobal = /** @class */ (function () {
+    function AppGlobal() {
+        //http://www.gdlcmy.com:1891/
+        //http://192.168.1.222:8201
+        //耗子18001
+        //http://192.168.1.222:18001
+        // public apiUrl = 'http://www.gdlcmy.com:1891';
+        // static domain = "http://www.gdlcmy.com:1891/api/";
+        this.fenggou_url = 'http://192.168.1.222:8201';
+        this.haozi_url = 'http://192.168.1.222:18001';
+        this.huangpin_url = 'http://192.168.1.222:28080';
+        this.outer_url = 'http://www.gdlcmy.com:1891';
+        this.apiUrl = this.fenggou_url;
+        this.domain = this.apiUrl + "/api/";
+    }
+    AppGlobal.prototype.setUrl = function (i) {
+        if (i == 2) {
+            this.apiUrl = this.haozi_url;
+        }
+        else if (i == 3) {
+            this.apiUrl = this.huangpin_url;
+        }
+        else if (i == 4) {
+            this.apiUrl = this.outer_url;
+        }
+        this.domain = this.apiUrl + "/api/";
+    };
+    AppGlobal.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+    AppGlobal.multipartHeaders = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'multipart/form-data; charset=UTF-8' });
+    AppGlobal = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])()
+    ], AppGlobal);
+    return AppGlobal;
+}());
+
+var netWorkFunction = /** @class */ (function () {
+    function netWorkFunction() {
+    }
+    netWorkFunction.prototype.net = function (cb) {
+        try {
+            var connection = navigator['connection'] || navigator['mozConnection'] || navigator['webkitConnection'] || { tyep: 'unknown' };
+        }
+        catch (e) {
+            cb('wifi');
+            return;
+        }
+        var type_text = ['unknown', 'ethernet', 'wifi', '2g', '3g', '4g', undefined, 'none'];
+        var index = type_text.indexOf(connection.type);
+        switch (Number(index)) {
+            case 0:
+                cb('unknown');
+                break;
+            case 1:
+                cb('ethernet');
+                break;
+            case 2:
+                cb('wifi');
+                break;
+            case 3:
+                cb('2g');
+                break;
+            case 4:
+                cb('3g');
+                break;
+            case 5:
+                cb('4g');
+                break;
+            case 6:
+                cb('location');
+                break;
+            default: cb('none');
+        }
+    };
+    return netWorkFunction;
+}());
+
+var AppService = /** @class */ (function () {
+    function AppService(http, loadingCtrl, alertCtrl, toastCtrl, networkfunction, appGlobal, params) {
+        this.http = http;
+        this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.networkfunction = networkfunction;
+        this.appGlobal = appGlobal;
+        this.params = params;
+    }
+    AppService.prototype.encode = function (params) {
+        var str = '';
+        if (params) {
+            for (var key in params) {
+                if (params.hasOwnProperty(key)) {
+                    var value = params[key];
+                    str += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+                }
+            }
+            str = '?' + str.substring(0, str.length - 1);
+        }
+        return str;
+    };
+    AppService.prototype.multipartPost = function (url, params, callback) {
+        this.AppHttpPost(url, params, AppGlobal.multipartHeaders, callback, true);
+    };
+    AppService.prototype.httpPost = function (url, params, callback, loader) {
+        if (loader === void 0) { loader = false; }
+        this.AppHttpPost(url, params, AppGlobal.headers, callback, loader);
+    };
+    AppService.prototype.AppHttpPost = function (url, params, headers, callback, loader) {
+        var _this = this;
+        if (loader === void 0) { loader = false; }
+        this.networkfunction.net(function (ne) {
+            if (/unknown|ethernet|wifi|2g|3g|4g|location/gi.test(ne)) {
+                var loading_1 = _this.loadingCtrl.create({ spinner: 'bubbles' });
+                if (loader) {
+                    loading_1.present();
+                }
+                var userId_1;
+                var storeId_1;
+                _this.getItem('userInfo', function (val) {
+                    userId_1 = val['id'];
+                });
+                _this.getItem('curStore', function (val) {
+                    storeId_1 = val['id'];
+                });
+                var Params = {
+                    'userId': userId_1 + "",
+                    'storeId': storeId_1 + ""
+                };
+                for (var attr in params) {
+                    Params[attr] = params[attr];
+                }
+                console.log(Params);
+                _this.http.post(_this.appGlobal.domain + url, _this.params.paramsPublic(Params), { 'headers': headers })
+                    .toPromise()
+                    .then(function (res) {
+                    var d = res.json();
+                    if (loader) {
+                        loading_1.dismiss();
+                    }
+                    console.log(d);
+                    callback(d == null ? "[]" : d);
+                }).catch(function (error) {
+                    if (loader) {
+                        loading_1.dismiss();
+                    }
+                    _this.handleError(error);
+                });
+            }
+            else {
+                _this.toast('无网络');
+            }
+        });
+    };
+    AppService.prototype.handleError = function (error) {
+        var msg = '';
+        if (error.status == 400) {
+            msg = '请求无效(code：400)';
+            console.log('请检查参数类型是否匹配');
+        }
+        if (error.status == 404) {
+            msg = '请求资源不存在(code：404)';
+            console.error(msg + '，请检查路径是否正确');
+        }
+        if (error.status == 500) {
+            msg = '服务器发生错误(code：500)';
+            console.error(msg + '，请检查路径是否正确');
+        }
+        console.log(error);
+        if (msg != '') {
+            this.toast(msg);
+        }
+    };
+    AppService.prototype.getResources = function (url, callback) {
+        this.http.get(url).subscribe(function (res) {
+            callback(res.json() == null ? "[]" : res.json());
+        });
+    };
+    AppService.prototype.alert = function (message, callback) {
+        if (callback) {
+            var alert_1 = this.alertCtrl.create({
+                title: '提示',
+                message: message,
+                buttons: [
+                    {
+                        text: '取消',
+                        handler: function (data) {
+                        }
+                    },
+                    {
+                        text: '确认',
+                        handler: function (data) {
+                            callback();
+                        }
+                    }
+                ]
+            });
+            alert_1.present();
+        }
+        else {
+            var alert_2 = this.alertCtrl.create({
+                title: '提示',
+                message: message,
+                buttons: ["确定"]
+            });
+            alert_2.present();
+        }
+    };
+    AppService.prototype.disAlert = function (message, callback) {
+        var alert = this.alertCtrl.create({
+            title: '提示',
+            message: message,
+            buttons: [
+                {
+                    text: '确认',
+                    handler: function (data) {
+                        callback();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    AppService.prototype.backAlert = function (viewCtrl) {
+        var _this = this;
+        var confirm = this.alertCtrl.create({
+            title: '提示',
+            message: '您的操作未完成，确定要退出？',
+            buttons: [
+                {
+                    text: '确定',
+                    handler: function () {
+                        try {
+                            _this.removeItem('cb');
+                        }
+                        catch (e) {
+                        }
+                        finally {
+                            viewCtrl.dismiss();
+                        }
+                    }
+                },
+                {
+                    text: '取消',
+                    handler: function () {
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    AppService.prototype.toast = function (message, callback) {
+        var toast = this.toastCtrl.create({
+            message: message,
+            duration: 1000,
+            position: 'top',
+            dismissOnPageChange: true,
+        });
+        toast.present();
+        if (callback) {
+            callback();
+        }
+    };
+    AppService.prototype.setItem = function (key, obj) {
+        try {
+            var json = JSON.stringify(obj);
+            window.localStorage[key] = json;
+        }
+        catch (e) {
+            console.error("window.localStorage error:" + e);
+        }
+    };
+    AppService.prototype.getItem = function (key, callback) {
+        try {
+            var json = window.localStorage[key];
+            var obj = JSON.parse(json);
+            callback(obj);
+        }
+        catch (e) {
+            callback(1);
+            // console.error("window.localStorage error:" + e);
+        }
+    };
+    AppService.prototype.removeItem = function (key) {
+        try {
+            window.localStorage.removeItem(key);
+        }
+        catch (e) {
+            // console.error("window.localStorage error:" + e);
+        }
+    };
+    AppService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["j" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_0_ionic_angular__["s" /* ToastController */],
+            netWorkFunction,
+            AppGlobal,
+            __WEBPACK_IMPORTED_MODULE_3__publics_public__["a" /* ParamsPublic */]])
+    ], AppService);
+    return AppService;
+}());
+
+//# sourceMappingURL=service-public-service.js.map
+
+/***/ })
+
+},[201]);
+//# sourceMappingURL=main.js.map

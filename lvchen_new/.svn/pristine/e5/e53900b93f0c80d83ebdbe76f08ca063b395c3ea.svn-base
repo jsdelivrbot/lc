@@ -1,0 +1,100 @@
+webpackJsonp([47],{
+
+/***/ 332:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReceiveDetailPageModule", function() { return ReceiveDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__receive_detail__ = __webpack_require__(423);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ReceiveDetailPageModule = /** @class */ (function () {
+    function ReceiveDetailPageModule() {
+    }
+    ReceiveDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__receive_detail__["a" /* ReceiveDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__receive_detail__["a" /* ReceiveDetailPage */]),
+            ],
+        })
+    ], ReceiveDetailPageModule);
+    return ReceiveDetailPageModule;
+}());
+
+//# sourceMappingURL=receive-detail.module.js.map
+
+/***/ }),
+
+/***/ 423:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReceiveDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ReceiveDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ReceiveDetailPage = /** @class */ (function () {
+    function ReceiveDetailPage(navCtrl, navParams, app) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.app = app;
+    }
+    ReceiveDetailPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.app.httpPost('getDepositDtlOrderGoods.api', this.navParams.data, function (data) {
+            if (data.code == -1) {
+                _this.app.toast(data.msg);
+            }
+            else {
+                _this.data = data.data;
+                // alert(JSON.stringify(this.data))
+            }
+            console.log(data);
+        }, true);
+    };
+    ReceiveDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-receive-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/receive-detail/receive-detail.html"*/'<!--\n  Generated template for the ReceiveDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>明细记录</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list>\n    <ion-grid style="padding: 0">\n      <ion-row *ngFor=\'let item of data\' style="margin-top: 10px;background: #fff;padding: 8px;">\n        <ion-col col-9 class="list-item-left">\n          {{item.goodsName}}\n          <p style="color: #999;">{{item.tradeDate.time|date:\' yyyy年MM月dd日\'}}</p>\n        </ion-col>\n        <ion-col col-3 class="list-item-right">\n          <div class="state-badge">\n            <span class="{{item.saleTypeName==\'退单\'?\'red\':\'blue\'}}">{{item.saleTypeName==\'退单\'?\'退\':\'领\'}}</span>\n          </div>\n          <div class="num-div">数量&nbsp;&nbsp;\n            <span class="num-text">x{{item.num}}</span>\n          </div>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/receive-detail/receive-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], ReceiveDetailPage);
+    return ReceiveDetailPage;
+}());
+
+//# sourceMappingURL=receive-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=47.js.map

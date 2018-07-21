@@ -1,0 +1,57 @@
+<!-- 中恒傻逼pk赛  -->
+<!--
+  Generated template for the PkGameStaffTwoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>pk赛</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (tap)="openModal()">
+          <ion-icon name="ios-paper"></ion-icon>
+        </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+  <div class="wrapper">
+    <div class="green">
+      <div class="progress">
+        <div class="inner">
+          <div class="percent">
+            <p>总销售额</p>
+            <span>67</span>
+          </div>
+          <div class="water"></div>
+          <div class="water2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pkGameItems">
+    <div>
+      <p>200000</p>
+      <p>平均销售额</p>
+    </div>
+    <div>
+      <p>200000</p>
+      <p>平均销售额</p>
+    </div>
+    <div>
+      <p>200000</p>
+      <p>平均销售额</p>
+    </div>
+  </div>
+  <div class="pkBlank"></div>
+  <div class="pkItemTitle">
+    <div><span>达标门店</span></div>
+    <div><span>未达标门店</span></div>
+  </div>
+  <div class="pkItem-subTitle">
+    <div>门店</div>
+    <div>销售额(元)</div>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+<!--
+  Generated template for the CodeviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<div class="poper_cl">
+    <ion-content>
+        <h3 style="text-align: center;">查看追溯码</h3>
+        <ion-item *ngFor="let code of codes;">
+          <ion-label>{{code}}</ion-label>
+        </ion-item>
+        <button ion-button style="margin-left: 10%;width: 80%;margin-top: 15px;margin-bottom: 15px;" (click)="close()">确定</button>
+      </ion-content>
+</div>

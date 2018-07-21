@@ -1,0 +1,186 @@
+webpackJsonp([22],{
+
+/***/ 359:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesReturnPageModule", function() { return SalesReturnPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_return__ = __webpack_require__(450);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalesReturnPageModule = /** @class */ (function () {
+    function SalesReturnPageModule() {
+    }
+    SalesReturnPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_return__["a" /* SalesReturnPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_return__["a" /* SalesReturnPage */]),
+            ],
+        })
+    ], SalesReturnPageModule);
+    return SalesReturnPageModule;
+}());
+
+//# sourceMappingURL=sales-return.module.js.map
+
+/***/ }),
+
+/***/ 450:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesReturnPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the SalesReturnPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesReturnPage = /** @class */ (function () {
+    function SalesReturnPage(appservice, navparams, navCtrl) {
+        this.appservice = appservice;
+        this.navparams = navparams;
+        this.navCtrl = navCtrl;
+        this.companyData = {};
+        this.apiUrl = 'findSellCasPosSale.api';
+        this.typeId = 0;
+        this.i = 0;
+        this.hasmore = false;
+        console.log('Hello ServiceCompanyListProvider Provider');
+    }
+    SalesReturnPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.navbar.backButtonClick = function (e) {
+            _this.navCtrl.pop({ animation: 'md-transition' });
+        };
+    };
+    SalesReturnPage.prototype.ionViewDidLoad = function () {
+        this.menus = [{ name: '未审核' }, { name: '通过' }, { name: '未通过' }];
+        this.selectPageMenu('', 0);
+    };
+    SalesReturnPage.prototype.SaleReturnDetail = function (saleId, state) {
+        this.navCtrl.push('SaleReturnDetailPage', { saleId: saleId, state: state }, {
+            animation: 'md-transition'
+        });
+    };
+    // dorefresh function
+    SalesReturnPage.prototype.getTopTopics = function ($event) {
+        var _this = this;
+        try {
+            if (this.companyData[this.typeId]['data'] != null) {
+                this.saleReturnData = this.companyData[this.typeId]['data'];
+                this.hasmore = this.companyData[this.typeId]['hasNextPage'];
+                return;
+            }
+        }
+        catch (e) {
+            var hasNextPage = true;
+            this.appservice.httpPost(this.apiUrl, { state: this.typeId, page: 1 }, function (data) {
+                if (data.data.length >= 10) {
+                    hasNextPage = true;
+                }
+                else {
+                    hasNextPage = false;
+                }
+                _this.companyData[_this.typeId] = {
+                    hasNextPage: hasNextPage,
+                    nextPage: 2,
+                    data: data.data
+                };
+                _this.saleReturnData = _this.getData();
+                _this.hasmore = _this.hasNextPage();
+            });
+        }
+    };
+    SalesReturnPage.prototype.getMoreData = function ($event) {
+        var _this = this;
+        var hasNextPage = this.companyData[this.typeId].hasNextPage;
+        var nextPage = this.companyData[this.typeId].nextPage;
+        var moreTopicsData = this.companyData[this.typeId].data;
+        this.appservice.httpPost(this.apiUrl, { state: this.typeId, page: nextPage }, function (data) {
+            if (data.data.length >= 10) {
+                hasNextPage = true;
+                nextPage++;
+            }
+            else {
+                hasNextPage = false;
+            }
+            moreTopicsData = moreTopicsData.concat(data.data);
+            _this.companyData[_this.typeId] = {
+                hasNextPage: hasNextPage,
+                nextPage: nextPage,
+                data: moreTopicsData
+            };
+            _this.saleReturnData = _this.getData();
+            _this.hasmore = _this.hasNextPage();
+            $event.complete();
+        });
+    };
+    SalesReturnPage.prototype.selectPageMenu = function ($event, type) {
+        this.i = type;
+        this.typeId = type;
+        this.getTopTopics($event);
+    };
+    SalesReturnPage.prototype.hasNextPage = function () {
+        if (this.companyData[this.typeId] === undefined) {
+            return false;
+        }
+        return this.companyData[this.typeId].hasNextPage;
+    };
+    SalesReturnPage.prototype.getData = function () {
+        if (this.companyData[this.typeId] === undefined) {
+            return false;
+        }
+        return this.companyData[this.typeId].data;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], SalesReturnPage.prototype, "navbar", void 0);
+    SalesReturnPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-return',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sales-return/sales-return.html"*/'<!--\n  Generated template for the SalesReturnPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>退货审核</ion-title>\n  </ion-navbar>\n  <ion-scroll scrollX="true" class="pageMenuSlides" style="height:44px;width:100%;">\n      <div class="swipercontainer"  >\n        <div class="swiper-slide {{i==I?\'bottomLine\':\'\'}}" [ngStyle]="{\'width\':companyList}" *ngFor="let item of menus;let I=index;" tappable (click)="selectPageMenu($event,I)">{{item.name}}</div>\n      </div>\n    </ion-scroll>\n\n</ion-header>\n<ion-content >\n   \n    <ion-list *ngFor=\'let item of saleReturnData\'>\n        <ion-item  (tap)=\'SaleReturnDetail(item.id,item.state)\'>\n          <div class="list-item-left">\n            <h2>{{item.tradeDate.time|date:\'yyyy年MM月dd日\'}}</h2>\n            <h4>退货单号：{{item.receiptNo}}</h4>\n          </div>\n          <div class="list-item-right">\n            <span>{{item.state==0?\'未审核\':item.state==1?\'通过\':\'不通过\'}}&nbsp;&nbsp;</span>\n            <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>\n          </div>\n        </ion-item>\n      </ion-list>\n      <ion-infinite-scroll (ionInfinite)="getMoreData($event)" *ngIf=\'hasmore\'>\n          <ion-infinite-scroll-content\n          loadingSpinner="bubbles"\nloadingText="加载更多">\n        </ion-infinite-scroll-content>\n        </ion-infinite-scroll>\n\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sales-return/sales-return.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]])
+    ], SalesReturnPage);
+    return SalesReturnPage;
+}());
+
+//# sourceMappingURL=sales-return.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=22.js.map

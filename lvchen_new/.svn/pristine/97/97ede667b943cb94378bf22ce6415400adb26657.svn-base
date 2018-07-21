@@ -1,0 +1,2 @@
+<!-- Generated template for the EchartsLineComponent component -->
+<div #container class="div-charts" ></div>

@@ -1,0 +1,247 @@
+webpackJsonp([28],{
+
+/***/ 342:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyCustomerPageModule", function() { return MyCustomerPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_customer__ = __webpack_require__(433);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MyCustomerPageModule = /** @class */ (function () {
+    function MyCustomerPageModule() {
+    }
+    MyCustomerPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__my_customer__["a" /* MyCustomerPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_customer__["a" /* MyCustomerPage */]),
+            ],
+        })
+    ], MyCustomerPageModule);
+    return MyCustomerPageModule;
+}());
+
+//# sourceMappingURL=my-customer.module.js.map
+
+/***/ }),
+
+/***/ 433:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyCustomerPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the MyCustomerPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyCustomerPage = /** @class */ (function () {
+    function MyCustomerPage(navCtrl, navParams, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.isCondition = false;
+        this.startDate = '';
+        this.endDate = '';
+        this.dateTag = 1;
+        this.memberPhone = '';
+        this.page = 1;
+        this.rows = '20';
+        this.searchCondition = {
+            startDate: '',
+            endDate: '',
+            dateTag: 1
+        };
+        this.customers = [];
+        this.dateText = '当天';
+        this.hasNextPage = true;
+        this.canGetMoreData = true;
+        this.labelId = "";
+        this.labelArr = [];
+    }
+    MyCustomerPage.prototype.ionViewDidLoad = function () {
+        this.getCustomer(false);
+        this.getLabels();
+    };
+    // 搜索条件确定
+    MyCustomerPage.prototype.confirmCondition = function () {
+        this.customers = [];
+        this.page = 1;
+        this.hasNextPage = true;
+        // 隐藏条件模块
+        this.isCondition = false;
+        // 点击了确定按钮才保存搜索条件
+        this.searchCondition = {
+            startDate: this.startDate,
+            endDate: this.endDate,
+            dateTag: this.dateTag
+        };
+        // 改变搜索条件显示
+        this.dateText = this.dateTag == 1 ? "当天" : this.dateTag == 2 ? "昨天" : "当月";
+        if (this.startDate != '' || this.endDate != '') {
+            this.dateText = '自定义';
+        }
+        // 获取数据
+        this.getCustomer(false);
+        // 先设置不能再获取数据，异步获取数据后会判断还能不能获取数据
+        this.canGetMoreData = false;
+    };
+    // 关闭搜索条件
+    MyCustomerPage.prototype.closeCondition = function ($event) {
+        if ($event.target.className != "condition-cover") {
+            return;
+        }
+        this.isCondition = false;
+    };
+    // 显示搜索条件
+    MyCustomerPage.prototype.condition = function () {
+        this.isCondition = !this.isCondition;
+    };
+    // 选择时间
+    MyCustomerPage.prototype.selectTime = function (type) {
+        this.dateTag = type;
+        this.startDate = '';
+        this.endDate = '';
+    };
+    // 查看顾客详细信息
+    MyCustomerPage.prototype.checkInfo = function (memberPhone) {
+        this.navCtrl.push('MyCustomerInfoPage', { memberPhone: memberPhone, type: false });
+    };
+    // 获取顾客数据
+    MyCustomerPage.prototype.getCustomer = function ($event) {
+        var _this = this;
+        if (this.memberPhone != '') {
+            // 手机号码错误
+            if (!this.checkPhone(this.memberPhone)) {
+                // 完成本次加载
+                if ($event) {
+                    $event.complete();
+                }
+                // 让上拉加载消失
+                this.hasNextPage = false;
+                // 过一会才让它可以继续请求数据
+                setTimeout(function () {
+                    _this.canGetMoreData = true;
+                }, 500);
+                return;
+            }
+        }
+        // 判断是否可以继续请求数据
+        if (!this.canGetMoreData) {
+            return;
+        }
+        this.appService.httpPost('findUserHasMembers.api', {
+            startToDate: this.searchCondition['startDate'],
+            endToDate: this.searchCondition['endDate'],
+            dateTag: this.searchCondition['dateTag'],
+            memberPhone: this.memberPhone,
+            labelId: this.labelId,
+            page: this.page,
+            rows: this.rows,
+        }, function (res) {
+            if (res.code == 1) {
+                for (var i = 0; i < res.list.length; i++) {
+                    _this.customers.push(res.list[i]);
+                }
+                // 完成本次加载
+                if ($event) {
+                    $event.complete();
+                }
+                // 判断是否还有下一页
+                if (res.list.length < _this.rows) {
+                    // 没有的话让上拉加载消失
+                    _this.hasNextPage = false;
+                }
+                else {
+                    _this.hasNextPage = true;
+                }
+                _this.canGetMoreData = true;
+            }
+            else {
+                _this.hasNextPage = false;
+                if ($event) {
+                    $event.complete();
+                }
+                _this.appService.alert(res.msg);
+            }
+        });
+    };
+    // 搜索按钮
+    MyCustomerPage.prototype.searchButton = function () {
+        // 重置搜索条件个结果
+        this.customers = [];
+        this.page = 1;
+        this.hasNextPage = true;
+        // 获取数据
+        this.getCustomer(false);
+        this.canGetMoreData = false;
+    };
+    // 上拉加载
+    MyCustomerPage.prototype.getMoreData = function ($event) {
+        this.page++;
+        this.getCustomer($event);
+    };
+    // 检查手机格式
+    MyCustomerPage.prototype.checkPhone = function (phone) {
+        if (!(/^1[345789]\d{9}$/.test(phone))) {
+            this.appService.alert("请填写正确的手机号码！");
+            return false;
+        }
+        return true;
+    };
+    // 获取标签
+    MyCustomerPage.prototype.getLabels = function () {
+        var _this = this;
+        this.appService.httpPost("brandSelection.api", {}, function (res) {
+            console.log(res);
+            if (res.code == 1) {
+                _this.labelArr = res.data;
+            }
+        });
+    };
+    MyCustomerPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-my-customer',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/my-customer/my-customer.html"*/'<!--\n  Generated template for the MyCustomerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>我的顾客</ion-title>\n    <ion-buttons end>\n      <button class="condition" ion-button icon-only (tap)="condition()">\n        <ion-icon name="funnel"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n  <!-- 表头 -->\n  <div class="search-box" *ngIf="!isCondition">\n    <div class="item-wrap item-wrap-title">\n      <span class="phone-wrap">顾客手机</span>\n      <span class="name-wrap">顾客姓名</span>\n    </div>\n  </div>\n  <!-- 搜索条件选择部分 -->\n  <div class="condition-cover" *ngIf="isCondition" (tap)="closeCondition($event)">\n    <div class="condition-wrap">\n      <div class="title">时间选择</div>\n      <div class="day-selected-wrap">\n        <button (tap)="selectTime(1)" [ngClass]="this.dateTag==1?\'selectedTab\':\'\'">当天</button>\n        <button (tap)="selectTime(2)" [ngClass]="this.dateTag==2?\'selectedTab\':\'\'">昨天</button>\n        <button (tap)="selectTime(3)" [ngClass]="this.dateTag==3?\'selectedTab\':\'\'">当月</button>\n      </div>\n      <div class="title">自定义</div>\n      <div class="time-selected-wrap">\n        <ion-item>\n          <ion-datetime displayFormat="YYYY-MM-DD" min="2010" [(ngModel)]="startDate" doneText="完成" cancelText="取消" placeholder="开始时间">\n          </ion-datetime>\n        </ion-item>\n        <span>--</span>\n        <ion-item>\n          <ion-datetime displayFormat="YYYY-MM-DD" min="2010" [(ngModel)]="endDate" doneText="完成" cancelText="取消" placeholder="结束时间">\n          </ion-datetime>\n        </ion-item>\n      </div>\n\n      <div class="title">手机号搜索</div>\n      <div>\n        <div class="input-wrap">\n          <ion-icon name="search"></ion-icon>\n          <input type="number" placeholder="请输入手机号码" [(ngModel)]="memberPhone">\n          <span class="del-button" (tap)="this.memberPhone=\'\'">\n            <img src="./assets/imgs/cancelBtn.png" *ngIf="!this.memberPhone == \'\'">\n          </span>\n        </div>\n      </div>\n      <div class="title">品牌选择</div>\n      <div class="brand-selected-wrap">\n        <ion-item>\n          <ion-select [(ngModel)]="labelId" interface="action-sheet" placeholder="请选择品牌" cancelText="取消" okText="确定">\n            <ion-option value="">全部</ion-option>\n            <ion-option *ngFor="let item of labelArr" [value]="item.id">{{item.labelName}}</ion-option>\n          </ion-select>\n        </ion-item>\n      </div>\n    </div>\n\n    <div class="confirm-button-wrap">\n      <button (tap)="confirmCondition()">确定</button>\n    </div>\n  </div>\n</ion-header>\n\n\n<ion-content>\n  <!-- 显示内容 -->\n  <div class="content-wrap" scrollY="true">\n    <ion-list>\n      <ion-item *ngFor="let item of customers" no-lines>\n        <div class="item-wrap" (tap)="checkInfo(item.memberPhone)">\n          <span class="phone-wrap">{{item.memberPhone}}</span>\n          <span class="name-wrap name-main">{{item.memberName}}</span>\n          <span class="arrow-wrap">\n            <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>\n          </span>\n        </div>\n      </ion-item>\n    </ion-list>\n  </div>\n\n  <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]=\'hasNextPage\'>\n    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="上拉加载更多...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/my-customer/my-customer.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], MyCustomerPage);
+    return MyCustomerPage;
+}());
+
+//# sourceMappingURL=my-customer.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=28.js.map

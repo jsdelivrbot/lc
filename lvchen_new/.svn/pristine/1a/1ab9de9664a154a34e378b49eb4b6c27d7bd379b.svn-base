@@ -1,0 +1,201 @@
+webpackJsonp([52],{
+
+/***/ 314:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginPageModule", function() { return LoginPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login__ = __webpack_require__(405);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var LoginPageModule = /** @class */ (function () {
+    function LoginPageModule() {
+    }
+    LoginPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__login__["a" /* LoginPage */]),
+            ],
+        })
+    ], LoginPageModule);
+    return LoginPageModule;
+}());
+
+//# sourceMappingURL=login.module.js.map
+
+/***/ }),
+
+/***/ 405:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__ = __webpack_require__(104);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, appService, platform, event, keyboard, app) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.platform = platform;
+        this.event = event;
+        this.keyboard = keyboard;
+        this.app = app;
+        this.driverToken = '';
+        this.securityCodeTime = 0;
+    }
+    LoginPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.appService.getItem('driverToken', function (val) {
+            if (val == 1) {
+                _this.driverToken = '';
+            }
+            else {
+                _this.driverToken = val;
+            }
+        });
+        this.appService.getItem('userInfo', function (val) {
+            console.log(val);
+            if (val && val != 1) {
+                _this.appService.getItem('loginInfo', function (val) {
+                    _this.login(val);
+                });
+            }
+        });
+        this.keyboard.onKeyboardShow().subscribe(function () { return _this.event.publish('hideTabs'); });
+        this.keyboard.onKeyboardHide().subscribe(function () { return _this.event.publish('showTabs'); });
+        this.platform.registerBackButtonAction(function () {
+        });
+        this.navCtrl.swipeBackEnabled = false;
+    };
+    LoginPage.prototype.login = function (value) {
+        var _this = this;
+        if (value.phone.length != 11) {
+            this.appService.alert('请输入正确的手机号码！');
+            return;
+        }
+        else if (!value.password) {
+            this.appService.alert('请输入密码！');
+            return;
+        }
+        var param = { 'phone': value.phone, 'password': value.password };
+        if (!this.driverToken) {
+            if (!value.code) {
+                this.appService.alert('请输入验证码！');
+                return;
+            }
+            param['smsCode'] = value.code;
+        }
+        else {
+            param['driverToken'] = this.driverToken;
+        }
+        this.appService.httpPost('login_submit.api', param, function (data) {
+            if (data.code == -1) {
+                _this.appService.toast(data.msg);
+            }
+            else {
+                _this.appService.setItem('driverToken', data.map.driverToken);
+                _this.appService.setItem('userInfo', data.map);
+                _this.appService.setItem('loginInfo', { 'phone': value.phone, 'password': value.password });
+                _this.app.getRootNav().setRoot('TabsPage');
+            }
+        }, true);
+    };
+    LoginPage.prototype.sendCode = function (phone) {
+        var _this = this;
+        console.log(phone);
+        if (this.securityCodeTime > 0) {
+            return;
+        }
+        var _father = this;
+        if (phone.length != 11) {
+            this.appService.alert('请输入正确的手机号码！');
+            return;
+        }
+        this.appService.httpPost('getUserPhone.api', { 'phone': phone }, function (data) {
+            if (data.code == -1) {
+                _this.appService.toast(data.msg);
+            }
+            else {
+                _this.appService.httpPost('get_phone_code.api', { 'phone': phone, 'code': 3 }, function (data) {
+                    if (data.code == -1) {
+                        _father.appService.toast(data.msg);
+                    }
+                    else {
+                        _father.securityCodeTime = 60;
+                        var interval = setInterval(function () {
+                            _father.securityCodeTime -= 1;
+                            if (_father.securityCodeTime <= 0) {
+                                clearInterval(interval);
+                            }
+                        }, 1000);
+                    }
+                }, true);
+            }
+        }, true);
+    };
+    LoginPage.prototype.forgetPassword = function () {
+        this.navCtrl.push('ForgetPasswordPage');
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], LoginPage.prototype, "navbar", void 0);
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-login',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/login/login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content class="lvLogin" overflow-scroll="false" style="overflow: hidden;">\n  <form #myForm=\'ngForm\' (ngSubmit)=\'login(myForm.value)\'>\n    <div class="loginForm">\n      \n       <div class=\'loginbg\'>\n        <span class="loginMobile"></span>\n        <input type="tel" ngModel name=\'phone\' placeholder="输入手机号" clearInput>\n      </div>\n    \n      <div class=\'loginbg\'> \n      	<span class="loginpass"></span>\n        <input type="password" ngModel name=\'password\' placeholder="输入密码">\n      </div>\n      \n      <div class="loginbg {{!driverToken ? \'\' : \'hidden\'}}">\n         <span class="loginkey"></span>\n        <input type="tel" ngModel name=\'code\' placeholder="验证码" class="keyInput" >\n         <span class="securityCode"  (click)=\'sendCode(myForm.value.phone)\'>{{securityCodeTime == 0 ? \'获取验证码\': securityCodeTime+\'s\'}}</span>\n      </div>\n     \n\n      <button ion-button color=\'light\' type="submit" class="submit-btn">登录</button>\n      <div class=\'loginSelect\' (click)="forgetPassword()">\n        <u>忘记密码?</u>\n      </div>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/login/login.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__["a" /* Keyboard */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=52.js.map

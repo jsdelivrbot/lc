@@ -1,0 +1,72 @@
+page-borrow-detail  {
+    .CreditContent{
+        background: #f5f4f3;
+    }
+    .content{
+        background:#fff !important;
+    }
+    .creditDate{
+        width: 100%;
+        min-height: 50px;
+        background: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 12px;
+        color: rgb(138, 132, 132);
+        border-bottom: 1px solid #eee;
+        div{
+            height: 30px;
+            min-width: 75px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            
+        }
+        .active{
+            color: #fff;
+            background: #00823b;
+            border: 1px solid #00823b;
+        }
+    }
+    .creditList{
+        width: 100%;
+        display: flex;
+        min-height: 50px;
+        border-bottom: 1px solid #eee;
+        font-size: 16px;
+        .creditName{
+            width: 180px;
+            padding-top: 15px;
+            padding-left: 20px;
+            padding-bottom: 10px;
+        }
+        .creditNum{
+            flex: 1;
+            line-height: 50px;
+            text-align: center;
+        }
+        .replyNum{
+            flex: 1;
+            line-height: 50px;
+            text-align: center;
+        }
+    }
+    
+}
+.picker-ios .picker-below-highlight {
+    left: 0;
+    top: 127px !important;
+    -webkit-transform: translate3d(0, 0, 90px);
+    transform: translate3d(0, 0, 90px);
+    position: absolute;
+    z-index: 11;
+    display: block;
+    width: 100%;
+    height: 70px;
+    border-top: 1px solid #c8c7cc;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(30%, white), to(rgba(255, 255, 255, 0.7)));
+    background: linear-gradient(to top, white 30%, rgba(255, 255, 255, 0.7) 100%);
+}

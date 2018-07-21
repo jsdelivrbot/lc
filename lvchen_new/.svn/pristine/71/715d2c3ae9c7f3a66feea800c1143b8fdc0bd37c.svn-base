@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ComplainListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>投诉记录</ion-title>
+  </ion-navbar>
+  <ion-scroll scrollX="true" class="pageMenuSlides" style="height:44px;width:100%;">
+    <div class="swipercontainer">
+      <div class="swiper-slide {{state==I?'bottomLine':''}}" style="width:33%;" *ngFor="let item of menus;let I=index;" tappable (click)="selectPageMenu($event,I)">{{item.name}}</div>
+    </div>
+  </ion-scroll>
+</ion-header>
+<ion-content>
+  <ion-slides #contentSlides (ionSlideDidChange)="slideChanged()" style="background:#f5f4f3;">
+    <ion-slide *ngFor="let item of topics;">
+      <ion-content>
+        <ion-list *ngFor="let i of item" >
+          <ion-item style="margin-top:10px;" *ngFor="let i of item" (tap)='gotoDetail(i.id)'>
+            <ion-thumbnail item-start>
+              <img [src]='appUrl.apiUrl+i.picture' onerror="this.src='http://placehold.it/90x90'">
+            </ion-thumbnail>
+            <span style="position: absolute;top: 10px;color: #333;">{{i.complaintDetails}}</span>
+            <div style="color: #666;width: 100%;font-size: 1.5rem;">
+              <span style="position: absolute;bottom: 10px;">{{i.complaintUser}}</span>
+              <span style="position: absolute;bottom: 10px;right: 10px;">{{i.complaintDate}}</span></div>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

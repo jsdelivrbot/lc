@@ -1,0 +1,204 @@
+webpackJsonp([23],{
+
+/***/ 358:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalePageModule", function() { return SalePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sale__ = __webpack_require__(449);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalePageModule = /** @class */ (function () {
+    function SalePageModule() {
+    }
+    SalePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sale__["a" /* SalePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sale__["a" /* SalePage */]),
+            ]
+        })
+    ], SalePageModule);
+    return SalePageModule;
+}());
+
+//# sourceMappingURL=sale.module.js.map
+
+/***/ }),
+
+/***/ 449:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/**
+ * @author() linyunfu
+ * lazy
+ * */
+
+
+// import { SaleVerifyPage } from '../sale-verify/sale-verify';
+// import { ScangiftPage } from '../scangift/scangift';
+// import { CodeviewPage } from '../codeview/codeview';
+
+var SalePage = /** @class */ (function () {
+    function SalePage(navCtrl, navParams, appService, popoverCtrl, viewCtrl, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.popoverCtrl = popoverCtrl;
+        this.viewCtrl = viewCtrl;
+        this.platform = platform;
+        this.gifts = new Array();
+        this.goods = new Array();
+        this.presents = new Array();
+        this.actNum = 0;
+        this.giftNum = 0;
+        this.presentNum = 0;
+    }
+    SalePage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.selectOptions = { title: '选择来源', mode: 'md' };
+        this.Gifts = new Array();
+        this.navbar.backButtonClick = function (e) {
+            _this.onBack();
+        };
+        var val = this.navParams.get('scannerData');
+        // 获取上一个页面过来的数据 采用本地储存的方式
+        this.sourceMap = val['sourceMap'] || {};
+        this.actIds = val['actIds'];
+        this.actMaps = val['actMap'] || [];
+        this.actMapLength = this.actMaps.length || 0;
+        this.Goods = val['goods'] || [];
+        this.GoodsLength = this.Goods.length || 0;
+        this.Gifts = val['gifts'] || [];
+        this.GiftsLength = this.Gifts.length || 0;
+        this.goods = val['goods'];
+        this.gifts = val['gifts'];
+        // 储存
+        this.appService.getItem('pre', function (val) {
+            _this.presents = val['presentMap'] || [];
+            _this.presentNum = _this.presents.length || 0;
+        });
+        // 扫描显示数量
+        this.actNum = this.actMapLength;
+        this.giftNum = this.GiftsLength;
+    };
+    SalePage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        console.log('ionViewDidEnter');
+        this.platform.registerBackButtonAction(function () {
+            _this.onBack();
+        });
+    };
+    SalePage.prototype.ionViewDidLeave = function () {
+        var _this = this;
+        this.platform.registerBackButtonAction(function () {
+            _this.navCtrl.pop();
+        });
+    };
+    SalePage.prototype.onBack = function () {
+        this.appService.backAlert(this.viewCtrl);
+    };
+    SalePage.prototype.onScanner = function () {
+        this.navCtrl.pop();
+    };
+    // 销售第一次扫码-》销售-》礼品扫码
+    SalePage.prototype.onScanPresent = function () {
+        this.navCtrl.push('ScangiftPage');
+    };
+    //查看积分码 
+    SalePage.prototype.onCodeView = function (codes) {
+        var popover = this.popoverCtrl.create('CodeviewPage', codes);
+        popover.present();
+    };
+    //查看积分码 
+    SalePage.prototype.onCodeSourceView = function (codes) {
+        var popover = this.popoverCtrl.create('CodeviewPage', codes);
+        popover.present();
+    };
+    // 　处理销售逻辑
+    SalePage.prototype.saleVerify = function () {
+        // 处理商品
+        var goods = [];
+        for (var _i = 0, _a = this.goods; _i < _a.length; _i++) {
+            var item = _a[_i];
+            goods.push({ id: item['goodsId'], "source": '', actId: item['actId'], code: item.code, "saleType": "0" });
+        }
+        var gifts = [];
+        for (var _b = 0, _c = this.gifts; _b < _c.length; _b++) {
+            var item = _c[_b];
+            gifts.push({ id: item['goodsId'], "source": '', actId: item['actId'], code: item.code, "saleType": "1" });
+        }
+        var resultObect = { 'actIds': this.actIds, 'goods': goods.concat(gifts), 'gifts': this.presents, sourceMap: this.sourceMap };
+        console.log(resultObect);
+        var params = {
+            data: resultObect,
+            userId: JSON.parse(window.localStorage.getItem('userInfo'))['id'],
+            storeId: JSON.parse(window.localStorage.getItem('curStore'))['id'],
+            type: this.gifts.length > 0 ? '1' : '2'
+        };
+        this.navCtrl.push('SaleVerifyPage', params, {
+            animation: 'md-transition'
+        });
+    };
+    SalePage.prototype.onAddNum = function (pos, num) {
+        this.presents[pos].num = parseInt(num) + 1;
+    };
+    SalePage.prototype.onCutNum = function (pos, num) {
+        if (num == 1) {
+            this.presents.splice(pos, 1);
+        }
+        else {
+            this.presents[pos].num = parseInt(num) - 1;
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], SalePage.prototype, "navbar", void 0);
+    SalePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sale',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale/sale.html"*/'<!--\n  Generated template for the SalePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>销售确认</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="onScanPresent()">\n        <ion-icon name="ios-archive"></ion-icon>\n        &nbsp;&nbsp;\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="act-div" *ngIf=\'actMapLength!=0\'> {{actNum==0?"没有参与任何活动":"参与活动："}}\n    <ul class="{{actNum==0?\'hidden\':\'\'}}">\n      <li *ngFor="let act of actMaps">{{act.actName}}</li>\n    </ul>\n  </div>\n  <!-- 模版 -->\n  <div class="customerList " *ngIf=\'GoodsLength!=0\'>\n    <div class="commodityName">商品</div>\n    <div class="customerReturnSuccessContent">\n      <div class="name">商品名称</div>\n      <div class="num">数量</div>\n      <div class="sum"></div>\n    </div>\n    <div class="customerReturnSuccessContentList" *ngFor="let good of Goods">\n      <div class="name">{{good.goodsName}}</div>\n      <div class="num">{{good.num}}</div>\n      <div class="sum {{good.code[0] == \'4444\'?\'invisible\':\'\'}}"  (click)="onCodeView(good.code)">...</div>\n    </div>\n  </div>\n  <!-- 模版 -->\n  <!-- 模版 -->\n  <div class="{{giftNum==0?\'hidden\':\'\'}}">\n    <div class="customerList " *ngIf=\'GiftsLength!=0\'>\n      <div class="commodityName">赠品</div>\n      <div class="customerReturnSuccessContent">\n        <div class="name">赠品名称</div>\n        <div class="num">数量</div>\n        <div class="sum"></div>\n      </div>\n      <div class="customerReturnSuccessContentList" *ngFor="let good of Gifts;index as i;">\n        <div class="name">{{good.goodsName}}</div>\n        <div class="num" style="padding-left: 8px">{{good.num}}</div>\n        <div class="sum" style="padding-left: 8px" (tap)="onCodeSourceView(good.code)">..</div>\n      </div>\n    </div>\n  </div>\n  <div class="attribute {{presentNum==0?\'hidden\':\'\'}}">礼品</div>\n  <ion-list class="{{presentNum==0?\'hidden\':\'\'}}" *ngIf=\'presentNum!=0\'>\n    <ion-list-header class="list-header">\n      <ion-row>\n        <ion-col col-7>\n          礼品名称\n        </ion-col>\n        <ion-col col-3 class="t-a">\n          数量\n        </ion-col>\n         <ion-col col-2 class="t-a">\n          来源\n        </ion-col>\n      </ion-row>\n    </ion-list-header>\n    <ion-grid class="grid-style">\n      <ion-row *ngFor="let present of presents;index as i;">\n        <ion-col col-7>\n          {{present.name}}\n        </ion-col>\n        <ion-col col-3 class="div-center" style="padding-left: 8px">\n          <div class="cut-widget" (tap)="onCutNum(i,present.num)">－</div><div class="num-widget">{{present.num}}</div><div class="add-widget" (click)="onAddNum(i,present.num)">＋</div>\n        </ion-col>\n        <ion-col col-2 class="t-a" style="padding-left: 4px">\n          <p>{{present.source==0?\'借门店\':present.source==1?\'欠顾客\':\'其他\'}}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n</ion-content>\n<ion-footer no-shadow>\n  <div class="depositFoot">\n    <div class="foot1">\n      <button (tap)="onScanner()" ion-button color="gentle" col-12>\n        <ion-icon name="qr-scanner"></ion-icon>&nbsp;&nbsp;扫一扫\n      </button>\n    </div>\n    <div class="foot2">\n      <button (tap)="saleVerify()" ion-button color="primary" col-12 style="margin-left: 2px;">\n        下一步\n      </button>\n    </div>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale/sale.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], SalePage);
+    return SalePage;
+}());
+
+//# sourceMappingURL=sale.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=23.js.map

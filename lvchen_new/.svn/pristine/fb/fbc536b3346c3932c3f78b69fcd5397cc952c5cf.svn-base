@@ -1,0 +1,91 @@
+<!--
+  Generated template for the ChargebackCheckPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>退单确认</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header-div">
+    <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{phone}} </div>
+    <div style="height: 1px;width: 100%;background: #ccc;"></div>
+    <div padding>寄存单号&nbsp;&nbsp;&nbsp;&nbsp;{{receiptNo}} </div>
+    <components-colorbar></components-colorbar>
+  </div>
+  <div class="attribute {{goodNum==0?'hidden':''}}">商品</div>
+  <ion-list class="{{goodNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-7>
+          商品名称
+        </ion-col>
+        <ion-col col-2 class="t-a">
+          寄存剩余
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          退单数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of goods;index as i;">
+        <ion-col col-7>
+          {{good.goodsName}}
+        </ion-col>
+        <ion-col col-2 class="t-a" style="padding-left: 8px">
+          <p>{{good.num}}</p>
+        </ion-col>
+        <ion-col col-3 class="div-center">
+          <div class="cut-widget" (click)="onCutNum(1,i)">－</div><div class="num-widget">{{good.quitNum}}</div><div class="add-widget" (click)="onAddNum(1,i)">＋</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <div class="attribute {{giftNum==0?'hidden':''}}">赠品</div>
+  <ion-list class="{{giftNum==0?'hidden':''}}">
+    <ion-list-header class="list-header">
+      <ion-row>
+        <ion-col col-7>
+          赠品名称
+        </ion-col>
+        <ion-col col-2 class="t-a">
+          寄存剩余
+        </ion-col>
+        <ion-col col-3 class="t-a">
+          退单数量
+        </ion-col>
+      </ion-row>
+    </ion-list-header>
+    <ion-grid class="grid-style">
+      <ion-row *ngFor="let good of gifts;index as i;">
+        <ion-col col-7>
+          {{good.goodsName}}
+        </ion-col>
+        <ion-col col-2 class="t-a" style="padding-left: 8px">
+          <p>{{good.num}}</p>
+        </ion-col>
+        <ion-col col-3 class="div-center">
+          <div class="cut-widget" (click)="onCutNum(2,i)">－</div><div class="num-widget">{{good.quitNum}}</div><div class="add-widget" (click)="onAddNum(2,i)">＋</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+    <div class="depositFoot">
+        <div  class="foot1" (click)="goBack()">
+            <button ion-button color="gentle" col-12>
+                取消
+              </button>
+          </div>
+          <div class="foot2" (click)="goVerify()">
+              <button ion-button color="primary" col-12 style="margin-left: 2px;">
+                  确认
+                </button>
+          </div>
+    </div>
+</ion-footer>

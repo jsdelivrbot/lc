@@ -1,0 +1,188 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { AppService } from '../../../providers/service-public-service/service-public-service';
+
+/**
+ * Generated class for the SalesStatisticsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
+@Component({
+  selector: 'page-sales-statistics',
+  templateUrl: 'sales-statistics.html',
+})
+export class SalesStatisticsPage {
+  public salesStatisticsDetail = 'SalesStatisticsDetailPage';
+  public mItems :{itemName:string,type:number,checked:boolean}[];
+  public timeSelect: boolean = false;
+  public startDate;
+  public endDate;
+  public sections: string[]; 
+  // public defaultSection: string;
+  public dateTag: number = 1;
+  public timeSwitch: boolean = true;
+  // 本身的storeId
+  public storeId:string;
+  public storeName: string;
+  public storeMap;
+  public storeMapLength;
+
+  //销售数据
+  public salesData = [];
+  //saleQty: 数量总数
+  public saleQty;
+  // saleAmount
+  public saleAmount;
+  public groupId;
+  
+  // 用户id
+  public userId;
+  
+  //当前用户下级业务组
+  public groupMap;
+
+  //是否总部人员
+  public isLvChen;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public appService: AppService,
+    public loadingCtrl: LoadingController){
+    this.mItems = [
+      { itemName: '当天', type: 1, checked: true },
+      { itemName: '昨天', type: 2, checked: false },
+      { itemName: '当月', type: 3, checked: false },
+      { itemName: '上月', type: 4, checked: false },
+      { itemName: '自定义', type: 10, checked: false }
+    ];
+
+    this.appService.getItem('curStore',val=>{
+      this.storeId=val['id'];
+      this.storeName=val['storeName'];
+      
+    });
+
+    this.appService.getItem('userInfo',val=>{
+      this.userId = val['id'];
+    })
+  }
+
+  ionViewDidLoad() {
+    //this.defaultSection = '绿臣总部';
+    this.presentLoading();
+    this.salesStatistics();
+    // this.selectOrg();
+    this.OrgUser();
+    this.getNextGroup();
+    
+    
+    
+  }
+
+ //点击弹出或关闭时间选择
+  showTimeContent(){
+    this.timeSelect = !this.timeSelect;
+  }
+
+  timeOption(e){
+    
+  }
+
+  //选择日期
+  Select(itemType) {
+    // console.log(itemType);
+    this.dateTag = itemType;
+    console.log(this.dateTag);
+    for(let i = 0;i< this.mItems.length; i++){
+      this.mItems[i].checked = false;
+      if(this.mItems[i].type===itemType){
+        this.mItems[i].checked = true;
+        if(itemType===10){
+          this.timeSwitch = false;
+          console.log(this.timeSwitch)
+        }else{
+          this.timeSwitch = true;
+        }
+      } 
+    } 
+  }
+
+   //选择时间查看数据
+   timeZoneSelect() {
+    this.presentLoading();
+    if(this.dateTag!==10){
+      this.appService.httpPost('findCasPosSale.api', {storeId: this.storeId, dateTag: this.dateTag}, data => {
+        // console.log(data)
+        // console.log(selectedTime);
+        this.salesData = data['data'];
+        this.saleQty = data['saleQty'];
+        this.saleAmount = data['saleAmount'];
+        
+       })
+    }
+    if(this.dateTag===10){
+      this.appService.httpPost('findCasPosSale.api', {storeId: this.storeId, sDate: this.startDate, eDate: this.endDate}, data => {
+        // console.log(data);
+        // console.log(startDate, endDate);
+        this.salesData = data['data'];
+        this.saleQty = data['saleQty'];
+        this.saleAmount = data['saleAmount'];
+       })
+    }  
+    this.timeSelect = !this.timeSelect;
+  }
+
+  // 获取销售统计数据
+  salesStatistics(){
+    this.appService.httpPost('findCasPosSale.api',{storeId: this.storeId, dateTag: this.dateTag},data=>{
+      console.log(data['data']);
+      this.salesData = data['data'];
+      this.saleQty = data['saleQty'];
+      this.saleAmount = data['saleAmount'];
+    })
+  }
+
+   // 判断是否为总部
+   OrgUser() {
+    this.appService.httpPost('findOrgUser.api', { }, data => {
+      console.log(data,'iSLvChen');
+      //this.storeMap = data['data'] || [];
+      this.isLvChen = data['code'];
+      console.log(this.isLvChen);
+      // this.storeMapLength = this.storeMap.length > 0 ? true : false;
+    })
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      duration: 1000
+    });
+    loader.present();
+  }
+
+  //选择下一级部门查看数据
+  selectOrg(){
+    this.appService.httpPost('findCasPosSale.api',{storeId: this.storeId},data=>{
+      console.log(data['data']);
+      this.salesData = data['data'];
+      this.saleQty = data['saleQty'];
+      this.saleAmount = data['saleAmount'];
+    })
+  }
+
+  //获取下一级业务组
+  getNextGroup(){
+    this.appService.httpPost('getNextOrg.api',{storeId: this.storeId},data=>{  
+      this.storeMap = data['data'];
+      if(this.storeMap.length > 0){
+        this.storeMap.unshift({orgId:this.storeId,orgName: this.storeName});
+      }
+      console.log(data['data'],'nextGroup');
+      this.storeMapLength = this.storeMap.length > 0 ? true : false;
+    })
+  }
+}

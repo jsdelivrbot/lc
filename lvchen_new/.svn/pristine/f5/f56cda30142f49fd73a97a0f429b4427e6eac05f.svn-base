@@ -1,0 +1,63 @@
+<!--
+  Generated template for the CustomerLoggingTabsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>补充信息</ion-title>
+  </ion-navbar>
+
+  <div class="tabs-wrap">
+    <div>
+      <span>
+        <span>1</span>
+      </span>
+      顾客资料
+    </div>
+    <div>
+      <span class="tab-Selected">
+        <span>2</span>
+      </span>
+      <label class="tab-Selected-text">标签设置</label>
+    </div>
+  </div>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="tabs-wrap">
+    <div class="title">
+      <span class="text">产品品牌</span>
+      <span class="line"></span>
+    </div>
+    <div class="tabs">
+      <div>
+        <button *ngFor="let tab of products" (tap)="selectTab(tab.id)" [ngClass]="this.labels.indexOf(tab.id)!=-1?'selectedTab':''"
+          ion-button block outline [disabled]="this.checkProducts.indexOf(tab.id)!=-1">{{tab.tabName}}</button>
+      </div>
+    </div>
+
+    <div class="title">
+      <span class="text">购买习惯</span>
+      <span class="line"></span>
+    </div>
+    <div class="tabs">
+      <div>
+        <button *ngFor="let tab of habits" (tap)="selectTab(tab.id)" [ngClass]="this.labels.indexOf(tab.id)!=-1?'selectedTab':''"
+          ion-button block outline [disabled]="this.checkHabits.indexOf(tab.id)!=-1">{{tab.tabName}}</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="nextstep">
+    <button (tap)="lastStep()">上一步</button>
+    <button (tap)="submit()">提交</button>
+  </div>
+</ion-footer>

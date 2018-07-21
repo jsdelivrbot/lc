@@ -1,0 +1,189 @@
+webpackJsonp([29],{
+
+/***/ 341:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MyCustomerInfoPageModule", function() { return MyCustomerInfoPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__my_customer_info__ = __webpack_require__(432);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var MyCustomerInfoPageModule = /** @class */ (function () {
+    function MyCustomerInfoPageModule() {
+    }
+    MyCustomerInfoPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__my_customer_info__["a" /* MyCustomerInfoPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__my_customer_info__["a" /* MyCustomerInfoPage */]),
+            ],
+        })
+    ], MyCustomerInfoPageModule);
+    return MyCustomerInfoPageModule;
+}());
+
+//# sourceMappingURL=my-customer-info.module.js.map
+
+/***/ }),
+
+/***/ 432:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyCustomerInfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the MyCustomerInfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var MyCustomerInfoPage = /** @class */ (function () {
+    function MyCustomerInfoPage(navCtrl, navParams, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.selectedTab = 1;
+        this.recordType = 1;
+        this.memberPhone = '';
+        this.memberName = '';
+        this.products = '';
+        this.habits = '';
+        this.babys = [];
+        this.salesRecord = [];
+        this.giveRecord = [];
+        this.depositRecord = [];
+        this.remarksRecord = [];
+        this.recordData = [];
+        this.isHideBack = false;
+    }
+    MyCustomerInfoPage.prototype.ionViewDidLoad = function () {
+        if (this.navParams.data.type) {
+            this.isHideBack = true;
+        }
+        this.getCustomerInfo();
+    };
+    // 切换导航标签
+    MyCustomerInfoPage.prototype.changeTab = function (type) {
+        this.selectedTab = type;
+    };
+    // 切换记录标签
+    MyCustomerInfoPage.prototype.changeRecordType = function (type) {
+        this.recordType = type;
+        this.recordData = [];
+        if (type == 1) {
+            for (var i = 0; i < this.salesRecord.length; i++) {
+                this.recordData.push({
+                    data1: this.salesRecord[i].goodsName,
+                    data2: this.salesRecord[i].saleAmount,
+                    data3: this.salesRecord[i].tradeTime.time
+                });
+            }
+        }
+        else if (type == 2) {
+            for (var i = 0; i < this.giveRecord.length; i++) {
+                this.recordData.push({
+                    data1: this.giveRecord[i].goodsName,
+                    data2: this.giveRecord[i].saleAmount,
+                    data3: this.giveRecord[i].tradeTime.time
+                });
+            }
+        }
+        else if (type == 3) {
+            for (var i = 0; i < this.depositRecord.length; i++) {
+                this.recordData.push({
+                    data1: this.depositRecord[i].goodsName,
+                    data2: this.depositRecord[i].goodsNum,
+                    data3: this.depositRecord[i].depositTime.time
+                });
+            }
+        }
+        else if (type == 4) {
+            for (var i = 0; i < this.remarksRecord.length; i++) {
+                this.recordData.push({
+                    data1: this.remarksRecord[i].remarks,
+                    data2: this.remarksRecord[i].remarkTime.time
+                });
+            }
+        }
+    };
+    // 获取顾客信息
+    MyCustomerInfoPage.prototype.getCustomerInfo = function () {
+        var _this = this;
+        this.appService.httpPost('findMemberDetails.api', {
+            memberPhone: this.navParams.data.memberPhone,
+        }, function (res) {
+            if (res.code == 1) {
+                _this.memberPhone = res.memberPhone;
+                _this.memberName = res.memberName;
+                _this.products = res.products;
+                _this.habits = res.habits;
+                _this.babys = res.babys;
+                _this.salesRecord = res.salesRecord;
+                _this.giveRecord = res.giveRecord;
+                _this.depositRecord = res.depositRecord;
+                _this.remarksRecord = res.remarksRecord;
+                _this.changeRecordType(1);
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 返回
+    MyCustomerInfoPage.prototype.lastStep = function () {
+        this.navCtrl.popToRoot({ animation: 'md-transition' });
+    };
+    // 编辑
+    MyCustomerInfoPage.prototype.editInfo = function () {
+        this.navCtrl.push('CustomerLoggingPage', { memberPhone: this.navParams.data.memberPhone, type: true });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], MyCustomerInfoPage.prototype, "navbar", void 0);
+    MyCustomerInfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-my-customer-info',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/my-customer-info/my-customer-info.html"*/'<!--\n  Generated template for the MyCustomerInfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar [hideBackButton]="isHideBack">\n    <ion-title>顾客信息</ion-title>\n  </ion-navbar>\n  <div class="tab-wrap">\n    <div [ngClass]="this.selectedTab?\'selected\':\'\'" (tap)="changeTab(1)">\n      <div class="tab-text">顾客信息</div>\n    </div>\n    <div [ngClass]="!this.selectedTab?\'selected\':\'\'" (tap)="changeTab(0)">\n      <div class="tab-text">销售记录</div>\n    </div>\n  </div>\n</ion-header>\n\n<ion-content>\n  <!-- 顾客信息 -->\n  <div class="customer-info-box" *ngIf="selectedTab">\n    <div class="info-wrap">\n      <div class="info-phone">\n        <span>顾客手机</span>\n        <span>{{memberPhone}}</span>\n      </div>\n      <div class="info-name">\n        <span>顾客姓名</span>\n        <span>{{memberName}}</span>\n      </div>\n    </div>\n\n    <div class="baby-info">\n      <div class="baby-header">\n        <span>我的宝宝信息</span>\n      </div>\n\n      <ul>\n        <li *ngFor="let baby of babys">\n          <div class="baby-sex">\n            <img [src]="baby.babySex==0?\'./assets/imgs/baby-boy.png\':\'./assets/imgs/baby-girl.png\'" alt="" />\n          </div>\n          <div class="baby-detail">\n            <span>{{baby.babyName}}</span>\n            <span>{{baby.age}}</span>\n          </div>\n        </li>\n      </ul>\n    </div>\n\n    <div class="tabs-wrap">\n      <div class="title">\n        <span class="text">产品品牌</span>\n        <span class="line"></span>\n      </div>\n      <div class="tabs">\n        <div>\n          <button *ngFor="let tab of products">{{tab}}</button>\n        </div>\n      </div>\n\n      <div class="title">\n        <span class="text">购买习惯</span>\n        <span class="line"></span>\n      </div>\n      <div class="tabs">\n        <div>\n          <button *ngFor="let tab of habits">{{tab}}</button>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <!-- 销售记录 -->\n  <div class="customer-info-box changeBgc" *ngIf="!selectedTab">\n    <div class="button-box">\n      <div>\n        <button [ngClass]="this.recordType == 1?\'selected-record-type\':\'\'" (tap)="changeRecordType(1)">销售记录</button>\n        <button [ngClass]="this.recordType == 2?\'selected-record-type\':\'\'" (tap)="changeRecordType(2)">赠送记录</button>\n      </div>\n      <div>\n        <button [ngClass]="this.recordType == 3?\'selected-record-type\':\'\'" (tap)="changeRecordType(3)">寄存记录</button>\n        <button [ngClass]="this.recordType == 4?\'selected-record-type\':\'\'" (tap)="changeRecordType(4)">备注记录</button>\n      </div>\n    </div>\n    <div class="big-line"></div>\n    <div class="record-data-box">\n      <ul class="record-type1" *ngIf="this.recordType == 1 || this.recordType == 2 || this.recordType == 3">\n        <li *ngFor="let record of recordData">\n          <div class="record-title">{{record.data1}}</div>\n          <div class="record-detail">\n            <span class="record-time">{{record.data3 | date:\'yy-MM-dd HH:mm\'}}</span>\n            <span class="record-price">{{record.data2}}</span>\n          </div>\n        </li>\n      </ul>\n      <ul class="record-type2" *ngIf="this.recordType == 4">\n        <li *ngFor="let record of recordData">\n          <div class="remark-title">\n            <span class="remark-time">{{record.data2 | date:\'yy-MM-dd HH:mm\'}}</span>\n          </div>\n          <div class="remark-detail">\n            {{record.data1}}\n          </div>\n        </li>\n      </ul>\n    </div>\n  </div>\n</ion-content>\n\n<ion-footer>\n  <!-- 编辑返回 -->\n  <div class="nextstep">\n    <button (tap)="lastStep()">返回</button>\n    <button (tap)="editInfo()">编辑信息</button>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/my-customer-info/my-customer-info.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], MyCustomerInfoPage);
+    return MyCustomerInfoPage;
+}());
+
+//# sourceMappingURL=my-customer-info.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=29.js.map

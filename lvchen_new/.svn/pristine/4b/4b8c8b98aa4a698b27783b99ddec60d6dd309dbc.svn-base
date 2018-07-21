@@ -1,0 +1,44 @@
+<!--
+  Generated template for the CustomerReturnSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>退货确认</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="customerList" *ngIf='returnStoreInfoGoods.length'>
+    <div class="commodityName">商品</div>
+    <div class="customerReturnSuccessContent">
+      <div class="name">商品名称</div>
+      <div class="num">数量</div>
+      <div class="sum"></div>
+    </div>
+    <div class="customerReturnSuccessContentList" *ngFor='let item of returnStoreInfoGoods'>
+      <div class="name">{{item.goodsDesc}}</div>
+      <div class="num">{{item.num}}</div>
+      <div class="sum {{item.code[0] == '4444'?'invisible':''}}" (tap)='codeScan(item.code)'>...</div>
+    </div>
+  </div>
+  <div class="customerList" *ngIf='returnStoreInfoPresentMap.length'>
+    <div class="commodityName">赠品</div>
+    <div class="customerReturnSuccessContent">
+      <div class="name">赠品名称</div>
+      <div class="num">数量</div>
+      <div class="sum"></div>
+    </div>
+    <div class="customerReturnSuccessContentList" *ngFor='let ite of returnStoreInfoPresentMap'>
+      <div class="name">{{ite.goodsDesc}}</div>
+      <div class="num">{{ite.num}}</div>
+      <div class="sum {{ite.code[0] == '4444'?'invisible':''}}" (tap)='codeScan(ite.code)'>...</div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer no-shadow (tap)='commoditySuccess()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">下一步</ion-title>
+  </ion-toolbar>
+</ion-footer>

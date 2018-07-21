@@ -1,0 +1,138 @@
+webpackJsonp([26],{
+
+/***/ 352:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ComplainDetailPageModule", function() { return ComplainDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__complain_detail__ = __webpack_require__(443);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ComplainDetailPageModule = /** @class */ (function () {
+    function ComplainDetailPageModule() {
+    }
+    ComplainDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__complain_detail__["a" /* ComplainDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__complain_detail__["a" /* ComplainDetailPage */]),
+            ],
+        })
+    ], ComplainDetailPageModule);
+    return ComplainDetailPageModule;
+}());
+
+//# sourceMappingURL=complain-detail.module.js.map
+
+/***/ }),
+
+/***/ 443:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComplainDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ComplainDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ComplainDetailPage = /** @class */ (function () {
+    function ComplainDetailPage(navCtrl, navParams, apps, appUrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.apps = apps;
+        this.appUrl = appUrl;
+        this.data = {};
+        this.memo = '';
+        this.identity = 0; //-1业务员，1员工，2、3导购
+    }
+    ComplainDetailPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.apps.getItem('userInfo', function (val) {
+            _this.identity = val['tag'];
+        });
+        this.getData();
+    };
+    ComplainDetailPage.prototype.getData = function () {
+        var _this = this;
+        this.apps.httpPost('listJsonComplaintDtl.api', {
+            'id': this.navParams.get('id')
+        }, function (data) {
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+            }
+            else {
+                _this.data = data.map;
+                _this.memo = data.map.auditDetails;
+            }
+        }, true);
+    };
+    ComplainDetailPage.prototype.complaintRespone = function (action) {
+        var _this = this;
+        var op = 'complaintRespone.api';
+        var disMsg = '投诉回复成功！';
+        if (action == 1) {
+            op = 'unBind.api';
+            disMsg = '解除绑定成功';
+        }
+        this.apps.httpPost(op, {
+            'complaintId': this.data['complaintId'],
+            'integralCode': this.data['respondentIntegralCode'],
+            'memo': this.memo
+        }, function (data) {
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+            }
+            else {
+                _this.apps.disAlert(disMsg, function (callback) {
+                    _this.navCtrl.pop();
+                });
+            }
+        }, true);
+    };
+    ComplainDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-complain-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/complain-detail/complain-detail.html"*/'<!--\n  Generated template for the ComplainDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>投诉详情</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="header-div" style="background:#fff;">\n    <ion-list>\n      <ion-item><span style="color: #666">被投诉门店</span><span item-end> {{data.respondentStoreDesc}} </span>\n      </ion-item>\n      <ion-item><span style="color: #666">被投诉人</span><span item-end> {{data.respondentUser}} </span>\n      </ion-item>\n      <ion-item><span style="color: #666">被投诉人手机</span><span item-end> {{data.respondentTel}} </span>\n      </ion-item>\n      <ion-item><span style="color: #666">被投诉追溯码</span><span item-end> {{data.respondentIntegralCode}} </span>\n      </ion-item>\n      <ion-item><span style="color: #666">被投诉商品名称</span><span item-end style="width: 60%;"> {{data.respondentGoodsDesc}} </span>\n      </ion-item>\n    </ion-list>\n  </div>\n  <ion-item style="margin-top:10px;">\n    <ion-thumbnail item-start>\n      <img [src]=\'appUrl.apiUrl+data.picture\' onerror="this.src=\'http://placehold.it/90x90\'">\n    </ion-thumbnail>\n    <span style="position: absolute;top: 10px;color: #333;">{{data.complaintDetails}}</span>\n    <div style="color: #666;width: 100%;font-size: 1.5rem;">\n      <span style="position: absolute;bottom: 10px;">{{data.complaintUser}}</span>\n      <span style="position: absolute;bottom: 10px;right: 10px;">{{data.complaintDate}}</span></div>\n  </ion-item>\n  <textarea rows="3" cols="20" placeholder="投诉回复:......" class="textarea {{identity==-1?\'\':\'hidden\'}}" [(ngModel)]="memo" readonly="{{data.complaintState==1?\'\':\'readonly\'}}"></textarea>\n</ion-content>\n<ion-footer no-shadow class="{{identity==-1&&data.complaintState==1?\'\':\'hidden\'}}">\n  <div class="footer-tab">\n    <button class="left" (tap)=\'complaintRespone(1)\'>\n      解除绑定\n    </button>\n    <button class="right" (tap)=\'complaintRespone(2)\'>\n      投诉回复\n    </button>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/complain-detail/complain-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], ComplainDetailPage);
+    return ComplainDetailPage;
+}());
+
+//# sourceMappingURL=complain-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=26.js.map

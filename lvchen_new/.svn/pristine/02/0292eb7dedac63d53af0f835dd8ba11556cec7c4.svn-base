@@ -1,0 +1,70 @@
+<!--
+  Generated template for the RepayGiftSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>还礼品</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+    <div class="header-div">
+        <div padding class="repaydetaildiv">顾客手机&nbsp;&nbsp;&nbsp;&nbsp;13250306884 </div>
+        <div padding class="repaydetaildiv">欠货日期&nbsp;&nbsp;&nbsp;&nbsp;13250306884 </div>
+        <div padding class="repaydetaildiv">欠货类型&nbsp;&nbsp;&nbsp;&nbsp;买赠欠货 </div>
+        <div padding class="repaydetaildiv">参与活动&nbsp;&nbsp;&nbsp;&nbsp;买二送一 </div>
+        <components-colorbar></components-colorbar>
+      </div>
+      <ion-grid style="background:#fff;margin-bottom:10px;">
+          <ion-row>
+            <ion-col col-6 style='color:#21c15a'>欠货礼品</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 style="background:#eee;color:#b2b2b2">礼品名称</ion-col>
+            <ion-col col-3 style="background:#eee;color:#b2b2b2;text-align:center;">归还数量</ion-col>
+            <ion-col col-3 style="background:#eee;color:#b2b2b2"></ion-col>
+          </ion-row>
+          <ion-row style="color:#b2b2b2">
+            <ion-col col-6 style="padding:10px 1px;border-bottom:1px solid #eee;">
+              青蛙小鼓
+            </ion-col>
+            <ion-col col-3 style="padding:10px 10px;border-bottom:1px solid #eee;text-align:center;">
+                <div class="cart_num">
+                    <div class="input_left" (tap)="decCount(item)">-</div>
+                    <div class="input_center">
+                        <input type="text"  readonly="readonly" name="num" id="num" />
+                    </div>
+                    <div class="input_right" (tap)="incCount(item)">+</div>
+    
+                  </div>
+            </ion-col>
+            <ion-col col-3 style="padding:10px 10px;border-bottom:1px solid #eee;text-align:center;">
+              <ion-icon name='ios-trash-outline' style='font-size:25px;'></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-12 style="text-align:right;color:#b2b2b2">商品数量&nbsp;
+                <span style="color:#21c15a">2</span>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid style="background:#fff;">
+          <ion-row>
+            <ion-col col-12>
+                <span>备注：</span> <input type="text" placeholder="请输入备注">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+</ion-content>
+<ion-footer no-shadow (tap)='goodsImmediately()'>
+    <ion-toolbar>
+      <ion-title>提交</ion-title>
+    </ion-toolbar>
+  </ion-footer>

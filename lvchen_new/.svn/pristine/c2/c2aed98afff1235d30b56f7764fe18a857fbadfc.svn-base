@@ -1,0 +1,38 @@
+<!--
+  Generated template for the TargetGameTwoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>达标赛</ion-title>
+    <ion-buttons end>
+        <ion-select [(ngModel)]="storeSelected" okText="确定" cancelText="取消" (ionChange)='changeStore()' style="color: #fff;font-size: 1.5rem;">
+          <ion-option value="">全部</ion-option>
+          <ion-option  ></ion-option>
+        </ion-select>
+      </ion-buttons>
+  </ion-navbar>
+  <div class="targetTwoTab">
+      <span>业务组</span>
+      <span>门店数</span>
+      <span>目标</span>
+      <span>实际</span>
+      <span>达成率</span>
+    </div>
+</ion-header>
+<ion-content>
+    <div class="targetTwoList" *ngFor='let item of storeMap' [navPush]='targetThreePage'>
+        <span>{{item.workName}}</span>
+        <span>{{item.storeNumber}}</span>
+        <span>{{item.targeSale}}</span>
+        <span>{{item.sales}}</span>
+        <span>{{item.finishPre}}</span>
+      </div>
+      <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" *ngIf='more'>
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,123 @@
+webpackJsonp([49],{
+
+/***/ 330:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DepositsPageModule", function() { return DepositsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deposits__ = __webpack_require__(421);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var DepositsPageModule = /** @class */ (function () {
+    function DepositsPageModule() {
+    }
+    DepositsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__deposits__["a" /* DepositsPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__deposits__["a" /* DepositsPage */]),
+            ],
+        })
+    ], DepositsPageModule);
+    return DepositsPageModule;
+}());
+
+//# sourceMappingURL=deposits.module.js.map
+
+/***/ }),
+
+/***/ 421:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DepositsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the DepositsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var DepositsPage = /** @class */ (function () {
+    function DepositsPage(navCtrl, navParams, app, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.app = app;
+        this.platform = platform;
+    }
+    DepositsPage.prototype.ngOnInit = function () {
+        this.getData();
+    };
+    DepositsPage.prototype.search = function ($event) {
+        if ($event.key == 'Enter') {
+            this.getData();
+        }
+    };
+    DepositsPage.prototype.onSearch = function () {
+        this.getData();
+    };
+    DepositsPage.prototype.getData = function () {
+        var _this = this;
+        this.app.httpPost('findCheckInOrderGoods.api', { phoneNos: this.phoneNos }, function (data) {
+            if (data.code == -1) {
+                _this.app.toast(data.msg);
+            }
+            else {
+                _this.data = data.data;
+            }
+            console.log(data);
+        }, true);
+    };
+    DepositsPage.prototype.onDetail = function (index) {
+        var params = { depositId: this.data[index].id, remainNum: this.data[index].num, receiveNum: (this.data[index].goodsNum - this.data[index].num) };
+        this.navCtrl.push('DepositDetailPage', params);
+    };
+    DepositsPage.prototype.addOrder = function () {
+        this.navCtrl.push('DepositScanPage', {
+            animation: 'md-transition'
+        });
+    };
+    DepositsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-deposits',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/deposits/deposits.html"*/'<!--\n  Generated template for the DepositsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>寄存订单</ion-title>\n  </ion-navbar>\n  <ion-searchbar placeholder="输入单号/手机号" padding [(ngModel)]="phoneNos" (keyup)="search($event)" type="search" autofocus="autofocus"  class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">\n  </ion-searchbar>\n</ion-header>\n<ion-content>\n  <ion-list style="margin-top: 15px;">\n    <ion-item *ngFor=\'let item of data;index as i;\' (tap)="onDetail(i)">\n      <div class="list-item-left">\n        <h2>{{item.memberPhone}}</h2>\n        <h4>{{item.depositTime.time|date:\'yyyy年MM月dd日\'}}</h4>\n      </div>\n      <div class="list-item-right">\n        <span>剩余数量&nbsp;&nbsp;</span>\n        <span class="num-text">{{item.num}}&nbsp;&nbsp;&nbsp;&nbsp;</span>\n        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>\n      </div>\n    </ion-item>\n  </ion-list>\n  <ion-fab right bottom>\n      <button ion-fab (tap)=\'addOrder()\'>\n        <ion-icon name=\'md-add\'></ion-icon>\n      </button>\n    </ion-fab>\n\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/deposits/deposits.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], DepositsPage);
+    return DepositsPage;
+}());
+
+//# sourceMappingURL=deposits.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=49.js.map

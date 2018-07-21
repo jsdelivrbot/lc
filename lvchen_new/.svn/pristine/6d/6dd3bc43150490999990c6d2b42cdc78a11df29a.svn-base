@@ -1,0 +1,77 @@
+ <!--
+  Generated template for the CustomerReturnListDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>订单详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div class="menuDetail">
+    <div class="customerListRemark">
+      <div class="Remark">门店名称</div>
+      <div>{{customerStore.stroeName}}</div>
+    </div>
+    <div class="customerListRemark">
+      <div class="Remark">销售单号</div>
+      <div>{{customerStore.receiptNo}}</div>
+    </div>
+    <div class="customerListRemark">
+      <div class="Remark">顾客手机</div>
+      <div>{{customerStore.phone}}</div>
+    </div>
+    <!-- <components-colorbar></components-colorbar> -->
+  </div>
+
+    <div class="customerList" *ngIf='customerStoreGoods.length' >
+        <div class="commodityName">商品</div>
+        <div class="customerReturnSuccessContent">
+          <div class="name">商品名称</div>
+          <div class="num">数量</div>
+          <div class="sum"></div>
+        </div>
+        <div class="customerReturnSuccessContentList" *ngFor='let good of customerStoreGoods' >
+          <div class="name">{{good.goodsDesc}}</div>
+          <div class="num">{{good.num}}</div>
+          <div class="sum {{good.code[0] == '8888'?'invisible':''}}" (tap)='scanCode(good.code)'>...</div>
+        </div>
+      </div>
+  <div class="customerList" *ngIf='customerStoreGift.length'>
+    <div class="commodityName">赠品</div>
+    <div class="customerReturnSuccessContent">
+      <div class="name">商品名称</div>
+      <div class="num">数量</div>
+      <div class="sum"></div>
+    </div>
+    <div class="customerReturnSuccessContentList" *ngFor='let gift of customerStoreGift'>
+      <div class="name">{{gift.goodsDesc}}</div>
+      <div class="num">{{gift.num}}</div>
+      <div class="sum {{gift.code[0] == '8888'?'invisible':''}}" (tap)='scanCode(gift.code)'>...</div>
+    </div>
+  </div>
+  <div class="customerList" *ngIf='customerStorePresent.length'>
+    <div class="commodityName">礼品</div>
+    <div class="customerReturnSuccessContent">
+      <div class="name">礼品名称</div>
+      <div class="num">数量</div>
+      <div class="sum"></div>
+    </div>
+    <div class="customerReturnSuccessContentList" *ngFor='let present of customerStorePresent'>
+      <div class="name">{{present.goodsDesc}}</div>
+      <div class="num">{{present.num}}</div>
+      <div class="sum"></div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer no-shadow (click)='customerReturnScanner()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">退货</ion-title>
+  </ion-toolbar>
+</ion-footer>

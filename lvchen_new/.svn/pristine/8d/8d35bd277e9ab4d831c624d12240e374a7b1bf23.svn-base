@@ -1,0 +1,346 @@
+webpackJsonp([3],{
+
+/***/ 355:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaleReturnDetailPageModule", function() { return SaleReturnDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sale_return_detail__ = __webpack_require__(446);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(368);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SaleReturnDetailPageModule = /** @class */ (function () {
+    function SaleReturnDetailPageModule() {
+    }
+    SaleReturnDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sale_return_detail__["a" /* SaleReturnDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sale_return_detail__["a" /* SaleReturnDetailPage */]),
+            ],
+        })
+    ], SaleReturnDetailPageModule);
+    return SaleReturnDetailPageModule;
+}());
+
+//# sourceMappingURL=sale-return-detail.module.js.map
+
+/***/ }),
+
+/***/ 368:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__ = __webpack_require__(197);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ComponentsModule = /** @class */ (function () {
+    function ComponentsModule() {
+    }
+    ComponentsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ],
+            imports: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__["a" /* IonicModule */]],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ]
+        })
+    ], ComponentsModule);
+    return ComponentsModule;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 369:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsColorbarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the ComponentsColorbarComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var ComponentsColorbarComponent = /** @class */ (function () {
+    function ComponentsColorbarComponent() {
+        console.log('Hello ComponentsColorbarComponent Component');
+        this.text = 'Hello World';
+    }
+    ComponentsColorbarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'components-colorbar',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/'<!-- Generated template for the ComponentsColorbarComponent component -->\n<div class="colorbar">\n \n</div>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], ComponentsColorbarComponent);
+    return ComponentsColorbarComponent;
+}());
+
+//# sourceMappingURL=components-colorbar.js.map
+
+/***/ }),
+
+/***/ 370:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EchartLineComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the EchartLineComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var EchartLineComponent = /** @class */ (function () {
+    function EchartLineComponent() {
+        this.pwdResult = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
+        this.defaltOption = {
+            baseOption: {
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: true // 数据只读
+                        }
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false
+                }
+            }
+        };
+    }
+    EchartLineComponent.prototype.ionViewDidEnter = function () {
+    };
+    EchartLineComponent.prototype.ngOnChanges = function (changes) {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.ngAfterContentInit = function () {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.refresh = function () {
+        var ctx = this.container.nativeElement;
+        if (this.cheight) {
+            ctx.style.height = this.cheight + 'px';
+        }
+        this.chart = echarts.init(ctx);
+        alert(this.config);
+        this.chart.setOption(this.config);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('container'),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+    ], EchartLineComponent.prototype, "container", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "cheight", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Output */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "pwdResult", void 0);
+    EchartLineComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'echart-line',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/'<!-- Generated template for the EchartLineComponent component -->\n<div #container class="div-charts" ></div>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], EchartLineComponent);
+    return EchartLineComponent;
+    var _a;
+}());
+
+//# sourceMappingURL=echart-line.js.map
+
+/***/ }),
+
+/***/ 446:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SaleReturnDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_alert_alert_controller__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_popover_popover_controller__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+/**
+ * Generated class for the SaleReturnDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SaleReturnDetailPage = /** @class */ (function () {
+    function SaleReturnDetailPage(navCtrl, navParams, appservice, alertCtrl, popover) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appservice = appservice;
+        this.alertCtrl = alertCtrl;
+        this.popover = popover;
+        this.actNameNum = 0;
+        this.goodsLength = 0;
+        this.presentLength = 0;
+        this.state = 0;
+        this.posSaleId = '';
+        this.state = this.navParams.get('state');
+    }
+    SaleReturnDetailPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.navbar.backButtonClick = function (e) {
+            _this.navCtrl.pop({ animation: 'md-transition' });
+        };
+        this.state = this.navParams.get('state');
+        this.appservice.httpPost('getSellCasPosSale.api', { posSaleId: this.navParams.get('saleId') }, function (data) {
+            _this.posSaleId = data.data.posSaleId;
+            _this.phone = data.data.phone;
+            _this.storeName = data.data.stroeName;
+            _this.receiptNo = data.data.receiptNo;
+            _this.goods = data.data.goods;
+            _this.present = data.data.gifts;
+            _this.actName = data.data.actMap || [];
+            _this.actNameNum = _this.actName.length || 0;
+            _this.goodsLength = _this.goods.length || 0;
+            _this.presentLength = data.data.gifts.length || 0;
+            console.log(_this.goods);
+        });
+    };
+    SaleReturnDetailPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SaleReturnDetailPage');
+    };
+    // JSON.parse(window.localStorage.getItem('userInfo'))['id']
+    SaleReturnDetailPage.prototype.saleReturnPass = function (id) {
+        var _this = this;
+        var k = id == 1 ? '退货通过' : '退货不通过';
+        var prompt = this.alertCtrl.create({
+            title: "\u8BF7\u786E\u8BA4" + k,
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function (data) {
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.appservice.httpPost('auditCasPosSale.api', { posSaleId: _this.posSaleId,
+                            state: id,
+                            remarks: ''
+                        }, function (data) {
+                            console.log(data);
+                            if (data.code == 1) {
+                                _this.appservice.alert(data.msg);
+                                _this.navCtrl.popToRoot();
+                            }
+                            else {
+                                _this.appservice.alert(data.msg);
+                            }
+                        });
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    SaleReturnDetailPage.prototype.codeScan = function (code) {
+        var ary = [];
+        ary.push(code);
+        var popover = this.popover.create('CodeviewPage', ary);
+        popover.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], SaleReturnDetailPage.prototype, "navbar", void 0);
+    SaleReturnDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sale-return-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale-return-detail/sale-return-detail.html"*/'<!--\n  Generated template for the SaleReturnDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>退货审核处理</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n    <div class="header-div" style="background:#fff;margin-bottom: 1rem;">\n        <div padding>门店名称&nbsp;&nbsp;&nbsp;&nbsp;{{storeName}}</div>\n        <div style="height: 1px;width: 100%;background: #ccc;"></div>\n        <div padding>退货单号&nbsp;&nbsp;&nbsp;&nbsp;{{receiptNo}} </div>\n        <div style="height: 1px;width: 100%;background: #ccc;"></div>\n        <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{phone}} </div>\n        <components-colorbar></components-colorbar>\n        <div class="repayStatus">\n            <img  src="{{state==0?\'./assets/imgs/audit.png\':state==1?\'./assets/imgs/Pass.png\':\'./assets/imgs/noPass.png\'}}" alt="">\n        </div>\n      </div>\n      <div class="act-div"> {{actNameNum==0?"没有参与任何活动":"参与活动："}}\n        <ul class="{{actNum==0?\'hidden\':\'\'}}" >\n          <li  *ngFor="let act of actName;">{{act.actName}}</li>\n        </ul>\n      </div>\n      <div class="customerList" *ngIf=\'goodsLength!=0\'>\n        <div class="commodityName">商品</div>\n        <div class="customerReturnSuccessContent">\n          <div class="name">商品名称</div>\n          <div class="num">数量</div>\n          <div class="sum"></div>\n        </div>\n        <div class="customerReturnSuccessContentList" *ngFor=\'let item of goods\'>\n          <div class="name">{{item.goodsDesc}}</div>\n          <div class="num">{{item.num}}</div>\n          <div class="sum {{item.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(item.code)\'>..</div>\n        </div>\n      </div>\n      <div class="customerListpresent"  *ngIf=\'presentLength!=0\'>\n          <div class="commodityName">赠品</div>\n          <div class="customerReturnSuccessContent">\n            <div class="name">商品名称</div>\n            <div class="num">数量</div>\n            <div class="sum">赠品来源</div>\n            <div class="sum"></div>\n          </div>\n          <div class="customerReturnSuccessContentList"*ngFor=\'let ite of present\' >\n              <div class="name">{{ite.goodsDesc}}</div>\n              <div class="num">{{ite.num}}</div>\n              <div class="sum">{{ite.source==0?\'借门店\':ite.source==1?\'欠顾客\':\'其他\'}}</div>\n              <div class="sum {{ite.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(ite.code)\'>...</div>\n          </div>\n         \n        </div>\n</ion-content>\n<ion-footer no-shadow  *ngIf=\'state==0\'>\n   <div class="sale">\n     <button class="pass"  (tap)=\'saleReturnPass(1)\'>\n        通过\n     </button>\n<button class="nopass"   (tap)=\'saleReturnPass(2)\'>\n       不通过\n     </button>\n   </div>\n</ion-footer>\n  \n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale-return-detail/sale-return-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_4__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_alert_alert_controller__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3_ionic_angular_components_popover_popover_controller__["a" /* PopoverController */]])
+    ], SaleReturnDetailPage);
+    return SaleReturnDetailPage;
+}());
+
+//# sourceMappingURL=sale-return-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=3.js.map

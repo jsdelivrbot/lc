@@ -1,0 +1,16 @@
+page-chargeback-verify {
+  .content {
+    background: #f5f4f3 !important;
+  }
+  input {
+    border: none;
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+  }
+  textarea {
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+  }
+}

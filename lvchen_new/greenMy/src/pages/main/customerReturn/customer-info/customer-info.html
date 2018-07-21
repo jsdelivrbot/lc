@@ -1,0 +1,34 @@
+<!--
+  Generated template for the CustomerInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>顾客退货信息</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="custom">
+  <div class="header">
+    <div class="customerInfo">
+      <div>顾客手机</div>
+      <input type="number" [(ngModel)]='customer.phone' disabled="disabled">
+    </div>
+    <!-- <div class="customerInfo">
+            <div>验证码</div>
+            <input type="tel"[(ngModel)]='customer.smsCode' placeholder="请输入验证码">
+            <span *ngIf='!sms' (tap)='send()'>获取验证码</span>
+            <span *ngIf='sms'>发送({{num}})</span>
+        </div> -->
+    <!-- <components-colorbar></components-colorbar> -->
+  </div>
+  <div class="customerContent">
+    <textarea name="" id="" cols="30" rows="10" [(ngModel)]='customer.memo'></textarea>
+  </div>
+</ion-content>
+<ion-footer no-shadow (tap)='submit()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">提交</ion-title>
+  </ion-toolbar>
+</ion-footer>

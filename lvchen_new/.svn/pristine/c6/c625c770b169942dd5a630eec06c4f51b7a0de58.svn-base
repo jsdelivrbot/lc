@@ -1,0 +1,146 @@
+webpackJsonp([61],{
+
+/***/ 306:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesPerformanceConsignPageModule", function() { return SalesPerformanceConsignPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_performance_consign__ = __webpack_require__(397);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalesPerformanceConsignPageModule = /** @class */ (function () {
+    function SalesPerformanceConsignPageModule() {
+    }
+    SalesPerformanceConsignPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_performance_consign__["a" /* SalesPerformanceConsignPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_performance_consign__["a" /* SalesPerformanceConsignPage */]),
+            ],
+        })
+    ], SalesPerformanceConsignPageModule);
+    return SalesPerformanceConsignPageModule;
+}());
+
+//# sourceMappingURL=sales-performance-consign.module.js.map
+
+/***/ }),
+
+/***/ 397:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesPerformanceConsignPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SalesPerformanceConsignPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesPerformanceConsignPage = /** @class */ (function () {
+    function SalesPerformanceConsignPage(navCtrl, navParams, appService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.Title = "寄存额";
+        this.storeName = "业务组";
+        // 业绩类型
+        this.tag = 1;
+        // 季度
+        this.dateType = 1;
+        this.titleArr = {
+            3: "寄存销售额",
+            7: "寄存领取额",
+            8: "寄存剩余额"
+        };
+        this.tableTitle = "业务组";
+        this.listMap = [];
+        this.tail = 0;
+        this.amountCount = 0;
+        this.numCount = 0;
+        this.identity = 0; //-1业务员，1员工，2、3导购
+        this.appService.getItem('userInfo', function (val) {
+            _this.identity = val['tag'];
+        });
+    }
+    SalesPerformanceConsignPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.tag = this.navParams.data.type;
+        this.Title = this.titleArr[this.tag];
+        // 获取业务组名称
+        this.appService.getItem("curStore", function (obj) {
+            _this.storeName = obj.storeName;
+        });
+        // 获取数据
+        this.getData();
+    };
+    SalesPerformanceConsignPage.prototype.getData = function () {
+        var _this = this;
+        this.appService.httpPost("findSecoundSalesAnalysis.api", {
+            tag: this.tag,
+            dateType: this.dateType
+        }, function (res) {
+            console.log(res);
+            if (res.code == 1) {
+                _this.listMap = res.data.listMap;
+                if (_this.identity == 2 || _this.identity == 3) {
+                    _this.tableTitle = "时间";
+                }
+                else {
+                    _this.tail = res.data.tail;
+                    if (_this.tail == 1) {
+                        _this.tableTitle = "门店";
+                    }
+                    for (var i = 0; i < _this.listMap.length; i++) {
+                        _this.amountCount += _this.listMap[i].amount;
+                        _this.numCount += _this.listMap[i].surplusNumSum != undefined ? _this.listMap[i].surplusNumSum : _this.listMap[i].receiveNumSum != undefined ? _this.listMap[i].receiveNumSum : _this.listMap[i].depositNumSum;
+                    }
+                }
+            }
+        }, true);
+    };
+    SalesPerformanceConsignPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-performance-consign',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance-consign/sales-performance-consign.html"*/'<!--\n  Generated template for the SalesPerformanceConsignPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{Title}}</ion-title>\n  </ion-navbar>\n  <div class="store-name">\n    <span>{{storeName}}</span>\n  </div>\n  <tbody class="list-title">\n    <tr>\n      <td width="40%">{{tableTitle}}</td>\n      <td width="30%">寄存销售额</td>\n      <td width="30%">寄存量</td>\n      <td width="5%">\n        <ion-icon class="place-holder" name="arrow-forward"></ion-icon>\n      </td>\n    </tr>\n  </tbody>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="rank-wrap">\n    <table>\n      <tr *ngIf="identity != 2 && identity !=3">\n        <td width="40%">合计</td>\n        <td width="30%">{{amountCount|number:\'1.2-2\'}}</td>\n        <td width="30%">{{numCount}}</td>\n        <td width="5%">\n          <ion-icon class="place-holder" name="arrow-forward"></ion-icon>\n        </td>\n      </tr>\n      <tr *ngFor="let item of listMap">\n        <td width="40%" *ngIf="item.dateStr == undefined?false:true">{{item.dateStr}}</td>\n        <td width="40%" *ngIf="item.orgName == undefined?false:true">{{item.orgName}}</td>\n        <td width="30%" *ngIf="item.numSum == undefined?false:true">{{item.numSum|number:\'1.2-2\'}}</td>\n        <td width="30%" *ngIf="item.amount == undefined?false:true">{{item.amount|number:\'1.2-2\'}}</td>\n        <td width="25%" *ngIf="item.amountSum == undefined?false:true">{{item.amountSum}}</td>\n        <td width="25%" *ngIf="item.surplusNumSum == undefined?false:true">{{item.surplusNumSum}}</td>\n        <td width="25%" *ngIf="item.receiveNumSum == undefined?false:true">{{item.receiveNumSum}}</td>\n        <td width="30%" *ngIf="item.depositNumSum == undefined?false:true">{{item.depositNumSum}}</td>\n        <td width="5%">\n          <ion-icon class="place-holder" name="arrow-forward"></ion-icon>\n        </td>\n      </tr>\n    </table>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance-consign/sales-performance-consign.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], SalesPerformanceConsignPage);
+    return SalesPerformanceConsignPage;
+}());
+
+//# sourceMappingURL=sales-performance-consign.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=61.js.map

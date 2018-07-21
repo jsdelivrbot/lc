@@ -1,0 +1,26 @@
+<ion-content class="myCenter">
+  <div class="meLocation" (click)='showRadio()'>
+     <ion-icon name="swap"></ion-icon>&nbsp;{{storeName}}&nbsp;
+  </div>
+  <div class="photo">
+    <img src="./assets/imgs/head_portrait.png" alt="">
+  </div>
+  <div class='userName'>{{userName}}<br><p style="font-size: 15px">{{phone}}</p></div>
+  <ion-item class="meList" (click)='modifyPsw()'>
+      <div class="list-item-left" >
+          <img src="./assets/imgs/meAbout@2x.png" alt=""><h2>修改密码</h2>
+      </div>
+      <div class="list-item-right">
+        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>
+      </div>
+  </ion-item>  
+  <ion-item class="meList" (click)='close()'>
+      <div class="list-item-left">
+          <img src="./assets/imgs/uncord.png" alt="" ><h2>解除绑定</h2>
+      </div>
+      <div class="list-item-right">
+        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>
+      </div>
+  </ion-item>  
+  <button ion-button color='light' (click)='logout()'>退出登录</button>
+</ion-content>

@@ -1,0 +1,280 @@
+webpackJsonp([2],{
+
+/***/ 356:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SaleSuccessPageModule", function() { return SaleSuccessPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sale_success__ = __webpack_require__(447);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(368);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SaleSuccessPageModule = /** @class */ (function () {
+    function SaleSuccessPageModule() {
+    }
+    SaleSuccessPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sale_success__["a" /* SaleSuccessPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sale_success__["a" /* SaleSuccessPage */]),
+            ],
+        })
+    ], SaleSuccessPageModule);
+    return SaleSuccessPageModule;
+}());
+
+//# sourceMappingURL=sale-success.module.js.map
+
+/***/ }),
+
+/***/ 368:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__ = __webpack_require__(197);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ComponentsModule = /** @class */ (function () {
+    function ComponentsModule() {
+    }
+    ComponentsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ],
+            imports: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__["a" /* IonicModule */]],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ]
+        })
+    ], ComponentsModule);
+    return ComponentsModule;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 369:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsColorbarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the ComponentsColorbarComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var ComponentsColorbarComponent = /** @class */ (function () {
+    function ComponentsColorbarComponent() {
+        console.log('Hello ComponentsColorbarComponent Component');
+        this.text = 'Hello World';
+    }
+    ComponentsColorbarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'components-colorbar',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/'<!-- Generated template for the ComponentsColorbarComponent component -->\n<div class="colorbar">\n \n</div>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], ComponentsColorbarComponent);
+    return ComponentsColorbarComponent;
+}());
+
+//# sourceMappingURL=components-colorbar.js.map
+
+/***/ }),
+
+/***/ 370:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EchartLineComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the EchartLineComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var EchartLineComponent = /** @class */ (function () {
+    function EchartLineComponent() {
+        this.pwdResult = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
+        this.defaltOption = {
+            baseOption: {
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: true // 数据只读
+                        }
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false
+                }
+            }
+        };
+    }
+    EchartLineComponent.prototype.ionViewDidEnter = function () {
+    };
+    EchartLineComponent.prototype.ngOnChanges = function (changes) {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.ngAfterContentInit = function () {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.refresh = function () {
+        var ctx = this.container.nativeElement;
+        if (this.cheight) {
+            ctx.style.height = this.cheight + 'px';
+        }
+        this.chart = echarts.init(ctx);
+        alert(this.config);
+        this.chart.setOption(this.config);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('container'),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+    ], EchartLineComponent.prototype, "container", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "cheight", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Output */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "pwdResult", void 0);
+    EchartLineComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'echart-line',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/'<!-- Generated template for the EchartLineComponent component -->\n<div #container class="div-charts" ></div>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], EchartLineComponent);
+    return EchartLineComponent;
+    var _a;
+}());
+
+//# sourceMappingURL=echart-line.js.map
+
+/***/ }),
+
+/***/ 447:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SaleSuccessPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the SaleSuccessPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SaleSuccessPage = /** @class */ (function () {
+    function SaleSuccessPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    SaleSuccessPage.prototype.ngOnInit = function () {
+        this.data = this.navParams.data;
+        console.log(this.data);
+        this.actNum = this.data.actMap.length;
+        this.giftNum = this.data.gifts.length;
+        this.presentNum = this.data.presentMap.length;
+        // for (var i = 0; i < this.data.presentMap.length; ++i) {
+        //   let present = this.data.presentMap[i];
+        //   if (present.source == 0) {
+        //     present.source = '借门店';
+        //   }else if (present.source == 1){
+        //     present.source = '欠顾客';
+        //   }else{
+        //     present.source = '其它';
+        //   }
+        // }
+    };
+    SaleSuccessPage.prototype.ionViewDidLoad = function () {
+    };
+    SaleSuccessPage.prototype.onBack = function () {
+        this.navCtrl.popToRoot();
+    };
+    SaleSuccessPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sale-success',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale-success/sale-success.html"*/'<!--\n  Generated template for the SaleSuccessPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar hideBackButton=\'true\'>\n    <ion-title>销售成功</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="header-div" style="background:#fff;">\n    <div padding>销售单号&nbsp;&nbsp;&nbsp;&nbsp;{{data.receiptNo}} </div>\n    <div style="height: 1px;width: 100%;background: #ccc;"></div>\n    <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{data.phone}} </div>\n    <components-colorbar></components-colorbar>\n  </div>\n  <div class="act-div"> {{actNum==0?"没有参与任何活动":"参与活动："}}\n    <ul class="{{actNum==0?\'hidden\':\'\'}}"  color="oranges">\n      <li *ngFor="let act of data.actMap;">{{act.actName}}</li>\n    </ul>\n  </div>\n  <div class="attribute">商品</div>\n      <div class="customerList" >\n          <div class="customerReturnSuccessContent">\n            <div class="name">商品名称</div>\n            <div class="num">数量</div>\n            <div class="sum"></div>\n          </div>\n          <div class="customerReturnSuccessContentList" *ngFor="let good of data.goods;">\n            <div class="name">{{good.goodsName}}</div>\n            <div class="num">&nbsp;&nbsp;{{good.num}}</div>\n            <div class="sum" ></div>\n          </div>\n      </div>\n  \n  <div class="attribute {{giftNum==0?\'hidden\':\'\'}}">赠品</div>\n  <div class="customerList {{giftNum==0?\'hidden\':\'\'}}" >\n      <div class="customerReturnSuccessContent">\n        <div class="name">赠品名称</div>\n        <div class="num">数量</div>\n        <div class="sum"></div>\n      </div>\n      <div class="customerReturnSuccessContentList" *ngFor="let good of data.gifts;">\n        <div class="name">{{good.goodsName}}</div>\n        <div class="num">&nbsp;&nbsp;{{good.num}}</div>\n        <div class="sum" ></div>\n      </div>\n  </div>\n  <div class="attribute {{presentNum==0?\'hidden\':\'\'}}">礼品</div>\n  <div class="customerList {{presentNum==0?\'hidden\':\'\'}}" >\n      <div class="customerReturnSuccessContent">\n        <div class="name">礼品名称</div>\n        <div class="num">数量</div>\n        <div class="sum"></div>\n      </div>\n      <div class="customerReturnSuccessContentList" *ngFor="let present of data.presentMap;">\n        <div class="name"> {{present.name}}</div>\n        <div class="num">{{present.num}}</div>\n        <div class="sum" ></div>\n      </div>\n  </div>\n</ion-content>\n<ion-footer no-shadow (click)=\'onBack()\'>\n  <ion-toolbar>\n    <ion-title style="text-align: center;">返回</ion-title>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/sale-success/sale-success.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], SaleSuccessPage);
+    return SaleSuccessPage;
+}());
+
+//# sourceMappingURL=sale-success.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=2.js.map

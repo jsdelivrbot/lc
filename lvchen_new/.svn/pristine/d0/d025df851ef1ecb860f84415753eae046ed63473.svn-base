@@ -1,0 +1,36 @@
+<!--
+  Generated template for the OrderListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>订单列表</ion-title>
+  </ion-navbar>
+  <ion-searchbar color='primary' placeholder="手机号" padding [(ngModel)]="order" (keyup)="onKeyboard($event)" type='tel' class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">
+  </ion-searchbar>
+</ion-header>
+<ion-content>
+  <dl class="cart_list" *ngFor="let item of orderData;">
+    <dt>
+      <ion-checkbox color="green" [(ngModel)]="item.checked" (ionChange)="changeCarts()"></ion-checkbox>
+    </dt>
+    <dd (tap)='OrderDetail(item.id)'>
+      <div class="list-item-left">
+        <h2>{{item.tradeDate.time|date:'yyyy年MM月dd日'}}</h2>
+        <h4>销售单号：{{item.receiptNo}}</h4> 
+      </div>
+      <div class="list-item-right">
+        <span>购买数量&nbsp;&nbsp;</span>
+        <span class="num-text">{{item.amounts}}</span>
+        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>
+      </div>
+    </dd>
+  </dl>
+</ion-content>
+<ion-footer no-shadow (click)='add()' *ngIf='hasAdd'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">追加</ion-title>
+  </ion-toolbar>
+</ion-footer>

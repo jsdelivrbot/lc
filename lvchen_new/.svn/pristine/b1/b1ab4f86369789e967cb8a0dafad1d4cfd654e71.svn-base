@@ -1,0 +1,98 @@
+webpackJsonp([57],{
+
+/***/ 311:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShopFromPageModule", function() { return ShopFromPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shop_from__ = __webpack_require__(402);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ShopFromPageModule = /** @class */ (function () {
+    function ShopFromPageModule() {
+    }
+    ShopFromPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__shop_from__["a" /* ShopFromPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__shop_from__["a" /* ShopFromPage */]),
+            ],
+        })
+    ], ShopFromPageModule);
+    return ShopFromPageModule;
+}());
+
+//# sourceMappingURL=shop-from.module.js.map
+
+/***/ }),
+
+/***/ 402:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShopFromPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__ = __webpack_require__(5);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ShopFromPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ShopFromPage = /** @class */ (function () {
+    function ShopFromPage(navCtrl, navParams, View) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.View = View;
+        this.name = navParams.data['id'] || '';
+        this.storeDesc = navParams.data['storeDesc'] || '';
+        this.orgNames = navParams.data['orgNames'] || '';
+    }
+    ShopFromPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ShopFromPage');
+    };
+    ShopFromPage.prototype.ViewDisplay = function () {
+        this.View.dismiss();
+    };
+    ShopFromPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-shop-from',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/shop-from/shop-from.html"*/'<!--\n  Generated template for the ShopFromPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content (tap)=\'ViewDisplay()\'>\n    <div class="shopInfoContent">\n      <div class="shopInfoDialog">\n       <div class="shopName">\n         <span>导购姓名：</span><span>{{name}}</span>\n       </div>\n       <div class="storeFrom">\n         所在片区：{{orgNames}}\n       </div>\n       <div class="storeFrom">\n         所属门店：{{storeDesc}}\n      </div>\n      </div>\n     </div>\n  </ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/shop-from/shop-from.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_navigation_view_controller__["a" /* ViewController */]])
+    ], ShopFromPage);
+    return ShopFromPage;
+}());
+
+//# sourceMappingURL=shop-from.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=57.js.map

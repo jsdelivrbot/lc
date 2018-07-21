@@ -1,0 +1,51 @@
+{
+  "_from": "@ionic-native/app-minimize",
+  "_id": "@ionic-native/app-minimize@4.7.0",
+  "_inBundle": false,
+  "_integrity": "sha1-km/4yDaVmtTSo2TmN1wvjgrzrBg=",
+  "_location": "/@ionic-native/app-minimize",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ionic-native/app-minimize",
+    "name": "@ionic-native/app-minimize",
+    "escapedName": "@ionic-native%2fapp-minimize",
+    "scope": "@ionic-native",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://r.cnpmjs.org/@ionic-native/app-minimize/download/@ionic-native/app-minimize-4.7.0.tgz",
+  "_shasum": "926ff8c836959ad4d2a364e6375c2f8e0af3ac18",
+  "_spec": "@ionic-native/app-minimize",
+  "_where": "/Users/linyunfu/Desktop/greenMy",
+  "author": {
+    "name": "ionic"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/ionic-native/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Ionic Native - Native plugins for ionic apps",
+  "homepage": "https://github.com/ionic-team/ionic-native#readme",
+  "license": "MIT",
+  "module": "index.js",
+  "name": "@ionic-native/app-minimize",
+  "peerDependencies": {
+    "@ionic-native/core": "^4.2.0",
+    "@angular/core": "*",
+    "rxjs": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/ionic-native.git"
+  },
+  "typings": "index.d.ts",
+  "version": "4.7.0"
+}

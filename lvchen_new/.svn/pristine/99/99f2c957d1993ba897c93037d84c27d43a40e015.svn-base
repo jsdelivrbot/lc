@@ -1,0 +1,120 @@
+webpackJsonp([59],{
+
+/***/ 308:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesStatisticsDetailPageModule", function() { return SalesStatisticsDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_statistics_detail__ = __webpack_require__(399);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalesStatisticsDetailPageModule = /** @class */ (function () {
+    function SalesStatisticsDetailPageModule() {
+    }
+    SalesStatisticsDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_statistics_detail__["a" /* SalesStatisticsDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_statistics_detail__["a" /* SalesStatisticsDetailPage */]),
+            ],
+        })
+    ], SalesStatisticsDetailPageModule);
+    return SalesStatisticsDetailPageModule;
+}());
+
+//# sourceMappingURL=sales-statistics-detail.module.js.map
+
+/***/ }),
+
+/***/ 399:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesStatisticsDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SalesStatisticsDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesStatisticsDetailPage = /** @class */ (function () {
+    function SalesStatisticsDetailPage(navCtrl, navParams, appService, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.loadingCtrl = loadingCtrl;
+        //销售数据
+        this.salesData = [];
+        this.goodsId = navParams.get('goodsId');
+        // console.log(this.goodsId);
+        this.appService.getItem('curStore', function (val) {
+            _this.storeId = val['id'];
+            // console.log(this.storeId)
+        });
+    }
+    SalesStatisticsDetailPage.prototype.ionViewDidLoad = function () {
+        this.presentLoading();
+        this.salesDetail();
+    };
+    // 获取详情数据
+    SalesStatisticsDetailPage.prototype.salesDetail = function () {
+        var _this = this;
+        this.appService.httpPost('findCasPosSaleDtl.api', { storeId: this.storeId, goodsId: this.goodsId }, function (data) {
+            console.log(data['data']);
+            _this.salesData = data['data'];
+            _this.saleQty = data['saleQty'];
+            _this.saleAmount = data['saleAmount'];
+        });
+    };
+    SalesStatisticsDetailPage.prototype.presentLoading = function () {
+        var loader = this.loadingCtrl.create({
+            duration: 1000
+        });
+        loader.present();
+    };
+    SalesStatisticsDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-statistics-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-statistics-detail/sales-statistics-detail.html"*/'<!--\n  Generated template for the SalesStatisticsDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>销售统计</ion-title>\n  </ion-navbar>\n</ion-header>\n \n<ion-content>\n  <div class="detail-title line">\n    <div class="business-group">业务组</div>\n    <div class="saleroom">销售额(万元)</div>\n    <div class="sales-volume">销售量(个)</div>\n  </div>\n  \n  <div class="total-bar line">\n      <div class="total">合计</div>\n      <div class="total-saleroom">{{saleAmount || 0}}</div>\n      <div class="total-sales-volume">{{saleQty || 0}}</div>\n  </div>\n\n  <div class="business-bar line" *ngFor="let item of salesData">\n      <div class="business-name">{{ item.orgStoreName }}</div>\n      <div class="saleroom">{{item.saleAmount}}</div>\n      <div class="sales-volume">{{item.saleQty}}</div>\n  </div>\n \n</ion-content>\n '/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-statistics-detail/sales-statistics-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    ], SalesStatisticsDetailPage);
+    return SalesStatisticsDetailPage;
+}());
+
+//# sourceMappingURL=sales-statistics-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=59.js.map

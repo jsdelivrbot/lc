@@ -1,0 +1,227 @@
+webpackJsonp([85],{
+
+/***/ 282:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusinessCourseSerachPageModule", function() { return BusinessCourseSerachPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__business_course_serach__ = __webpack_require__(373);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BusinessCourseSerachPageModule = /** @class */ (function () {
+    function BusinessCourseSerachPageModule() {
+    }
+    BusinessCourseSerachPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__business_course_serach__["a" /* BusinessCourseSerachPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__business_course_serach__["a" /* BusinessCourseSerachPage */]),
+            ],
+        })
+    ], BusinessCourseSerachPageModule);
+    return BusinessCourseSerachPageModule;
+}());
+
+//# sourceMappingURL=business-course-serach.module.js.map
+
+/***/ }),
+
+/***/ 373:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessCourseSerachPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BusinessCourseSerachPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BusinessCourseSerachPage = /** @class */ (function () {
+    function BusinessCourseSerachPage(navCtrl, navParams, viewCtrl, appService, appUrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.viewCtrl = viewCtrl;
+        this.appService = appService;
+        this.appUrl = appUrl;
+        // 搜索字段
+        this.searchTitle = "";
+        // 搜索历史
+        this.searchHistory = [];
+        // 是否展示搜索历史
+        this.showHistory = true;
+        // 搜索结果列表
+        this.coursesList = [];
+        // 课程类型数组
+        this.coursesType = [];
+        this.coursesTypeColors = [];
+        // 能否搜索
+        this.canDoSearch = true;
+        // 是否有下一页
+        this.hasNextPage = false;
+        // 获取行数
+        this.rows = 20;
+        // 页数
+        this.page = 1;
+    }
+    BusinessCourseSerachPage.prototype.ionViewDidLoad = function () {
+        this.getSearchHistory();
+    };
+    // 搜索
+    BusinessCourseSerachPage.prototype.search = function () {
+        this.page = 1;
+        this.coursesList = [];
+        // 设置不能搜索
+        this.canDoSearch = false;
+        // 隐藏历史记录
+        this.showHistory = false;
+        this.getCourses(1);
+        this.recordSearchHistory();
+    };
+    // 取消搜索
+    BusinessCourseSerachPage.prototype.cancelModal = function () {
+        this.navCtrl.pop({
+            animation: 'md-transition'
+        });
+    };
+    // 获取课程
+    BusinessCourseSerachPage.prototype.getCourses = function ($event) {
+        var _this = this;
+        this.appService.httpPost("business_getCourses", {
+            title: this.searchTitle,
+            page: this.page,
+            rows: this.rows
+        }, function (res) {
+            if (res.code == 1) {
+                // 获取数据
+                _this.coursesList = _this.coursesList.concat(res.map.listMap);
+                // 随机颜色
+                _this.colorTag(res.map.listMap);
+                // 可以继续搜索
+                _this.canDoSearch = true;
+                // 判断是否有下一页
+                if (res.map.listMap.length < _this.rows) {
+                    _this.hasNextPage = false;
+                }
+                else {
+                    _this.hasNextPage = true;
+                }
+                // 加载更多完成
+                if ($event != 1) {
+                    $event.complete();
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+                // 可以继续搜索
+                _this.canDoSearch = true;
+                // 加载更多完成
+                if ($event != 1) {
+                    $event.complete();
+                }
+            }
+        }, !this.hasNextPage);
+    };
+    // 获取历史搜索记录
+    BusinessCourseSerachPage.prototype.getSearchHistory = function () {
+        var _this = this;
+        this.appService.getItem("searchHistory", function (obj) {
+            if (obj != 1) {
+                _this.searchHistory = obj;
+            }
+            else {
+                _this.searchHistory = ["", "", "", "", "", "", "", ""];
+            }
+        });
+    };
+    // 记录搜索记录
+    BusinessCourseSerachPage.prototype.recordSearchHistory = function () {
+        var index = this.searchHistory.indexOf(this.searchTitle);
+        // 如果记录已经有了，把他提到最前面
+        if (index != -1) {
+            var temp = this.searchHistory.splice(index, 1);
+            this.searchHistory.unshift(temp);
+        }
+        else if (this.searchTitle) {
+            this.searchHistory.pop();
+            this.searchHistory.unshift(this.searchTitle);
+        }
+        // 存储在本地
+        this.appService.setItem("searchHistory", this.searchHistory);
+    };
+    // 给标签添加颜色
+    BusinessCourseSerachPage.prototype.colorTag = function (list) {
+        for (var i = 0; i < list.length; i++) {
+            if (this.coursesType.indexOf(list[i]['courseType']) == -1) {
+                this.coursesType.push(list[i].courseType);
+            }
+        }
+        for (var i = this.coursesTypeColors.length; i < this.coursesType.length; i++) {
+            this.getColor(this.coursesTypeColors);
+        }
+    };
+    // 随机颜色
+    BusinessCourseSerachPage.prototype.getColor = function (arr) {
+        var newColor = "rgba(" + (Math.random() * 100 + 100) + "," + (Math.random() * 100 + 100) + "," + (Math.random() * 100 + 100) + ",1)";
+        if (arr.indexOf(newColor) != -1) {
+            this.getColor(arr);
+        }
+        else {
+            arr.push(newColor);
+        }
+    };
+    // 加载更多数据
+    BusinessCourseSerachPage.prototype.getMoreData = function ($event) {
+        this.page++;
+        this.getCourses($event);
+    };
+    // 展开详情页
+    BusinessCourseSerachPage.prototype.goToCourseDetail = function (id) {
+        this.navCtrl.push('BusinessCourseDetailPage', { id: id });
+    };
+    BusinessCourseSerachPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-business-course-serach',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-course-serach/business-course-serach.html"*/'<!--\n  Generated template for the BusinessCourseSerachPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar hideBackButton>\n    <div class="search-wrap">\n      <div class="input-wrap">\n        <ion-icon name="search"></ion-icon>\n        <input type="text" placeholder="请输入课程名称" [(ngModel)]="searchTitle">\n        <span class="del-button" (tap)="this.searchTitle=\'\'">\n          <img src="./assets/imgs/cancelBtn.png" *ngIf="!this.searchTitle == \'\'">\n        </span>\n        <button (tap)="search()">搜索</button>\n      </div>\n    </div>\n    <button (tap)="cancelModal()">取消</button>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content>\n  <div class="history-wrap" *ngIf="showHistory">\n    <div class="history-title">\n      <div>\n        历史搜索\n      </div>\n      <span class="line"></span>\n    </div>\n    <div class="history-box">\n      <button *ngFor="let item of searchHistory" [ngClass]="{hide : item==\'\'}" (tap)="searchTitle = item;search()">\n        {{item}}\n      </button>\n    </div>\n  </div>\n\n  <ul class="courses-list-wrap">\n    <li *ngFor="let item of coursesList" (tap)="goToCourseDetail(item.id)">\n      <div class="courses-info-wrap">\n        <div class="courses-info-title">{{item.title}}</div>\n        <div class="courses-info-time">发布时间 {{item.createTime}}</div>\n        <div class="courses-info-tag-wrap">\n          <span class="courses-info-tag" [ngStyle]="{\'color\': coursesTypeColors[coursesType.indexOf(item.courseType)]}">{{item.courseType}}</span>\n        </div>\n      </div>\n      <div class="courses-img-wrap">\n        <img [src]=\'appUrl.apiUrl+item.pic\'>\n      </div>\n    </li>\n  </ul>\n\n  <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]=\'hasNextPage\'>\n    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n    </ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-course-serach/business-course-serach.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], BusinessCourseSerachPage);
+    return BusinessCourseSerachPage;
+}());
+
+//# sourceMappingURL=business-course-serach.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=85.js.map

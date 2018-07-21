@@ -1,0 +1,202 @@
+webpackJsonp([48],{
+
+/***/ 331:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReceiveCheckPageModule", function() { return ReceiveCheckPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__receive_check__ = __webpack_require__(422);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ReceiveCheckPageModule = /** @class */ (function () {
+    function ReceiveCheckPageModule() {
+    }
+    ReceiveCheckPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__receive_check__["a" /* ReceiveCheckPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__receive_check__["a" /* ReceiveCheckPage */]),
+            ],
+        })
+    ], ReceiveCheckPageModule);
+    return ReceiveCheckPageModule;
+}());
+
+//# sourceMappingURL=receive-check.module.js.map
+
+/***/ }),
+
+/***/ 422:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReceiveCheckPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ReceiveCheckPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ReceiveCheckPage = /** @class */ (function () {
+    function ReceiveCheckPage(navCtrl, navParams, appService, popoverCtrl, viewCtrl, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.popoverCtrl = popoverCtrl;
+        this.viewCtrl = viewCtrl;
+        this.platform = platform;
+        this.gifts = new Array();
+        this.goods = new Array();
+        this.presents = new Array();
+        this.goodNum = 0;
+        this.giftNum = 0;
+        this.presentNum = 0;
+    }
+    ReceiveCheckPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.gifts = new Array();
+        this.goods = new Array();
+        this.presents = new Array();
+        this.appService.getItem('pre', function (val) {
+            _this.presents = val['presentMap'] || [];
+            _this.presentNum = _this.presents.length || 0;
+        });
+        this.selectOptions = { title: '选择来源', mode: 'md' };
+        this.navbar.backButtonClick = function (e) {
+            _this.onBack();
+        };
+        var tempGoods = this.navParams.get('goods');
+        for (var i = 0; i < tempGoods.length; ++i) {
+            var tempGood = tempGoods[i];
+            var isRepeat = false;
+            for (var j = 0; j < this.goods.length; ++j) {
+                if (this.goods[j].id == tempGood.goodsId) {
+                    this.goods[j].code.push(tempGood.code);
+                    this.goods[j].num += 1;
+                    isRepeat = true;
+                    break;
+                }
+            }
+            if (!isRepeat) {
+                var codes = new Array();
+                codes.push(tempGood.code);
+                this.goods.push({ id: tempGood.goodsId, code: codes, saleType: 0, source: '', name: tempGood.name, num: 1 });
+            }
+        }
+        var tempGifts = this.navParams.get('gifts');
+        for (var k = 0; k < tempGifts.length; ++k) {
+            var tempGift = tempGifts[k];
+            var isRepeat = false;
+            for (var l = 0; l < this.gifts.length; ++l) {
+                if (this.gifts[l].id == tempGift.goodsId) {
+                    this.gifts[l].code.push(tempGift.code);
+                    this.gifts[l].num += 1;
+                    isRepeat = true;
+                    break;
+                }
+            }
+            if (!isRepeat) {
+                var codes = new Array();
+                codes.push(tempGift.code);
+                this.gifts.push({ id: tempGift.goodsId, code: codes, saleType: 1, source: tempGift.source, name: tempGift.name, num: 1 });
+            }
+        }
+        this.giftNum = this.gifts.length;
+        this.goodNum = this.goods.length;
+    };
+    ReceiveCheckPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.platform.registerBackButtonAction(function () {
+            _this.onBack();
+        });
+    };
+    ReceiveCheckPage.prototype.onBack = function () {
+        this.appService.backAlert(this.viewCtrl);
+    };
+    ReceiveCheckPage.prototype.onScanner = function () {
+        this.navCtrl.pop();
+    };
+    ReceiveCheckPage.prototype.onScanPresent = function () {
+        this.navCtrl.push('ScangiftPage', { userId: this.navParams.get('userId') });
+    };
+    ReceiveCheckPage.prototype.onCodeView = function (codes) {
+        var popover = this.popoverCtrl.create('CodeviewPage', codes);
+        popover.present();
+    };
+    ReceiveCheckPage.prototype.saleVerify = function () {
+        var tempGoods = new Array();
+        for (var i = 0; i < this.goods.length; ++i) {
+            tempGoods.push(this.goods[i]);
+        }
+        for (var j = 0; j < this.gifts.length; ++j) {
+            tempGoods.push(this.gifts[j]);
+        }
+        var params = { data: { 'goods': tempGoods, 'gifts': this.presents },
+            depostId: this.navParams.get('depostId'),
+            phone: this.navParams.get('phone') };
+        this.navCtrl.push('ReceiveVerifyPage', params, {
+            animation: 'md-transition'
+        });
+    };
+    ReceiveCheckPage.prototype.onAddNum = function (pos, num) {
+        this.presents[pos].num = parseInt(num) + 1;
+    };
+    ReceiveCheckPage.prototype.onCutNum = function (pos, num) {
+        if (num == 1) {
+            this.presents.splice(pos, 1);
+        }
+        else {
+            this.presents[pos].num = parseInt(num) - 1;
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], ReceiveCheckPage.prototype, "navbar", void 0);
+    ReceiveCheckPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-receive-check',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/receive-check/receive-check.html"*/'<!--\n  Generated template for the ReceiveCheckPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>领取确认</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="onScanPresent()">\n        <ion-icon name="ios-archive"></ion-icon>\n        &nbsp;&nbsp;\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="attribute {{goodNum==0?\'hidden\':\'\'}}">商品</div>\n  <ion-list class="{{goodNum==0?\'hidden\':\'\'}}">\n    <ion-list-header class="list-header">\n      <ion-row>\n        <ion-col col-9>\n          商品名称\n        </ion-col>\n        <ion-col col-3 class="t-a">\n          数量\n        </ion-col>\n      </ion-row>\n    </ion-list-header>\n    <ion-grid class="grid-style">\n      <ion-row *ngFor="let good of goods;">\n        <ion-col col-9>\n          <div style="width: 100%;">\n            <span style="width: 80%;">{{good.name}} </span>\n          </div>\n        </ion-col>\n        <ion-col col-3 class="t-r">\n          <ion-icon>{{good.num}}</ion-icon>\n          &nbsp;&nbsp;&nbsp;&nbsp;\n          <ion-icon name="ios-more" class="{{good.code[0] == \'4444\'?\'invisible\':\'\'}}" (click)="onCodeView(good.code)"></ion-icon>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n  <div class="attribute {{giftNum==0?\'hidden\':\'\'}}">赠品</div>\n  <ion-list class="{{giftNum==0?\'hidden\':\'\'}}">\n    <ion-list-header class="list-header">\n      <ion-row>\n        <ion-col col-9>\n          赠品名称\n        </ion-col>\n        <ion-col col-3 class="t-a">\n          数量\n        </ion-col>\n      </ion-row>\n    </ion-list-header>\n    <ion-grid class="grid-style">\n      <ion-row *ngFor="let good of gifts;index as i;">\n        <ion-col col-9>\n          {{good.name}}\n        </ion-col>\n        <ion-col col-3 class="t-r" >\n          <ion-icon>{{good.num}}</ion-icon>\n          &nbsp;&nbsp;&nbsp;&nbsp;\n          <ion-icon name="ios-more" class="{{good.code[0] == \'4444\'?\'invisible\':\'\'}}" (click)="onCodeView(good.code)"></ion-icon>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n  <div class="attribute {{presentNum==0?\'hidden\':\'\'}}">礼品</div>\n  <ion-list class="{{presentNum==0?\'hidden\':\'\'}}">\n    <ion-list-header class="list-header">\n      <ion-row>\n        <ion-col col-7>\n          礼品名称\n        </ion-col>\n        <ion-col col-3 class="t-a">\n          数量\n        </ion-col>\n         <ion-col col-2 class="t-a">\n          来源\n        </ion-col>\n      </ion-row>\n    </ion-list-header>\n    <ion-grid class="grid-style">\n      <ion-row *ngFor="let present of presents;index as i;">\n        <ion-col col-7>\n          {{present.name}}\n        </ion-col>\n        <ion-col col-3 class="div-center" style="padding-left: 8px">\n          <div class="cut-widget" (tap)="onCutNum(i,present.num)">－</div><div class="num-widget">{{present.num}}</div><div class="add-widget" (click)="onAddNum(i,present.num)">＋</div>\n        </ion-col>\n        <ion-col col-2 class="t-a" style="padding-left: 4px">\n          <p>{{present.source==0?\'借门店\':present.source==1?\'欠顾客\':\'其他\'}}</p>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-list>\n</ion-content>\n<ion-footer no-shadow>\n  <div class="depositFoot">\n      <div  class="foot1">\n          <button (tap)="onScanner()" ion-button color="gentle" col-12>\n              <ion-icon name="qr-scanner"></ion-icon>&nbsp;&nbsp;扫一扫\n            </button>\n        </div>\n        <div class="foot2">\n            <button (tap)="saleVerify()" ion-button color="primary" col-12 style="margin-left: 2px;">\n                下一步\n              </button>\n        </div>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/Deposit/receive-check/receive-check.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], ReceiveCheckPage);
+    return ReceiveCheckPage;
+}());
+
+//# sourceMappingURL=receive-check.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=48.js.map

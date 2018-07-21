@@ -1,0 +1,91 @@
+<!--
+  Generated template for the SalesPerformanceDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{textArr[tag-1][0]}}</ion-title>
+  </ion-navbar>
+  <div class="store-name">
+    <span>{{storeName}}</span>
+  </div>
+</ion-header>
+<ion-content>
+  <div class="my-situation">
+    <div class="my-situation-title-wrap">
+      <span>我的情况</span>
+      <div class="select-wrap">
+        <div [ngClass]="{selected : dateType == 1?true:false}" (tap)="changeType(1)">
+          <span>月</span>
+        </div>
+        <div [ngClass]="{selected : dateType == 2?true:false}" (tap)="changeType(2)">
+          <span>季</span>
+        </div>
+      </div>
+    </div>
+    <div class="my-situation-detail-wrap">
+      <div class="my-situation-detail">
+        <span *ngIf="[4,5,6].indexOf(tag) == -1">{{nowAmount|number:'1.2-2'}}</span>
+        <span *ngIf="[4,5,6].indexOf(tag) != -1">{{nowAmount|number}}</span>
+        <span>{{textArr[tag-1][1]}}</span>
+      </div>
+      <div class="my-situation-detail">
+        <span [ngClass]="{green : rose < 0?true:false}">{{rose>0?'+':''}}{{rose | number : '1.2-2'}}%</span>
+        <span>环比增长</span>
+      </div>
+      <div class="my-situation-detail">
+        <span [ngClass]="{green : yoyg < 0?true:false}">{{yoyg>0?'+':''}}{{yoyg | number : '1.2-2'}}%</span>
+        <span>同比增长</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="echartPosition">
+    <div class="MyTrend">
+      <span>我的趋势</span>
+    </div>
+    <echarts-line [config]="config" [cheight]="200"></echarts-line>
+  </div>
+
+  <div class="rank-wrap" *ngIf="listMap.length > 0">
+    <div class="rank-title-wrap">
+      <span>我的排名</span>
+    </div>
+    <table>
+      <tr>
+        <th width="20%">排名</th>
+        <th width="30%">业务组</th>
+        <th>常规销售额</th>
+      </tr>
+      <tr>
+        <td>- -</td>
+        <td>合计</td>
+        <td>{{totalAmount|number:'1.2-2'}}</td>
+      </tr>
+      <tr *ngFor="let item of listMap">
+        <td>{{item.sort}}</td>
+        <td>{{item.orgName}}</td>
+        <td>{{item.amount|number:'1.2-2'}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="rank-wrap" *ngIf="listMap.length <= 0">
+    <div class="rank-title-wrap">
+      <span>业绩情况</span>
+    </div>
+    <table>
+      <tr>
+        <th width="40%">时间</th>
+        <th>数量</th>
+      </tr>
+      <tr *ngFor="let item of listChart">
+        <td>{{item.dateStr}}</td>
+        <td>{{item.consumeSum|number:'1.2-2'}}</td>
+      </tr>
+    </table>
+  </div>
+
+</ion-content>

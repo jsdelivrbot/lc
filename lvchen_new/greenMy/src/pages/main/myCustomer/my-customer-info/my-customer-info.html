@@ -1,0 +1,119 @@
+<!--
+  Generated template for the MyCustomerInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar [hideBackButton]="isHideBack">
+    <ion-title>顾客信息</ion-title>
+  </ion-navbar>
+  <div class="tab-wrap">
+    <div [ngClass]="this.selectedTab?'selected':''" (tap)="changeTab(1)">
+      <div class="tab-text">顾客信息</div>
+    </div>
+    <div [ngClass]="!this.selectedTab?'selected':''" (tap)="changeTab(0)">
+      <div class="tab-text">销售记录</div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <!-- 顾客信息 -->
+  <div class="customer-info-box" *ngIf="selectedTab">
+    <div class="info-wrap">
+      <div class="info-phone">
+        <span>顾客手机</span>
+        <span>{{memberPhone}}</span>
+      </div>
+      <div class="info-name">
+        <span>顾客姓名</span>
+        <span>{{memberName}}</span>
+      </div>
+    </div>
+
+    <div class="baby-info">
+      <div class="baby-header">
+        <span>我的宝宝信息</span>
+      </div>
+
+      <ul>
+        <li *ngFor="let baby of babys">
+          <div class="baby-sex">
+            <img [src]="baby.babySex==0?'./assets/imgs/baby-boy.png':'./assets/imgs/baby-girl.png'" alt="" />
+          </div>
+          <div class="baby-detail">
+            <span>{{baby.babyName}}</span>
+            <span>{{baby.age}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tabs-wrap">
+      <div class="title">
+        <span class="text">产品品牌</span>
+        <span class="line"></span>
+      </div>
+      <div class="tabs">
+        <div>
+          <button *ngFor="let tab of products">{{tab}}</button>
+        </div>
+      </div>
+
+      <div class="title">
+        <span class="text">购买习惯</span>
+        <span class="line"></span>
+      </div>
+      <div class="tabs">
+        <div>
+          <button *ngFor="let tab of habits">{{tab}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 销售记录 -->
+  <div class="customer-info-box changeBgc" *ngIf="!selectedTab">
+    <div class="button-box">
+      <div>
+        <button [ngClass]="this.recordType == 1?'selected-record-type':''" (tap)="changeRecordType(1)">销售记录</button>
+        <button [ngClass]="this.recordType == 2?'selected-record-type':''" (tap)="changeRecordType(2)">赠送记录</button>
+      </div>
+      <div>
+        <button [ngClass]="this.recordType == 3?'selected-record-type':''" (tap)="changeRecordType(3)">寄存记录</button>
+        <button [ngClass]="this.recordType == 4?'selected-record-type':''" (tap)="changeRecordType(4)">备注记录</button>
+      </div>
+    </div>
+    <div class="big-line"></div>
+    <div class="record-data-box">
+      <ul class="record-type1" *ngIf="this.recordType == 1 || this.recordType == 2 || this.recordType == 3">
+        <li *ngFor="let record of recordData">
+          <div class="record-title">{{record.data1}}</div>
+          <div class="record-detail">
+            <span class="record-time">{{record.data3 | date:'yy-MM-dd HH:mm'}}</span>
+            <span class="record-price">{{record.data2}}</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="record-type2" *ngIf="this.recordType == 4">
+        <li *ngFor="let record of recordData">
+          <div class="remark-title">
+            <span class="remark-time">{{record.data2 | date:'yy-MM-dd HH:mm'}}</span>
+          </div>
+          <div class="remark-detail">
+            {{record.data1}}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <!-- 编辑返回 -->
+  <div class="nextstep">
+    <button (tap)="lastStep()">返回</button>
+    <button (tap)="editInfo()">编辑信息</button>
+  </div>
+</ion-footer>

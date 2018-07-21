@@ -1,0 +1,17 @@
+<!--
+  Generated template for the CodesourceviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+  <h3 style="text-align: center;">查看追溯码</h3>
+  <ion-item *ngFor="let code of codes;">
+    <ion-label>{{code.code[0]}}</ion-label>
+    <ion-select okText="确定" cancelText="取消" style="margin-right: 12px;" [(ngModel)]="code.source" [selectOptions]="selectOptions">
+      <ion-option value="0">借门店</ion-option>
+      <ion-option value="2">其它</ion-option>
+    </ion-select>
+  </ion-item>
+  <button ion-button style="margin-left: 10%;width: 80%;margin-top: 15px;margin-bottom: 15px;" (click)="close()">确定</button>
+</ion-content>

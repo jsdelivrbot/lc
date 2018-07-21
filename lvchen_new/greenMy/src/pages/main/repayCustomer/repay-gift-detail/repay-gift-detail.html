@@ -1,0 +1,59 @@
+<!--
+  Generated template for the RepayGiftDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{titleText}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="header-div">
+    <div padding class="repaydetaildiv">顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{customPhone}}</div>
+    <!-- <div padding class="repaydetaildiv">欠货日期&nbsp;&nbsp;&nbsp;&nbsp;2017-11-27 16:30 </div>
+        <div padding class="repaydetaildiv">销售单号&nbsp;&nbsp;&nbsp;&nbsp;13250306884 </div>
+        <div padding class="repaydetaildiv">欠货类型&nbsp;&nbsp;&nbsp;&nbsp;买赠欠货 </div>
+        <div padding class="repaydetaildiv">参与活动&nbsp;&nbsp;&nbsp;&nbsp;<input type="number"> </div> -->
+    <components-colorbar></components-colorbar>
+  </div>
+  <ion-grid style="background:#fff;">
+    <ion-row>
+      <ion-col col-6 style='color:#21c15a;height:44px;line-height:44px;'>欠货礼品</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9 style="background:#eee;color:#b2b2b2">礼品名称</ion-col>
+      <ion-col col-3 style="background:#eee;color:#b2b2b2;text-align:center;">还货数</ion-col>
+    </ion-row>
+    <ion-row style="color:#b2b2b2" *ngFor='let item of repayDetailList'>
+      <ion-col col-9 style="padding:10px 1px;border-bottom:1px solid #eee;">
+        {{item.goodsName}}
+      </ion-col>
+      <ion-col col-3 style="padding:10px 10px;border-bottom:1px solid #eee;text-align:center;">{{item.num}}</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="confirm-box" *ngIf="isConfirm">
+    <div class="confirm-wrap">
+      <div class="confirm-title">{{tipText}}</div>
+      <div class="confirm-input-wrap">
+        <input type="tel" placeholder="请输入验证码" [(ngModel)]="code">
+        <button ion-button block outline small (tap)="getCode()" [disabled]="!canGetCode">{{canGetCode?'获取验证码':second+'s'}}</button>
+      </div>
+      <div class="confirm-button-wrap">
+        <button ion-button full (tap)="confirmRepay()">确定</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer no-shadow (tap)='goodsImmediately()' *ngIf="isReturn">
+  <ion-toolbar>
+    <ion-title>{{!isConfirm?'马上还货':'取消'}}</ion-title>
+  </ion-toolbar>
+</ion-footer>

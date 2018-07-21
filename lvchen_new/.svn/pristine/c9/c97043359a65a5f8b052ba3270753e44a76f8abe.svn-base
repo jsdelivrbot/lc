@@ -1,0 +1,132 @@
+webpackJsonp([78],{
+
+/***/ 289:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutPageModule", function() { return AboutPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about__ = __webpack_require__(380);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var AboutPageModule = /** @class */ (function () {
+    function AboutPageModule() {
+    }
+    AboutPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__about__["a" /* AboutPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__about__["a" /* AboutPage */]),
+            ],
+        })
+    ], AboutPageModule);
+    return AboutPageModule;
+}());
+
+//# sourceMappingURL=about.module.js.map
+
+/***/ }),
+
+/***/ 380:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AboutPage = /** @class */ (function () {
+    function AboutPage(apps, navCtrl) {
+        var _this = this;
+        this.apps = apps;
+        this.navCtrl = navCtrl;
+        this.creditDetail = 'CreditDetailPage';
+        this.saleDetail = 'SaleDetailPage';
+        this.borrowDetail = 'BorrowDetailPage';
+        this.shoopersRanking = 'ShoppersRankingPage';
+        this.storeRanking = 'StoreRankingPage';
+        this.zoneRanking = 'ZoneRankingPage';
+        this.salesStatistics = 'SalesStatisticsPage';
+        this.consignStatistics = 'ConsignStatisticsPage';
+        this.presentStatistics = 'PresentStatisticsPage';
+        this.oweCountPage = 'OweCountPage';
+        this.salesPerformancePage = 'SalesPerformancePage';
+        this.identity = 0; //-1业务员，1员工，2、3导购
+        // 当月销售额
+        this.Themonth = 0;
+        // 当月与上月对比
+        this.ThematchSales = 0;
+        // 销售额环比
+        this.TheproporSales = 0;
+        // 顾客人数
+        this.ThenewConsume = 0;
+        // 当月与上月比
+        this.ThematchConsume = 0;
+        // 顾客人数环比
+        this.TheproporConsume = 0;
+        this.apps.getItem('userInfo', function (val) {
+            _this.identity = val['tag'];
+        });
+    }
+    AboutPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.apps.httpPost('businessAnalysis_index.api', {}, function (data) {
+            _this.Themonth = data.data.nowSales || 0;
+            _this.ThematchSales = data.data.matchSales || 0;
+            _this.TheproporSales = data.data.proporSales || 0;
+            _this.ThenewConsume = data.data.newConsume || 0;
+            _this.ThematchConsume = data.data.matchConsume || 0;
+            _this.TheproporConsume = data.data.proporConsume || 0;
+        });
+    };
+    /**
+   * @author linyunfu by 2018-5-28
+   * @method  pkGame pk赛跳转
+   * @param {}
+   * @return {void} 无返回值
+   */
+    AboutPage.prototype.pkGame = function () {
+        this.navCtrl.push('PkGamePage', {}, { animation: 'md-transition' });
+    };
+    AboutPage.prototype.targetGame = function () {
+        this.navCtrl.push('TargetGamePage', {}, { animation: 'md-transition' });
+    };
+    AboutPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-about',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/about/about.html"*/'<ion-content class="grantMarket">\n  <!-- <ion-scroll> -->\n  <div class="grantMarketTitle">生意分析</div>\n  <div class="grantMarketData">\n    <div class="dataRight">\n      <div class="dataTitle">\n        <div>销售金额\n          <ion-icon name="{{ThematchSales>=0?\'md-arrow-round-up\':\'md-arrow-round-down\'}}"></ion-icon>\n        </div> \n      </div>\n      <div class="dataNum">{{Themonth|number:\'2.0\'}}</div>\n      <div class="compara">\n        <div class="comparaRight">\n          <span>与上月比</span>\n          <span>{{ThematchSales}}</span>\n        </div>\n        <div class="comparaLeft">\n          <span>环比</span>\n          <span>{{TheproporSales}}%</span>\n        </div>\n      </div>\n    </div>\n    <div class="dataLeft">\n      <div class="dataTitle">\n        <div>消费者人数\n          <ion-icon name="{{ThematchConsume>=0?\'md-arrow-round-up\':\'md-arrow-round-down\'}}"></ion-icon>\n        </div>\n      </div>\n      <div class="dataNum">{{ThematchConsume|number:\'2.0\'}}</div>\n      <div class="compara">\n        <div class="comparaRight">\n          <span>与上月比</span>\n          <span>{{ThematchConsume}}</span>\n        </div>\n        <div class="comparaLeft">\n          <span>环比</span>\n          <span>{{TheproporConsume}}%</span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <ion-grid>\n    <ion-scroll scrollY="true" class="list-scroll">\n      <ion-row>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]=\'salesPerformancePage\'>\n            <div>\n              <img src="./assets/imgs/salesPerformance@2x.png">\n              <p>销售业绩</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]="salesStatistics">\n            <div>\n              <img src="./assets/imgs/salesStatistics@2x.png">\n              <p>销售统计</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]="presentStatistics">\n            <div>\n              <img src="./assets/imgs/presentedStatistics@2x.png">\n              <p>赠送统计</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]="oweCountPage">\n            <div>\n              <img src="./assets/imgs/owePages.png" alt="">\n              <p>欠货统计</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n            <button ion-button clear class="menu-button" [navPush]="consignStatistics">\n              <div>\n                <img src="./assets/imgs/consign@2x.png" alt="">\n                <p>寄存统计</p>\n              </div>\n            </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" (tap)=\'targetGame()\'>\n            <div>\n              <img src="./assets/imgs/target-game@2x.png" alt="">\n              <p>达标赛</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" (tap)=\'pkGame()\'>\n            <div>\n              <img src="./assets/imgs/pk-game@2x.png" alt="" >\n              <p>PK赛</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]="shoopersRanking">\n            <div>\n              <img src="./assets/imgs/sales-ranking@2x.png" alt="">\n              <p>导购排名</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4>\n          <button ion-button clear class="menu-button" [navPush]="storeRanking">\n            <div>\n              <img src="./assets/imgs/store-ranking@2x.png" alt="">\n              <p>门店排名</p>\n            </div>\n          </button>\n        </ion-col>\n        <ion-col col-4 *ngIf="identity==-1||identity==1">\n          <button ion-button clear class="menu-button" [navPush]="zoneRanking">\n            <div>\n              <img src="./assets/imgs/zone-ranking@2x.png" alt="">\n              <p>区域排名</p>\n            </div>\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-scroll>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/about/about.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]])
+    ], AboutPage);
+    return AboutPage;
+}());
+
+//# sourceMappingURL=about.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=78.js.map

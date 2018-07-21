@@ -1,0 +1,69 @@
+<!--
+  Generated template for the SaleSuccessPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton='true'>
+    <ion-title>销售成功</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header-div" style="background:#fff;">
+    <div padding>销售单号&nbsp;&nbsp;&nbsp;&nbsp;{{data.receiptNo}} </div>
+    <div style="height: 1px;width: 100%;background: #ccc;"></div>
+    <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;{{data.phone}} </div>
+    <components-colorbar></components-colorbar>
+  </div>
+  <div class="act-div"> {{actNum==0?"没有参与任何活动":"参与活动："}}
+    <ul class="{{actNum==0?'hidden':''}}"  color="oranges">
+      <li *ngFor="let act of data.actMap;">{{act.actName}}</li>
+    </ul>
+  </div>
+  <div class="attribute">商品</div>
+      <div class="customerList" >
+          <div class="customerReturnSuccessContent">
+            <div class="name">商品名称</div>
+            <div class="num">数量</div>
+            <div class="sum"></div>
+          </div>
+          <div class="customerReturnSuccessContentList" *ngFor="let good of data.goods;">
+            <div class="name">{{good.goodsName}}</div>
+            <div class="num">&nbsp;&nbsp;{{good.num}}</div>
+            <div class="sum" ></div>
+          </div>
+      </div>
+  
+  <div class="attribute {{giftNum==0?'hidden':''}}">赠品</div>
+  <div class="customerList {{giftNum==0?'hidden':''}}" >
+      <div class="customerReturnSuccessContent">
+        <div class="name">赠品名称</div>
+        <div class="num">数量</div>
+        <div class="sum"></div>
+      </div>
+      <div class="customerReturnSuccessContentList" *ngFor="let good of data.gifts;">
+        <div class="name">{{good.goodsName}}</div>
+        <div class="num">&nbsp;&nbsp;{{good.num}}</div>
+        <div class="sum" ></div>
+      </div>
+  </div>
+  <div class="attribute {{presentNum==0?'hidden':''}}">礼品</div>
+  <div class="customerList {{presentNum==0?'hidden':''}}" >
+      <div class="customerReturnSuccessContent">
+        <div class="name">礼品名称</div>
+        <div class="num">数量</div>
+        <div class="sum"></div>
+      </div>
+      <div class="customerReturnSuccessContentList" *ngFor="let present of data.presentMap;">
+        <div class="name"> {{present.name}}</div>
+        <div class="num">{{present.num}}</div>
+        <div class="sum" ></div>
+      </div>
+  </div>
+</ion-content>
+<ion-footer no-shadow (click)='onBack()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">返回</ion-title>
+  </ion-toolbar>
+</ion-footer>

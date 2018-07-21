@@ -1,0 +1,51 @@
+{
+  "_from": "@ionic-native/qr-scanner",
+  "_id": "@ionic-native/qr-scanner@4.7.0",
+  "_inBundle": false,
+  "_integrity": "sha1-qE5hkzhNOv77kwpx0VyjyHe0PhI=",
+  "_location": "/@ionic-native/qr-scanner",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ionic-native/qr-scanner",
+    "name": "@ionic-native/qr-scanner",
+    "escapedName": "@ionic-native%2fqr-scanner",
+    "scope": "@ionic-native",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://r.cnpmjs.org/@ionic-native/qr-scanner/download/@ionic-native/qr-scanner-4.7.0.tgz",
+  "_shasum": "a84e6193384d3afefb930a71d15ca3c877b43e12",
+  "_spec": "@ionic-native/qr-scanner",
+  "_where": "/Users/linyunfu/Desktop/greenMy",
+  "author": {
+    "name": "ionic"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/ionic-native/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Ionic Native - Native plugins for ionic apps",
+  "homepage": "https://github.com/ionic-team/ionic-native#readme",
+  "license": "MIT",
+  "module": "index.js",
+  "name": "@ionic-native/qr-scanner",
+  "peerDependencies": {
+    "@ionic-native/core": "^4.2.0",
+    "@angular/core": "*",
+    "rxjs": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/ionic-native.git"
+  },
+  "typings": "index.d.ts",
+  "version": "4.7.0"
+}

@@ -1,0 +1,34 @@
+<!--
+  Generated template for the ConsignSumDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>寄存统计</ion-title>
+  </ion-navbar>
+
+</ion-header> 
+
+
+<ion-content>
+  <div class="consignSumTitle line">
+    <div class="productCol">产品</div>
+    <div class="goodCol">商品</div>
+    <div class="giftCol">赠品</div>    
+  </div>
+
+  <div class="totalBar line">
+    <div class="totalCol">合计</div>
+    <div class="goodCol">{{commodity || 0}}</div>
+    <div class="giftCol">{{gift || 0}}</div>
+  </div>
+
+  <div class="productBar line" *ngFor="let item of sumData">
+    <div class="productCol">{{item.goodsDesc}}</div>
+    <div class="goodCol">{{item.commodity}}</div>
+    <div class="giftCol">{{item.gift}}</div>
+  </div>
+</ion-content>

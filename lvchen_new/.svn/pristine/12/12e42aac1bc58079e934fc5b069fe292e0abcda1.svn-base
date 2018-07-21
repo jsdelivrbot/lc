@@ -1,0 +1,95 @@
+<!--
+  Generated template for the MyCustomerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>我的顾客</ion-title>
+    <ion-buttons end>
+      <button class="condition" ion-button icon-only (tap)="condition()">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <!-- 表头 -->
+  <div class="search-box" *ngIf="!isCondition">
+    <div class="item-wrap item-wrap-title">
+      <span class="phone-wrap">顾客手机</span>
+      <span class="name-wrap">顾客姓名</span>
+    </div>
+  </div>
+  <!-- 搜索条件选择部分 -->
+  <div class="condition-cover" *ngIf="isCondition" (tap)="closeCondition($event)">
+    <div class="condition-wrap">
+      <div class="title">时间选择</div>
+      <div class="day-selected-wrap">
+        <button (tap)="selectTime(1)" [ngClass]="this.dateTag==1?'selectedTab':''">当天</button>
+        <button (tap)="selectTime(2)" [ngClass]="this.dateTag==2?'selectedTab':''">昨天</button>
+        <button (tap)="selectTime(3)" [ngClass]="this.dateTag==3?'selectedTab':''">当月</button>
+      </div>
+      <div class="title">自定义</div>
+      <div class="time-selected-wrap">
+        <ion-item>
+          <ion-datetime displayFormat="YYYY-MM-DD" min="2010" [(ngModel)]="startDate" doneText="完成" cancelText="取消" placeholder="开始时间">
+          </ion-datetime>
+        </ion-item>
+        <span>--</span>
+        <ion-item>
+          <ion-datetime displayFormat="YYYY-MM-DD" min="2010" [(ngModel)]="endDate" doneText="完成" cancelText="取消" placeholder="结束时间">
+          </ion-datetime>
+        </ion-item>
+      </div>
+
+      <div class="title">手机号搜索</div>
+      <div>
+        <div class="input-wrap">
+          <ion-icon name="search"></ion-icon>
+          <input type="number" placeholder="请输入手机号码" [(ngModel)]="memberPhone">
+          <span class="del-button" (tap)="this.memberPhone=''">
+            <img src="./assets/imgs/cancelBtn.png" *ngIf="!this.memberPhone == ''">
+          </span>
+        </div>
+      </div>
+      <div class="title">品牌选择</div>
+      <div class="brand-selected-wrap">
+        <ion-item>
+          <ion-select [(ngModel)]="labelId" interface="action-sheet" placeholder="请选择品牌" cancelText="取消" okText="确定">
+            <ion-option value="">全部</ion-option>
+            <ion-option *ngFor="let item of labelArr" [value]="item.id">{{item.labelName}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </div>
+
+    <div class="confirm-button-wrap">
+      <button (tap)="confirmCondition()">确定</button>
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content>
+  <!-- 显示内容 -->
+  <div class="content-wrap" scrollY="true">
+    <ion-list>
+      <ion-item *ngFor="let item of customers" no-lines>
+        <div class="item-wrap" (tap)="checkInfo(item.memberPhone)">
+          <span class="phone-wrap">{{item.memberPhone}}</span>
+          <span class="name-wrap name-main">{{item.memberName}}</span>
+          <span class="arrow-wrap">
+            <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward"></ion-icon>
+          </span>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" [enabled]='hasNextPage'>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="上拉加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

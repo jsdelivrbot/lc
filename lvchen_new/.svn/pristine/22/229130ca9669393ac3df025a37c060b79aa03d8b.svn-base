@@ -1,0 +1,199 @@
+webpackJsonp([31],{
+
+/***/ 339:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerLoggingTabsPageModule", function() { return CustomerLoggingTabsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_logging_tabs__ = __webpack_require__(430);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerLoggingTabsPageModule = /** @class */ (function () {
+    function CustomerLoggingTabsPageModule() {
+    }
+    CustomerLoggingTabsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_logging_tabs__["a" /* CustomerLoggingTabsPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_logging_tabs__["a" /* CustomerLoggingTabsPage */]),
+            ],
+        })
+    ], CustomerLoggingTabsPageModule);
+    return CustomerLoggingTabsPageModule;
+}());
+
+//# sourceMappingURL=customer-logging-tabs.module.js.map
+
+/***/ }),
+
+/***/ 430:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerLoggingTabsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the CustomerLoggingTabsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerLoggingTabsPage = /** @class */ (function () {
+    function CustomerLoggingTabsPage(navCtrl, navParams, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.products = [];
+        this.habits = [];
+        this.labels = [];
+        this.checkProducts = [];
+        this.checkHabits = [];
+        this.isDisabled = false;
+    }
+    CustomerLoggingTabsPage.prototype.ionViewDidLoad = function () {
+        console.log('加载 CustomerLoggingTabsPage');
+        this.getTabs();
+        if (this.navParams.data.type) {
+            this.getCheckTabs();
+        }
+    };
+    // 获取标签
+    CustomerLoggingTabsPage.prototype.getTabs = function () {
+        var _this = this;
+        this.appService.httpPost("findAllMemberLabel.api", {
+            userId: JSON.parse(window.localStorage.getItem('userInfo'))['id']
+        }, function (res) {
+            // 获取产品
+            if (res.code == 1) {
+                for (var key in res.products) {
+                    if (res.products.hasOwnProperty(key)) {
+                        for (var key2 in res.products[key]) {
+                            _this.products.push({
+                                'id': key2,
+                                'tabName': res.products[key][key2]
+                            });
+                        }
+                    }
+                }
+            }
+            // 获取习惯
+            if (res.code == 1) {
+                for (var key in res.habits) {
+                    if (res.habits.hasOwnProperty(key)) {
+                        for (var key2 in res.habits[key]) {
+                            _this.habits.push({
+                                'id': key2,
+                                'tabName': res.habits[key][key2]
+                            });
+                        }
+                    }
+                }
+            }
+            else {
+                _this.appService.alert(res.log);
+            }
+        });
+    };
+    // 获取已经选中的标签
+    CustomerLoggingTabsPage.prototype.getCheckTabs = function () {
+        var _this = this;
+        this.appService.httpPost("editMemberDetail.api", {
+            memberPhone: this.navParams.data.memberData.memberPhone
+        }, function (res) {
+            if (res.code == 1) {
+                _this.checkHabits = res.checkHabits;
+                _this.checkProducts = res.checkProducts;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        });
+    };
+    // 选择标签
+    CustomerLoggingTabsPage.prototype.selectTab = function (tabId) {
+        // 存在就删除
+        if (this.labels.indexOf(tabId) != -1) {
+            this.labels.splice(this.labels.indexOf(tabId), 1);
+        }
+        else {
+            this.labels.push(tabId);
+        }
+    };
+    // 上一步
+    CustomerLoggingTabsPage.prototype.lastStep = function () {
+        this.navCtrl.pop();
+    };
+    // 提交
+    CustomerLoggingTabsPage.prototype.submit = function () {
+        var _this = this;
+        var data = this.navParams.data.memberData;
+        data['labels'] = this.labels.join(",");
+        var url = "submitNewMemberLabel.api";
+        var params = {
+            resultObject: JSON.stringify(data)
+        };
+        this.phone = data['memberPhone'];
+        if (this.navParams.data.type) {
+            url = "editSubmitMemberDetail.api";
+            var newdata = {
+                remark: data['remarks'],
+                labels: data['labels'],
+                babys: data['babys'],
+            };
+            data = newdata;
+            params['memberPhone'] = this.phone;
+            params['resultObject'] = JSON.stringify(data);
+        }
+        this.appService.httpPost(url, params, function (res) {
+            if (res.code == 1) {
+                _this.appService.alert(res.msg);
+                _this.navCtrl.push('MyCustomerInfoPage', { memberPhone: _this.phone, type: true });
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    CustomerLoggingTabsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-logging-tabs',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/customer-logging-tabs/customer-logging-tabs.html"*/'<!--\n  Generated template for the CustomerLoggingTabsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>补充信息</ion-title>\n  </ion-navbar>\n\n  <div class="tabs-wrap">\n    <div>\n      <span>\n        <span>1</span>\n      </span>\n      顾客资料\n    </div>\n    <div>\n      <span class="tab-Selected">\n        <span>2</span>\n      </span>\n      <label class="tab-Selected-text">标签设置</label>\n    </div>\n  </div>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="tabs-wrap">\n    <div class="title">\n      <span class="text">产品品牌</span>\n      <span class="line"></span>\n    </div>\n    <div class="tabs">\n      <div>\n        <button *ngFor="let tab of products" (tap)="selectTab(tab.id)" [ngClass]="this.labels.indexOf(tab.id)!=-1?\'selectedTab\':\'\'"\n          ion-button block outline [disabled]="this.checkProducts.indexOf(tab.id)!=-1">{{tab.tabName}}</button>\n      </div>\n    </div>\n\n    <div class="title">\n      <span class="text">购买习惯</span>\n      <span class="line"></span>\n    </div>\n    <div class="tabs">\n      <div>\n        <button *ngFor="let tab of habits" (tap)="selectTab(tab.id)" [ngClass]="this.labels.indexOf(tab.id)!=-1?\'selectedTab\':\'\'"\n          ion-button block outline [disabled]="this.checkHabits.indexOf(tab.id)!=-1">{{tab.tabName}}</button>\n      </div>\n    </div>\n  </div>\n</ion-content>\n\n<ion-footer>\n  <div class="nextstep">\n    <button (tap)="lastStep()">上一步</button>\n    <button (tap)="submit()">提交</button>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/customer-logging-tabs/customer-logging-tabs.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], CustomerLoggingTabsPage);
+    return CustomerLoggingTabsPage;
+}());
+
+//# sourceMappingURL=customer-logging-tabs.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=31.js.map

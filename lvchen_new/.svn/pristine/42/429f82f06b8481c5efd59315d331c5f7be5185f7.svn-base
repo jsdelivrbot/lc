@@ -1,0 +1,424 @@
+webpackJsonp([37],{
+
+/***/ 320:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerReturnScannerPageModule", function() { return CustomerReturnScannerPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_return_scanner__ = __webpack_require__(411);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerReturnScannerPageModule = /** @class */ (function () {
+    function CustomerReturnScannerPageModule() {
+    }
+    CustomerReturnScannerPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_return_scanner__["a" /* CustomerReturnScannerPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_return_scanner__["a" /* CustomerReturnScannerPage */]),
+            ],
+        })
+    ], CustomerReturnScannerPageModule);
+    return CustomerReturnScannerPageModule;
+}());
+
+//# sourceMappingURL=customer-return-scanner.module.js.map
+
+/***/ }),
+
+/***/ 411:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerReturnScannerPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CustomerReturnScannerPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerReturnScannerPage = /** @class */ (function () {
+    function CustomerReturnScannerPage(navCtrl, navParams, qrScanner, viewCtrl, alertCtrl, apps, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.qrScanner = qrScanner;
+        this.viewCtrl = viewCtrl;
+        this.alertCtrl = alertCtrl;
+        this.apps = apps;
+        this.platform = platform;
+        this.light = false;
+        this.frontCamera = false;
+        this.hasCodeList = [];
+        this.noCodeList = [];
+        this.noCodeNums = 0;
+        this.goods = new Array();
+        this.num = 0;
+        this.destory = false;
+    }
+    CustomerReturnScannerPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        //获取摄像权限
+        //获取摄像权限
+        this.destory = false;
+        this.qrScanner.prepare()
+            .then(function (status) {
+            if (status.authorized) {
+                _this.scan();
+                _this.qrScanner.show();
+            }
+        })
+            .catch(function (e) { return console.log('Error is', e); });
+    };
+    CustomerReturnScannerPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.navCtrl.swipeBackEnabled = false;
+        //返回提示
+        this.navbar.backButtonClick = function (e) {
+            _this.onBack();
+        };
+        this.platform.registerBackButtonAction(function () {
+            _this.onBack();
+        });
+    };
+    CustomerReturnScannerPage.prototype.onBack = function () {
+        var _this = this;
+        if (this.num == 0) {
+            this.navCtrl.pop({
+                animation: 'md-transition'
+            });
+            this.destory = true;
+            this.qrScanner.destroy();
+        }
+        else {
+            var confirm_1 = this.alertCtrl.create({
+                title: '提示',
+                message: '您的操作未完成，确定要退出？',
+                buttons: [
+                    {
+                        text: '确定',
+                        handler: function () {
+                            try {
+                                _this.destory = false;
+                                _this.qrScanner.destroy();
+                            }
+                            catch (e) {
+                            }
+                            finally {
+                                _this.navCtrl.popToRoot({
+                                    animation: 'md-transition'
+                                });
+                            }
+                        }
+                    },
+                    {
+                        text: '取消',
+                        handler: function () {
+                            _this.destory = false;
+                            _this.scan();
+                        }
+                    }
+                ]
+            });
+            confirm_1.present();
+        }
+    };
+    //开启扫一扫
+    CustomerReturnScannerPage.prototype.scan = function () {
+        var _this = this;
+        this.qrScanner.scan().subscribe(function (text) {
+            if (_this.destory) {
+                _this.restartScan();
+                return;
+            }
+            if (text.length == 13) {
+                _this.postCodeIdApi(text);
+            }
+            else {
+                _this.getSalesGoods(text);
+            }
+        });
+    };
+    CustomerReturnScannerPage.prototype.postCodeIdApi = function (code) {
+        var _this = this;
+        this.apps.httpPost('getScanCodeCasPosSale.api', { code: code }, function (data) {
+            _this.destory = false;
+            _this.restartScan();
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+            }
+            else {
+                var goodMap = data.data.goodMap;
+                if (goodMap.tag == 0) {
+                    _this.codeIdVerify(goodMap.goodsId);
+                }
+                else {
+                    _this.apps.toast('错误的产品条码');
+                }
+            }
+        }, true);
+    };
+    CustomerReturnScannerPage.prototype.codeIdVerify = function (id) {
+        for (var i = 0; i < this.noCodeList.length; ++i) {
+            var map = this.noCodeList[i];
+            if (map.goodsId == id) {
+                this.noCodeList.splice(i, 1);
+                this.noCodeNums -= map.num;
+                this.showInputNum(id, map.num);
+                return;
+            }
+        }
+        this.showInputNum(id, 0);
+    };
+    CustomerReturnScannerPage.prototype.showInputNum = function (id, num) {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '输入数量',
+            inputs: [
+                {
+                    type: "number",
+                    value: num == 0 ? '' : num
+                },
+            ],
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        _this.destory = false;
+                        var num = parseInt(data[0]);
+                        if (data[0] <= 0) {
+                            return false;
+                        }
+                        _this.noCodeList.push({ 'goodsId': id, 'num': num });
+                        _this.noCodeNums += num;
+                        _this.num = _this.goods.length + _this.noCodeNums;
+                        console.log(_this.num);
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    CustomerReturnScannerPage.prototype.getSalesGoods = function (code) {
+        var _this = this;
+        this.apps.httpPost('getSalesGoods.api', { code: code }, function (data) {
+            _this.destory = false;
+            _this.restartScan();
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+            }
+            else {
+                if (_this.goods.length >= 1) {
+                    if (_this.goods.indexOf(data.data.code) !== -1) {
+                        var index = _this.goods.indexOf(data.data.code);
+                        var idIndex = _this.goods.indexOf(data.data.id);
+                        _this.showRepeat(index, idIndex);
+                    }
+                    else {
+                        _this.goods.push(data.data.code);
+                        _this.hasCodeList.push(data.data.id);
+                        _this.num = _this.goods.length + _this.noCodeNums;
+                    }
+                }
+                else {
+                    _this.goods.push(data.data.code);
+                    _this.hasCodeList.push(data.data.id);
+                    _this.num = _this.goods.length + _this.noCodeNums;
+                }
+            }
+        }, true);
+    };
+    CustomerReturnScannerPage.prototype.restartScan = function () {
+        var _this = this;
+        var time = setTimeout(function () {
+            _this.scan();
+            clearTimeout(time);
+        }, 500);
+    };
+    //提交
+    CustomerReturnScannerPage.prototype.submit = function () {
+        var _this = this;
+        if (this.num == 0) {
+            return;
+        }
+        var hasCodeStr = '';
+        for (var i = 0; i < this.hasCodeList.length; ++i) {
+            if (i == 0) {
+                hasCodeStr = this.hasCodeList[i];
+            }
+            else {
+                hasCodeStr = hasCodeStr + ',' + this.hasCodeList[i];
+            }
+        }
+        console.log(hasCodeStr);
+        var goodsIdStr = '';
+        for (var j = 0; j < this.noCodeList.length; ++j) {
+            if (j == 0) {
+                goodsIdStr = this.noCodeList[j].goodsId;
+            }
+            else {
+                goodsIdStr = goodsIdStr + ',' + this.noCodeList[j].goodsId;
+            }
+        }
+        console.log(goodsIdStr);
+        var param0 = { 'receiptNo': this.navParams.get('receiptNo'), 'hasCode': hasCodeStr, 'goodsId': goodsIdStr };
+        this.apps.httpPost('isThereAnyGift.api', param0, function (data) {
+            if (data.code == -1) {
+                _this.popupGiftHint();
+            }
+            else {
+                _this.submitSucc();
+            }
+        }, true);
+    };
+    CustomerReturnScannerPage.prototype.submitSucc = function () {
+        var _this = this;
+        var param = { 'receiptNo': this.navParams.get('receiptNo'), 'hasCode': JSON.stringify(this.hasCodeList), 'noCode': this.noCodeList };
+        this.apps.httpPost('submitSalesGoods.api', { 'resultObject': JSON.stringify(param) }, function (data) {
+            if (data.code == -1) {
+                _this.apps.toast(data.msg);
+            }
+            else {
+                _this.qrScanner.hide();
+                _this.destory = true;
+                _this.qrScanner.destroy();
+                _this.navCtrl.push('CustomerReturnSuccessPage', { data: data.data, phone: _this.navParams.get('phone') });
+            }
+        }, true);
+    };
+    CustomerReturnScannerPage.prototype.showPrompt = function () {
+        var _this = this;
+        this.destory = true;
+        var prompt = this.alertCtrl.create({
+            title: '输入码',
+            inputs: [
+                {},
+            ],
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function (data) {
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        if (data[0].length == 13) {
+                            _this.postCodeIdApi(data[0]);
+                        }
+                        else {
+                            _this.getSalesGoods(data[0]);
+                        }
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    // 输入第二次删除
+    CustomerReturnScannerPage.prototype.showRepeat = function (index, inIndex) {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '提示',
+            message: '该积分码已存在',
+            buttons: [
+                {
+                    text: '删除',
+                    handler: function () {
+                        _this.goods.splice(index, 1);
+                        _this.hasCodeList.splice(inIndex, 1);
+                        _this.num = _this.goods.length + _this.noCodeNums;
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.destory = false;
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    // 退货商品存在赠品
+    CustomerReturnScannerPage.prototype.popupGiftHint = function () {
+        var _this = this;
+        this.destory = true;
+        var confirm = this.alertCtrl.create({
+            title: '提示',
+            message: '退货的商品存在参与的活动，请退相关的赠品',
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.destory = false;
+                    }
+                },
+                {
+                    text: '继续退货',
+                    handler: function () {
+                        _this.submitSucc();
+                    }
+                }
+            ]
+        });
+        confirm.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], CustomerReturnScannerPage.prototype, "navbar", void 0);
+    CustomerReturnScannerPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-return-scanner',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-scanner/customer-return-scanner.html"*/'<!--\n  Generated template for the CustomerReturnScannerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar >\n    <ion-title>顾客退货扫码</ion-title>\n    <ion-buttons end>\n        <button ion-button icon-only (click)="showPrompt()">\n          <ion-icon name="create"></ion-icon>\n        </button>\n      </ion-buttons>\n    </ion-navbar>\n  </ion-header>\n  <ion-content class="qrscanner">\n    <div class="qrscanner-area">\n    </div>\n    <div class="through-line"></div>\n  </ion-content>\n  <ion-footer>\n    <div class="bottom-div">\n      <ion-row>\n      <ion-col col-1></ion-col>\n      <ion-col (click)="scanGood()" class="scan-count" col-5 ion-button>\n        扫码计数\n        <span class="{{num==0?\'hidden\':\'\'}} red-badge">{{num}}</span>\n      </ion-col>\n      <ion-col col-1></ion-col>\n      <ion-col (click)="submit()" class="submit-btn" ion-button col-4>\n        <ion-icon name="checkmark"></ion-icon>&nbsp;&nbsp;确认\n      </ion-col>\n    </ion-row>\n    </div>\n  </ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-scanner/customer-return-scanner.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], CustomerReturnScannerPage);
+    return CustomerReturnScannerPage;
+}());
+
+//# sourceMappingURL=customer-return-scanner.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=37.js.map

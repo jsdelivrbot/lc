@@ -1,0 +1,129 @@
+<ion-content class="grantMarket">
+  <!-- <ion-scroll> -->
+  <div class="grantMarketTitle">生意分析</div>
+  <div class="grantMarketData">
+    <div class="dataRight">
+      <div class="dataTitle">
+        <div>销售金额{{Themonth>10000?"(万)":""}}
+          <ion-icon name="{{ThematchSales>=0?'md-arrow-round-up':'md-arrow-round-down'}}"></ion-icon>
+        </div>
+      </div>
+      <div class="dataNum">{{Themonth>10000?ThemonthWang:Themonth |number:'1.2-2'}}</div>
+      <div class="compara">
+        <div class="comparaRight">
+          <span>与上月比</span>
+          <span>{{ThematchSales}}</span>
+        </div>
+        <div class="comparaLeft">
+          <span>环比</span>
+          <span>{{TheproporSales}}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="dataLeft">
+      <div class="dataTitle">
+        <div>消费者人数{{ThenewConsume>10000?"(万)":""}}
+          <ion-icon name="{{ThematchConsume>=0?'md-arrow-round-up':'md-arrow-round-down'}}"></ion-icon>
+        </div>
+      </div>
+      <div class="dataNum">{{ThenewConsume>10000?ThenewConsumeWang:ThenewConsume|number:'1.2-2'}}</div>
+      <div class="compara">
+        <div class="comparaRight">
+          <span>与上月比</span>
+          <span>{{ThematchConsume}}</span>
+        </div>
+        <div class="comparaLeft">
+          <span>环比</span>
+          <span>{{TheproporConsume}}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-scroll scrollY="true" class="list-scroll" [ngStyle]="{'height': scrollHeight+'px'}"> 
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]='salesPerformancePage'>
+            <div>
+              <img src="./assets/imgs/salesPerformance@2x.png">
+              <p>销售业绩</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="salesStatistics">
+            <div>
+              <img src="./assets/imgs/salesStatistics@2x.png">
+              <p>销售统计</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="presentStatistics">
+            <div>
+              <img src="./assets/imgs/presentedStatistics@2x.png">
+              <p>赠送统计</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="oweCountPage">
+            <div>
+              <img src="./assets/imgs/owePages.png" alt="">
+              <p>欠货统计</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="consignStatistics">
+            <div>
+              <img src="./assets/imgs/consign@2x.png" alt="">
+              <p>寄存统计</p>
+            </div>
+          </button>
+        </ion-col>
+        <!-- <ion-col col-4>
+          <button ion-button clear class="menu-button" (tap)='targetGame()'>
+            <div>
+              <img src="./assets/imgs/target-game@2x.png" alt="">
+              <p>达标赛</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" (tap)='pkGame()'>
+            <div>
+              <img src="./assets/imgs/pk-game@2x.png" alt="">
+              <p>PK赛</p>
+            </div>
+          </button>
+        </ion-col> -->
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="shoopersRanking">
+            <div>
+              <img src="./assets/imgs/sales-ranking@2x.png" alt="">
+              <p>导购排名</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button clear class="menu-button" [navPush]="storeRanking">
+            <div>
+              <img src="./assets/imgs/store-ranking@2x.png" alt="">
+              <p>门店排名</p>
+            </div>
+          </button>
+        </ion-col>
+        <ion-col col-4 *ngIf="identity==-1||identity==1">
+          <button ion-button clear class="menu-button" [navPush]="zoneRanking">
+            <div>
+              <img src="./assets/imgs/zone-ranking@2x.png" alt="">
+              <p>区域排名</p>
+            </div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-scroll>
+  </ion-grid>
+</ion-content>

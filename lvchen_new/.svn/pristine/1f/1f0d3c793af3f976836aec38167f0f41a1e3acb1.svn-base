@@ -1,0 +1,71 @@
+page-pk-game-two {
+    .content{
+        background:#fff !important;
+    }
+    .pkTwoPageNarbar{
+        display: flex;
+       div:first-child{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        span{
+            flex: 1;
+            text-align: center;
+            font-weight: 350;
+        }
+        span:first-child{
+
+            font-size: 1.3rem;
+        }
+        span:last-child{
+            font-size: .8rem;
+        }
+       }
+      
+    }
+    .pkTabTitle{
+        height: 44px;
+        line-height: 44px;
+        display: flex;
+        background: #f8f8f8;
+        font-size: 1.5rem;
+        color: rgb(126, 123, 123);
+        .pkTabRow:first-child{
+            justify-content: center;
+        }
+        .pkTabRow{
+            flex: 1;
+            display: flex;
+            span{
+                display: flex;
+                justify-content: center;
+                flex: 1;
+            }
+        }
+    }
+    .pkTwoPageList{
+        display: flex;
+        align-items: center;
+        height: 44px;
+        line-height: 44px;
+        border-bottom: 1px solid rgba(229,229,229,.7);
+        span:first-child{
+            width: 50%;
+            display: flex;
+            div:first-child{
+                width: 30%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                img{
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+        }
+        span{
+            width: 25%;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,118 @@
+webpackJsonp([60],{
+
+/***/ 310:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesPerformancePageModule", function() { return SalesPerformancePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_performance__ = __webpack_require__(401);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalesPerformancePageModule = /** @class */ (function () {
+    function SalesPerformancePageModule() {
+    }
+    SalesPerformancePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_performance__["a" /* SalesPerformancePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_performance__["a" /* SalesPerformancePage */]),
+            ],
+        })
+    ], SalesPerformancePageModule);
+    return SalesPerformancePageModule;
+}());
+
+//# sourceMappingURL=sales-performance.module.js.map
+
+/***/ }),
+
+/***/ 401:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesPerformancePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SalesPerformancePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesPerformancePage = /** @class */ (function () {
+    function SalesPerformancePage(navCtrl, navParams, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.salesData = {};
+        this.SalesPerformanceDetailPage = 'SalesPerformanceDetailPage';
+    }
+    SalesPerformancePage.prototype.ionViewDidLoad = function () {
+        this.getSalesData();
+    };
+    // 获取数据
+    SalesPerformancePage.prototype.getSalesData = function () {
+        var _this = this;
+        this.appService.httpPost("findIndexSalesAnalysis.api", {}, function (res) {
+            if (res.code == 1) {
+                _this.salesData = res;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 去前五个
+    SalesPerformancePage.prototype.goToDetail = function (type) {
+        this.navCtrl.push('SalesPerformanceDetailPage', {
+            type: type
+        });
+    };
+    // 去寄存
+    SalesPerformancePage.prototype.goToConsign = function (type) {
+        this.navCtrl.push('SalesPerformanceConsignPage', {
+            type: type
+        });
+    };
+    SalesPerformancePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-performance',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance/sales-performance.html"*/'<!--\n  Generated template for the SalesPerformancePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>销售业绩</ion-title>\n    <ion-buttons end>\n      <ion-select [(ngModel)]="storeSelected" okText="确定" cancelText="取消" (ionChange)=\'changeStore()\' style="color: #fff;font-size: 1.5rem;">\n        <ion-option value="">全部</ion-option>\n        <ion-option *ngFor=\'let item of storeMap\' value="{{item.id}}">{{item.storeName}}</ion-option>\n      </ion-select>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="rowOne">\n    <div [navPush]=\'SalesPerformanceDetailPage\'>\n      <div>\n        <img src="./assets/imgs/statement1.png">\n        <p style="color: #f19a9a">顾客录入数</p>\n        <p>{{salesData.newMemNum || 0 }}</p>\n      </div>\n    </div>\n    <div (tap)="goToDetail(5)">\n      <div>\n        <img src="./assets/imgs/statement2.png">\n        <p style="color: #eac083">新顾客数</p>\n        <p>{{salesData.newGuestNum || 0 }}</p>\n      </div>\n    </div>\n    <div (tap)="goToDetail(6)">\n      <div>\n        <img src="./assets/imgs/statement3.png">\n        <p style="color: #db9acb">消费顾客数</p>\n        <p>{{salesData.consumeNum || 0 }}</p>\n      </div>\n    </div>\n  </div>\n  <div class="rowtwo">\n    <div class="rowColumn" (tap)="goToDetail(1)">\n      <div>\n        <img src="./assets/imgs/statement4.png" style="height: 56px;">\n        <p style="color: #abcbe3;font-size: 1.8rem;">销售总额</p>\n        <p style="font-size: 2rem;">{{salesData.consumeSum || 0 |number:\'1.2-2\'}}</p>\n      </div>\n    </div>\n    <div class="rowColumn">\n      <div class="rowchild" (tap)="goToDetail(2)">\n        <div>\n          <img src="./assets/imgs/statement5.png" style="height: 44px;">\n          <p style="color: #b2c777">常规销售额</p>\n          <p>{{salesData.routineSum || 0 |number:\'1.2-2\'}}</p>\n        </div>\n      </div>\n      <div class="rowchild" (tap)="goToConsign(3)">\n        <div>\n          <img src=" ./assets/imgs/statement6.png " style="height: 44px; ">\n          <p style="color: #a9ceaf ">寄存销售额</p>\n          <p>{{salesData.depositSum || 0 |number:\'1.2-2\'}}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class="rowOne ">\n        <div (tap)="goToConsign(7)">\n          <div>\n            <img src="./assets/imgs/statement7.png">\n            <p style="color: #d9afa4">寄存领取额</p>\n            <p>{{salesData.depositReceiveSum || 0 |number:\'1.2-2\'}}</p>\n          </div>\n        </div>\n        <div (tap)="goToConsign(8)">\n          <div>\n            <img src="./assets/imgs/statement8.png">\n            <p style="color: #a9add3">寄存剩余额</p>\n            <p>{{salesData.depositSurplusSum || 0 |number:\'1.2-2\'}}</p>\n          </div>\n        </div>\n      </div>\n\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance/sales-performance.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], SalesPerformancePage);
+    return SalesPerformancePage;
+}());
+
+//# sourceMappingURL=sales-performance.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=60.js.map

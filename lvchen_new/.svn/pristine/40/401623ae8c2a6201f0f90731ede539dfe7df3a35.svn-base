@@ -1,0 +1,168 @@
+webpackJsonp([19],{
+
+/***/ 363:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactPageModule", function() { return ContactPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact__ = __webpack_require__(454);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ContactPageModule = /** @class */ (function () {
+    function ContactPageModule() {
+    }
+    ContactPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__contact__["a" /* ContactPage */]
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__contact__["a" /* ContactPage */]),
+            ],
+        })
+    ], ContactPageModule);
+    return ContactPageModule;
+}());
+
+//# sourceMappingURL=contact.module.js.map
+
+/***/ }),
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ContactPage = /** @class */ (function () {
+    function ContactPage(navCtrl, appService, alertCtrl, modalCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.appService = appService;
+        this.alertCtrl = alertCtrl;
+        this.modalCtrl = modalCtrl;
+        this.storeName = '';
+        this.storeMap = [];
+        this.appService.getItem('userInfo', function (val) {
+            console.log(val);
+            _this.userName = val.userName;
+            _this.phone = val.phone;
+            _this.id = val.id;
+            _this.storeMap = val.storeMap;
+        });
+        this.appService.getItem('curStore', function (val) {
+            _this.storeName = val.storeName;
+        });
+    }
+    ContactPage.prototype.modifyPsw = function () {
+        console.log(this.id);
+        this.navCtrl.push('ModifyPasswordPage', { id: this.id });
+    };
+    ContactPage.prototype.logout = function () {
+        window.localStorage.removeItem('userInfo');
+        this.navCtrl.push('LoginPage');
+    };
+    ContactPage.prototype.close = function () {
+        var _this = this;
+        var __this = this;
+        var prompt = this.alertCtrl.create({
+            title: '解除绑定',
+            message: "是否确定解除绑定?",
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function (data) {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function (data) {
+                        __this.appService.httpPost('untilDriverToken.api', {}, function (data) {
+                            console.log(data);
+                            if (data.code == -1) {
+                                __this.appService.toast(data.msg);
+                            }
+                            else {
+                                window.localStorage.clear();
+                                __this.appService.toast(data.msg);
+                                _this.navCtrl.push('LoginPage');
+                                // let modal = this.modalCtrl.create(LoginPage);
+                                // modal.present();
+                            }
+                        }, true);
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    };
+    ContactPage.prototype.showRadio = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create();
+        alert.setTitle('选择');
+        for (var i = 0; i < this.storeMap.length; ++i) {
+            alert.addInput({
+                type: 'radio',
+                label: this.storeMap[i].storeName,
+                value: i + '',
+                checked: false
+            });
+        }
+        alert.addButton({
+            text: '确定',
+            handler: function (data) {
+                if (!data) {
+                    return false;
+                }
+                var pos = parseInt(data);
+                _this.storeName = _this.storeMap[pos].storeName;
+                _this.appService.setItem('curStore', _this.storeMap[pos]);
+            }
+        });
+        alert.present();
+    };
+    ContactPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-contact',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/personCenter/contact/contact.html"*/'<ion-content class="myCenter">\n  <div class="meLocation" (click)=\'showRadio()\'>\n     <ion-icon name="swap"></ion-icon>&nbsp;{{storeName}}&nbsp;\n  </div>\n  <div class="photo">\n    <img src="./assets/imgs/head_portrait.png" alt="">\n  </div>\n  <div class=\'userName\'>{{userName}}<br><p style="font-size: 15px">{{phone}}</p></div>\n  <ion-item class="meList" (click)=\'modifyPsw()\'>\n      <div class="list-item-left" >\n          <img src="./assets/imgs/meAbout@2x.png" alt=""><h2>修改密码</h2>\n      </div>\n      <div class="list-item-right">\n        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>\n      </div>\n  </ion-item>  \n  <ion-item class="meList" (click)=\'close()\'>\n      <div class="list-item-left">\n          <img src="./assets/imgs/uncord.png" alt="" ><h2>解除绑定</h2>\n      </div>\n      <div class="list-item-right">\n        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>\n      </div>\n  </ion-item>  \n  <button ion-button color=\'light\' (click)=\'logout()\'>退出登录</button>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/personCenter/contact/contact.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_modal_modal_controller__["a" /* ModalController */]])
+    ], ContactPage);
+    return ContactPage;
+}());
+
+//# sourceMappingURL=contact.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=19.js.map

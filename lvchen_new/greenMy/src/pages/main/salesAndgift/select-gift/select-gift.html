@@ -1,0 +1,35 @@
+<!--
+  Generated template for the SelectComplimentaryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>搜索礼品</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="select-gift">
+  <ion-searchbar placeholder="输入赠品名称或条形码后四位" (keyup)="onKeyboard($event)" [(ngModel)]="keyword" padding class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">
+  </ion-searchbar>
+  <components-colorbar></components-colorbar>
+  <ion-item *ngFor="let good of data;let index = index;" >
+    <ion-label>{{good.goodsName}} </ion-label>
+    <ion-checkbox color="btnColor"   (ionChange)="onChecked(index)" checked="{{good.checked == true?'true':'false' }}"></ion-checkbox>
+  </ion-item>
+</ion-content>
+<ion-footer no-shadow>
+    <div class="depositFoot">
+        <div  class="foot1" >
+            <button (click)="onCancel()" ion-button color="gentle" col-12>
+                取消
+               </button>
+          </div>
+          <div class="foot2">
+              <button (click)="submit()" ion-button color="primary" col-12 style="margin-left: 2px;">
+                  确认
+                  <span class="{{num==0?'hidden':''}} red-badge">{{num}}</span>
+                </button>
+          </div>
+    </div>
+</ion-footer>

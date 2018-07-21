@@ -1,0 +1,328 @@
+webpackJsonp([69],{
+
+/***/ 298:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PkGamePageModule", function() { return PkGamePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pk_game__ = __webpack_require__(389);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PkGamePageModule = /** @class */ (function () {
+    function PkGamePageModule() {
+    }
+    PkGamePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__pk_game__["a" /* PkGamePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pk_game__["a" /* PkGamePage */]),
+            ],
+        })
+    ], PkGamePageModule);
+    return PkGamePageModule;
+}());
+
+//# sourceMappingURL=pk-game.module.js.map
+
+/***/ }),
+
+/***/ 389:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PkGamePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the PkGamePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PkGamePage = /** @class */ (function () {
+    function PkGamePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.i = 0;
+        this.shopItem = [];
+        this.storeItem = [];
+        this.shop = [];
+        this.store = [];
+        this.pkGameTwoPage = 'PkGameTwoPage';
+        // 导购pk赛分页索引
+        this.sh = 1;
+        // 门店pk赛缩影
+        this.st = 1;
+        // 控制导购列表上拉刷新
+        this.shopList = true;
+        // 控制门店列表上拉刷新
+        this.storelist = true;
+        this.shop = [
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+        ];
+        this.store = [
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": ""
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛"
+            },
+        ];
+        this.shopItem = this.shop.slice(0, 5);
+        this.storeItem = this.store.slice(0, 5);
+    }
+    PkGamePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.navbar.backButtonClick = function (e) {
+            _this.navCtrl.popToRoot({
+                animation: 'md-transition'
+            });
+        };
+    };
+    PkGamePage.prototype.slideDidChange = function () {
+        if (this.slides.getActiveIndex() == 2) {
+            this.i = 1;
+            return;
+        }
+        this.i = this.slides.getActiveIndex();
+    };
+    PkGamePage.prototype.sliderIndex = function (num) {
+        console.log(num);
+        this.slides.slideTo(num);
+        this.i = num;
+    };
+    /*
+    *  @method（）getShopMoreData 导购pk赛分页fun
+    * @param() infiniteScroll 上啦刷新固定传参
+    * @return void
+    */
+    PkGamePage.prototype.getShopMoreData = function (infiniteScroll) {
+        var data = this.shop.slice(this.sh * 5, this.sh * 5 + 5);
+        this.shopItem = this.shopItem.concat(data);
+        if (data.length % 5 != 0) {
+            this.shopList = false;
+        }
+        else {
+            this.sh++;
+        }
+        infiniteScroll.complete();
+    };
+    PkGamePage.prototype.getStoreMoreData = function (infiniteScroll) {
+        var data = this.store.slice(this.st * 5, this.st * 5 + 5);
+        this.storeItem = this.storeItem.concat(data);
+        if (data.length % 5 != 0) {
+            this.storelist = false;
+        }
+        else {
+            this.st++;
+        }
+        infiniteScroll.complete();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], PkGamePage.prototype, "slides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], PkGamePage.prototype, "navbar", void 0);
+    PkGamePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-pk-game',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/pk-game/pk-game.html"*/'<!--\n  Generated template for the PkGamePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>PK赛</ion-title>\n   \n  </ion-navbar>\n  <div class="pkNarbar">\n      <div>\n        <span (tap)=\'sliderIndex(0)\' class="{{i==0?\'active\':\'\'}}">导购</span>\n      </div>\n      <div>\n        <span (tap)=\'sliderIndex(1)\'class="{{i==1?\'active\':\'\'}}">门店</span>\n      </div>\n    </div>\n</ion-header>\n<ion-content >\n  <div class="pkContent"></div>\n    <ion-slides initialSlide=\'{{i}}\'(ionSlideDidChange)="slideDidChange()">\n        <ion-slide>\n            <ion-content>\n                <div class="pkListdiv green" *ngFor=\'let item of shopItem\'>\n                  <div class="upPart">\n                    <div>\n                      <img src="assets/imgs/trophy.png" alt="">\n                    </div>\n                    <div>\n                      <img src="assets/imgs/{{item.gameStatus==\'finish\'?\'finished\':item.gameStatus==\'will\'?\'willstart\':\'wiling\'}}.png" alt="">\n                    </div>\n                    <div>\n                      <span class="kouDai">\n                          <span>累计销售额</span>\n                          <span>123213</span>\n                      </span>\n                    </div>\n                  </div>\n                  <div class="downPart">\n                    <div>2017/07/06-2017/09/10</div>\n                    <div>{{item.gamename}}</div>\n                  </div>\n                </div>\n                <div class="bottomHeight">\n\n                </div>\n                <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getShopMoreData($event)" *ngIf=\'shopList\'>\n                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n                  </ion-infinite-scroll-content>\n                </ion-infinite-scroll>\n              </ion-content>\n        </ion-slide>\n        <ion-slide>\n            <ion-content>\n                <div class="pkListdiv green" *ngFor=\'let item of storeItem\' [navPush]=\'pkGameTwoPage\'>\n                    <div class="upPart">\n                      <div>\n                        <img src="assets/imgs/trophy.png" alt="">\n                      </div>\n                      <div>\n                        <img src="assets/imgs/{{item.gameStatus==\'finish\'?\'finished\':item.gameStatus==\'will\'?\'willstart\':\'wiling\'}}.png" alt="">\n                      </div>\n                      <div>\n                        <span class="kouDai">\n                            <span>累计销售额</span>\n                            <span>123213</span>\n                        </span>\n                      </div>\n                    </div>\n                    <div class="downPart">\n                      <div>2017/07/06-2017/09/10</div>\n                      <div>{{item.gamename}}</div>\n                    </div>\n                  </div>\n                  <div class="bottomHeight">\n\n                    </div>\n                <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getStoreMoreData($event)" *ngIf=\'storelist\'>\n                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n                  </ion-infinite-scroll-content>\n                </ion-infinite-scroll>\n              </ion-content>\n        </ion-slide>      \n      </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/pk-game/pk-game.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], PkGamePage);
+    return PkGamePage;
+}());
+
+//# sourceMappingURL=pk-game.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=69.js.map

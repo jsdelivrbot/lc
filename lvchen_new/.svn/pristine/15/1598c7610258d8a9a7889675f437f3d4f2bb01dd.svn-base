@@ -1,0 +1,245 @@
+webpackJsonp([33],{
+
+/***/ 337:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CompanyInfoPageModule", function() { return CompanyInfoPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__company_info__ = __webpack_require__(428);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CompanyInfoPageModule = /** @class */ (function () {
+    function CompanyInfoPageModule() {
+    }
+    CompanyInfoPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__company_info__["a" /* CompanyInfoPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__company_info__["a" /* CompanyInfoPage */]),
+            ],
+        })
+    ], CompanyInfoPageModule);
+    return CompanyInfoPageModule;
+}());
+
+//# sourceMappingURL=company-info.module.js.map
+
+/***/ }),
+
+/***/ 428:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CompanyInfoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CompanyInfoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CompanyInfoPage = /** @class */ (function () {
+    function CompanyInfoPage(navCtrl, navParams, apps, appUrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.apps = apps;
+        this.appUrl = appUrl;
+        this.i = 0;
+        this.hasNext = false;
+        this.topics = [];
+        this.companyList = '';
+        this.backButtonClick = function (e) {
+            // do something
+            _this.navCtrl.popToRoot({ animation: 'md-transition' });
+        };
+    }
+    CompanyInfoPage.prototype.ionViewDidLoad = function () {
+        this.navbar.backButtonClick = this.backButtonClick;
+    };
+    CompanyInfoPage.prototype.CompanyData = function (typeId) {
+        var _this = this;
+        console.log(typeId);
+        return {
+            gotopic: function (refresher, index) {
+                var hasNextPage = true;
+                _this.apps.httpPost('findInformationJson.api', { 'classify': 'company', 'typeId': typeId, 'page': 1 }, function (data) {
+                    if (data.map.data == null) {
+                        hasNextPage = false;
+                    }
+                    else if (data.map.data.length < 10) {
+                        hasNextPage = false;
+                    }
+                    else {
+                        hasNextPage = true;
+                    }
+                    _this.topics[index]['data'] = [
+                        {
+                            'hasNextPage': hasNextPage,
+                            'nextPage': 2,
+                            'data': data.map.data
+                        },
+                    ];
+                    _this.CompanyData(typeId).getNext(index);
+                    console.log(_this.topics);
+                    refresher.complete();
+                });
+            },
+            getMore: function (infiniteScroll, index) {
+                var hasNextPage = _this.topics[index]['data'].hasNextPage;
+                var nextPage = _this.topics[index]['data'].nextPage;
+                var moreGotopic = _this.topics[index]['data'].data;
+                _this.CompanyData(typeId).getNext(index);
+                _this.apps.httpPost('findInformationJson.api', { 'classify': 'company', typeId: typeId, page: nextPage }, function (data) {
+                    moreGotopic = moreGotopic.concat(data.map.infolist);
+                    if (data.map.data == null) {
+                        hasNextPage = false;
+                    }
+                    else if (data.map.data.length < 10) {
+                        hasNextPage = false;
+                    }
+                    else {
+                        hasNextPage = true;
+                        nextPage++;
+                    }
+                    _this.topics[index]['data'] = [{
+                            hasNextPage: hasNextPage,
+                            'nextPage': nextPage,
+                            'data': moreGotopic
+                        }];
+                    infiniteScroll.complete();
+                });
+            },
+            getNext: function (index) {
+                _this.hasNext = _this.topics[index]['data']['nexPage'];
+            }
+        };
+    };
+    CompanyInfoPage.prototype.ngOnInit = function () {
+        var _this = this;
+        var k = false;
+        var params = { 'classify': 'company' };
+        this.apps.httpPost('findInformationTypeJson.api', params, function (data) {
+            _this.menus = data.map.data;
+            console.log(_this.menus);
+            _this.companyList = (100 / _this.menus.length) + '%';
+            var ary = [];
+            for (var attr in _this.menus) {
+                ary[attr] = _this.menus[attr];
+            }
+            _this.topics = ary;
+            console.log(ary);
+            k = true;
+            if (k) {
+                _this.doRefresh('', 0, ary[0]['id']);
+            }
+            console.log(_this.topics);
+        });
+    };
+    CompanyInfoPage.prototype.companyinfodetail = function (i) {
+        this.navCtrl.push('CompanyInfoDetailPage', { id: i }, {
+            animation: 'ios-transition'
+        });
+    };
+    CompanyInfoPage.prototype.doRefresh = function (refresher, index, id) {
+        var _this = this;
+        console.log(refresher + '/' + index + '/' + id);
+        if (!refresher) {
+            var hasNextPage_1 = true;
+            this.apps.httpPost('findInformationJson.api', { 'classify': 'company', typeId: id, page: 1 }, function (data) {
+                console.log(data);
+                if (data.map.data == null) {
+                    hasNextPage_1 = false;
+                }
+                else if (data.map.data.length < 10) {
+                    hasNextPage_1 = false;
+                }
+                else {
+                    hasNextPage_1 = true;
+                }
+                _this.topics[index]['data'] = [
+                    {
+                        hasNextPage: hasNextPage_1,
+                        'nextPage': 2,
+                        data: data.map.data
+                    },
+                ];
+            });
+        }
+        else {
+            this.CompanyData(id).gotopic(refresher, index);
+        }
+    };
+    CompanyInfoPage.prototype.doInfinite = function (infiniteScroll, index, id) {
+        this.CompanyData(id).getMore(infiniteScroll, index);
+    };
+    CompanyInfoPage.prototype.selectPageMenu = function ($event, index, id) {
+        this.setStyle(index);
+        this.contentSlides.slideTo(index);
+    };
+    CompanyInfoPage.prototype.slideChanged = function () {
+        var index = this.contentSlides.getActiveIndex();
+        console.log('sc ' + index);
+        if (!this.topics[index]['data']) {
+            this.doRefresh('', index, this.menus[index]['id']);
+        }
+        this.setStyle(index);
+    };
+    CompanyInfoPage.prototype.setStyle = function (index) {
+        var Ind = parseInt(index);
+        this.i = Ind - this.menus.length >= 0 ? this.menus.length - 1 : Ind;
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('contentSlides'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], CompanyInfoPage.prototype, "contentSlides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__["a" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__["a" /* Navbar */])
+    ], CompanyInfoPage.prototype, "navbar", void 0);
+    CompanyInfoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-company-info',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/info/company-info/company-info.html"*/'<!--\n  Generated template for the CompanyInfoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>最新资讯</ion-title>\n  </ion-navbar>\n  <ion-scroll scrollX="true" class="pageMenuSlides" style="height:44px;width:100%;">\n    <div class="swipercontainer"  >\n      <div class="swiper-slide {{i==I?\'bottomLine\':\'\'}}" [ngStyle]="{\'width\':companyList}" *ngFor="let item of menus;let I=index;" tappable (click)="selectPageMenu($event,I,item.id)">{{item.name}}</div>\n    </div>\n  </ion-scroll>\n</ion-header>\n<ion-content>\n    <ion-slides #contentSlides (ionSlideDidChange)="slideChanged()" style="background:#f5f4f3;">\n        <ion-slide  *ngFor="let item of topics;let q=index">\n            <ion-content >\n                <ion-refresher (ionRefresh)="doRefresh($event,q,item.id)">\n                    <ion-refresher-content \n                         pullingIcon="arrow-dropdown"\n                         pullingText="刷新中"\n                         refreshingSpinner="circles"\n                         refreshingText="下拉刷新"\n                    ></ion-refresher-content>\n                  </ion-refresher>\n                <ion-list *ngFor="let it of item.data" >\n                <ion-item style="margin-top:10px;" *ngFor=\'let i of it.data\' (tap)=\'companyinfodetail(i.id)\' class="redTop">\n                  \n                  <ion-label style=\'white-space:normal !important;\'>\n                      <div class="{{i.whether==\'true\'?\'\':\'redtop\'}}" ></div>\n                    <h3 style="color: #666;">{{i.remark}}</h3>\n                    <p style="color: #999;">{{i.startTime.time|date:\'yyyy-MM-dd\'}}</p>\n                  </ion-label>\n                  <ion-thumbnail item-end>\n                      <img [src]=\'appUrl.apiUrl+i.pic\'  onerror="this.src=\'http://placehold.it/120x90\'" >\n                  </ion-thumbnail>\n                </ion-item>\n                <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf=\'it.hasNextPage\'>\n                    <ion-infinite-scroll-content\n                    loadingSpinner="bubbles"\n        loadingText="上拉加载更多...">\n                  </ion-infinite-scroll-content>\n                  </ion-infinite-scroll>\n              </ion-list>\n              \n              </ion-content>\n        </ion-slide>\n      </ion-slides>\n</ion-content>\n\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/info/company-info/company-info.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], CompanyInfoPage);
+    return CompanyInfoPage;
+}());
+
+//# sourceMappingURL=company-info.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=33.js.map

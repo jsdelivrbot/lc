@@ -1,0 +1,270 @@
+webpackJsonp([30],{
+
+/***/ 340:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerLoggingPageModule", function() { return CustomerLoggingPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_logging__ = __webpack_require__(431);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerLoggingPageModule = /** @class */ (function () {
+    function CustomerLoggingPageModule() {
+    }
+    CustomerLoggingPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_logging__["a" /* CustomerLoggingPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_logging__["a" /* CustomerLoggingPage */]),
+            ],
+        })
+    ], CustomerLoggingPageModule);
+    return CustomerLoggingPageModule;
+}());
+
+//# sourceMappingURL=customer-logging.module.js.map
+
+/***/ }),
+
+/***/ 431:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerLoggingPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the CustomerLoggingPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerLoggingPage = /** @class */ (function () {
+    function CustomerLoggingPage(navCtrl, navParams, appService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.selectedTab = 0;
+        this.babys = [];
+        this.newBabys = [];
+        this.remarks = "";
+        this.memberPhone = "";
+        this.memberName = "";
+        this.isDisabled = false;
+        // 从宝宝页面返回时候调用
+        this.getBabyInfo = function (data) {
+            return new Promise(function (resolve, reject) {
+                data.age = _this.countAge(data.birthday) + "岁";
+                if (_this.navParams.data.type) {
+                    _this.newBabys.push(data);
+                }
+                else {
+                    _this.babys.push(data);
+                }
+            });
+        };
+        // 修改宝宝信息完成后
+        this.editBabyDone = function (baby) {
+            return new Promise(function (resolve, reject) {
+                if (baby.del) {
+                    _this.babys.splice(baby.index, 1);
+                    return;
+                }
+                baby.age = _this.countAge(baby.birthday) + "岁";
+                _this.babys[baby.index] = baby;
+            });
+        };
+        // 修改宝宝信息完成后
+        this.editBabyInEditModeDone = function (baby) {
+            return new Promise(function (resolve, reject) {
+                if (baby.del) {
+                    _this.newBabys.splice(baby.index, 1);
+                    return;
+                }
+                baby.age = _this.countAge(baby.birthday) + "岁";
+                _this.newBabys[baby.index] = baby;
+            });
+        };
+    }
+    CustomerLoggingPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CustomerLoggingPage');
+        if (this.navParams.data.type) {
+            this.isDisabled = true;
+            this.getCustomerInfo();
+        }
+    };
+    // 新增宝宝信息
+    CustomerLoggingPage.prototype.addBaby = function () {
+        // 判断是否超过三个宝宝
+        if (this.babys.length === 3) {
+            this.appService.toast('只能添加三个宝宝！');
+            return;
+        }
+        // 跳转到宝宝页面
+        this.navCtrl.push('BabyInfoPage', {
+            animation: 'md-transition',
+            // 传递一个回调参数
+            callback: this.getBabyInfo
+        });
+    };
+    // 点击下一步
+    CustomerLoggingPage.prototype.nextStep = function () {
+        if (this.checkName() && this.checkRemarks()) {
+            // 验证手机
+            this.phoneIsReg();
+        }
+    };
+    // 计算岁数
+    CustomerLoggingPage.prototype.countAge = function (date) {
+        var now = new Date();
+        date = new Date(date);
+        var age = Math.floor(Math.floor((now.getTime() - date.getTime()) / 1000 / 60 / 60 / 24) / 365);
+        return age;
+    };
+    // 判断手机号
+    CustomerLoggingPage.prototype.phoneIsReg = function () {
+        var _this = this;
+        // getPhone.api
+        if (!this.checkPhone(this.memberPhone)) {
+            return false;
+        }
+        // 判断是否编辑模式
+        var babyArray = this.babys;
+        var type = 0;
+        if (this.navParams.data.type) {
+            babyArray = this.newBabys;
+            type = 1;
+        }
+        console.log(babyArray);
+        this.appService.httpPost("getPhone.api", { phone: this.memberPhone }, function (res) {
+            // 判断手机是否被注册
+            // 进入标签选择页面
+            if (res.code == 1 || type) {
+                _this.navCtrl.push('CustomerLoggingTabsPage', {
+                    animation: 'md-transition',
+                    memberData: {
+                        "remarks": _this.remarks,
+                        "memberPhone": _this.memberPhone,
+                        "memberName": _this.memberName,
+                        "babys": babyArray
+                    },
+                    type: type
+                });
+            }
+            else {
+                _this.appService.toast(res.msg);
+                return false;
+            }
+        }, true);
+    };
+    // 检查手机格式
+    CustomerLoggingPage.prototype.checkPhone = function (phone) {
+        if (!(/^1[345789]\d{9}$/.test(phone))) {
+            this.appService.toast('请输入正确的手机号码！');
+            return false;
+        }
+        return true;
+    };
+    // 检查姓名
+    CustomerLoggingPage.prototype.checkName = function () {
+        if (this.memberName.length > 15) {
+            this.appService.toast('顾客姓名不能超过15个字！');
+            return false;
+        }
+        if (this.memberName.length <= 0) {
+            this.appService.toast('请输入顾客姓名！');
+            return false;
+        }
+        return true;
+    };
+    // 检查备注
+    CustomerLoggingPage.prototype.checkRemarks = function () {
+        if (this.remarks.length > 200) {
+            this.appService.toast('备注不能超过两百个字！');
+            return false;
+        }
+        return true;
+    };
+    // 获取顾客信息
+    CustomerLoggingPage.prototype.getCustomerInfo = function () {
+        var _this = this;
+        this.appService.httpPost('findMemberDetails.api', {
+            memberPhone: this.navParams.data.memberPhone,
+        }, function (res) {
+            if (res.code == 1) {
+                _this.memberPhone = res.memberPhone;
+                _this.memberName = res.memberName;
+                _this.babys = res.babys;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 编辑宝宝信息
+    CustomerLoggingPage.prototype.editBaby = function (index) {
+        if (!this.navParams.data.type) {
+            this.navCtrl.push('BabyInfoPage', {
+                animation: 'md-transition',
+                // 传递一个回调参数
+                callback: this.editBabyDone,
+                type: true,
+                index: index,
+                baby: this.babys[index]
+            });
+        }
+    };
+    // 编辑宝宝信息
+    CustomerLoggingPage.prototype.editBabyInEditMode = function (index) {
+        this.navCtrl.push('BabyInfoPage', {
+            animation: 'md-transition',
+            // 传递一个回调参数
+            callback: this.editBabyInEditModeDone,
+            type: true,
+            index: index,
+            baby: this.newBabys[index]
+        });
+    };
+    CustomerLoggingPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-logging',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/customer-logging/customer-logging.html"*/'<!--\n  Generated template for the CustomerLoggingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>补充信息</ion-title>\n  </ion-navbar>\n  <div class="tabs-wrap">\n    <div>\n      <span class="tab-Selected">\n        <span>1</span>\n      </span>\n      <label class="tab-Selected-text">顾客资料</label>\n    </div>\n    <div>\n      <span>\n        <span>2</span>\n      </span>\n      标签设置\n    </div>\n  </div>\n</ion-header>\n\n<ion-content padding>\n  <div class="info-wrap">\n    <div class="info-phone">\n      <span>顾客手机</span>\n      <input type="text" placeholder="请输入顾客手机号" type="tel" [(ngModel)]="memberPhone" [disabled]="isDisabled">\n    </div>\n    <div class="info-name">\n      <span>顾客姓名</span>\n      <input type="text" placeholder="请输入顾客姓名" [(ngModel)]="memberName" [disabled]="isDisabled">\n    </div>\n  </div>\n\n  <div class="baby-info">\n    <div class="baby-header">\n      <span>我的宝宝信息</span>\n      <span class="plus-baby" (tap)=\'addBaby()\'>\n        <img src="./assets/imgs/newadd.png">\n      </span>\n    </div>\n\n    <ul>\n      <li *ngFor="let baby of babys ; index as i" (tap)="editBaby(i)">\n        <div class="baby-sex">\n          <img [src]="baby.babySex==0?\'./assets/imgs/baby-boy.png\':\'./assets/imgs/baby-girl.png\'" alt="" />\n        </div>\n        <div class="baby-detail">\n          <span>{{baby.babyName}}</span>\n          <span>{{baby.age}}</span>\n          <span [ngClass]="{\'right-arrow\': true, \'right-arrow-display\':this.navParams.data.type}">\n            <span></span>\n            <span></span>\n          </span>\n        </div>\n      </li>\n      <li *ngFor="let baby of newBabys ; index as i" (tap)="editBabyInEditMode(i)">\n        <div class="baby-sex">\n          <img [src]="baby.babySex==0?\'./assets/imgs/baby-boy.png\':\'./assets/imgs/baby-girl.png\'" alt="" />\n        </div>\n        <div class="baby-detail">\n          <span>{{baby.babyName}}</span>\n          <span>{{baby.age}}</span>\n          <span [ngClass]="{\'right-arrow\': true}">\n            <span></span>\n            <span></span>\n          </span>\n        </div>\n      </li>\n    </ul>\n\n    <div class="baby-tips">\n      填写正确的宝宝信息，有助于我们更好的为您服务\n    </div>\n  </div>\n\n  <div class="remark">\n    <div>备注</div>\n    <textarea name="remark" id="ta_remark" rows="10" [(ngModel)]="remarks"></textarea>\n  </div>\n</ion-content>\n\n<ion-footer>\n  <div class="nextstep">\n    <button (tap)="nextStep()" >下一步</button>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/myCustomer/customer-logging/customer-logging.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], CustomerLoggingPage);
+    return CustomerLoggingPage;
+}());
+
+//# sourceMappingURL=customer-logging.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=30.js.map

@@ -1,0 +1,244 @@
+webpackJsonp([54],{
+
+/***/ 313:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ZoneRankingPageModule", function() { return ZoneRankingPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__zone_ranking__ = __webpack_require__(404);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var ZoneRankingPageModule = /** @class */ (function () {
+    function ZoneRankingPageModule() {
+    }
+    ZoneRankingPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__zone_ranking__["a" /* ZoneRankingPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__zone_ranking__["a" /* ZoneRankingPage */]),
+            ],
+        })
+    ], ZoneRankingPageModule);
+    return ZoneRankingPageModule;
+}());
+
+//# sourceMappingURL=zone-ranking.module.js.map
+
+/***/ }),
+
+/***/ 404:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ZoneRankingPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ZoneRankingPage = /** @class */ (function () {
+    function ZoneRankingPage(navCtrl, navParams, appService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.storeSelected = '';
+        // 合计:
+        this.amountA = 0;
+        this.amountB = 0;
+        this.amountC = 0;
+        // tabType
+        this.tabType = 1;
+        // senceList
+        this.senceList = [];
+        // 月份
+        this.monthly = [];
+        // zone
+        this.zone = [];
+        // 区域索引
+        this.index = 0;
+        // 顶部tab栏
+        this.tabOption = 1;
+        this.zoneListHidden = false;
+        // country Ranking
+        this.rank = 1;
+        this.averageSale = 0;
+        this.mySale = 0;
+        this.middleNumberSale = 0;
+        this.percentage = '0%';
+        this.firstDistance = 0;
+        this.lastDistance = 0;
+        this.storeOpt = '';
+        this.zoneList({ states: '', type: this.tabType });
+        this.OrgUser();
+        this.appService.getItem('curStore', function (val) {
+            _this.storeId = val['id'];
+            // console.log(this.storeId)
+        });
+    }
+    /**
+     * @method  Store 业务组选择
+     * @param {}
+     * @return {void}
+     */
+    ZoneRankingPage.prototype.Store = function () {
+        if (this.storeSelected != this.storeOpt || !this.storeSelected) {
+            this.zoneList({ storeId: this.storeSelected, states: '', type: this.tabType });
+        }
+    };
+    /**
+     * @method  tabSelect tab切换
+     * @param {tapOption:number} 1销售额 2会员数
+     * @return {boolean}
+     */
+    ZoneRankingPage.prototype.tabSelect = function (tapOption) {
+        if (this.tabOption === tapOption) {
+            return false;
+        }
+        this.index = 0;
+        console.log(tapOption);
+        this.tabOption = tapOption;
+        this.tabType = tapOption;
+        this.monthly = [];
+        this.zoneList({ states: '', type: this.tabType });
+        this.progress(this.tabType, '');
+    };
+    /**
+     * @method  zoneList 默认进来请求
+     * @param {zoneListData} 片区状态，以及类型
+     * @return {void} 无返回值
+     */
+    ZoneRankingPage.prototype.zoneList = function (obj) {
+        var _this = this;
+        this.appService.httpPost('findOrgSortAnalysis.api', {
+            type: obj.type,
+            states: obj.states
+        }, function (data) {
+            if (data.code == 1) {
+                console.log(data);
+                _this.senceList = data['listMap'] || [];
+                _this.amountA = data['amountA'];
+                _this.amountB = data['amountB'];
+                _this.amountC = data['amountC'];
+                if (data['day']) {
+                    data['day'].forEach(function (element) {
+                        _this.monthly.unshift(element.substr(-2).replace(/0/, ''));
+                    });
+                }
+                _this.zone = data['gradeMap'];
+                if (_this.zone.length > 0) {
+                    _this.zoneListHidden = true;
+                }
+                else {
+                    _this.zoneListHidden = false;
+                }
+                console.log(_this.amountB + '/' + _this.amountA + '/' + _this.amountC);
+            }
+            else {
+                _this.navCtrl.popToRoot({ animation: 'md-transition' });
+                _this.appService.alert("" + data.msg);
+            }
+        }, true);
+    };
+    /**
+     * @method  zoneTap 区域选择
+     * @param {index索引，zoneId:区域id} 片区状态，以及类型
+     * @return {void} 无返回值
+     */
+    ZoneRankingPage.prototype.zoneTap = function (index, zoneId) {
+        if (this.index == index) {
+            return false;
+        }
+        this.index = index;
+        this.monthly = [];
+        this.progress(this.tabType, zoneId);
+        this.zoneList({ storeId: this.storeSelected, states: zoneId, type: this.tabType });
+    };
+    /**
+   * @method OrgUser 判断事业部
+   * @param {} 默认空读取本地储存的userId storeId
+   * @return {void} 无返回值
+   */
+    ZoneRankingPage.prototype.OrgUser = function () {
+        var _this = this;
+        this.appService.httpPost('findOrgUser.api', {}, function (data) {
+            console.log(data);
+            _this.storeMap = data['orgMap'] || [];
+            _this.storeMapLength = _this.storeMap.length > 0 ? true : false;
+            if (!_this.storeMapLength) {
+                _this.progress(_this.tabType);
+            }
+        });
+    };
+    /**
+     * @method progress 全国排名，只有当不存在事业部时候才有
+     * @param {states:number,type:tabType}
+     * @return {void} 无返回值
+     *  // country Ranking
+      public rank:number=1;
+      public averageSale:number=0;
+      public mySale:number=0;
+      public middleNumberSale:number=0;
+      public percentage:string='0%';
+      public firstDistance:number=0;
+      public lastDistance:number=0;
+     *
+     *
+     */
+    ZoneRankingPage.prototype.progress = function (tabType, zoneId) {
+        var _this = this;
+        this.appService.httpPost('getOrgSortAnalysis.api', { states: zoneId, type: tabType }, function (data) {
+            _this.rank = data['date']['sort'] || 0;
+            _this.averageSale = data['date']['averageAmount'] || 0;
+            _this.mySale = data['date']['sumAmount'] || 0;
+            _this.middleNumberSale = data['date']['medianAmount'] || 0;
+            _this.firstDistance = data['date']['distancefirst'] || 0;
+            _this.lastDistance = data['date']['distanceLast'] || 0;
+            _this.percentage = (data['date']['percentage'] + '%') || '0%';
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], ZoneRankingPage.prototype, "content", void 0);
+    ZoneRankingPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-zone-ranking',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/zone-ranking/zone-ranking.html"*/'<!--\n  Generated template for the ZoneRankingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>区域排名</ion-title>\n    <ion-buttons end *ngIf=\'storeMapLength\'>\n        <ion-select [(ngModel)]="storeSelected" okText="确定" cancelText="取消" (ionChange)=\'Store()\' style="color: #fff;font-size: 1.5rem;">\n          <ion-option value="">绿臣总部</ion-option>\n          <ion-option *ngFor=\'let item of storeMap\' value="{{item.id}}">{{item.orgName}}</ion-option>\n        </ion-select>\n      </ion-buttons>\n  </ion-navbar>\n  <div class="zoneTab">\n    <div>\n      <span class="{{tabOption==1?\'zonetype\':\'\'}}" (tap)=\'tabSelect(1)\'>销售额</span>\n    </div>\n    <div>\n      <span class="{{tabOption==2?\'zonetype\':\'\'}}"(tap)=\'tabSelect(2)\'>新会员数</span>\n    </div>\n  </div>\n</ion-header>\n<ion-content>\n    <div class="newMember" *ngIf=\'!storeMapLength\'>\n        <div class="interval"></div>\n        <div class="box">\n          <div class="img">\n              {{rank}}\n            <!-- <img src="assets/imgs/RankingNum.png" alt=""> -->\n          </div>\n        </div>\n        <div class="shopDataTab">\n            <div>\n                <p>{{tabType==1?((averageSale/10000)|number:\'1.2-2\'):averageSale}}</p>\n                <p>平均{{tabType==1?\'销售额\':\'新会员数\'}}</p>\n                <p>({{tabType==1?\'万元\':\'人\'}})</p>\n              </div>\n              <div>\n                <p>{{tabType==1?((mySale/10000)|number:\'1.2-2\'):mySale}}</p>\n                <p>我的{{tabType==1?\'销售额\':\'新会员数\'}}</p>\n                <p>({{tabType==1?\'万元\':\'人\'}})</p>\n              </div>\n              <div>\n                <p>{{tabType==1?((middleNumberSale/10000)|number:\'1.2-2\'):middleNumberSale}}</p>\n                <p>中位数{{tabType==1?\'销售额\':\'新会员数\'}}</p>\n                <p>({{tabType==1?\'万元\':\'人\'}})</p>\n              </div>\n        </div>\n        <div class="interval"></div>\n        <div class="ProgressContainer">\n            <div class="stuggle">打败{{percentage}}的区域</div>\n            <div class="progress">\n              <div class="progress-bar" \n              role="progressbar" \n              aria-valuenow="80" \n              aria-valuemin="0" \n              aria-valuemax="100" \n              [ngStyle]="{\'background\':\'#ed4247\',\'width\':percentage}">\n              </div>\n            </div>\n            <div class="Ranking">\n                <span>与上一名相差:{{tabType==1?((lastDistance/10000)|number:\'1.2-2\'):lastDistance}}</span> \n                <span>与第一名相差:{{tabType==1?((firstDistance/10000)|number:\'1.2-2\'):firstDistance}}</span>             \n            </div>\n          </div>\n        <div class="interval"></div>\n      </div>\n      <div class="interval"></div>\n      <div class="mySence" *ngIf=\'zoneListHidden\'>\n        <div>我的情况({{tabType==1?\'万元\':\'万人\'}})</div>\n        <div>\n          <span *ngFor=\'let zon of zone;let i=index\' class="{{i==index?\'spanActive\':\'\'}}" (tap)=\'zoneTap(i,zon.id)\'>{{zon.name}}</span>\n        </div>\n      </div>\n      <div class="tabHeader">\n          <span>\n            <div></div>\n            <div>\n                区域\n              </div>\n          </span>\n          <span *ngFor=\'let ite of monthly\'>{{ite}}月份</span>\n      </div>\n      <div class="tabBody">\n          <span>\n            <div></div>\n            <div>\n                合计\n              </div>\n          </span>\n          <span>{{(amountC/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(amountB/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(amountA/10000)|number:\'1.2-2\'}}</span>\n      </div>\n      <div class="tabList" *ngFor=\'let item of senceList;let i = index\'>\n          <span>\n             <div>\n                <img src="./assets/imgs/Ranking{{i+1}}.png" \n                alt="" *ngIf=\'(i+1)==1?true:false||(i+1)==2?true:false||(i+1)==3?true:false\'>\n                <div *ngIf=\'!((i+1)==1?true:false||(i+1)==2?true:false||(i+1)==3?true:false)\'>{{i+1}}</div>\n             </div>\n             <div>\n                {{item.orgName}}\n              </div>\n          </span>\n          <span>{{(item.amountC/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(item.amountB/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(item.amountA/10000)|number:\'1.2-2\'}}</span>\n      </div>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/zone-ranking/zone-ranking.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], ZoneRankingPage);
+    return ZoneRankingPage;
+}());
+
+//# sourceMappingURL=zone-ranking.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=54.js.map

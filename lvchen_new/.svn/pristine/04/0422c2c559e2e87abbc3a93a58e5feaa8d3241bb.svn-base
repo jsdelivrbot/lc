@@ -1,0 +1,44 @@
+<!--
+  Generated template for the ScannerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- modify by linyunfu 2018-05-28 移动端tap处理点击 -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{scanType==1?'扫商品':'扫赠品'}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showPrompt()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar> 
+</ion-header>
+<ion-content class="{{backgroundnone==false?'white':'qrscanner'}}">
+  <div class="goodNameArea {{curGoodName?'':'hidden'}}">
+    <span>{{curGoodName}}</span>
+  </div>
+  <div class="{{backgroundnone==false?'white':'qrscanner-area'}}">
+  </div>
+  <div class="{{backgroundnone==false?'white':'through-line'}}"></div>
+</ion-content>
+<ion-footer>
+  <div class="bottom-div">
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col (tap)="scanGood()" class="scan-good {{scanType==1?'select-on':'select-off'}}" col-3 ion-button>
+        扫商品
+        <span class="{{goodsNum==0?'hidden':''}} red-badge">{{goodsNum}}</span>
+      </ion-col>
+      <ion-col (tap)="scanGift()" class="scan-gift {{scanType==1?'select-off':'select-on'}}" col-3 ion-button>
+        扫赠品
+        <span class="{{giftsNum==0?'hidden':''}} red-badge">{{giftsNum}}</span>
+      </ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col (tap)="submit()" class="submit-btn" ion-button col-3>
+        <ion-icon name="checkmark"></ion-icon>&nbsp;&nbsp;确认
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-footer>

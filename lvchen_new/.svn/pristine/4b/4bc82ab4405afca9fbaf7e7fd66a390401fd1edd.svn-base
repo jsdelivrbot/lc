@@ -1,0 +1,112 @@
+page-login {
+    .lvLogin {
+        background:url('#{$dir}lvchenLogin.png')no-repeat;
+        background-size: 100% 100%;
+        .loginForm {
+            @include w(70%);
+            @include mrg(25%,
+            15%,
+            0,
+            15%);
+            ion-item {
+                position: relative;
+                padding: 0 !important;
+                background-color: transparent !important;
+                .item-inner {
+                    border: none !important;
+                    padding: 0 !important;
+                }
+                ion-label {
+                    margin: 0 !important;
+                }
+            }
+            .logo {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10%;
+                img {
+                    @include w(90%);
+                    height: 100%;
+                }
+            }
+            .loginbg {
+                @include bb(1px,
+                solid,
+                #ffffff);
+                margin-top: 16px;
+                input {
+                    background: transparent;
+                    border: none;
+                    @include vt;
+                    @include w(60%);
+                    @include h(40px);
+                    @include fs(16px);
+                    color: #fff;
+                    &::-webkit-input-placeholder {
+                        color: #eee;
+                        @include fs(16px);
+                    }
+                }
+                span {
+                    @include dib;
+                    @include w(18px);
+                    @include h(40px);
+                    @include mrg(0,
+                    15px,
+                    1px,
+                    20px);
+                }
+                .loginMobile {
+                    background: url('#{$dir}login_pic1.png')no-repeat center center;
+                    background-size: 18px 20px;
+                }
+                .loginpass {
+                    background: url('#{$dir}pwd_pic.png')no-repeat center center;
+                    background-size: 14px 20px;
+                }
+                .loginkey {
+                    background: url('#{$dir}key.png')no-repeat center center;
+                    background-size: 19px 20px;
+                }
+                .securityCode {
+                    position: absolute;
+                    right: 0;
+                    background: #fff;
+                    border-radius: 15px;
+                    width: 72px;
+                    line-height: 30px;
+                    text-align: center;
+                    height: 30px;
+                    font-size: 12px;
+                    color: #00783a;
+                    margin-top: 5px;
+                }
+            }
+            .submit-btn {
+                width: 100%;
+                @include h(45px);
+                @include mrg(43px);
+                font-size: 18px;
+                color: #00783a;
+                @include bgc(#fff);
+                @include bpublic(radius,
+                23px);
+            }
+            .loginSelect {
+                width: 100%;
+                @include mrg(20px);
+                color: #fff;
+                u {
+                    @include dib;
+                }
+                u:last-child {
+                    float: right;
+                    padding-right: 10px;
+                }
+            }
+        }
+    }
+    .scroll-content {
+        overflow: hidden;
+    }
+}

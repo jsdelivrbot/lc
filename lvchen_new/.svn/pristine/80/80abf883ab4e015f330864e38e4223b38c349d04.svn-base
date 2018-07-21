@@ -1,0 +1,223 @@
+webpackJsonp([81],{
+
+/***/ 286:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusinessMyAchievementPageModule", function() { return BusinessMyAchievementPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__business_my_achievement__ = __webpack_require__(377);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BusinessMyAchievementPageModule = /** @class */ (function () {
+    function BusinessMyAchievementPageModule() {
+    }
+    BusinessMyAchievementPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__business_my_achievement__["a" /* BusinessMyAchievementPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__business_my_achievement__["a" /* BusinessMyAchievementPage */]),
+            ],
+        })
+    ], BusinessMyAchievementPageModule);
+    return BusinessMyAchievementPageModule;
+}());
+
+//# sourceMappingURL=business-my-achievement.module.js.map
+
+/***/ }),
+
+/***/ 377:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessMyAchievementPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BusinessMyAchievementPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BusinessMyAchievementPage = /** @class */ (function () {
+    function BusinessMyAchievementPage(navCtrl, navParams, appService, loadingCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.loadingCtrl = loadingCtrl;
+        this.navIndex = 0;
+        this.topDetail = {};
+        this.ABottomIndex = 0;
+        this.hasExamArr = [];
+        this.noExamArr = [];
+        this.examRate = 0;
+        this.topDetail1 = {};
+        this.BBottomIndex = 0;
+        this.hasStudyArr = [];
+        this.noStudyArr = [];
+        this.studyRate = 0;
+        this.loadingStatus = 0;
+    }
+    BusinessMyAchievementPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.navBar.backButtonClick = function () {
+            _this.navCtrl.pop({
+                animation: 'md-transition'
+            });
+        };
+        this.loadingIndicator = this.loadingCtrl.create({ spinner: 'bubbles' });
+        this.loadingIndicator.present();
+        this.getATop();
+        this.getBTop();
+        this.getExam(0, 'noExamArr');
+        this.getExam(1, 'hasExamArr');
+        this.getCourse(0, 'noStudyArr');
+        this.getCourse(1, 'hasStudyArr');
+    };
+    // 切换内容
+    BusinessMyAchievementPage.prototype.toggleSlide = function () {
+        this.navIndex = this.slides.getActiveIndex();
+        if (this.navIndex > 1) {
+            this.navIndex = 1;
+        }
+        if (this.navIndex < 0) {
+            this.navIndex = 0;
+        }
+    };
+    // 切换导航
+    BusinessMyAchievementPage.prototype.toggleTab = function (index) {
+        this.navIndex = index;
+        this.slides.slideTo(index);
+    };
+    // 成就上半部分
+    BusinessMyAchievementPage.prototype.getATop = function () {
+        var _this = this;
+        this.appService.httpPost("findUserExamJson.api", {}, function (res) {
+            if (res.code == 1) {
+                _this.topDetail = res.map;
+                if (((res.map.examCount) * 1) == 0 || !res.map.examCount) {
+                    _this.examRate = 0;
+                }
+                else {
+                    _this.examRate = Math.floor(((res.map.passCount * 1) / (res.map.examCount) * 1) * 100);
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+            _this.loadingData();
+        }, false);
+    };
+    // 获取考试
+    BusinessMyAchievementPage.prototype.getExam = function (status, arr) {
+        var _this = this;
+        this.appService.httpPost("findMamBusinessExamJson.api", {
+            status: status
+        }, function (res) {
+            console.log("考试", res);
+            if (res.code == 1) {
+                _this[arr] = res.map.listMap;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+            _this.loadingData();
+        }, false);
+    };
+    // 学习上半部分
+    BusinessMyAchievementPage.prototype.getBTop = function () {
+        var _this = this;
+        this.appService.httpPost("findUserCourseJson.api", {}, function (res) {
+            if (res.code == 1) {
+                _this.topDetail1 = res.map;
+                if (((res.map.yesCount * 1) + (res.map.notCount * 1)) == 0) {
+                    _this.studyRate = 0;
+                }
+                else {
+                    _this.studyRate = Math.floor((res.map.yesCount * 1) / ((res.map.yesCount * 1) + (res.map.notCount * 1)) * 100);
+                }
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+            _this.loadingData();
+        }, false);
+    };
+    // 获取课程
+    BusinessMyAchievementPage.prototype.getCourse = function (status, arr) {
+        var _this = this;
+        this.appService.httpPost("findMamBusinessCourseJson.api", {
+            status: status
+        }, function (res) {
+            console.log("课程", res);
+            if (res.code == 1) {
+                _this[arr] = res.map.ListMap;
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+            _this.loadingData();
+        }, false);
+    };
+    // 跳转到课程详情
+    BusinessMyAchievementPage.prototype.goToExam = function (id) {
+        this.navCtrl.push('BusinessCourseDetailPage', { id: id });
+    };
+    // 加载状态
+    BusinessMyAchievementPage.prototype.loadingData = function () {
+        this.loadingStatus++;
+        if (this.loadingStatus == 4) {
+            this.loadingIndicator.dismiss();
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], BusinessMyAchievementPage.prototype, "slides", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], BusinessMyAchievementPage.prototype, "navBar", void 0);
+    BusinessMyAchievementPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-business-my-achievement',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-my-achievement/business-my-achievement.html"*/'<!--\n  Generated template for the BusinessMyAchievementPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>我的成就</ion-title>\n  </ion-navbar>\n\n  <div class="nav-select-wrap">\n    <div [ngClass]="{\'nav-tab-wrap\' : true, \'selected\' : navIndex == 0}" (tap)="toggleTab(0)">\n      <div class="nav-title-wrap">考试情况</div>\n      <div class="nav-line"></div>\n    </div>\n    <div [ngClass]="{\'nav-tab-wrap\' : true, \'selected\' : navIndex == 1}" (tap)="toggleTab(1)">\n      <div class="nav-title-wrap">学习记录</div>\n      <div class="nav-line"></div>\n    </div>\n  </div>\n</ion-header>\n\n\n<ion-content>\n  <ion-slides (ionSlideDidChange)="toggleSlide()">\n    <!-- 成就 -->\n    <ion-slide>\n      <ion-content class="main-content">\n        <div class="top">\n          <div class="top-wrap">\n            <div class="top-img-wrap">\n              <div class="top-img-box" style="background-image: url(./assets/imgs/levelBall.png)">\n                <span>考试通过率</span>\n                <span>{{examRate}}%</span>\n              </div>\n            </div>\n            <div class="top-detail-wrap">\n              <div>\n                <span>{{topDetail.examCount || 0}}</span>\n                <span>参加考试数</span>\n              </div>\n              <div>\n                <span>{{topDetail.passCount || 0}}</span>\n                <span>通过考试数</span>\n              </div>\n              <div>\n                <span>{{topDetail.sumCount || 0}}</span>\n                <span>获得学分数</span>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class="bottom">\n          <div class="bottom-select-wrap">\n            <div class="bottom-select-box" [ngClass]="{\'selected\':ABottomIndex==0?true:false}" (tap)="ABottomIndex = 0">\n              <div class="title">未完成考试</div>\n              <div class="line"></div>\n            </div>\n            <div class="bottom-select-box" [ngClass]="{\'selected\':ABottomIndex==1?true:false}" (tap)="ABottomIndex = 1">\n              <div class="title">近期考试记录</div>\n              <div class="line"></div>\n            </div>\n          </div>\n          <div class="bottom-content" *ngIf="ABottomIndex == 0">\n            <ion-content>\n              <ul>\n                <li *ngFor="let item of noExamArr">\n                  <div>{{item.title}}</div>\n                  <button (tap)="goToExam(item.id)">去考试</button>\n                </li>\n              </ul>\n            </ion-content>\n          </div>\n          \n          <div class="bottom-content" *ngIf="ABottomIndex == 1">\n              <ion-content>\n                <ul>\n                  <li *ngFor="let item of hasExamArr">\n                    <div>{{item.title}}</div>\n                    <button (tap)="goToExam(item.id)">去考试</button>\n                  </li>\n                </ul>\n              </ion-content>\n            </div>\n        </div>\n      </ion-content>\n    </ion-slide>\n\n    <!-- 学习 -->\n    <ion-slide>\n        <ion-content class="main-content">\n          <div class="top">\n            <div class="top-wrap">\n              <div class="top-img-wrap">\n                <div class="top-img-box" style="background-image: url(./assets/imgs/levelBall.png)">\n                  <span>完成率</span>\n                  <span>{{studyRate}}%</span>\n                </div>\n              </div>\n              <div class="top-detail-wrap">\n                <div>\n                  <span>{{topDetail1.notCount || 0}}</span>\n                  <span>未完次数</span>\n                </div>\n                <div>\n                  <span>{{topDetail1.yesCount || 0}}</span>\n                  <span>完成次数</span>\n                </div>\n                <div>\n                  <span>{{topDetail1.sumCount || 0}}</span>\n                  <span>获得学分数</span>\n                </div>\n              </div>\n            </div>\n          </div>\n          <div class="bottom">\n            <div class="bottom-select-wrap">\n              <div class="bottom-select-box" [ngClass]="{\'selected\':ABottomIndex==0?true:false}" (tap)="ABottomIndex = 0">\n                <div class="title">未完成课程</div>\n                <div class="line"></div>\n              </div>\n              <div class="bottom-select-box" [ngClass]="{\'selected\':ABottomIndex==1?true:false}" (tap)="ABottomIndex = 1">\n                <div class="title">近期学习记录</div>\n                <div class="line"></div>\n              </div>\n            </div>\n            <div class="bottom-content" *ngIf="ABottomIndex == 0">\n              <ion-content>\n                <ul>\n                  <li *ngFor="let item of noStudyArr">\n                    <div>{{item.title}}</div>\n                    <button (tap)="goToExam(item.id)">去学习</button>\n                  </li>\n                </ul>\n              </ion-content>\n            </div>\n            \n            <div class="bottom-content" *ngIf="ABottomIndex == 1">\n                <ion-content>\n                  <ul>\n                    <li *ngFor="let item of hasStudyArr">\n                      <div>{{item.title}}</div>\n                      <button (tap)="goToExam(item.id)">去学习</button>\n                    </li>\n                  </ul>\n                </ion-content>\n              </div>\n          </div>\n        </ion-content>\n      </ion-slide>\n  </ion-slides>\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-my-achievement/business-my-achievement.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    ], BusinessMyAchievementPage);
+    return BusinessMyAchievementPage;
+}());
+
+//# sourceMappingURL=business-my-achievement.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=81.js.map

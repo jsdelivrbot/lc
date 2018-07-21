@@ -1,0 +1,73 @@
+<!--
+  Generated template for the OrderModifyPageThreePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>追单回执</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="header-div">
+        <div padding>
+          顾客手机: {{phone}}
+        </div>
+        <div style="height: 1px;width: 100%;background: #ccc;"></div>
+        <div padding>销售单号 {{receiptNo}}
+        </div>
+        <!-- <components-colorbar></components-colorbar> -->
+      </div>
+    <div class="act-div"> {{actNameNum==0?"没有参与任何活动":"参与活动："}}
+        <ul class="{{actNum==0?'hidden':''}}">
+          <li  *ngFor="let act of actName;" >{{act.actName}}</li>
+        </ul>
+      </div>
+      <div class="customerList" *ngIf='goodsLength!==0'>
+        <div class="commodityName">商品</div>
+        <div class="customerReturnSuccessContent">
+          <div class="name">商品名称</div>
+          <div class="num">数量</div>
+          <div class="sum"></div>
+        </div>
+        <div class="customerReturnSuccessContentList" *ngFor='let item of goods'>
+          <div class="name">{{item.goodsName}}</div>
+          <div class="num">{{item.num}}</div>
+          <div class="sum {{item.code[0] == '4444'?'invisible':''}}" (tap)='codeScan(item.code)'>..</div>
+        </div>
+      </div>
+      <!-- 赠品 -->
+      <div class="customerListpresent"  *ngIf='presentLength!=0'>
+          <div class="commodityName">赠品</div>
+          <div class="customerReturnSuccessContent">
+            <div class="name">赠品名称</div>
+            <div class="num">数量</div>
+            <div class="sum">赠品来源</div>
+            <div class="sum"></div>
+          </div>
+          <div class="customerReturnSuccessContentList"*ngFor='let ite of present' >
+              <div class="name">{{ite.goodsName}}</div>
+              <div class="num">{{ite.num}}</div>
+              <div class="sum">{{ite.source==0?'欠门店':ite.source==1?'欠顾客':'其他'}}</div>
+              <div class="sum {{ite.code[0] == '4444'?'invisible':''}}" (tap)='codeScan(ite.code)'>...</div>
+          </div>
+        </div>
+        <!-- 礼品 -->
+        <div class="customerList" *ngIf='lipinlength!=0'>
+          <div class="commodityName">礼品</div>
+          <div class="customerReturnSuccessContent">
+            <div class="name">礼品名称</div>
+            <div class="num">数量</div>
+            <div class="sum"></div>
+          </div>
+          <div class="customerReturnSuccessContentList" *ngFor='let ite of lipin'>
+            <div class="name">{{ite.goodsName}}</div>
+            <div class="num">{{ite.num}}</div>
+            <div class="sum" ></div>
+          </div>
+        </div>
+</ion-content>

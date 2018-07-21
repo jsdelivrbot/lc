@@ -1,0 +1,51 @@
+{
+  "_from": "@ionic-native/keyboard",
+  "_id": "@ionic-native/keyboard@4.7.0",
+  "_inBundle": false,
+  "_integrity": "sha1-RXYIZ7laFyvulfIbg3oQChDTmb8=",
+  "_location": "/@ionic-native/keyboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ionic-native/keyboard",
+    "name": "@ionic-native/keyboard",
+    "escapedName": "@ionic-native%2fkeyboard",
+    "scope": "@ionic-native",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "http://r.cnpmjs.org/@ionic-native/keyboard/download/@ionic-native/keyboard-4.7.0.tgz",
+  "_shasum": "45760867b95a172bee95f21b837a100a10d399bf",
+  "_spec": "@ionic-native/keyboard",
+  "_where": "/Users/linyunfu/Desktop/greenMy",
+  "author": {
+    "name": "ionic"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/ionic-native/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Ionic Native - Native plugins for ionic apps",
+  "homepage": "https://github.com/ionic-team/ionic-native#readme",
+  "license": "MIT",
+  "module": "index.js",
+  "name": "@ionic-native/keyboard",
+  "peerDependencies": {
+    "@ionic-native/core": "^4.2.0",
+    "@angular/core": "*",
+    "rxjs": "^5.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/ionic-native.git"
+  },
+  "typings": "index.d.ts",
+  "version": "4.7.0"
+}

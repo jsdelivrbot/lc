@@ -1,0 +1,21 @@
+page-company-info-detail {
+    .companyDetail{
+        background: #fff!important;
+    }
+
+&::-webkit-scrollbar {
+    display: none !important;
+}
+.CompanyInfoContents{
+    margin: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 10px;
+    ion-row{
+        ion-col:nth-child(2){
+            text-align: right;
+            color: #444;
+        }
+    }
+}
+}

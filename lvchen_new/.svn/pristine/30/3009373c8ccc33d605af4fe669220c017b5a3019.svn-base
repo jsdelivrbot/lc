@@ -1,0 +1,364 @@
+webpackJsonp([0],{
+
+/***/ 362:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectComplimentaryPageModule", function() { return SelectComplimentaryPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__select_gift__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(368);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SelectComplimentaryPageModule = /** @class */ (function () {
+    function SelectComplimentaryPageModule() {
+    }
+    SelectComplimentaryPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__select_gift__["a" /* SelectGiftPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__select_gift__["a" /* SelectGiftPage */]),
+            ],
+        })
+    ], SelectComplimentaryPageModule);
+    return SelectComplimentaryPageModule;
+}());
+
+//# sourceMappingURL=select-gift.module.js.map
+
+/***/ }),
+
+/***/ 368:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__ = __webpack_require__(197);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ComponentsModule = /** @class */ (function () {
+    function ComponentsModule() {
+    }
+    ComponentsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ],
+            imports: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__["a" /* IonicModule */]],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ]
+        })
+    ], ComponentsModule);
+    return ComponentsModule;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 369:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsColorbarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the ComponentsColorbarComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var ComponentsColorbarComponent = /** @class */ (function () {
+    function ComponentsColorbarComponent() {
+        console.log('Hello ComponentsColorbarComponent Component');
+        this.text = 'Hello World';
+    }
+    ComponentsColorbarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'components-colorbar',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/'<!-- Generated template for the ComponentsColorbarComponent component -->\n<div class="colorbar">\n \n</div>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], ComponentsColorbarComponent);
+    return ComponentsColorbarComponent;
+}());
+
+//# sourceMappingURL=components-colorbar.js.map
+
+/***/ }),
+
+/***/ 370:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EchartLineComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the EchartLineComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var EchartLineComponent = /** @class */ (function () {
+    function EchartLineComponent() {
+        this.pwdResult = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
+        this.defaltOption = {
+            baseOption: {
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: true // 数据只读
+                        }
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false
+                }
+            }
+        };
+    }
+    EchartLineComponent.prototype.ionViewDidEnter = function () {
+    };
+    EchartLineComponent.prototype.ngOnChanges = function (changes) {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.ngAfterContentInit = function () {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.refresh = function () {
+        var ctx = this.container.nativeElement;
+        if (this.cheight) {
+            ctx.style.height = this.cheight + 'px';
+        }
+        this.chart = echarts.init(ctx);
+        alert(this.config);
+        this.chart.setOption(this.config);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('container'),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+    ], EchartLineComponent.prototype, "container", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "cheight", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Output */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "pwdResult", void 0);
+    EchartLineComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'echart-line',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/'<!-- Generated template for the EchartLineComponent component -->\n<div #container class="div-charts" ></div>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], EchartLineComponent);
+    return EchartLineComponent;
+    var _a;
+}());
+
+//# sourceMappingURL=echart-line.js.map
+
+/***/ }),
+
+/***/ 453:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectGiftPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the SelectGiftPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SelectGiftPage = /** @class */ (function () {
+    function SelectGiftPage(navCtrl, navParams, appService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.alertCtrl = alertCtrl;
+        this.num = 0;
+        this.checkedData = [];
+        this.presentMap = [];
+    }
+    SelectGiftPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.appService.getItem('pre', function (val) {
+            _this.presentMap = val['presentMap'] || [];
+            _this.num = _this.presentMap.length || 0;
+        });
+    };
+    SelectGiftPage.prototype.onKeyboard = function ($event) {
+        if ($event.key == 'Enter') {
+            this.onSearch();
+        }
+    };
+    SelectGiftPage.prototype.onSearch = function () {
+        var _this = this;
+        if (this.keyword.length < 2) {
+            this.appService.toast('查询必须2个字符以上');
+        }
+        else {
+            this.appService.httpPost('findGiftGoods.api', { code: this.keyword }, function (data) {
+                if (data.code == -1) {
+                    _this.appService.toast(data.msg);
+                }
+                else {
+                    _this.data = data.data;
+                    for (var i = 0; i < _this.data.length; ++i) {
+                        _this.data[i].checked = false;
+                        for (var j = 0; j < _this.presentMap.length; ++j) {
+                            if (_this.presentMap[j].id == _this.data[i].goodsId) {
+                                _this.data[i].checked = true;
+                                console.log(_this.data[i].checked);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }, true);
+        }
+    };
+    SelectGiftPage.prototype.onChecked = function (index) {
+        var _this = this;
+        for (var i = 0; i < this.presentMap.length; ++i) {
+            if (this.presentMap[i].no == index) {
+                this.presentMap.splice(i, 1);
+                this.num = this.presentMap.length;
+                return;
+            }
+        }
+        console.log(index);
+        var item = this.data[index];
+        var alert = this.alertCtrl.create({ enableBackdropDismiss: false });
+        alert.setTitle('选择礼品来源');
+        alert.addInput({
+            type: 'radio',
+            label: "借门店",
+            value: '0',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "欠顾客",
+            value: '1',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "其它",
+            value: '2',
+            checked: true
+        });
+        alert.addButton({
+            text: '确定',
+            handler: function (data) {
+                _this.presentMap.push({ no: index, id: item.goodsId, name: item.goodsName, num: '1', source: data });
+                _this.num = _this.presentMap.length;
+            }
+        });
+        alert.present();
+    };
+    SelectGiftPage.prototype.onCancel = function () {
+        this.navCtrl.pop();
+    };
+    //提交
+    SelectGiftPage.prototype.submit = function () {
+        var params = {
+            presentMap: this.presentMap
+        };
+        this.appService.setItem('pre', params);
+        this.navCtrl.pop();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__["a" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_2_ionic_angular_components_toolbar_navbar__["a" /* Navbar */])
+    ], SelectGiftPage.prototype, "navbar", void 0);
+    SelectGiftPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-select-gift',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/select-gift/select-gift.html"*/'<!--\n  Generated template for the SelectComplimentaryPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>搜索礼品</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="select-gift">\n  <ion-searchbar placeholder="输入赠品名称或条形码后四位" (keyup)="onKeyboard($event)" [(ngModel)]="keyword" padding class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">\n  </ion-searchbar>\n  <components-colorbar></components-colorbar>\n  <ion-item *ngFor="let good of data;let index = index;" >\n    <ion-label>{{good.goodsName}} </ion-label>\n    <ion-checkbox color="btnColor"   (ionChange)="onChecked(index)" checked="{{good.checked == true?\'true\':\'false\' }}"></ion-checkbox>\n  </ion-item>\n</ion-content>\n<ion-footer no-shadow>\n    <div class="depositFoot">\n        <div  class="foot1" >\n            <button (click)="onCancel()" ion-button color="gentle" col-12>\n                取消\n               </button>\n          </div>\n          <div class="foot2">\n              <button (click)="submit()" ion-button color="primary" col-12 style="margin-left: 2px;">\n                  确认\n                  <span class="{{num==0?\'hidden\':\'\'}} red-badge">{{num}}</span>\n                </button>\n          </div>\n    </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/select-gift/select-gift.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], SelectGiftPage);
+    return SelectGiftPage;
+}());
+
+//# sourceMappingURL=select-gift.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=0.js.map

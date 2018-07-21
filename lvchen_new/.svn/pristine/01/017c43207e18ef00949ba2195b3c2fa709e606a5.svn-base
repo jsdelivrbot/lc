@@ -1,0 +1,227 @@
+webpackJsonp([63],{
+
+/***/ 305:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PresentStatisticsPageModule", function() { return PresentStatisticsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__present_statistics__ = __webpack_require__(396);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PresentStatisticsPageModule = /** @class */ (function () {
+    function PresentStatisticsPageModule() {
+    }
+    PresentStatisticsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__present_statistics__["a" /* PresentStatisticsPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__present_statistics__["a" /* PresentStatisticsPage */]),
+            ],
+        })
+    ], PresentStatisticsPageModule);
+    return PresentStatisticsPageModule;
+}());
+
+//# sourceMappingURL=present-statistics.module.js.map
+
+/***/ }),
+
+/***/ 396:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PresentStatisticsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the PresentStatisticsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PresentStatisticsPage = /** @class */ (function () {
+    function PresentStatisticsPage(navCtrl, navParams, appService, loadingCtrl) {
+        //this.pushPage = this.presentGiftDetail;
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.loadingCtrl = loadingCtrl;
+        this.timeSelect = false;
+        this.timeSwitch = true;
+        // 选择时间
+        this.dateTag = 1;
+        //商品数据
+        this.giftData = [];
+        this.presentGiftDetail = 'PresentGiftDetailPage';
+        this.mItems = [
+            { itemName: '当天', type: 1, checked: true },
+            { itemName: '昨天', type: 2, checked: false },
+            { itemName: '当月', type: 3, checked: false },
+            { itemName: '上月', type: 4, checked: false },
+            { itemName: '自定义', type: 10, checked: false }
+        ];
+        //获取登录人员身份
+        this.appService.getItem('userInfo', function (val) {
+            _this.identity = val['tag'];
+        });
+        this.appService.getItem('curStore', function (val) {
+            _this.storeId = val['id'];
+            // console.log(this.storeId)
+        });
+    }
+    PresentStatisticsPage.prototype.ionViewDidLoad = function () {
+        this.presentLoading();
+        // this.defaultSection = '绿臣总部';
+        this.findGift();
+        this.OrgUser();
+    };
+    PresentStatisticsPage.prototype.presentLoading = function () {
+        var loader = this.loadingCtrl.create({
+            duration: 1000
+        });
+        loader.present();
+    };
+    PresentStatisticsPage.prototype.checkIdentity = function () {
+        if (this.identity === 2 || this.identity === 3) {
+            this.pushPage = '';
+        }
+        else {
+            // this.presentLoading();
+            this.pushPage = this.presentGiftDetail;
+        }
+    };
+    PresentStatisticsPage.prototype.findGift = function () {
+        var _this = this;
+        this.appService.httpPost('findGift.api', {
+            storeId: this.storeId,
+            dateTag: this.dateTag,
+            startDate: '',
+            endDate: ''
+        }, function (data) {
+            _this.giftData = data['data'];
+            _this.sum = data['saleQty'];
+            console.log(data);
+            if (data.code !== 1) {
+                _this.appService.alert("" + data.msg);
+            }
+        });
+    };
+    //选择时间查看数据
+    PresentStatisticsPage.prototype.timeZoneSelect = function () {
+        var _this = this;
+        this.presentLoading();
+        if (this.dateTag !== 10) {
+            this.appService.httpPost('findGift.api', { storeId: this.storeId, dateTag: this.dateTag }, function (data) {
+                console.log(data);
+                //console.log(selectedTime);
+                _this.giftData = data['data'];
+                _this.sum = data['saleQty'];
+            });
+        }
+        if (this.dateTag === 10) {
+            this.appService.httpPost('findGift.api', { storeId: this.storeId, sDate: this.startDate, eDate: this.endDate }, function (data) {
+                // console.log(data);
+                _this.giftData = data['data'];
+                _this.sum = data['saleQty'];
+            });
+        }
+        this.timeSelect = !this.timeSelect;
+    };
+    //点击弹出或关闭时间选择
+    PresentStatisticsPage.prototype.showTimeContent = function () {
+        this.timeSelect = !this.timeSelect;
+    };
+    PresentStatisticsPage.prototype.timeOption = function (e) {
+        //console.log(e);
+        // e.view.closed=true;
+    };
+    //选择日期
+    PresentStatisticsPage.prototype.Select = function (itemType) {
+        //console.log(itemType);
+        this.dateTag = itemType;
+        for (var i = 0; i < this.mItems.length; i++) {
+            this.mItems[i].checked = false;
+            if (this.mItems[i].type === itemType) {
+                this.mItems[i].checked = true;
+                if (itemType === 10) {
+                    this.timeSwitch = false;
+                    //console.log(this.timeSwitch)
+                }
+                else {
+                    this.timeSwitch = true;
+                }
+            }
+        }
+    };
+    // 判断是否为总部
+    PresentStatisticsPage.prototype.OrgUser = function () {
+        var _this = this;
+        this.appService.httpPost('getNextOrg.api', { storeId: this.storeId }, function (data) {
+            _this.storeMap = data['data'] || [];
+            console.log(data, '123123');
+            _this.storeMapLength = _this.storeMap.length > 0 ? true : false;
+            ;
+        });
+    };
+    //总部人员选择下级业务组
+    PresentStatisticsPage.prototype.selectGroup = function () {
+        var _this = this;
+        this.presentLoading();
+        this.appService.httpPost('findGift.api', {
+            storeId: this.storeId,
+            dateTag: this.dateTag,
+            startDate: '',
+            endDate: ''
+        }, function (data) {
+            _this.giftData = data['data'];
+            _this.sum = data['saleQty'];
+            console.log(data);
+            if (data.code !== 1) {
+                _this.appService.alert("" + data.msg);
+            }
+        });
+    };
+    PresentStatisticsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-present-statistics',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/present-statistics/present-statistics.html"*/'<!--\n  Generated template for the PresentStatisticsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>赠送统计</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showTimeContent()">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n    </ion-buttons> \n  </ion-navbar> \n</ion-header>\n\n<ion-content>\n  <!-- 时间选择 --> \n  <div class="timeContent" [ngStyle]="{top:device?\'6.7rem\':\'5.7rem\'}" *ngIf=\'timeSelect;\' (click)=\'timeOption($event)\'>\n      <div class="dateContent">\n         <div class="timeBtnTitle">时间选择</div>\n       <div class="timeBtnC">\n         <ul> \n           <li *ngFor=\'let item of mItems\' (tap)=\'Select(item.type)\' class="{{item.checked==true?\'active\':\'\'}}">{{item.itemName}}</li>\n         </ul>\n       </div>\n       <div class="timeBtnTitle" >自定义时间</div>\n       <div class="timeInput" >\n         <div>\n             <span>开始时间</span>\n             <ion-item no-lines>\n                 <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="startDate" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>\n              </ion-item>\n         </div>\n         <div>\n             <span>结束时间</span>\n             <ion-item no-lines>\n                 <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endDate" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>\n               </ion-item>\n         </div>\n       </div>\n       <button (tap)=\'timeZoneSelect()\' class="qbtn">确定</button>\n      </div>\n     </div>\n   <!-- 时间选择 -->  \n \n   <button ion-button full clear *ngIf="storeMapLength">\n      <ion-select [(ngModel)]="storeId" okText="确定" cancelText="取消" (ionChange)="selectGroup()">\n        <ion-option value="134" selected="true">绿臣总部</ion-option>\n        <ion-option *ngFor=\'let section of storeMap\' value="{{section.orgId}}" >{{section.orgName}}</ion-option>\n      </ion-select>\n    </button>\n\n <div class="giftBox">\n   <div class="giftTitleBar line">\n     <div class="giftTitle">赠品</div>\n     <div class="giftNum">赠送量</div> \n     <div class="enterIcon">\n        <!-- <ion-icon name="ios-arrow-forward" style="padding-right: 2rem;"></ion-icon> -->\n    </div>  \n   </div>\n   <div class="totalBar line">\n    <div class="totalCol">合计</div>\n    <div class="giftNumCol">{{sum || 0}}</div>\n    <div class="enterIcon">\n        <!-- <ion-icon name="ios-arrow-forward" style="padding-right: 2rem;"></ion-icon> -->\n    </div>  \n  </div>\n \n  <div class="totalBarCol line" \n       *ngFor="let gift of giftData"\n       [navPush]="pushPage" \n       [navParams]="{goodsId:gift.goodsId, sDate: startDate, eDate: endDate, dateTag: selectedTime }"\n       (tap)="checkIdentity()"> \n    <div class="totalCol" >\n      {{gift.goodsDesc}}&emsp;&emsp;\n    </div>\n    <div class="giftNumCol">{{gift.saleQty}}</div>\n    <div class="enterIcon">\n        <ion-icon name="ios-arrow-forward"></ion-icon>\n    </div>  \n  </div>\n </div>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/present-statistics/present-statistics.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    ], PresentStatisticsPage);
+    return PresentStatisticsPage;
+}());
+
+//# sourceMappingURL=present-statistics.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=63.js.map

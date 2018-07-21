@@ -1,0 +1,59 @@
+page-sales-performance-consign {
+    ion-header {
+        .store-name {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            border-bottom: 1px solid rgba(229, 229, 229, 1);
+        }
+        .toolbar {
+            padding: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 44px;
+        }
+        .list-title {
+            width: 100%;
+            background-color: rgba($color: #f1f6f4, $alpha: 1);
+            color: rgba($color: #999999, $alpha: 1.0);
+            display: flex;
+            word-break: break-all;
+            text-align: center;
+            td {
+                padding: 0.6rem 1rem;
+                .place-holder {
+                    visibility: hidden;
+                }
+            }
+            td:nth-child(3) {
+                text-align: right;
+            }
+        }
+    }
+    ion-content {
+        background-color: rgba($color: #ebebeb, $alpha: 1.0) !important;
+        .rank-wrap {
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            table {
+                width: 100%;
+                text-align: center;
+                word-break: break-all;
+                color: rgba($color: #666666, $alpha: 1.0);
+                td {
+                    padding: 1rem;
+                    .place-holder {
+                        visibility: hidden;
+                    }
+                }
+                td:nth-child(3) {
+                    text-align: right;
+                }
+                tr:not(:last-child) {
+                    border-bottom: 1px solid rgba(229, 229, 229, 1);
+                }
+            }
+        }
+    }
+}

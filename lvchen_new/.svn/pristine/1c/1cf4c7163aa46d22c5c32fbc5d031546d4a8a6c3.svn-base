@@ -1,0 +1,50 @@
+page-chargeback-check {
+  .content {
+    background: #f5f4f3 !important;
+  }
+  .grid-style {
+    padding: 0;
+    ion-row {
+      color: #999;
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 1px;
+    }
+  }
+  .div-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cut-widget {
+    width: 24px;
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border: 1px solid #ccc;
+  }
+
+  .num-widget {
+    float: left;
+    width: 30px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .add-widget {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    text-align: center;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border: 1px solid #ccc;
+  }
+}

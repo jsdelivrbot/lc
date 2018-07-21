@@ -1,0 +1,124 @@
+webpackJsonp([39],{
+
+/***/ 318:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerReturnListDetailPageModule", function() { return CustomerReturnListDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_return_list_detail__ = __webpack_require__(409);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerReturnListDetailPageModule = /** @class */ (function () {
+    function CustomerReturnListDetailPageModule() {
+    }
+    CustomerReturnListDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_return_list_detail__["a" /* CustomerReturnListDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_return_list_detail__["a" /* CustomerReturnListDetailPage */]),
+            ],
+        })
+    ], CustomerReturnListDetailPageModule);
+    return CustomerReturnListDetailPageModule;
+}());
+
+//# sourceMappingURL=customer-return-list-detail.module.js.map
+
+/***/ }),
+
+/***/ 409:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerReturnListDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CustomerReturnListDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerReturnListDetailPage = /** @class */ (function () {
+    function CustomerReturnListDetailPage(navCtrl, navParams, appService, popoverCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.popoverCtrl = popoverCtrl;
+        this.customerStore = '';
+        this.customerStoreGoods = [];
+        this.customerStorePresent = [];
+        this.customerStoreGift = [];
+        console.log(this.navParams.get('item'));
+    }
+    CustomerReturnListDetailPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.appService.httpPost('getSellCasPosSale.api', { posSaleId: this.navParams.get('item') }, function (data) {
+            if (data.code == 1) {
+                _this.customerStore = data.data;
+                _this.customerStoreGoods = data.data.goods || [];
+                _this.customerStoreGift = data.data.gifts || [];
+                _this.customerStorePresent = data.data.presentMap || [];
+            }
+            else {
+                _this.appService.toast(data.msg);
+                _this.navCtrl.pop();
+            }
+            console.log(data);
+        }, true);
+    };
+    CustomerReturnListDetailPage.prototype.scanCode = function (code) {
+        var ary = [];
+        ary.push(code);
+        var popover = this.popoverCtrl.create('CodeviewPage', ary);
+        popover.present();
+    };
+    CustomerReturnListDetailPage.prototype.customerReturnScanner = function () {
+        this.navCtrl.push('CustomerReturnScannerPage', { phone: this.customerStore['phone'], receiptNo: this.customerStore['receiptNo'] }, {
+            animation: 'md-transition'
+        });
+    };
+    CustomerReturnListDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-return-list-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-list-detail/customer-return-list-detail.html"*/' <!--\n  Generated template for the CustomerReturnListDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>订单详情</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content >\n  <div class="menuDetail">\n    <div class="customerListRemark">\n      <div class="Remark">门店名称</div>\n      <div>{{customerStore.stroeName}}</div>\n    </div>\n    <div class="customerListRemark">\n      <div class="Remark">销售单号</div>\n      <div>{{customerStore.receiptNo}}</div>\n    </div>\n    <div class="customerListRemark">\n      <div class="Remark">顾客手机</div>\n      <div>{{customerStore.phone}}</div>\n    </div>\n    <!-- <components-colorbar></components-colorbar> -->\n  </div>\n\n    <div class="customerList" *ngIf=\'customerStoreGoods.length\' >\n        <div class="commodityName">商品</div>\n        <div class="customerReturnSuccessContent">\n          <div class="name">商品名称</div>\n          <div class="num">数量</div>\n          <div class="sum"></div>\n        </div>\n        <div class="customerReturnSuccessContentList" *ngFor=\'let good of customerStoreGoods\' >\n          <div class="name">{{good.goodsDesc}}</div>\n          <div class="num">{{good.num}}</div>\n          <div class="sum {{good.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'scanCode(good.code)\'>...</div>\n        </div>\n      </div>\n  <div class="customerList" *ngIf=\'customerStoreGift.length\'>\n    <div class="commodityName">赠品</div>\n    <div class="customerReturnSuccessContent">\n      <div class="name">商品名称</div>\n      <div class="num">数量</div>\n      <div class="sum"></div>\n    </div>\n    <div class="customerReturnSuccessContentList" *ngFor=\'let gift of customerStoreGift\'>\n      <div class="name">{{gift.goodsDesc}}</div>\n      <div class="num">{{gift.num}}</div>\n      <div class="sum {{gift.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'scanCode(gift.code)\'>...</div>\n    </div>\n  </div>\n  <div class="customerList" *ngIf=\'customerStorePresent.length\'>\n    <div class="commodityName">礼品</div>\n    <div class="customerReturnSuccessContent">\n      <div class="name">礼品名称</div>\n      <div class="num">数量</div>\n      <div class="sum"></div>\n    </div>\n    <div class="customerReturnSuccessContentList" *ngFor=\'let present of customerStorePresent\'>\n      <div class="name">{{present.goodsDesc}}</div>\n      <div class="num">{{present.num}}</div>\n      <div class="sum"></div>\n    </div>\n  </div>\n</ion-content>\n<ion-footer no-shadow (click)=\'customerReturnScanner()\'>\n  <ion-toolbar>\n    <ion-title style="text-align: center;">退货</ion-title>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-list-detail/customer-return-list-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */]])
+    ], CustomerReturnListDetailPage);
+    return CustomerReturnListDetailPage;
+}());
+
+//# sourceMappingURL=customer-return-list-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=39.js.map

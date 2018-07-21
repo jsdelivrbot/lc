@@ -1,0 +1,209 @@
+webpackJsonp([55],{
+
+/***/ 315:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StoreRankingPageModule", function() { return StoreRankingPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_ranking__ = __webpack_require__(406);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var StoreRankingPageModule = /** @class */ (function () {
+    function StoreRankingPageModule() {
+    }
+    StoreRankingPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__store_ranking__["a" /* StoreRankingPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__store_ranking__["a" /* StoreRankingPage */]),
+            ],
+        })
+    ], StoreRankingPageModule);
+    return StoreRankingPageModule;
+}());
+
+//# sourceMappingURL=store-ranking.module.js.map
+
+/***/ }),
+
+/***/ 406:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StoreRankingPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the StoreRankingPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var StoreRankingPage = /** @class */ (function () {
+    function StoreRankingPage(navCtrl, navParams, appService) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.storeSelected = '';
+        this.type = false;
+        this.total = {};
+        this.data = [];
+        this.i = 1;
+        this.refresh = true;
+        // 月份
+        this.monthly = [];
+        // 导购全国排名
+        this.shopperRanking = 1;
+        // 销售额平均数
+        this.averageAmount = 0;
+        // 我的销售额
+        this.userAmount = 0;
+        // 中位数销售额
+        this.medianAmount = 0;
+        // 销售额百分比
+        this.percentage = '';
+        // 上一名
+        this.distanceLast = 0;
+        // 与第一名相差
+        this.distanceFirst = 0;
+        // 导购新会员排名
+        this.memshopperRanking = 1;
+        // 销售额平均数
+        this.memaverageAmount = 0;
+        // 我的销售额
+        this.memuserAmount = 0;
+        // 中位数销售额
+        this.memmedianAmount = 0;
+        // 销售额百分比
+        this.mempercentage = '';
+        // 上一名
+        this.memdistanceLast = 0;
+        // 与第一名相差
+        this.memdistanceFirst = 0;
+        this.appService.getItem('curStore', function (val) {
+            _this.storeId = val['id'];
+            console.log(_this.storeId);
+        });
+        this.RankingData(this.i);
+    }
+    StoreRankingPage.prototype.Store = function () {
+        this.i = 1;
+        this.data = [];
+        this.monthly = [];
+        this.content.scrollToTop(0);
+        this.RankingData(this.i, this.storeSelected);
+    };
+    StoreRankingPage.prototype.doInfinite = function ($event) {
+        this.RankingData(this.i, this.storeSelected, $event);
+    };
+    StoreRankingPage.prototype.RankingData = function (i, storeId, $event) {
+        var _this = this;
+        var obj = { page: i, 'storeId': storeId ? Number(storeId) : Number(this.storeId), rows: 20 };
+        this.appService.httpPost('findStoreSortAnalysis.api', obj, function (data) {
+            _this.type = data['type'];
+            if (data.code != 1) {
+                _this.appService.alert("" + data.msg);
+            }
+            if (data['type'] == 2) {
+                _this.refresh = false;
+                _this.shopperRanking = data['sort'] || 1;
+                _this.averageAmount = data['averageAmount'] | 0;
+                _this.userAmount = data['sumAmount'] || 0;
+                _this.medianAmount = data['medianAmount'] || 0;
+                _this.distanceFirst = data['distancefirst'] || 0;
+                _this.distanceLast = data['distanceLast'] || 0;
+                _this.percentage = '' + (data['percentage'] || 0) + '%';
+                _this.memshopperRanking = data['memsort'] || 1;
+                _this.memaverageAmount = data['memaverageAmount'] | 0;
+                _this.memuserAmount = data['memsumAmount'] || 0;
+                _this.memmedianAmount = data['memmedianAmount'] || 0;
+                _this.memdistanceFirst = data['memdistancefirst'] || 0;
+                _this.memdistanceLast = data['memdistanceLast'] || 0;
+                _this.mempercentage = '' + (data['mempercentage'] || 0) + '%';
+                console.log(_this.percentage);
+            }
+            if (data['type'] == 1) {
+                if (i == 1) {
+                    //  重置content大小
+                    _this.content.resize();
+                    _this.OrgUser();
+                    //  第一页
+                    _this.total = data['totalMap'] || {};
+                    // console.log(data['day'])
+                    data['day'].forEach(function (element) {
+                        _this.monthly.unshift(element.substr(-2).replace(/0/, ''));
+                    });
+                }
+                if (data.length >= 20) {
+                    _this.data = _this.data.concat(data || []);
+                    _this.i++;
+                }
+                else {
+                    _this.data = _this.data.concat(data || []);
+                    _this.refresh = false;
+                }
+                if ($event) {
+                    $event.complete();
+                }
+            }
+        });
+    };
+    // 判断是否为绿臣总部
+    StoreRankingPage.prototype.OrgUser = function () {
+        var _this = this;
+        this.appService.httpPost('findOrgUser.api', { storeId: '' }, function (data) {
+            console.log(data);
+            _this.storeMap = data['orgMap'] || [];
+            _this.storeMapLength = _this.storeMap.length > 0 ? true : false;
+            ;
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Content */])
+    ], StoreRankingPage.prototype, "content", void 0);
+    StoreRankingPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-store-ranking',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/store-ranking/store-ranking.html"*/'<!--\n  Generated template for the StoreRankingPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>门店排名</ion-title>\n    <ion-buttons end *ngIf=\'storeMapLength\'>\n      <ion-select [(ngModel)]="storeSelected" okText="确定" cancelText="取消" (ionChange)=\'Store()\' style="color: #fff;font-size: 1.5rem;">\n        <ion-option value="">绿臣总部</ion-option>\n        <ion-option *ngFor=\'let item of storeMap\' value="{{item.id}}">{{item.orgName}}</ion-option>\n      </ion-select>\n    </ion-buttons>\n  </ion-navbar>\n  <div *ngIf=\'type===1\'>\n      <div class="shopperSubheader" >\n          <span>\n            <div></div>\n            <div>门店</div>\n          </span>\n          <span *ngFor=\'let ite of monthly\'>{{ite}}月份\n            <p>(万元)</p>\n          </span>\n        </div>\n      <div class="shopList">\n          <span>\n            <div></div>\n            <div>合计</div>\n          </span>\n          <span>{{(total.amountC/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(total.amountB/10000)|number:\'1.2-2\'}}</span>\n          <span>{{(total.amountA/10000)|number:\'1.2-2\'}}</span>\n        </div>\n  </div>\n</ion-header>\n<ion-content>\n  <!-- type2 -->\n  <div *ngIf=\'type===2\'>\n    <div class="saleNum">\n      <div class="boxImg">\n\n      </div>\n      <div class="box">\n        <div class="img">\n          {{shopperRanking}}\n          <!-- <img src="assets/imgs/RankingNum.png" alt=""> -->\n        </div>\n      </div>\n      <div class="shopDataTab">\n        <div>\n          <p>{{(averageAmount/10000)|number:\'1.2-2\'}}</p>\n          <p>平均销售额</p>\n          <p>(万元)</p>\n        </div>\n        <div>\n          <p>{{(userAmount/10000)|number:\'1.2-2\'}}</p>\n          <p>门店销售额</p>\n          <p>(万元)</p>\n        </div>\n        <div>\n          <p>{{(medianAmount/10000)|number:\'1.2-2\'}}</p>\n          <p>中位数销售额</p>\n          <p>(万元)</p>\n        </div>\n      </div>\n      <div class="interval"></div>\n      <div class="ProgressContainer">\n        <div class="stuggle">打败{{percentage}}的门店</div>\n        <div class="progress">\n          <div class="progress-bar"\n          role="progressbar"\n          aria-valuenow="80"\n          aria-valuemin="0"\n          aria-valuemax="100"\n          [ngStyle]="{\'background\':\'#ed4247\',\'width\':percentage}">\n          </div>\n        </div>\n        <div class="Ranking">\n          <span>与上一名相差:{{(distanceLast/10000)|number:\'1.2-2\'}}</span>\n          <span>与第一名相差:{{(distanceFirst/10000)|number:\'1.2-2\'}}</span>\n        </div>\n      </div>\n      <!-- <div class="interval"></div> -->\n    </div>\n    <!--\n    <div class="newMember">\n      <div class="mboxImg">\n\n      </div>\n      <div class="box">\n        <div class="img">\n            {{memshopperRanking}} -->\n          <!-- <img src="assets/imgs/RankingNum.png" alt=""> -->\n        <!-- </div>\n      </div>\n      <div class="shopDataTab">\n          <div>\n              <p>{{memaverageAmount }}</p>\n              <p>平均新会员数</p>\n              <p>(人)</p>\n            </div>\n            <div>\n              <p>{{memuserAmount}}</p>\n              <p>门店新会员数</p>\n              <p>(人)</p>\n            </div>\n            <div>\n              <p>{{memmedianAmount}}</p>\n              <p>中位数新会员数</p>\n              <p>(人)</p>\n            </div>\n      </div>\n      <div class="interval"></div>\n      <div class="ProgressContainer">\n          <div class="stuggle">打败{{mempercentage}}的门店</div>\n          <div class="progress">\n            <div class="progress-bar"\n            role="progressbar"\n            aria-valuenow="80"\n            aria-valuemin="0"\n            aria-valuemax="100"\n            [ngStyle]="{\'background\':\'#ed4247\',\'width\':mempercentage}">\n            </div>\n          </div>\n          <div class="Ranking">\n            <span>与上一名相差:{{memdistanceLast}}</span>\n            <span>与第一名相差:{{memdistanceFirst}}</span>\n          </div>\n        </div>\n      <div class="interval"></div>\n    </div>\n  </div>-->\n  <!-- type1 -->\n  <!-- <div *ngIf=\'type==1\'>\n\n\n    <div class="shopListRepeat" *ngFor=\'let item of data\'>\n      <span>\n        <div>\n          <img src="./assets/imgs/Ranking{{item.sort}}.png"\n          alt="" *ngIf=\'item.sort==1?true:false||item.sort==2?true:false||item.sort==3?true:false\'>\n          <div *ngIf=\'!(item.sort==1?true:false||item.sort==2?true:false||item.sort==3?true:false)\'>{{item.sort}}</div>\n        </div>\n        <div>{{item.storName}}</div>\n      </span>\n      <span>{{(item.amountC/10000)|number:\'1.2-2\'}}</span>\n      <span>{{(item.amountB/10000)|number:\'1.2-2\'}}</span>\n      <span>{{(item.amountA/10000)|number:\'1.2-2\'}}</span>\n    </div> -->\n\n  </div>\n  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf=\'refresh\'>\n    <ion-infinite-scroll-content loadingText="数据加载中..."></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/store-ranking/store-ranking.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], StoreRankingPage);
+    return StoreRankingPage;
+}());
+
+//# sourceMappingURL=store-ranking.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=55.js.map

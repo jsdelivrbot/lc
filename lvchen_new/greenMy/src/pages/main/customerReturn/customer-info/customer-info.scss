@@ -1,0 +1,54 @@
+page-customer-info {
+    .custom{
+        background: #fff!important;
+    }
+    
+    .header {
+        width: 100%;
+        background: #fff;
+        color: #666;
+        font-size: 1.5rem;
+        input{
+            border: none;
+        }
+       .customerInfo{
+           padding: 10px;
+           display: flex;
+           border-bottom: 1px solid #ccc;
+          div:first-child{
+              width: 80px;
+              padding-right: 10px;
+              text-align: right;
+          }  
+          &:nth-child(3){
+              padding: 0;
+              div:first-child{
+                width: 90px;
+                height: 40px;
+                line-height: 40px;
+                padding-right: 10px;
+                text-align: right;
+            } 
+            span{
+                display: inline-block;
+              background: green;
+              padding: 10px;
+              color: #fff;
+            }
+          }
+          
+       }
+       .customerInfo:last-child{
+        
+            border: none !important;
+        
+    }
+      }
+      .customerContent{
+          margin: 20px 50px 0px 50px;
+          textarea{
+              width: 100%;
+              color: #777;
+          }
+      }
+}

@@ -1,0 +1,367 @@
+webpackJsonp([66],{
+
+/***/ 300:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TargetGamePageModule", function() { return TargetGamePageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__target_game__ = __webpack_require__(391);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var TargetGamePageModule = /** @class */ (function () {
+    function TargetGamePageModule() {
+    }
+    TargetGamePageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__target_game__["a" /* TargetGamePage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__target_game__["a" /* TargetGamePage */]),
+            ],
+        })
+    ], TargetGamePageModule);
+    return TargetGamePageModule;
+}());
+
+//# sourceMappingURL=target-game.module.js.map
+
+/***/ }),
+
+/***/ 391:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TargetGamePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the TargetGamePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var TargetGamePage = /** @class */ (function () {
+    function TargetGamePage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.i = 0;
+        this.shopItem = [];
+        this.storeItem = [];
+        this.shop = [];
+        this.store = [];
+        this.targetTwoPage = 'TargetGameTwoPage';
+        // 导购pk赛分页索引
+        this.sh = 1;
+        // 门店pk赛缩影
+        this.st = 1;
+        // 控制导购列表上拉刷新
+        this.shopList = true;
+        // 控制门店列表上拉刷新
+        this.storelist = true;
+        this.shop = [
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312323,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+        ];
+        this.store = [
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "will",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "has",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+            {
+                "gameStatus": "finish",
+                "startTime": "123123123123",
+                "endTime": "1321312312313",
+                "id": "1111",
+                "gamename": "六月pk赛",
+                "finishSale": 31312,
+                "targetSale": 12312312
+            },
+        ];
+        this.shopItem = this.shop.slice(0, 5);
+        this.storeItem = this.store.slice(0, 5);
+    }
+    TargetGamePage.prototype.ionViewDidLoad = function () {
+    };
+    TargetGamePage.prototype.slideDidChange = function () {
+        if (this.slides.getActiveIndex() == 2) {
+            this.i = 1;
+            return;
+        }
+        this.i = this.slides.getActiveIndex();
+    };
+    TargetGamePage.prototype.sliderIndex = function (num) {
+        console.log(num);
+        this.slides.slideTo(num);
+        this.i = num;
+    };
+    /*
+    *  @method（）getShopMoreData 导购pk赛分页fun
+    * @param() infiniteScroll 上啦刷新固定传参
+    * @return void
+    */
+    TargetGamePage.prototype.getShopMoreData = function (infiniteScroll) {
+        console.log(111);
+        var data = this.shop.slice(this.sh * 5, this.sh * 5 + 5);
+        this.shopItem = this.shopItem.concat(data);
+        if (data.length % 5 != 0) {
+            this.shopList = false;
+        }
+        else {
+            this.sh++;
+        }
+        infiniteScroll.complete();
+    };
+    TargetGamePage.prototype.getStoreMoreData = function (infiniteScroll) {
+        var data = this.store.slice(this.st * 5, this.st * 5 + 5);
+        this.storeItem = this.shopItem.concat(data);
+        if (data.length % 5 != 0) {
+            this.storelist = false;
+        }
+        else {
+            this.st++;
+        }
+        infiniteScroll.complete();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], TargetGamePage.prototype, "slides", void 0);
+    TargetGamePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-target-game',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/target-game/target-game.html"*/'<!--\n  Generated template for the TargetGamePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>达标赛</ion-title>\n  </ion-navbar>\n  <div class="pkNarbar">\n      <div>\n        <span (tap)=\'sliderIndex(0)\' class="{{i==0?\'active\':\'\'}}">导购</span>\n      </div>\n      <div>\n        <span (tap)=\'sliderIndex(1)\'class="{{i==1?\'active\':\'\'}}">门店</span>\n      </div>\n    </div>\n</ion-header>\n<ion-content >\n    <ion-slides (ionSlideDidChange)="slideDidChange()">\n        <ion-slide>\n            <ion-content>\n                <div class="monthlyList" *ngFor=\'let item of shopItem\'>\n                    <div class="title" >\n                      <img src="assets/imgs/{{item.gameStatus==\'will\'?\'begin\':item.gameStatus==\'finish\'?\'completed\':\'ongoing\'}}.png">\n                      <div class="name">\n                          <span>{{item.gamename}}</span>\n                          <span>{{item.targetSale}}</span>\n                      </div>\n                    \n                      <div class="m_icon" [navPush]=\'targetTwoPage\'>\n                          <ion-icon name="ios-arrow-forward" end></ion-icon>\n                      </div>\n                    </div>\n                    <div class=\'targetDate\'>\n                        2018/01/09-2019-09-01\n                      </div>\n                    <div class="content">\n                      <div class="successRate">\n                        <p>实际完成</p>\n                        <p [ngStyle]="{\'color\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\'}">{{((item.finishSale/item.targetSale)*100).toFixed(2)}} <span>%</span></p>\n                      </div>\n                      <div class="successPro">\n                          <p [ngStyle]="{\'color\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\'}">{{item.finishSale}}</p>\n                          <div class="progress">\n                              <div class="progress-bar"\n                               role="progressbar" \n                               aria-valuenow="80"\n                               aria-valuemin="0"\n                               aria-valuemax="100"\n                              [ngStyle]="{\'background\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\',\'width\':((item.finishSale/item.targetSale)*100).toFixed(2)+\'%\'}"\n                              >\n                              </div>\n                            </div>\n                      </div>\n                    </div>\n                  </div>\n                <div class="bottomHeight">\n\n                </div>\n                <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getShopMoreData($event)" *ngIf=\'shopList\'>\n                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n                  </ion-infinite-scroll-content>\n                </ion-infinite-scroll>\n              </ion-content>\n        </ion-slide>\n        <ion-slide>\n            <ion-content>\n                <div class="monthlyList" *ngFor=\'let item of storeItem\'>\n                    <div class="title" >\n                      <img src="assets/imgs/{{item.gameStatus==\'will\'?\'begin\':item.gameStatus==\'finish\'?\'completed\':\'ongoing\'}}.png">\n                      <div class="name">\n                          <span>{{item.gamename}}</span>\n                          <span>{{item.targetSale}}</span>\n                      </div>\n                    \n                      <div class="m_icon" [navPush]=\'monthlyTaskDetail\' [navParams]=\'params1\'>\n                          <ion-icon name="ios-arrow-forward" end></ion-icon>\n                      </div>\n                    </div>\n                    <div class=\'targetDate\'>\n                        2018/01/09-2019-09-01\n                      </div>\n                    <div class="content">\n                      <div class="successRate">\n                        <p>实际完成</p>\n                        <p [ngStyle]="{\'color\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\'}">{{((item.finishSale/item.targetSale)*100).toFixed(2)}} <span>%</span></p>\n                      </div>\n                      <div class="successPro">\n                          <p [ngStyle]="{\'color\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\'}">{{item.finishSale}}</p>\n                          <div class="progress">\n                              <div class="progress-bar"\n                               role="progressbar" \n                               aria-valuenow="80"\n                               aria-valuemin="0"\n                               aria-valuemax="100"\n                              [ngStyle]="{\'background\':(item.finishSale/item.targetSale)*100>100?\'#ed4247\':\'#4aa44c\',\'width\':((item.finishSale/item.targetSale)*100).toFixed(2)+\'%\'}"\n                              >\n                              </div>\n                            </div>\n                      </div>\n                    </div>\n                  </div>\n                  <div class="bottomHeight">\n\n                    </div>\n                <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getStoreMoreData($event)" *ngIf=\'storelist\'>\n                  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n                  </ion-infinite-scroll-content>\n                </ion-infinite-scroll>\n              </ion-content>\n        </ion-slide>      \n      </ion-slides>\n</ion-content>\n\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/target-game/target-game.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], TargetGamePage);
+    return TargetGamePage;
+}());
+
+//# sourceMappingURL=target-game.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=66.js.map

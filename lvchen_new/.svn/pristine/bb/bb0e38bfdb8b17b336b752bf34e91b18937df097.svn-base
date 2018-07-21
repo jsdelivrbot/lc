@@ -1,0 +1,98 @@
+<!--
+  Generated template for the BusinessCollegePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (tap)="openSearchModal()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>商学院</ion-title>
+    <ion-buttons end>
+      <button ion-button (tap)="openModal()">
+        <ion-icon name="medal"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- 轮播图 -->
+<ion-content>
+  <ion-slides class="banners" autoplay="3000" loop=true pager=true *ngIf="slider.length >= 1">
+    <ion-slide *ngFor='let item of slider'>
+      <img [src]='appUrl.apiUrl+item.mediaPath'>
+    </ion-slide>
+  </ion-slides>
+
+  <!-- 导航图标 -->
+  <ion-grid class="menu-list">
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button clear class="menu-button" (tap)="goNextPage(1)">
+          <div>
+            <img src="./assets/imgs/business_index1.png">
+            <p>我要学习</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button clear class="menu-button" (tap)="goNextPage(2)">
+          <div>
+            <img src="./assets/imgs/business_index2.png">
+            <p>我要考试</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button clear class="menu-button" (tap)="goNextPage(3)">
+          <div>
+            <img src="./assets/imgs/business_index3.png">
+            <p>智能练习</p>
+          </div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 新课程 -->
+  <ul class="new-courser-list">
+    <li class="list-title bold">
+      最新课程
+    </li>
+    <li (tap)="goToCourseDetail(newCourse.id)">
+      <div class="course-img-wrap">
+        <img [src]="appUrl.apiUrl+newCourse.pic" alt="课程图片">
+      </div>
+      <div class="course-title">
+        {{newCourse.title}}
+      </div>
+    </li>
+  </ul>
+
+  <!-- 我的课程 -->
+  <ion-grid class="my-course-list">
+    <ion-row>
+      <ion-col col-12 class="my-course-list-title bold">
+        我的课程
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="course-wrap" col-6 *ngFor="let item of myCourses" (tap)="goToCourseDetail(item.id)">
+        <div class="my-course-img-wrap">
+          <img [src]="appUrl.apiUrl+item.pic" alt="">
+        </div>
+        <div class="my-course-title">
+          {{item.title}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <div class="my-course-all-wrap" (tap)="goToMycourse()">
+      <button>{{collNum}}个课程 >
+      </button>
+    </div>
+  </ion-grid>
+</ion-content>

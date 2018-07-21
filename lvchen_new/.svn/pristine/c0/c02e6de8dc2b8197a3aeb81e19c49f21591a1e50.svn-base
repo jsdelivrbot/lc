@@ -1,0 +1,81 @@
+<!--
+  Generated template for the SalesStatisticsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>销售统计</ion-title>
+    <ion-buttons end >
+      <button ion-button icon-only (click)="showTimeContent()">
+        <ion-icon name="md-calendar"></ion-icon>
+      </button>
+    </ion-buttons> 
+  </ion-navbar> 
+</ion-header>
+<ion-content>
+  <!-- 时间选择 --> 
+    <div class="timeContent" [ngStyle]="{top:device?'6.7rem':'5.7rem'}" *ngIf='timeSelect;' (click)='timeOption($event)'>
+        <div class="dateContent">
+           <div class="timeBtnTitle">时间选择</div>
+         <div class="timeBtnC">
+           <ul>
+             <li *ngFor='let item of mItems' (tap)='Select(item.type)' class="{{item.checked==true?'active':''}}">{{item.itemName}}</li>
+           </ul>
+         </div> 
+         <div class="timeBtnTitle" >自定义时间</div>
+         <div class="timeInput" > 
+           <div>
+               <span>开始时间</span> 
+               <ion-item no-lines>
+                   <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="startDate" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>
+                </ion-item>
+           </div>
+           <div>
+               <span>结束时间</span>
+               <ion-item no-lines>
+                   <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endDate" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>
+                 </ion-item>
+           </div>
+         </div> 
+         <button (tap)='timeZoneSelect()' class="qbtn">确定</button>
+        </div>
+       </div>
+     <!-- 时间选择 -->  
+
+     <button ion-button full clear *ngIf="storeMapLength">
+      <ion-select [(ngModel)]="storeId" okText="确定" cancelText="取消" (ionChange)="selectOrg()" >
+        <ion-option *ngFor='let section of storeMap' value="{{section.orgId}}">{{section.orgName}}</ion-option>
+      </ion-select>
+    </button>
+
+ 
+  <div class="sales-statistics-title line">
+    <div class="product">产品</div>
+    <div class="saleroom">销售额(万元)</div>
+    <div class="sales-volume">销售量(个)</div>
+    <div class="enterIcon"></div>  
+  </div>
+
+  <div class="total-bar line">
+    <div class="total">合计</div>
+    <div class="total-saleroom">{{saleAmount || '0'}}</div>
+    <div class="total-sales-volume">{{saleQty || '0'}}</div>
+    <div class="enterIcon"></div>  
+  </div>
+
+  <div class="product-bar line" 
+       *ngFor="let item of salesData" 
+      [navPush]="salesStatisticsDetail"
+      [navParams]="{goodsId: item.goodsId, sDate: startDate, eDate: endDate, dateTag: dateTag}"
+  >
+    <div class="product-name" >{{item.goodsDesc}}</div>
+    <div class="saleroom">{{item.	saleAmount}}</div>
+    <div class="sales-volume">{{item.	saleQty}}</div>
+    <div class="enterIcon">
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>  
+  </div>
+</ion-content>

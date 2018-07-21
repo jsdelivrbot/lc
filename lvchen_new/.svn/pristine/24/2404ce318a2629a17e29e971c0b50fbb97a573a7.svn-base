@@ -1,0 +1,40 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-appminimize": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-qrscanner": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.greenmy.retailer"
+    }
+  }
+}

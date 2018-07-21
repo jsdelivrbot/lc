@@ -1,0 +1,44 @@
+page-receive-detail {
+  .content {
+    background: #f5f4f3 !important;
+  }
+
+  .list-item-left {
+    color: #666;
+    font-size: 1.6rem;
+  }
+  .list-item-right {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #999;
+    .num-div {
+      margin-top: 4px;
+      .num-text {
+        color: #00783a;
+      }
+    }
+    .state-badge {
+      font-size: 1.2rem;
+
+      line-height: 24px;
+      width: 100%;
+      color: #fff;
+      text-align: center;
+      height: 24px;
+
+      span {
+        display: inline-block;
+        border-radius: 12px;
+        width: 24px;
+      }
+
+      .red {
+        background: #f53d3d;
+      }
+
+      .blue {
+        background: #488aff;
+      }
+    }
+  }
+}

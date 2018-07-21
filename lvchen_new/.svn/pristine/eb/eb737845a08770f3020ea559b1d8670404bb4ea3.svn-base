@@ -1,0 +1,132 @@
+page-pk-game {
+    .content{
+        background:#fff !important;
+    }
+    .pkNarbar{
+        height: 44px;
+        display: flex;
+        background: #fff;
+        align-items: center;
+        border-bottom: 1px solid rgba(229,229,229,.7);
+        >div{
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+            span{
+                height: 44px;
+                line-height: 44px;
+                width: 50%;
+                text-align:center;
+               
+            }
+        }
+        // 红色下划线
+        .active{
+            color: #007d41;
+            border-bottom: 1px solid  #007d41;
+        }
+    }
+    .bottomHeight{
+
+        display: flex;
+        height: 3rem;
+    }
+    .pkContent{
+        height: 1rem;
+        background: #ccc;
+    }
+   
+    ion-slides {
+        .slide-zoom {
+            height: 100%;
+            ion-content{
+                margin-top:1rem;
+            }
+            .green{
+                background: #eafef0;
+            }
+            .red{
+                background: #fff0f0;
+            }
+            .grey{
+                background: #eee;
+            }
+            .pkListdiv{
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                border-radius: .5rem;
+                border:.55px solid rgba(229,229,229,.7);
+                .upPart{
+                    display: flex;
+                    padding: 10px 10px 0 10px;
+                    div{
+                        &:first-child{
+                            >img{
+                                height:63px;
+                                width: 56px
+                            }
+                        }
+                        &:nth-child(2){
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            >img{
+                                height:48px;
+                                width: 80px
+                            }
+                        }
+                        flex:1;
+                        &:last-child{
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            .kouDai{
+                                flex: 1;
+                                display: flex;
+                                flex-direction: column;
+                                text-align: right;
+                                font-size: 1rem;
+                                span{
+                                    height: 2rem;
+                                    &:first-child{
+                                        font-size: 1.5rem;
+                                        color: #444;
+                                    }
+                                    &:last-child{
+                                        color: #444;
+                                        font-size: 2rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &:last-child{
+                        margin-bottom: 40px;
+                    }
+                }
+                .downPart{
+                    display: flex;
+                    height: 3rem;
+                    align-items: center;
+                    div{
+                        flex: 1;
+                    }
+                    div:first-child{
+                        font-size: 1.5rem;
+                        color: gainsboro;
+                    }
+                    div:last-child{
+                        text-align: right;
+                        padding-right: 10px;
+                        font-size: 1.7rem;
+                    }
+                }
+            }
+        }
+    }
+}

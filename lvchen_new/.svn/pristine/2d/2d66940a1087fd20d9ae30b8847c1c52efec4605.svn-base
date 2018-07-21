@@ -1,0 +1,199 @@
+webpackJsonp([58],{
+
+/***/ 309:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesStatisticsPageModule", function() { return SalesStatisticsPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_statistics__ = __webpack_require__(400);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var SalesStatisticsPageModule = /** @class */ (function () {
+    function SalesStatisticsPageModule() {
+    }
+    SalesStatisticsPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_statistics__["a" /* SalesStatisticsPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_statistics__["a" /* SalesStatisticsPage */]),
+            ],
+        })
+    ], SalesStatisticsPageModule);
+    return SalesStatisticsPageModule;
+}());
+
+//# sourceMappingURL=sales-statistics.module.js.map
+
+/***/ }),
+
+/***/ 400:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesStatisticsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SalesStatisticsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesStatisticsPage = /** @class */ (function () {
+    function SalesStatisticsPage(navCtrl, navParams, appService, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.loadingCtrl = loadingCtrl;
+        this.salesStatisticsDetail = 'SalesStatisticsDetailPage';
+        this.timeSelect = false;
+        // public defaultSection: string;
+        this.dateTag = 1;
+        this.timeSwitch = true;
+        //销售数据
+        this.salesData = [];
+        this.mItems = [
+            { itemName: '当天', type: 1, checked: true },
+            { itemName: '昨天', type: 2, checked: false },
+            { itemName: '当月', type: 3, checked: false },
+            { itemName: '上月', type: 4, checked: false },
+            { itemName: '自定义', type: 10, checked: false }
+        ];
+        this.appService.getItem('curStore', function (val) {
+            _this.storeId = val['id'];
+        });
+    }
+    SalesStatisticsPage.prototype.ionViewDidLoad = function () {
+        //this.defaultSection = '绿臣总部';
+        this.presentLoading();
+        this.salesStatistics();
+        this.OrgUser();
+    };
+    //点击弹出或关闭时间选择
+    SalesStatisticsPage.prototype.showTimeContent = function () {
+        this.timeSelect = !this.timeSelect;
+    };
+    SalesStatisticsPage.prototype.timeOption = function (e) {
+    };
+    //选择日期
+    SalesStatisticsPage.prototype.Select = function (itemType) {
+        // console.log(itemType);
+        this.dateTag = itemType;
+        console.log(this.dateTag);
+        for (var i = 0; i < this.mItems.length; i++) {
+            this.mItems[i].checked = false;
+            if (this.mItems[i].type === itemType) {
+                this.mItems[i].checked = true;
+                if (itemType === 10) {
+                    this.timeSwitch = false;
+                    console.log(this.timeSwitch);
+                }
+                else {
+                    this.timeSwitch = true;
+                }
+            }
+        }
+    };
+    //选择时间查看数据
+    SalesStatisticsPage.prototype.timeZoneSelect = function () {
+        var _this = this;
+        this.presentLoading();
+        if (this.dateTag !== 10) {
+            this.appService.httpPost('findCasPosSale.api', { storeId: this.storeId, dateTag: this.dateTag }, function (data) {
+                // console.log(data)
+                // console.log(selectedTime);
+                _this.salesData = data['data'];
+                _this.saleQty = data['saleQty'];
+                _this.saleAmount = data['saleAmount'];
+            });
+        }
+        if (this.dateTag === 10) {
+            this.appService.httpPost('findCasPosSale.api', { storeId: this.storeId, sDate: this.startTime, eDate: this.endTime }, function (data) {
+                // console.log(data);
+                // console.log(startDate, endDate);
+                _this.salesData = data['data'];
+                _this.saleQty = data['saleQty'];
+                _this.saleAmount = data['saleAmount'];
+            });
+        }
+        this.timeSelect = !this.timeSelect;
+    };
+    // 获取销售统计数据
+    SalesStatisticsPage.prototype.salesStatistics = function () {
+        var _this = this;
+        this.appService.httpPost('findCasPosSale.api', { storeId: this.storeId, dateTag: this.dateTag }, function (data) {
+            console.log(data['data']);
+            _this.salesData = data['data'];
+            _this.saleQty = data['saleQty'];
+            _this.saleAmount = data['saleAmount'];
+        });
+    };
+    // 判断是否为总部
+    SalesStatisticsPage.prototype.OrgUser = function () {
+        var _this = this;
+        this.appService.httpPost('getNextOrg.api', { storeId: this.storeId }, function (data) {
+            console.log(data);
+            _this.storeMap = data['data'] || [];
+            _this.storeMapLength = _this.storeMap.length > 0 ? true : false;
+        });
+    };
+    SalesStatisticsPage.prototype.presentLoading = function () {
+        var loader = this.loadingCtrl.create({
+            duration: 1000
+        });
+        loader.present();
+    };
+    //选择下一级部门
+    SalesStatisticsPage.prototype.selectOrg = function () {
+        var _this = this;
+        this.appService.httpPost('findCasPosSale.api', { storeId: this.storeId, dateTag: this.dateTag }, function (data) {
+            // console.log(data['data'],this.defaultSection);
+            _this.salesData = data['data'];
+            _this.saleQty = data['saleQty'];
+            _this.saleAmount = data['saleAmount'];
+        });
+    };
+    SalesStatisticsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-statistics',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-statistics/sales-statistics.html"*/'<!--\n  Generated template for the SalesStatisticsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>销售统计</ion-title>\n    <ion-buttons end >\n      <button ion-button icon-only (click)="showTimeContent()">\n        <ion-icon name="md-calendar"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar> \n</ion-header>\n<ion-content>\n  <!-- 时间选择 --> \n    <div class="timeContent" [ngStyle]="{top:device?\'6.7rem\':\'5.7rem\'}" *ngIf=\'timeSelect;\' (click)=\'timeOption($event)\'>\n        <div class="dateContent">\n           <div class="timeBtnTitle">时间选择</div>\n         <div class="timeBtnC">\n           <ul>\n             <li *ngFor=\'let item of mItems\' (tap)=\'Select(item.type)\' class="{{item.checked==true?\'active\':\'\'}}">{{item.itemName}}</li>\n           </ul>\n         </div> \n         <div class="timeBtnTitle" >自定义时间</div>\n         <div class="timeInput" > \n           <div>\n               <span>开始时间</span>\n               <ion-item no-lines>\n                   <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="startTime" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>\n                </ion-item>\n           </div>\n           <div>\n               <span>结束时间</span>\n               <ion-item no-lines>\n                   <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endTime" doneText="确定" cancelText="取消" disabled="{{timeSwitch}}"></ion-datetime>\n                 </ion-item>\n           </div>\n         </div> \n         <button (tap)=\'timeZoneSelect()\' class="qbtn">确定</button>\n        </div>\n       </div>\n     <!-- 时间选择 -->  \n\n  <button ion-button full clear *ngIf="storeMapLength">\n      <ion-select [(ngModel)]="storeId" (ionChange)="selectOrg()" okText="确定" cancelText="取消">\n        <ion-option value="134" selected="true">绿臣总部</ion-option>\n        <ion-option *ngFor=\'let section of storeMap\' value="{{section.orgId}}">{{section.orgName}}</ion-option>\n      </ion-select>\n  </button> \n\n \n  <div class="sales-statistics-title line">\n    <div class="product">产品</div>\n    <div class="saleroom">销售额(万元)</div>\n    <div class="sales-volume">销售量(个)</div>\n    <div class="enterIcon"></div>  \n  </div>\n\n  <div class="total-bar line">\n    <div class="total">合计</div>\n    <div class="total-saleroom">{{saleAmount || \'0\'}}</div>\n    <div class="total-sales-volume">{{saleQty || \'0\'}}</div>\n    <div class="enterIcon"></div>  \n  </div>\n\n  <div class="product-bar line" \n       *ngFor="let item of salesData" \n      [navPush]="salesStatisticsDetail"\n      [navParams]="{goodsId: item.goodsId}"\n  >\n    <div class="product-name" >{{item.goodsDesc}}</div>\n    <div class="saleroom">{{item.	saleAmount}}</div>\n    <div class="sales-volume">{{item.	saleQty}}</div>\n    <div class="enterIcon">\n        <ion-icon name="ios-arrow-forward"></ion-icon>\n    </div>  \n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-statistics/sales-statistics.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* LoadingController */]])
+    ], SalesStatisticsPage);
+    return SalesStatisticsPage;
+}());
+
+//# sourceMappingURL=sales-statistics.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=58.js.map

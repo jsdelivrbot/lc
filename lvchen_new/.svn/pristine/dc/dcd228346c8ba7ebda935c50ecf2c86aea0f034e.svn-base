@@ -1,0 +1,127 @@
+<!--
+  Generated template for the BusinessExamStartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{examDetail.courseName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="start-content" *ngIf="!examing">
+  <div class="user-pic-wrap">
+    <img src="./assets/imgs/userpic.png" alt="">
+    <div>{{examDetail.userName}}</div>
+  </div>
+  <div class="exam-detail-wrap">
+    <div>
+      <span>考试题目</span>
+      <span>{{examDetail.courseName}}</span>
+    </div>
+    <div>
+      <span>考试时长</span>
+      <span>{{examDetail.examTimeLong}}分钟</span>
+    </div>
+    <div>
+      <span>题目数量</span>
+      <span>{{examDetail.examCount}}道题</span>
+    </div>
+    <div>
+      <span>总分</span>
+      <span>{{examDetail.totalScore}}分</span>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content class="exam-content">
+  <ion-slides loop="false" (ionSlideDidChange)="slideChanged()">
+    <!-- 学习课程 -->
+    <ion-slide *ngFor="let item of questionArr;let i = index">
+      <ion-content>
+        <div class="topic-wrap">
+          {{i+1}}.&nbsp;&nbsp;{{item.title}}
+        </div>
+        <div class="option-wrap">
+          <div (tap)="selectAnswer(i,item.A.id,item.id,item.A.isRight)">
+            <span [ngStyle]="{'background-image': checkRightOrWrong(item.A),'color':checkRightOrWrong1(item.A)}" [ngClass]="{'selected':checkSelectedAnswer(item.A.id)}"><span>A</span></span>{{item.A.answer}}</div>
+          <div (tap)="selectAnswer(i,item.B.id,item.id,item.B.isRight)">
+            <span [ngStyle]="{'background-image': checkRightOrWrong(item.B),'color':checkRightOrWrong1(item.B)}" [ngClass]="{'selected':checkSelectedAnswer(item.B.id)}"><span>B</span></span>{{item.B.answer}}</div>
+          <div (tap)="selectAnswer(i,item.C.id,item.id,item.C.isRight)">
+            <span [ngStyle]="{'background-image': checkRightOrWrong(item.C),'color':checkRightOrWrong1(item.C)}" [ngClass]="{'selected':checkSelectedAnswer(item.C.id)}"><span>C</span></span>{{item.C.answer}}</div>
+          <div (tap)="selectAnswer(i,item.D.id,item.id,item.D.isRight)">
+            <span [ngStyle]="{'background-image': checkRightOrWrong(item.D),'color':checkRightOrWrong1(item.D)}" [ngClass]="{'selected':checkSelectedAnswer(item.D.id)}"><span>D</span></span>{{item.D.answer}}</div>
+        </div>
+      </ion-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<div class="footer">
+  <button ion-button (tap)="startExam()" *ngIf="!examing">开始考试</button>
+  <button ion-button (tap)="finishExam()" *ngIf="isLastPage && !checkMode">提交考卷</button>
+  <div class="option-wrap" *ngIf="examing && !isLastPage && !checkMode">
+    <div class="time">
+      {{readHours
+      <10? "0": ""}}{{readHours}}:{{readTimeLong<10? "0": ""}}{{readTimeLong}}:{{readSeconds<10? "0": ""}}{{readSeconds}} </div>
+        <div class="option" (tap)="showAll = !showAll">
+          <ion-icon name="apps"></ion-icon>&nbsp; {{questionIndex+1}}/{{questionArr.length}}
+        </div>
+    </div>
+
+    <div class="check-mode-wrap" *ngIf="examing && checkMode">
+      <div>
+        答题卡
+      </div>
+      <div class="option" (tap)="showAll = !showAll">
+        <span class="wrong"></span>
+        <span>答错</span>
+        <span class="right"></span>
+        <span>答对</span>
+      </div>
+    </div>
+
+    <div class="all-wrap" *ngIf="showAll">
+      <button *ngFor="let item of questionArr;let i = index;" (tap)="selectQuestion(i)" [ngClass]="{'selected':i==questionIndex,'did':did[i] ,'right':checkIsRight(item)}">
+        {{i+1}}
+      </button>
+    </div>
+  </div>
+
+  <div class="slide-tip" *ngIf="showTip" (tap)="showTip = false">
+    <span>滑动翻页</span>
+    <img src="./assets/imgs/slideTip.png" alt="">
+  </div>
+
+  <ion-content class="testReault" *ngIf="checkResult && !checkMode">
+    <div class="space-white"></div>
+    <div class="exam-detail-wrap">
+      <div>
+        <span>考试题目</span>
+        <span>{{examDetail.courseName}}</span>
+      </div>
+      <div>
+        <span>题目数量</span>
+        <span>{{examDetail.examCount}}道题</span>
+      </div>
+      <div>
+        <span>总分</span>
+        <span>{{examDetail.totalScore}}分</span>
+      </div>
+      <div>
+        <span>答对</span>
+        <span class="result">{{testResult.snswer}}道题</span>
+      </div>
+      <div>
+        <span>得分</span>
+        <span class="result">{{testResult.score}}分</span>
+      </div>
+    </div>
+    <div class="button-wrap">
+      <button (tap)="checkMyExam()">查看我的考卷</button>
+    </div>
+  </ion-content>

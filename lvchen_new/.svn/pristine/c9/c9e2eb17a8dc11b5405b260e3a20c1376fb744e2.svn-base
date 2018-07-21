@@ -1,0 +1,215 @@
+webpackJsonp([70],{
+
+/***/ 297:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PkGameTwoPageModule", function() { return PkGameTwoPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pk_game_two__ = __webpack_require__(388);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PkGameTwoPageModule = /** @class */ (function () {
+    function PkGameTwoPageModule() {
+    }
+    PkGameTwoPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__pk_game_two__["a" /* PkGameTwoPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pk_game_two__["a" /* PkGameTwoPage */]),
+            ],
+        })
+    ], PkGameTwoPageModule);
+    return PkGameTwoPageModule;
+}());
+
+//# sourceMappingURL=pk-game-two.module.js.map
+
+/***/ }),
+
+/***/ 388:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PkGameTwoPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the PkGameTwoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PkGameTwoPage = /** @class */ (function () {
+    function PkGameTwoPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.pkTwoPageData = [];
+        this.pktwoPageList = true;
+        this.data = [];
+        this.sh = 1;
+        this.data = [
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 1
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 2
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 1
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 3
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 4
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 5
+            }, {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 6
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 7
+            }, {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 8
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 9
+            }, {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 10
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 11
+            }, {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 12
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 13
+            }, {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 14
+            },
+            {
+                name: '导购',
+                sale: 123123,
+                distance: 123213,
+                id: 111,
+                sort: 15
+            }
+        ];
+        this.pkTwoPageData = this.data.slice(0, 20);
+        if (this.data.length < 20) {
+            this.pktwoPageList = false;
+        }
+        console.log(this.pkTwoPageData);
+    }
+    PkGameTwoPage.prototype.ionViewDidLoad = function () {
+    };
+    PkGameTwoPage.prototype.getShopMoreData = function (infiniteScroll) {
+        var data = this.data.slice(this.sh * 20, this.sh * 20 + 20);
+        this.pkTwoPageData = this.pkTwoPageData.concat(data);
+        if (data.length % 20 != 0) {
+            this.pktwoPageList = false;
+        }
+        else {
+            this.sh++;
+        }
+        infiniteScroll.complete();
+    };
+    PkGameTwoPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-pk-game-two',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/pk-game-two/pk-game-two.html"*/'<!--\n  Generated template for the PkGameTwoPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>\n     <div class="pkTwoPageNarbar">\n      <div>\n          <span>傻逼pk赛</span>\n          <span>2017/06/09-107/08/09</span>\n      </div>\n     </div>\n    </ion-title>\n    <ion-buttons end>\n        <button ion-button icon-only (tap)="openModal()">\n            <ion-icon name="ios-paper"></ion-icon>\n          </button>\n    </ion-buttons>\n  </ion-navbar>\n  <div class="pkTabTitle">\n    <div class="pkTabRow">\n      门店\n    </div>\n    <div class="pkTabRow">\n      <span>销售</span><span>进阶距离</span>\n    </div>\n  </div>\n</ion-header>\n<ion-content>\n  <div class="pkTwoPageList" *ngFor=\'let item of pkTwoPageData\'>\n    <span>\n        <div>\n            <img src="./assets/imgs/Ranking{{item.sort}}.png" \n            alt="" *ngIf=\'item.sort==1?true:false||item.sort==2?true:false||item.sort==3?true:false\'>\n            <div *ngIf=\'!(item.sort==1?true:false||item.sort==2?true:false||item.sort==3?true:false)\'>{{item.sort}}</div>\n        </div>\n        <div>{{item.name}}</div>\n    </span>\n    <span>{{item.sale}}</span>\n    <span>{{item.distance}}</span>\n  </div>\n  <ion-infinite-scroll class="loading-scroll" (ionInfinite)="getMoreData($event)" *ngIf=\'pktwoPageList\'>\n      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">\n      </ion-infinite-scroll-content>\n    </ion-infinite-scroll>\n</ion-content>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/game/pk-game-two/pk-game-two.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]])
+    ], PkGameTwoPage);
+    return PkGameTwoPage;
+}());
+
+//# sourceMappingURL=pk-game-two.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=70.js.map

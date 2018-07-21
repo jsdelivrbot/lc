@@ -1,0 +1,47 @@
+<!--
+  Generated template for the BorrowDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+      <ion-title>借货统计</ion-title>
+    </ion-navbar>
+    <div class="creditDate">
+        <div (tap)='dataSelect(1)' class="{{i==1?'active':''}}">
+          当天
+        </div>
+        <div (tap)='dataSelect(2)' class="{{i==2?'active':''}}">
+          三天
+        </div>
+        <div (tap)='dataSelect(3)' class="{{i==3?'active':''}}">
+          一周
+        </div>
+        <div (tap)='dataSelect(4)' class="{{i==4?'active':''}}">
+          一个月
+        </div>
+        <div (tap)='dataSelect(5)' class="{{i==5?'active':''}}">
+          三个月
+        </div>
+      </div>
+      <div class="creditList">
+          <div class="creditName">借货名称</div>
+          <div class="creditNum">借货数量</div>
+          <div class="replyNum">还货数量</div>
+        </div>
+  </ion-header>
+  <ion-content class="CreditContent">
+    <div class="creditList" *ngFor='let item of repayDetailArray'>
+        <div class="creditName">{{item.goodsName}}</div>
+        <div class="creditNum">{{item.borrowTotal}}</div>
+        <div class="replyNum">{{item.stillTotal}}</div>
+      </div>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf='hasMore'>
+          <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+        loadingText="下拉加载更多..."
+          ></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+  
+  </ion-content>

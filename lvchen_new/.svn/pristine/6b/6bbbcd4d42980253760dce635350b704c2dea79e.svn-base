@@ -1,0 +1,173 @@
+page-sales-performance-detail {
+    ion-header {
+        .store-name {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            color: rgba($color: #666666, $alpha: 1.0);
+            border-bottom: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+        }
+        .toolbar {
+            padding: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 44px;
+        }
+    }
+    ion-content {
+        background-color: rgba($color: #ebebeb, $alpha: 1.0) !important;
+        .my-situation {
+            margin: 1rem 1.5rem;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            border-bottom: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            border-top: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            .my-situation-title-wrap {
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: rgba($color: #666666, $alpha: 1.0);
+                position: relative;
+                .select-wrap {
+                    display: flex;
+                    justify-content: center;
+                    >div {
+                        width: 2rem;
+                        height: 2rem;
+                        margin-left: 0.5rem;
+                        border-radius: 50%;
+                        background-color: rgba($color: #ebebeb, $alpha: 1.0);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: rgba($color: #ffffff, $alpha: 1.0);
+                        font-size: 1rem;
+                    }
+                    .selected {
+                        background-color: rgba($color: #00783a, $alpha: 1.0);
+                    }
+                }
+            }
+            .my-situation-title-wrap :after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 1rem;
+                width: calc(100% - 2rem);
+                border-bottom: 1px solid rgba($color: #ebebeb, $alpha: 1.0);
+            }
+            .my-situation-detail-wrap {
+                display: flex;
+                .my-situation-detail {
+                    max-width: 34%;
+                    flex: 1;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1rem;
+                    position: relative;
+                    >span:nth-child(1) {
+                        color: rgba($color: #ff0000, $alpha: 1.0);
+                        font-size: 1.8rem;
+                        padding: 0.3rem;
+                        max-width: 100%;
+                        text-overflow: ellipsis;
+                    }
+                    >span:nth-child(2) {
+                        color: rgba($color: #666666, $alpha: 1.0);
+                        font-size: 0.8rem;
+                    }
+                }
+                .my-situation-detail:nth-child(2):after {
+                    content: '';
+                    height: 70%;
+                    position: absolute;
+                    right: 0;
+                    top: 15%;
+                    border-right: 1px solid rgba($color: #ebebeb, $alpha: 1.0);
+                }
+                .my-situation-detail:nth-child(2):before {
+                    content: '';
+                    height: 70%;
+                    position: absolute;
+                    left: 0;
+                    top: 15%;
+                    border-right: 1px solid rgba($color: #ebebeb, $alpha: 1.0);
+                }
+                .green {
+                    color: rgba($color: #00783a, $alpha: 1.0) !important;
+                }
+            }
+        }
+        .echartPosition {
+            margin: 1rem 1.5rem;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            color: rgba($color: #666666, $alpha: 1.0);
+            border-bottom: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            border-top: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            position: relative;
+            padding-bottom: 1rem;
+            .MyTrend {
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .chart-wrap {
+                padding: -2rem 1rem;
+                display: flex;
+                justify-content: center;
+                width: 50rem;
+            }
+            .chart {
+                padding-top: 3rem;
+                width: 100%;
+                height: 200px;
+                margin-top: -5%;
+            }
+        }
+        .rank-wrap {
+            margin: 1rem 1.5rem;
+            padding: 1rem;
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            border-bottom: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            border-top: 1px solid rgba($color: #dddddd, $alpha: 1.0);
+            .rank-title-wrap {
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: rgba($color: #666666, $alpha: 1.0);
+                position: relative;
+            }
+            .rank-title-wrap :after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba($color: #ebebeb, $alpha: 1.0);
+            }
+            table {
+                width: 100%;
+                text-align: center;
+                word-break: break-all;
+                th {
+                    color: rgba($color: #666666, $alpha: 1.0);
+                }
+                td {
+                    padding: 1rem;
+                    color: rgba($color: #999999, $alpha: 1.0);
+                }
+            }
+        }
+    }
+}

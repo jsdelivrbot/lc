@@ -1,0 +1,69 @@
+page-sales-statistics-detail {
+    .content {
+        background: #fff !important;
+    }
+
+    .line{
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .detail-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 4.2rem;
+        background-color: #f6f6f6;
+        color: #666;
+        font-size: 1.4rem;
+        padding-left: 1.6rem;
+    }
+    .business-group {
+        flex: 4;
+    }
+    .saleroom{
+        flex: 2;
+        text-align: center;
+    }
+    .sales-volume{
+        flex: 2;
+        text-align: center;
+    }
+
+    .total-bar {
+        display: flex;
+        align-items: center;
+        height: 4.2rem;
+        color: #666;
+    }
+
+    .total {
+        flex: 4;
+        padding-left: 1.6rem;
+        font-size: 1.3rem;    
+    }
+
+    .total-saleroom {
+        flex: 2;
+        text-align: center;
+    }
+
+    .total-sales-volume {
+        flex: 2;
+        text-align: center;
+    }
+
+    .business-bar{
+        height: 6rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 1.4rem;
+        color: #666;
+    }
+
+    .business-name {
+        flex: 4;
+        padding-left: 1.6rem; 
+        line-height: 1.8rem;
+    }
+}

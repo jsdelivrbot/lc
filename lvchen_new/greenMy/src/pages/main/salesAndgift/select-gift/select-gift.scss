@@ -1,0 +1,48 @@
+page-select-gift {
+  .content{
+    background:#f5f4f3 !important;
+}
+  .content {
+    background: #fff;
+  }
+
+  .searchbar {
+    background: #ffffff;
+  }
+  ion-label {
+    color: #777;
+    span {
+      color: #999;
+      font-size: 15px;
+    }
+  }
+  .select-gift-footer {
+    .item-ios.item-block .item-inner {
+      padding-right: 8px;
+      padding-right: 8px;
+      border-bottom: 0px solid #c8c7cc !important;
+    }
+  }
+
+  .foot-div {
+    margin: 0;
+    float: left;
+    padding: 0;
+    button {
+      margin: 0;
+      border-radius: 0;
+      height: 4.8rem;
+    }
+  }
+  
+  .red-badge {
+    margin-left: 10px;
+    font-size: 1.2rem;
+    background: #f14d0c;
+    line-height: 16px;
+    width: 16px;
+    text-align: center;
+    height: 16px;
+    border-radius: 8px;
+  }
+}

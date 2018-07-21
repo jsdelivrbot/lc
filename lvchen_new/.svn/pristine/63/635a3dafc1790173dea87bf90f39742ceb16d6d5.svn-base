@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-title>首页</ion-title>
+    <ion-buttons end [navPush]='complainListPage'>
+      <button ion-button icon-only>
+        <ion-icon name="mail"></ion-icon>
+        <div class="redDot" *ngIf='unreadComplain'>
+          <div></div>
+        </div>&nbsp;&nbsp;
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-slides class="banners" pager="true" autoplay="3000" loop="true" *ngIf="len >=1">
+    <ion-slide *ngFor='let item of slider'>
+      <img [src]='appUrl.apiUrl+item.mediaPath'>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" [navPush]='ScannerPage'>
+          <div>
+            <img src="./assets/imgs/home_m1.png">
+            <p>销售买赠</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" [navPush]='customerReturn'>
+          <div>
+            <img src="./assets/imgs/home_m2.png">
+            <p>顾客退货</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" (click)="openDeposit()">
+          <div>
+            <img src="./assets/imgs/home_m3.png">
+            <p>大单寄存</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" (click)="repayGift()">
+          <div>
+            <img src="./assets/imgs/home_m4.png">
+            <p>还顾客礼品</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" [navPush]='OrderListPage'>
+          <div>
+            <img src="./assets/imgs/home_m5.png">
+            <p>订单中心</p>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col col-4 class="companyInfoNum">
+        <button ion-button clear class="menu-button" [navPush]='CompanyInfoPage'>
+          <div>
+            <img src="./assets/imgs/home_m7.png">
+            <p>公司资讯</p>
+          </div>
+        </button>
+        <div class="num" *ngIf='unread'>{{unread}}</div>
+      </ion-col>
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" (tap)="customerPage()">
+          <div>
+            <img src="./assets/imgs/home_m8.png">
+            <p>顾客录入</p>
+          </div>
+        </button>
+      </ion-col>
+
+      <ion-col col-4 *ngIf="identity==2||identity==3">
+        <button ion-button clear class="menu-button" [navPush]='MyCustomerPage'>
+          <div>
+            <img src="./assets/imgs/home_m9.png">
+            <p>我的顾客</p>
+          </div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

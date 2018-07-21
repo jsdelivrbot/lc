@@ -1,0 +1,119 @@
+page-business-course-detail {
+    ion-header {
+        .button-wrap {
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding-right: 1rem;
+            button {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                margin-left: 1rem;
+                border: none;
+                box-shadow: none;
+                padding: 0.1rem;
+            }
+            ion-icon {
+                font-size: 2.5rem;
+            }
+        }
+    }
+    ion-content {
+        background-color: rgba($color: #ffffff, $alpha: 1.0) !important;
+        .scroll-content{
+            padding-bottom: 104px;
+        }
+        .pic-wrap {
+            height: calc(100vw / 7.5 * 4);
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            audio {
+                width: 100%;
+                &::-webkit-media-controls-panel {
+                    width: calc(100% + 35px);
+                }
+                &::-webkit-media-controls-enclosure {
+                    overflow: hidden;
+                }
+            }
+        }
+        video {
+            width: 100%;
+            height: calc(100vw / 7.5 * 4);
+            background: rgba($color: #000000, $alpha: 1.0);
+            &::-webkit-media-controls-panel {
+                width: calc(100% + 35px);
+            }
+            &::-webkit-media-controls-enclosure {
+                overflow: hidden;
+            }
+        }
+        .course-introduce {
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            .introduce-title-wrap {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid rgba($color: #aaaaaa, $alpha: 1);
+                padding-bottom: 1.5rem;
+                .introduce-title {
+                    color: rgba($color: #00783a, $alpha: 1.0);
+                    margin-right: 1rem;
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+                .introduce-type {
+                    padding: 0 0.5rem;
+                    color: rgba($color: #a31ae2, $alpha: 1);
+                    border: 1px solid rgba($color: #a31ae2, $alpha: 1.0);
+                    border-radius: 3px;
+                }
+            }
+            .introduce-content {
+                padding: 1rem 0;
+            }
+        }
+    }
+    ion-footer {
+        .button-wrap {
+            display: flex;
+            button {
+                height: 52px !important;
+                width: 100%;
+                height: 100%;
+                color: rgba($color: #ffffff, $alpha: 1.0);
+                background-color: rgba($color: #00783a, $alpha: 1.0);
+                font-size: 1.5rem;
+                margin: 0;
+                padding: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .line {
+                // width: 1.55px;
+                height: 100%;
+                border-left: 1px solid rgba($color: #ffffff, $alpha: 1.0);
+            }
+        }
+        .learn-time-wrap{
+            height: 52px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgba($color: #00783a, $alpha: 1.0);
+            background-color: rgba($color: #ffffff, $alpha: 1.0);
+            .leern-time{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            ion-icon{
+                margin-right: 1rem;
+            }
+        }
+    }
+}

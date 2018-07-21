@@ -1,0 +1,391 @@
+webpackJsonp([84],{
+
+/***/ 283:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusinessExamStartPageModule", function() { return BusinessExamStartPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__business_exam_start__ = __webpack_require__(374);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BusinessExamStartPageModule = /** @class */ (function () {
+    function BusinessExamStartPageModule() {
+    }
+    BusinessExamStartPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__business_exam_start__["a" /* BusinessExamStartPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__business_exam_start__["a" /* BusinessExamStartPage */]),
+            ],
+        })
+    ], BusinessExamStartPageModule);
+    return BusinessExamStartPageModule;
+}());
+
+//# sourceMappingURL=business-exam-start.module.js.map
+
+/***/ }),
+
+/***/ 374:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessExamStartPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BusinessExamStartPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BusinessExamStartPage = /** @class */ (function () {
+    function BusinessExamStartPage(navCtrl, navParams, appService, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.alertCtrl = alertCtrl;
+        this.examDetail = {};
+        this.examing = false;
+        // 题目数组
+        this.questionArr = [];
+        // 答案数组
+        this.answerArr = [];
+        // 当前题目索引
+        this.questionIndex = 0;
+        this.showAll = false;
+        this.showTip = false;
+        this.did = {};
+        // 开始计时
+        this.readTimeLong = 0;
+        this.readSeconds = 0;
+        this.readHours = 0;
+        // 是否最后一页
+        this.isLastPage = false;
+        this.checkResult = false;
+        // 考试结果
+        this.testResult = {};
+        // 查看模式
+        this.checkMode = false;
+        // 考试还是练习
+        this.status = 1;
+        if (this.navParams.data.practice) {
+            this.status = 0;
+        }
+    }
+    BusinessExamStartPage.prototype.ionViewDidLoad = function () {
+        this.id = this.navParams.data.id || 57;
+        this.getExamDetail();
+    };
+    // 离开时清除倒数的计时器
+    BusinessExamStartPage.prototype.ionViewWillLeave = function () {
+        clearTimeout(this.timer);
+    };
+    // 获取考试详情
+    BusinessExamStartPage.prototype.getExamDetail = function () {
+        var _this = this;
+        this.appService.httpPost("business_courseDetail", {
+            courseId: this.id
+        }, function (res) {
+            if (res.code == 1) {
+                _this.examId = res.map.examId;
+                _this.appService.httpPost("getMamBusinessExam.api", {
+                    examId: _this.examId
+                }, function (res) {
+                    if (res.code == 1) {
+                        _this.examDetail = res.map;
+                        _this.readTimeLong = res.map.examTimeLong;
+                    }
+                    else {
+                        _this.appService.alert(res.msg);
+                    }
+                }, true);
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 抽取考试题目
+    BusinessExamStartPage.prototype.getQuestion = function () {
+        var _this = this;
+        this.appService.httpPost("findStartTestJson.api", {
+            examId: this.examId
+        }, function (res) {
+            if (res.code == 1) {
+                _this.questionArr = res.map.listMap;
+            }
+            else {
+                _this.appService.alert(res.msg);
+                _this.navCtrl.pop();
+            }
+        }, true);
+    };
+    // 开始考试
+    BusinessExamStartPage.prototype.startExam = function () {
+        var _this = this;
+        var title = '是否确认开始考试？';
+        var message = '中途不能暂停，中途返回考试作废，提交考卷后不能撤回。';
+        if (this.navParams.data.practice) {
+            title = '是否确认开始练习？';
+            message = '中途不能暂停，中途返回考试作废，练习分数不算入考试分数。';
+        }
+        var alert = this.alertCtrl.create({
+            title: title,
+            message: message,
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function () {
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function () {
+                        _this.examing = true;
+                        _this.getQuestion();
+                        _this.showTip = true;
+                        _this.countTime();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    // 选择题目
+    BusinessExamStartPage.prototype.selectQuestion = function (i) {
+        this.slides.slideTo(i, 500);
+    };
+    // 保存选择的答案
+    BusinessExamStartPage.prototype.selectAnswer = function (index, answerId, subjectId, type) {
+        if (this.checkMode) {
+            return;
+        }
+        this.answerArr[index] = {
+            answerId: answerId,
+            subjectId: subjectId,
+            type: type == 0 ? false : true
+        };
+        this.did[index] = true;
+    };
+    // 滑动题目
+    BusinessExamStartPage.prototype.slideChanged = function () {
+        this.questionIndex = this.slides.getActiveIndex();
+        if (this.questionIndex > (this.questionArr.length - 1)) {
+            this.questionIndex = this.questionArr.length - 1;
+        }
+        if (this.questionIndex == (this.questionArr.length - 1)) {
+            this.isLastPage = true;
+            this.showAll = false;
+        }
+        else {
+            this.isLastPage = false;
+        }
+    };
+    // 开始计时
+    BusinessExamStartPage.prototype.countTime = function () {
+        var _this = this;
+        if (this.readSeconds == 59 && this.readTimeLong == 9 && this.readHours == 0) {
+            this.appService.toast("离考试结束还剩下10分钟，请抓紧时间，考试结束将直接提交考卷！");
+        }
+        this.readSeconds--;
+        if (this.readSeconds < 0) {
+            this.readTimeLong--;
+            if (this.readTimeLong < 0) {
+                this.readHours--;
+                if (this.readHours < 0) {
+                    // 强制提交试卷
+                    var alert_1 = this.alertCtrl.create({
+                        title: '考试时间到！',
+                        message: '是否确定提交试卷？提交后不能撤回！',
+                        enableBackdropDismiss: false,
+                        buttons: [
+                            {
+                                text: '取消',
+                                handler: function () {
+                                    _this.navCtrl.pop();
+                                }
+                            },
+                            {
+                                text: '确定',
+                                handler: function () {
+                                    _this.handelAnswerArr();
+                                    _this.appService.httpPost("editSubmitExam.api", {
+                                        examId: _this.examId,
+                                        subjectMore: JSON.stringify(_this.answerArr),
+                                        status: _this.status
+                                    }, function (res) {
+                                        if (res.code == 1) {
+                                            _this.testResult = res.map;
+                                            _this.checkResult = true;
+                                        }
+                                        else {
+                                            _this.appService.alert(res.msg);
+                                            _this.navCtrl.pop();
+                                        }
+                                    }, true);
+                                }
+                            }
+                        ]
+                    });
+                    alert_1.present();
+                    return;
+                }
+                this.readTimeLong = 59;
+            }
+            this.readSeconds = 59;
+        }
+        this.timer = setTimeout(function () {
+            _this.countTime();
+        }, 1000);
+    };
+    // 提交考卷
+    BusinessExamStartPage.prototype.finishExam = function () {
+        var _this = this;
+        clearTimeout(this.timer);
+        var alert = this.alertCtrl.create({
+            title: '确认提交',
+            message: '是否确定提交试卷？提交后不能撤回！',
+            enableBackdropDismiss: false,
+            buttons: [
+                {
+                    text: '取消',
+                    handler: function () {
+                        _this.countTime();
+                    }
+                },
+                {
+                    text: '确定',
+                    handler: function () {
+                        _this.handelAnswerArr();
+                        _this.appService.httpPost("editSubmitExam.api", {
+                            examId: _this.examId,
+                            subjectMore: JSON.stringify(_this.answerArr),
+                            status: _this.status
+                        }, function (res) {
+                            if (res.code == 1) {
+                                _this.testResult = res.map;
+                                _this.checkResult = true;
+                            }
+                            else {
+                                _this.appService.alert(res.msg);
+                                _this.navCtrl.pop();
+                            }
+                        }, true);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    BusinessExamStartPage.prototype.checkSelectedAnswer = function (id) {
+        for (var i = 0; i < this.answerArr.length; i++) {
+            if (this.answerArr[i] != undefined) {
+                if (this.answerArr[i].answerId == id) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+    BusinessExamStartPage.prototype.checkIsRight = function (item) {
+        for (var i = 0; i < this.answerArr.length; i++) {
+            if (this.answerArr[i].subjectId == item.id && this.answerArr[i].type == true) {
+                if (this.checkMode) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+    BusinessExamStartPage.prototype.checkRightOrWrong = function (item) {
+        if (!this.checkMode) {
+            return 'none';
+        }
+        if (item.isRight == 1) {
+            return 'url(./assets/imgs/right.png)';
+        }
+        for (var i = 0; i < this.answerArr.length; i++) {
+            if (this.answerArr[i].answerId == item.id) {
+                return 'url(./assets/imgs/wrong.png)';
+            }
+        }
+        return 'none';
+    };
+    BusinessExamStartPage.prototype.checkRightOrWrong1 = function (item) {
+        if (!this.checkMode) {
+            return 'none';
+        }
+        if (item.isRight == 1) {
+            return 'transparent';
+        }
+        for (var i = 0; i < this.answerArr.length; i++) {
+            if (this.answerArr[i].answerId == item.id) {
+                return 'transparent';
+            }
+        }
+        return 'none';
+    };
+    // 查看我的考卷
+    BusinessExamStartPage.prototype.checkMyExam = function () {
+        this.slides.slideTo(0, 1);
+        this.checkMode = true;
+    };
+    //处理答案数组
+    BusinessExamStartPage.prototype.handelAnswerArr = function () {
+        for (var i = 0, len = this.answerArr.length; i < len; i++) {
+            if (!this.answerArr[i] || this.answerArr[i] == undefined || this.answerArr[i] === null) {
+                this.answerArr.splice(i, 1);
+                len--;
+                i--;
+            }
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["q" /* Slides */])
+    ], BusinessExamStartPage.prototype, "slides", void 0);
+    BusinessExamStartPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-business-exam-start',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-exam-start/business-exam-start.html"*/'<!--\n  Generated template for the BusinessExamStartPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{examDetail.courseName}}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content class="start-content" *ngIf="!examing">\n  <div class="user-pic-wrap">\n    <img src="./assets/imgs/userpic.png" alt="">\n    <div>{{examDetail.userName}}</div>\n  </div>\n  <div class="exam-detail-wrap">\n    <div>\n      <span>考试题目</span>\n      <span>{{examDetail.courseName}}</span>\n    </div>\n    <div>\n      <span>考试时长</span>\n      <span>{{examDetail.examTimeLong}}分钟</span>\n    </div>\n    <div>\n      <span>题目数量</span>\n      <span>{{examDetail.examCount}}道题</span>\n    </div>\n    <div>\n      <span>总分</span>\n      <span>{{examDetail.totalScore}}分</span>\n    </div>\n  </div>\n</ion-content>\n\n<ion-content class="exam-content">\n  <ion-slides loop="false" (ionSlideDidChange)="slideChanged()">\n    <!-- 学习课程 -->\n    <ion-slide *ngFor="let item of questionArr;let i = index">\n      <ion-content>\n        <div class="topic-wrap">\n          {{i+1}}.&nbsp;&nbsp;{{item.title}}\n        </div>\n        <div class="option-wrap">\n          <div (tap)="selectAnswer(i,item.A.id,item.id,item.A.isRight)">\n            <span [ngStyle]="{\'background-image\': checkRightOrWrong(item.A),\'color\':checkRightOrWrong1(item.A)}" [ngClass]="{\'selected\':checkSelectedAnswer(item.A.id)}"><span>A</span></span>{{item.A.answer}}</div>\n          <div (tap)="selectAnswer(i,item.B.id,item.id,item.B.isRight)">\n            <span [ngStyle]="{\'background-image\': checkRightOrWrong(item.B),\'color\':checkRightOrWrong1(item.B)}" [ngClass]="{\'selected\':checkSelectedAnswer(item.B.id)}"><span>B</span></span>{{item.B.answer}}</div>\n          <div (tap)="selectAnswer(i,item.C.id,item.id,item.C.isRight)">\n            <span [ngStyle]="{\'background-image\': checkRightOrWrong(item.C),\'color\':checkRightOrWrong1(item.C)}" [ngClass]="{\'selected\':checkSelectedAnswer(item.C.id)}"><span>C</span></span>{{item.C.answer}}</div>\n          <div (tap)="selectAnswer(i,item.D.id,item.id,item.D.isRight)">\n            <span [ngStyle]="{\'background-image\': checkRightOrWrong(item.D),\'color\':checkRightOrWrong1(item.D)}" [ngClass]="{\'selected\':checkSelectedAnswer(item.D.id)}"><span>D</span></span>{{item.D.answer}}</div>\n        </div>\n      </ion-content>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n\n<div class="footer">\n  <button ion-button (tap)="startExam()" *ngIf="!examing">开始考试</button>\n  <button ion-button (tap)="finishExam()" *ngIf="isLastPage && !checkMode">提交考卷</button>\n  <div class="option-wrap" *ngIf="examing && !isLastPage && !checkMode">\n    <div class="time">\n      {{readHours\n      <10? "0": ""}}{{readHours}}:{{readTimeLong<10? "0": ""}}{{readTimeLong}}:{{readSeconds<10? "0": ""}}{{readSeconds}} </div>\n        <div class="option" (tap)="showAll = !showAll">\n          <ion-icon name="apps"></ion-icon>&nbsp; {{questionIndex+1}}/{{questionArr.length}}\n        </div>\n    </div>\n\n    <div class="check-mode-wrap" *ngIf="examing && checkMode">\n      <div>\n        答题卡\n      </div>\n      <div class="option" (tap)="showAll = !showAll">\n        <span class="wrong"></span>\n        <span>答错</span>\n        <span class="right"></span>\n        <span>答对</span>\n      </div>\n    </div>\n\n    <div class="all-wrap" *ngIf="showAll">\n      <button *ngFor="let item of questionArr;let i = index;" (tap)="selectQuestion(i)" [ngClass]="{\'selected\':i==questionIndex,\'did\':did[i] ,\'right\':checkIsRight(item)}">\n        {{i+1}}\n      </button>\n    </div>\n  </div>\n\n  <div class="slide-tip" *ngIf="showTip" (tap)="showTip = false">\n    <span>滑动翻页</span>\n    <img src="./assets/imgs/slideTip.png" alt="">\n  </div>\n\n  <ion-content class="testReault" *ngIf="checkResult && !checkMode">\n    <div class="space-white"></div>\n    <div class="exam-detail-wrap">\n      <div>\n        <span>考试题目</span>\n        <span>{{examDetail.courseName}}</span>\n      </div>\n      <div>\n        <span>题目数量</span>\n        <span>{{examDetail.examCount}}道题</span>\n      </div>\n      <div>\n        <span>总分</span>\n        <span>{{examDetail.totalScore}}分</span>\n      </div>\n      <div>\n        <span>答对</span>\n        <span class="result">{{testResult.snswer}}道题</span>\n      </div>\n      <div>\n        <span>得分</span>\n        <span class="result">{{testResult.score}}分</span>\n      </div>\n    </div>\n    <div class="button-wrap">\n      <button (tap)="checkMyExam()">查看我的考卷</button>\n    </div>\n  </ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-exam-start/business-exam-start.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    ], BusinessExamStartPage);
+    return BusinessExamStartPage;
+}());
+
+//# sourceMappingURL=business-exam-start.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=84.js.map

@@ -1,0 +1,109 @@
+webpackJsonp([36],{
+
+/***/ 319:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerReturnSuccessPageModule", function() { return CustomerReturnSuccessPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_return_success__ = __webpack_require__(410);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var CustomerReturnSuccessPageModule = /** @class */ (function () {
+    function CustomerReturnSuccessPageModule() {
+    }
+    CustomerReturnSuccessPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__customer_return_success__["a" /* CustomerReturnSuccessPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_return_success__["a" /* CustomerReturnSuccessPage */]),
+            ],
+        })
+    ], CustomerReturnSuccessPageModule);
+    return CustomerReturnSuccessPageModule;
+}());
+
+//# sourceMappingURL=customer-return-success.module.js.map
+
+/***/ }),
+
+/***/ 410:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerReturnSuccessPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the CustomerReturnSuccessPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var CustomerReturnSuccessPage = /** @class */ (function () {
+    function CustomerReturnSuccessPage(navCtrl, navParams, popover) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.popover = popover;
+        this.returnStoreInfo = '';
+        this.returnStoreInfoGoods = [];
+        this.returnStoreInfoPresentMap = [];
+        this.phone = '';
+        this.posSaleIds = '';
+    }
+    CustomerReturnSuccessPage.prototype.ionViewDidLoad = function () {
+        this.phone = this.navParams.get('phone');
+        this.returnStoreInfo = this.navParams.get('data');
+        this.posSaleIds = this.returnStoreInfo['posSaleIds'];
+        this.returnStoreInfoGoods = this.returnStoreInfo['goods'];
+        this.returnStoreInfoPresentMap = this.returnStoreInfo['gifts'];
+    };
+    CustomerReturnSuccessPage.prototype.commoditySuccess = function () {
+        this.navCtrl.push('CustomerInfoPage', { phone: this.phone, posSaleIds: this.posSaleIds }, { animation: 'md-transition' });
+    };
+    CustomerReturnSuccessPage.prototype.codeScan = function (code) {
+        var ary = [];
+        ary.push(code);
+        var popover = this.popover.create('CodeviewPage', ary);
+        popover.present();
+    };
+    CustomerReturnSuccessPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-customer-return-success',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-success/customer-return-success.html"*/'<!--\n  Generated template for the CustomerReturnSuccessPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>退货确认</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <div class="customerList" *ngIf=\'returnStoreInfoGoods.length\'>\n    <div class="commodityName">商品</div>\n    <div class="customerReturnSuccessContent">\n      <div class="name">商品名称</div>\n      <div class="num">数量</div>\n      <div class="sum"></div>\n    </div>\n    <div class="customerReturnSuccessContentList" *ngFor=\'let item of returnStoreInfoGoods\'>\n      <div class="name">{{item.goodsDesc}}</div>\n      <div class="num">{{item.num}}</div>\n      <div class="sum {{item.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(item.code)\'>...</div>\n    </div>\n  </div>\n  <div class="customerList" *ngIf=\'returnStoreInfoPresentMap.length\'>\n    <div class="commodityName">赠品</div>\n    <div class="customerReturnSuccessContent">\n      <div class="name">赠品名称</div>\n      <div class="num">数量</div>\n      <div class="sum"></div>\n    </div>\n    <div class="customerReturnSuccessContentList" *ngFor=\'let ite of returnStoreInfoPresentMap\'>\n      <div class="name">{{ite.goodsDesc}}</div>\n      <div class="num">{{ite.num}}</div>\n      <div class="sum {{ite.code[0] == \'4444\'?\'invisible\':\'\'}}" (tap)=\'codeScan(ite.code)\'>...</div>\n    </div>\n  </div>\n</ion-content>\n<ion-footer no-shadow (tap)=\'commoditySuccess()\'>\n  <ion-toolbar>\n    <ion-title style="text-align: center;">下一步</ion-title>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/customerReturn/customer-return-success/customer-return-success.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["p" /* PopoverController */]])
+    ], CustomerReturnSuccessPage);
+    return CustomerReturnSuccessPage;
+}());
+
+//# sourceMappingURL=customer-return-success.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=36.js.map

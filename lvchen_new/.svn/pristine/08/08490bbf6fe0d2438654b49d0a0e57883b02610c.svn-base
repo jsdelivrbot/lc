@@ -1,0 +1,588 @@
+webpackJsonp([14],{
+
+/***/ 307:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SalesPerformanceDetailPageModule", function() { return SalesPerformanceDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sales_performance_detail__ = __webpack_require__(398);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(368);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var SalesPerformanceDetailPageModule = /** @class */ (function () {
+    function SalesPerformanceDetailPageModule() {
+    }
+    SalesPerformanceDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__sales_performance_detail__["a" /* SalesPerformanceDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_3__components_components_module__["a" /* ComponentsModule */],
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sales_performance_detail__["a" /* SalesPerformanceDetailPage */]),
+            ],
+        })
+    ], SalesPerformanceDetailPageModule);
+    return SalesPerformanceDetailPageModule;
+}());
+
+//# sourceMappingURL=sales-performance-detail.module.js.map
+
+/***/ }),
+
+/***/ 368:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__ = __webpack_require__(369);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__ = __webpack_require__(197);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ComponentsModule = /** @class */ (function () {
+    function ComponentsModule() {
+    }
+    ComponentsModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ],
+            imports: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular_module__["a" /* IonicModule */]],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_1__components_colorbar_components_colorbar__["a" /* ComponentsColorbarComponent */],
+                __WEBPACK_IMPORTED_MODULE_2__echart_line_echart_line__["a" /* EchartLineComponent */]
+            ]
+        })
+    ], ComponentsModule);
+    return ComponentsModule;
+}());
+
+//# sourceMappingURL=components.module.js.map
+
+/***/ }),
+
+/***/ 369:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComponentsColorbarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the ComponentsColorbarComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var ComponentsColorbarComponent = /** @class */ (function () {
+    function ComponentsColorbarComponent() {
+        console.log('Hello ComponentsColorbarComponent Component');
+        this.text = 'Hello World';
+    }
+    ComponentsColorbarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'components-colorbar',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/'<!-- Generated template for the ComponentsColorbarComponent component -->\n<div class="colorbar">\n \n</div>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/components-colorbar/components-colorbar.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], ComponentsColorbarComponent);
+    return ComponentsColorbarComponent;
+}());
+
+//# sourceMappingURL=components-colorbar.js.map
+
+/***/ }),
+
+/***/ 370:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EchartLineComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * Generated class for the EchartLineComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
+var EchartLineComponent = /** @class */ (function () {
+    function EchartLineComponent() {
+        this.pwdResult = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
+        this.defaltOption = {
+            baseOption: {
+                toolbox: {
+                    show: false,
+                    feature: {
+                        dataView: {
+                            readOnly: true // 数据只读
+                        }
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false
+                }
+            }
+        };
+    }
+    EchartLineComponent.prototype.ionViewDidEnter = function () {
+    };
+    EchartLineComponent.prototype.ngOnChanges = function (changes) {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.ngAfterContentInit = function () {
+        this.refresh();
+    };
+    EchartLineComponent.prototype.refresh = function () {
+        var ctx = this.container.nativeElement;
+        if (this.cheight) {
+            ctx.style.height = this.cheight + 'px';
+        }
+        this.chart = echarts.init(ctx);
+        alert(this.config);
+        this.chart.setOption(this.config);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('container'),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _a || Object)
+    ], EchartLineComponent.prototype, "container", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "cheight", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["O" /* Output */])(),
+        __metadata("design:type", Object)
+    ], EchartLineComponent.prototype, "pwdResult", void 0);
+    EchartLineComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'echart-line',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/'<!-- Generated template for the EchartLineComponent component -->\n<div #container class="div-charts" ></div>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/components/echart-line/echart-line.html"*/
+        }),
+        __metadata("design:paramtypes", [])
+    ], EchartLineComponent);
+    return EchartLineComponent;
+    var _a;
+}());
+
+//# sourceMappingURL=echart-line.js.map
+
+/***/ }),
+
+/***/ 398:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SalesPerformanceDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the SalesPerformanceDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SalesPerformanceDetailPage = /** @class */ (function () {
+    // 显示文字数据
+    function SalesPerformanceDetailPage(navCtrl, navParams, appService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.storeName = "业务组";
+        this.tag = 1;
+        // 业绩类型
+        // 季度
+        this.dateType = 1;
+        this.nowAmount = 0;
+        this.lastMonthAmount = 0;
+        this.lastYearAmount = 0;
+        this.rose = 0;
+        this.yoyg = 0;
+        // 图表
+        this.date = [];
+        this.numdata = [];
+        this.numDataY = [];
+        // 表格
+        this.listMap = [];
+        this.totalAmount = 0;
+        // 初始化echart数据
+        this.config = {
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            legend: {
+                data: [],
+                right: 1,
+                top: 1
+            },
+            grid: {
+                left: 50,
+                top: 45,
+                right: 30,
+                bottom: 20,
+            },
+            toolbox: {
+                show: false,
+            },
+            xAxis: {
+                nameGap: 3,
+                nameTextStyle: {
+                    color: '#999999',
+                },
+                type: 'category',
+                boundaryGap: false,
+                data: this.date,
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#eeeeee',
+                        fontSize: 14
+                    }
+                },
+                axisLabel: {
+                    margin: 8,
+                    textStyle: {
+                        color: '#999999',
+                        fontSize: 12
+                    }
+                }
+            },
+            yAxis: {
+                nameGap: 4,
+                nameTextStyle: {
+                    color: '#777777',
+                    fontSize: '18',
+                },
+                type: 'value',
+                splitLine: {
+                    lineStyle: {
+                        color: ['#eeeeee']
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#eeeeee',
+                        fontSize: 20
+                    }
+                },
+                axisLabel: {
+                    margin: 8,
+                    textStyle: {
+                        color: '#999999',
+                        fontSize: 12
+                    }
+                }
+            },
+            series: [{
+                    data: this.numdata,
+                    type: 'line',
+                    areaStyle: {
+                        normal: {
+                            fontSize: 14,
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(255,240,245,1)'
+                                },
+                                {
+                                    offset: 0.5,
+                                    color: 'rgba(233,193,194,1)'
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgba(233,193,194,1)'
+                                }], false)
+                        }
+                    },
+                    itemStyle: {
+                        show: true,
+                        normal: {
+                            color: 'rgba(233,193,194,1)'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'outside',
+                            textStyle: {
+                                color: '#999999',
+                                fontSize: 12,
+                            }
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            width: 1,
+                            color: new echarts.graphic.LinearGradient(0, 0, 0.5, 0, [{
+                                    offset: 0,
+                                    color: 'rgba(228,142,127,1)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(228,142,127,1)'
+                                }], false)
+                        }
+                    },
+                }]
+        };
+    }
+    // 改变季度
+    SalesPerformanceDetailPage.prototype.changeType = function (dateType) {
+        this.dateType = dateType;
+        this.date = [];
+        this.numdata = [];
+        this.getData(dateType);
+    };
+    SalesPerformanceDetailPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        // 获取业务组名称
+        this.appService.getItem("curStore", function (obj) {
+            _this.storeName = obj.storeName;
+        });
+        // 获取数据
+        this.getData(1);
+    };
+    // 获取数据
+    SalesPerformanceDetailPage.prototype.getData = function (dateType) {
+        var _this = this;
+        console.log('getData 第一次调用');
+        this.appService.httpPost("findSecoundSalesAnalysis.api", {
+            tag: 4,
+            dateType: 1
+        }, function (res) {
+            if (res.code == 1) {
+                // 顶部三个数字
+                _this.nowAmount = res.data.nowAmount;
+                _this.lastMonthAmount = res.data.lastMonthAmount;
+                _this.lastYearAmount = res.data.lastYearAmount;
+                // 计算环比同比
+                _this.rose = _this.lastMonthAmount == 0 || _this.lastMonthAmount == null ? 0 : ((_this.nowAmount - _this.lastMonthAmount) / _this.lastMonthAmount) * 100;
+                _this.yoyg = _this.lastYearAmount == 0 || _this.lastYearAmount == null ? 0 : ((_this.nowAmount - _this.lastYearAmount) / _this.lastYearAmount) * 100;
+                // 获取业务组排名情况，计算合计
+                if (res.data.listMap) {
+                    _this.listMap = res.data.listMap;
+                    _this.totalAmount = 0;
+                    for (var i = 0; i < _this.listMap.length; i++) {
+                        _this.totalAmount += _this.listMap[i].amount;
+                    }
+                }
+                // 获取当月/季销售情况
+                /**
+                * @author() linyunfu create by 2018-05-28
+                * 初始化数组
+                */
+                // 计算图表数据
+                _this.date = [];
+                _this.numdata = [];
+                _this.numDataY = [];
+                for (var i = 0, pLength = res['data']['listChart']; i < pLength.length; i++) {
+                    _this.date.push(pLength[i]['dateStr'].substr(5));
+                    _this.numDataY.push(pLength[i]['consumeSum']);
+                    _this.numdata.push(pLength[i]['consumeSum']);
+                }
+                console.log(_this.date);
+                console.log(_this.numdata);
+                _this.config = {
+                    tooltip: {
+                        trigger: 'axis',
+                        showContent: false
+                    },
+                    legend: {
+                        data: [],
+                        right: 1,
+                        top: 1
+                    },
+                    grid: {
+                        left: 50,
+                        top: 45,
+                        right: 30,
+                        bottom: 20,
+                    },
+                    toolbox: {
+                        show: false,
+                    },
+                    xAxis: {
+                        nameGap: 3,
+                        nameTextStyle: {
+                            color: '#999999',
+                        },
+                        type: 'category',
+                        boundaryGap: false,
+                        data: _this.date,
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#eeeeee',
+                                fontSize: 14
+                            }
+                        },
+                        axisLabel: {
+                            margin: 8,
+                            textStyle: {
+                                color: '#999999',
+                                fontSize: 12
+                            }
+                        }
+                    },
+                    yAxis: {
+                        name: '',
+                        nameGap: 4,
+                        nameTextStyle: {
+                            color: '#777777',
+                            fontSize: '18',
+                        },
+                        type: 'value',
+                        splitLine: {
+                            lineStyle: {
+                                color: ['#eeeeee']
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: '#eeeeee',
+                                fontSize: 20
+                            }
+                        },
+                        axisLabel: {
+                            margin: 8,
+                            textStyle: {
+                                color: '#999999',
+                                fontSize: 12
+                            }
+                        }
+                    },
+                    series: [{
+                            data: _this.numdata,
+                            type: 'line',
+                            areaStyle: {
+                                normal: {
+                                    fontSize: 14,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                            offset: 0,
+                                            color: 'rgba(255,240,245,1)'
+                                        },
+                                        {
+                                            offset: 0.5,
+                                            color: 'rgba(233,193,194,1)'
+                                        },
+                                        {
+                                            offset: 1,
+                                            color: 'rgba(233,193,194,1)'
+                                        }], false)
+                                }
+                            },
+                            itemStyle: {
+                                show: true,
+                                normal: {
+                                    color: 'rgba(233,193,194,1)'
+                                }
+                            },
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'outside',
+                                    textStyle: {
+                                        color: '#999999',
+                                        fontSize: 12,
+                                    }
+                                }
+                            },
+                            lineStyle: {
+                                normal: {
+                                    width: 1,
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0.5, 0, [{
+                                            offset: 0,
+                                            color: 'rgba(228,142,127,1)'
+                                        }, {
+                                            offset: 1,
+                                            color: 'rgba(228,142,127,1)'
+                                        }], false)
+                                }
+                            },
+                        }]
+                };
+            }
+        }, true);
+    };
+    SalesPerformanceDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-sales-performance-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance-detail/sales-performance-detail.html"*/'<!--\n  Generated template for the SalesPerformanceDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title></ion-title>\n  </ion-navbar>\n  <div class="store-name">\n    <span>{{storeName}}</span>\n  </div>\n</ion-header>\n<ion-content>\n  <div class="my-situation">\n    <div class="my-situation-title-wrap">\n      <span>我的情况</span>\n      <div class="select-wrap">\n        <!-- <div [ngClass]="{selected : dateType == 1?true:false}" (tap)="changeType(1)">\n          <span>月</span>\n        </div>\n        <div [ngClass]="{selected : dateType == 2?true:false}" (tap)="changeType(2)">\n          <span>季</span>\n        </div> -->\n      </div>\n    </div>\n    <div class="my-situation-detail-wrap">\n      <div class="my-situation-detail">\n        <!-- <span *ngIf="[4,5,6].indexOf(tag) == -1">{{nowAmount|number:\'1.2-2\'}}</span>\n        <span *ngIf="[4,5,6].indexOf(tag) != -1">{{nowAmount|number}}</span> -->\n        <!-- <span>{{textArr[tag-1][1]}}</span> -->\n      </div>\n      <div class="my-situation-detail">\n        <span [ngClass]="{green : rose < 0?true:false}">{{rose>0?\'+\':\'\'}}{{rose | number : \'1.2-2\'}}%</span>\n        <span>环比增长</span>\n      </div>\n      <div class="my-situation-detail">\n        <span [ngClass]="{green : yoyg < 0?true:false}">{{yoyg>0?\'+\':\'\'}}{{yoyg | number : \'1.2-2\'}}%</span>\n        <span>同比增长</span>\n      </div>\n    </div>\n  </div>\n\n  <div class="echartPosition">\n    <div class="MyTrend">\n      <span>我的趋势</span>\n    </div>\n    <echart-line [config]="config" [cheight]="200"></echart-line>\n  </div>\n\n  <div class="rank-wrap" *ngIf="listMap.length > 0">\n    <div class="rank-title-wrap">\n      <span>我的排名</span>\n    </div>\n    <table>\n      <tr>\n        <th width="20%">排名</th>\n        <th width="30%">业务组</th>\n        <th>常规销售额</th>\n      </tr>\n      <tr>\n        <td>- -</td>\n        <td>合计</td>\n        <td>{{totalAmount|number:\'1.2-2\'}}</td>\n      </tr>\n      <tr *ngFor="let item of listMap">\n        <td>{{item.sort}}</td>\n        <td>{{item.orgName}}</td>\n        <td>{{item.amount|number:\'1.2-2\'}}</td>\n      </tr>\n    </table>\n  </div>\n\n  <div class="rank-wrap" *ngIf="listMap.length <= 0">\n    <div class="rank-title-wrap">\n      <span>业绩情况</span>\n    </div>\n    <table>\n      <tr>\n        <th width="40%">时间</th>\n        <th>数量</th>\n      </tr>\n      <tr *ngFor="let item of listChart">\n        <td>{{item.dateStr}}</td>\n        <td>{{item.consumeSum|number:\'1.2-2\'}}</td>\n      </tr>\n    </table>\n  </div>\n\n</ion-content>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/grantMarket/sales-performance-detail/sales-performance-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */]])
+    ], SalesPerformanceDetailPage);
+    return SalesPerformanceDetailPage;
+}());
+
+//# sourceMappingURL=sales-performance-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=14.js.map

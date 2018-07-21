@@ -1,0 +1,31 @@
+page-deposits {
+  .content {
+    background: #f5f4f3 !important;
+  }
+ 
+  .searchbar{
+  	background: #ffffff;
+  }
+  .list-header {
+    background: #f1f6f4;
+    height:3rem;
+  }
+  .list-item-left {
+    float: left;
+    h2 {
+      color: #333;
+    }
+    h4 {
+      color: #999;
+    }
+  }
+  .list-item-right {
+    float: right;
+    height: 3rem;
+    line-height: 3rem;
+    color: #999;
+    .num-text {
+      color: #00783a;
+    }
+  }
+}

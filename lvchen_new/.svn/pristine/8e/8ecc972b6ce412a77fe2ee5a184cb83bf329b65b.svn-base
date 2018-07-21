@@ -1,0 +1,33 @@
+<!--
+  Generated template for the CustomerReturnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- (ngModelChange)="showValuePromptText('phone', $event)" -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>顾客退货</ion-title>
+  </ion-navbar>
+  <ion-searchbar color='primary' placeholder="手机号" padding [(ngModel)]="phone" (keyup)="onKeyboard($event)" type='search' class="search-bar" mode="ios" showCancelButton="true" cancelButtonText="搜索" (ionCancel)="onSearch()">
+  </ion-searchbar>
+</ion-header>
+<ion-content class="customerReturn">
+  <ion-list *ngFor='let item of customerData'>
+    <ion-item [navPush]='customerReturnListDetail' [navParams]="{ item: item.id}">
+      <div class="list-item-left">
+        <h2>{{item.deposit_time.time|date:'yyyy年MM月dd日'}}</h2>
+        <h4>单号：{{item.deposit_no}}</h4>
+      </div>
+      <div class="list-item-right">
+        <span>{{item.type==0?'购买':'领取'}}数量 </span>
+        <span class="quantity-style">{{item.quantity}}</span>
+        <ion-icon name="ios-arrow-forward" color="gentle"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="getMoreData($event)" *ngIf='hasmore'>
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="加载更多">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

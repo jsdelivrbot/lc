@@ -1,0 +1,220 @@
+webpackJsonp([86],{
+
+/***/ 281:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BusinessCourseDetailPageModule", function() { return BusinessCourseDetailPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__business_course_detail__ = __webpack_require__(372);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var BusinessCourseDetailPageModule = /** @class */ (function () {
+    function BusinessCourseDetailPageModule() {
+    }
+    BusinessCourseDetailPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__business_course_detail__["a" /* BusinessCourseDetailPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__business_course_detail__["a" /* BusinessCourseDetailPage */]),
+            ],
+        })
+    ], BusinessCourseDetailPageModule);
+    return BusinessCourseDetailPageModule;
+}());
+
+//# sourceMappingURL=business-course-detail.module.js.map
+
+/***/ }),
+
+/***/ 372:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BusinessCourseDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the BusinessCourseDetailPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var BusinessCourseDetailPage = /** @class */ (function () {
+    function BusinessCourseDetailPage(navCtrl, navParams, appService, appUrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.appService = appService;
+        this.appUrl = appUrl;
+        // 课程详情
+        this.courseDetail = {};
+        // 考试id
+        this.examId = 0;
+        // 是否已收藏
+        this.collState = 0;
+        // 文件类型
+        this.fileRoute = 2;
+        // 是否需要考试
+        this.examState = 1;
+        // 是否已经学习
+        this.studyState = 0;
+        // 开始学习
+        this.studing = false;
+        this.readTimeLong = 0;
+        this.readSeconds = 0;
+        this.readHours = 0;
+    }
+    BusinessCourseDetailPage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        this.navBar.backButtonClick = function () {
+            clearTimeout(_this.timer);
+            _this.navCtrl.pop({
+                animation: 'md-transition'
+            });
+        };
+        this.getCourseDetail();
+    };
+    // 获取课程详情
+    BusinessCourseDetailPage.prototype.getCourseDetail = function () {
+        var _this = this;
+        this.appService.httpPost("business_courseDetail", {
+            courseId: this.navParams.data.id || 56
+        }, function (res) {
+            if (res.code == 1) {
+                _this.courseDetail = res.map.course;
+                _this.collState = res.map.collState;
+                _this.examState = res.map.examState;
+                _this.studyState = res.map.studyState;
+                _this.examId = res.map.examId;
+                // 判断文件类型
+                _this.judgefileRoute(res.map.course.fileRoute);
+            }
+            else {
+                _this.appService.alert(res.msg);
+            }
+        }, true);
+    };
+    // 判断课程文件类型
+    BusinessCourseDetailPage.prototype.judgefileRoute = function (fileRoute) {
+        if (fileRoute.toLocaleLowerCase().indexOf(".mp3") != -1 || fileRoute.toLocaleLowerCase().indexOf(".amr") != -1) {
+            this.fileRoute = 0;
+        }
+        else if (fileRoute != "") {
+            this.fileRoute = 1;
+        }
+    };
+    // 收藏
+    BusinessCourseDetailPage.prototype.collCourse = function (id) {
+        var _this = this;
+        // 修改当前收藏状态
+        this.collState = this.collState == 1 ? 0 : 1;
+        // 提交收藏状态
+        this.appService.httpPost("business_courseColl", {
+            courseId: this.navParams.data.id || 56,
+            collState: this.collState
+        }, function (res) {
+            _this.appService.alert(res.msg);
+            // 失败的话，改回原来的收藏状态
+            if (res.code != 1) {
+                _this.collState = _this.collState == 1 ? 0 : 1;
+            }
+        }, true);
+    };
+    // 我要学习
+    BusinessCourseDetailPage.prototype.startTolearn = function () {
+        this.studyState = 1;
+        // 计算分钟
+        this.readTimeLong = this.courseDetail["readTimeLong"] % 60;
+        // 计算小时
+        this.readHours = Math.floor(this.courseDetail["readTimeLong"] / 60);
+        this.studing = true;
+        this.startCountDown();
+    };
+    // 学习倒数
+    BusinessCourseDetailPage.prototype.startCountDown = function () {
+        var _this = this;
+        this.readSeconds--;
+        if (this.readSeconds < 0) {
+            this.readTimeLong--;
+            if (this.readTimeLong < 0) {
+                this.readHours--;
+                if (this.readHours < 0) {
+                    this.appService.httpPost("business_courseSucc", {
+                        courseId: this.navParams.data.id || 56,
+                        isSucc: 1
+                    }, function (res) {
+                        if (res.code == 1) {
+                            _this.appService.alert(res.msg);
+                        }
+                        else {
+                            _this.studyState = 0;
+                            _this.appService.alert(res.msg);
+                        }
+                    });
+                    this.studing = false;
+                    return;
+                }
+                this.readTimeLong = 59;
+            }
+            this.readSeconds = 59;
+        }
+        this.timer = setTimeout(function () {
+            _this.startCountDown();
+        }, 1000);
+    };
+    // 我要考试
+    BusinessCourseDetailPage.prototype.startExam = function () {
+        if (this.studyState == 0 || this.studing) {
+            this.appService.alert("请先完成学习！");
+            return;
+        }
+        this.navCtrl.push('BusinessExamStartPage', {
+            id: this.courseDetail['id']
+        });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], BusinessCourseDetailPage.prototype, "navBar", void 0);
+    BusinessCourseDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-business-course-detail',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-course-detail/business-course-detail.html"*/'<!--\n  Generated template for the BusinessCourseDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{courseDetail.title}}</ion-title>\n    <div class="button-wrap">\n      <button ion-button (tap)="collCourse(courseDetail.id)">\n        <ion-icon name="heart" style="color : red" *ngIf="collState == 1"></ion-icon>\n        <ion-icon name="heart-outline" *ngIf="collState == 0"></ion-icon>\n      </button>\n    </div>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n\n  <div class="pic-wrap" [ngStyle]="{\'background-image\': \'url(\' + appUrl.apiUrl+courseDetail.pic +\')\'}" *ngIf="fileRoute!=1">\n    <audio [src]="appUrl.apiUrl + courseDetail.fileRoute" *ngIf="fileRoute==0" controls="controls">\n      您的浏览器不支持 audio 标签。\n    </audio>\n  </div>\n  <video [src]="appUrl.apiUrl + courseDetail.fileRoute" controls="controls" *ngIf="fileRoute==1" [poster]="appUrl.apiUrl+courseDetail.pic">\n  </video>\n\n  <div class="course-introduce">\n    <div class="introduce-title-wrap">\n      <span class="introduce-title">课程介绍</span>\n      <div class="introduce-type">{{courseDetail.typeName}}</div>\n    </div>\n    <div class="introduce-content" [innerHTML]="courseDetail.content">\n    </div>\n  </div>\n\n  <div class="pdf-content"></div>\n\n</ion-content>\n\n<ion-footer>\n  <div class="learn-time-wrap" *ngIf="studing">\n    <div class="leern-time">\n      <ion-icon name="timer"></ion-icon>\n      {{readHours\n      <10? "0": ""}}{{readHours}}:{{readTimeLong<10? "0": ""}}{{readTimeLong}}:{{readSeconds<10? "0": ""}}{{readSeconds}}</div>\n    </div>\n    <div class="button-wrap">\n      <button ion-button class="btn-learn" *ngIf="studyState == 0" (tap)="startTolearn()">我要学习</button>\n      <div class="line"></div>\n      <button ion-button class="btn-exam" *ngIf="examState == 1" (tap)="startExam()">我要考试</button>\n    </div>\n</ion-footer>'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/Business/business-course-detail/business-course-detail.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_public_service_service_public_service__["a" /* AppGlobal */]])
+    ], BusinessCourseDetailPage);
+    return BusinessCourseDetailPage;
+}());
+
+//# sourceMappingURL=business-course-detail.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=86.js.map

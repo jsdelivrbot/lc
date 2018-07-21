@@ -1,0 +1,267 @@
+webpackJsonp([21],{
+
+/***/ 360:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ScangiftPageModule", function() { return ScangiftPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scangift__ = __webpack_require__(451);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ScangiftPageModule = /** @class */ (function () {
+    function ScangiftPageModule() {
+    }
+    ScangiftPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* IonicPage */])(),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__scangift__["a" /* ScangiftPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__scangift__["a" /* ScangiftPage */]),
+            ],
+        })
+    ], ScangiftPageModule);
+    return ScangiftPageModule;
+}());
+
+//# sourceMappingURL=scangift.module.js.map
+
+/***/ }),
+
+/***/ 451:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ScangiftPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__ = __webpack_require__(51);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the  page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var ScangiftPage = /** @class */ (function () {
+    function ScangiftPage(navCtrl, navParams, qrScanner, viewCtrl, alertCtrl, appService, platform) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.qrScanner = qrScanner;
+        this.viewCtrl = viewCtrl;
+        this.alertCtrl = alertCtrl;
+        this.appService = appService;
+        this.platform = platform;
+        this.light = false;
+        this.frontCamera = false;
+        this.backgroundnone = false;
+        this.num = 0;
+        this.isFirst = true;
+        // 储存本地变量
+        this.presentMap = [];
+        this.destory = false;
+    }
+    ScangiftPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        this.appService.getItem('pre', function (val) {
+            _this.presentMap = val['presentMap'] || [];
+            _this.num = _this.presentMap.length || 0;
+        });
+        //获取摄像权限
+        this.destory = false;
+        this.qrScanner.prepare()
+            .then(function (status) {
+            if (status.authorized) {
+                _this.scan();
+                _this.qrScanner.show();
+            }
+        })
+            .catch(function (e) { return console.log('Error is', e); });
+    };
+    ScangiftPage.prototype.ngOnInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.backgroundnone = true;
+        }, 800);
+        //返回提示
+        this.navbar.backButtonClick = function (e) {
+            _this.onBack();
+        };
+        this.platform.registerBackButtonAction(function () {
+            _this.onBack();
+        });
+    };
+    ScangiftPage.prototype.onBack = function () {
+        var _this = this;
+        this.destory = true;
+        if (this.num == 0) {
+            this.viewCtrl.dismiss();
+            this.qrScanner.destroy();
+        }
+        else {
+            var confirm_1 = this.alertCtrl.create({
+                title: '提示',
+                message: '您的操作未完成，确定要退出？',
+                buttons: [
+                    {
+                        text: '确定',
+                        handler: function () {
+                            try {
+                                _this.appService.removeItem('cb');
+                                _this.destory = true;
+                                _this.qrScanner.destroy();
+                            }
+                            catch (e) {
+                            }
+                            finally {
+                                _this.navCtrl.popToRoot();
+                            }
+                        }
+                    },
+                    {
+                        text: '取消',
+                        handler: function () {
+                            _this.destory = false;
+                            _this.scan();
+                        }
+                    }
+                ]
+            });
+            confirm_1.present();
+        }
+    };
+    //开启扫一扫
+    ScangiftPage.prototype.scan = function () {
+        var _this = this;
+        this.qrScanner.scan().subscribe(function (text) {
+            if (_this.destory) {
+                _this.restartScan();
+                return;
+            }
+            _this.appService.httpPost('findGiftGoods.api', { code: text }, function (data) {
+                if (data.code == -1) {
+                    _this.appService.toast(data.msg);
+                }
+                else {
+                    if (data.data.length == 0) {
+                        _this.appService.toast('没有结果');
+                    }
+                    else {
+                        _this.showSourceRadio(data.data[0]);
+                    }
+                }
+                var timeout = setTimeout(function () {
+                    if (!_this.destory) {
+                        _this.scan();
+                    }
+                    clearTimeout(timeout);
+                }, 500);
+            }, true);
+        });
+    };
+    ScangiftPage.prototype.restartScan = function () {
+        var _this = this;
+        var time = setTimeout(function () {
+            _this.scan();
+            clearTimeout(time);
+        }, 500);
+    };
+    ScangiftPage.prototype.search = function () {
+        this.navCtrl.push('SelectGiftPage', {
+            animation: 'md-transition'
+        });
+    };
+    //提交
+    ScangiftPage.prototype.submit = function () {
+        this.destory = true;
+        this.qrScanner.destroy();
+        var params = {
+            presentMap: this.presentMap,
+        };
+        this.appService.setItem('pre', params);
+        this.navCtrl.pop();
+    };
+    ScangiftPage.prototype.showSourceRadio = function (data) {
+        var _this = this;
+        this.destory = true;
+        var alert = this.alertCtrl.create();
+        alert.setTitle('选择礼品来源');
+        alert.addInput({
+            type: 'radio',
+            label: "借门店",
+            value: '0',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "欠顾客",
+            value: '1',
+            checked: false
+        });
+        alert.addInput({
+            type: 'radio',
+            label: "其它",
+            value: '2',
+            checked: true
+        });
+        alert.addButton({
+            text: '确定',
+            handler: function (result) {
+                _this.destory = false;
+                _this.presentMap.push({ 'id': data.goodsId, 'name': data.goodsName, 'num': '1', 'source': result });
+                _this.num = _this.presentMap.length;
+                _this.scan();
+            }
+        });
+        alert.present();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Navbar */])
+    ], ScangiftPage.prototype, "navbar", void 0);
+    ScangiftPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-scangift',template:/*ion-inline-start:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/scangift/scangift.html"*/'<!--\n  Generated template for the ScannerPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <ion-title>扫礼品</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="{{backgroundnone==false?\'white\':\'qrscanner\'}}">\n    <div class="{{backgroundnone==false?\'white\':\'qrscanner-area\'}}">\n    </div>\n    <div class="{{backgroundnone==false?\'white\':\'through-line\'}}"></div>\n  </ion-content>\n<ion-footer>\n  \n  \n  <div class="bottom-div">\n    <ion-row>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="search()" class="submit-btn" ion-button col-4>\n        <ion-icon name="search"></ion-icon>&nbsp;&nbsp;查询\n      </ion-col>\n      <ion-col col-1></ion-col>\n      <ion-col (tap)="submit()" class="submit-btn" ion-button col-5>\n        <ion-icon name="checkmark"></ion-icon>&nbsp;&nbsp;确认\n        <span class="{{num==0?\'hidden\':\'\'}} red-badge">{{num}}</span>\n      </ion-col>\n    </ion-row>\n  </div>\n</ion-footer>\n'/*ion-inline-end:"/Users/linyunfu/Desktop/greenMy/src/pages/main/salesAndgift/scangift/scangift.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__ionic_native_qr_scanner__["a" /* QRScanner */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["t" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_public_service_service_public_service__["b" /* AppService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* Platform */]])
+    ], ScangiftPage);
+    return ScangiftPage;
+}());
+
+//# sourceMappingURL=scangift.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=21.js.map

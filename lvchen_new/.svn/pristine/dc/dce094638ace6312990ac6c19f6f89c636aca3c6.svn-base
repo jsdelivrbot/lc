@@ -1,0 +1,33 @@
+<!--
+  Generated template for the SaleVerifyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>销售确认</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="header-div">
+    <div padding>顾客手机&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="tel" [(ngModel)]="phone" placeholder="输入手机号" (keyup)="verify($event)">
+    </div>
+    <div padding>顾客姓名&nbsp;&nbsp;&nbsp;&nbsp;
+      <input [(ngModel)]="name" placeholder="输入姓名">
+    </div>
+    <div style="height: 1px;width: 100%;background: #ccc;" class="{{type==1?'':'hidden'}}"></div>
+    <div padding class="{{type==1?'':'hidden'}}">验证码&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="tel" [(ngModel)]="smsCode" placeholder="输入验证码">
+      <div item-end ion-button class="smsCodeBtn" (click)='sendCode()'>{{smsCodeTime == 0 ? '获取验证码': smsCodeTime+'s'}}</div>
+    </div>
+    <components-colorbar></components-colorbar>
+  </div>
+  <textarea rows="4" cols="50" placeholder="备注:......" class="textarea" [(ngModel)]="memo"></textarea>
+</ion-content>
+<ion-footer no-shadow (click)='submit()'>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">提交</ion-title>
+  </ion-toolbar>
+</ion-footer>
